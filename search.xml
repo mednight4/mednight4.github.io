@@ -3395,4 +3395,52 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
         <tag>python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Pycharm运行Jupyter notebook(pip安装)</title>
+    <url>/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/</url>
+    <content><![CDATA[<h1 id="Pycharm运行Jupyter-notebook-pip安装"><a href="#Pycharm运行Jupyter-notebook-pip安装" class="headerlink" title="Pycharm运行Jupyter notebook(pip安装)"></a>Pycharm运行Jupyter notebook(pip安装)</h1><p>环境：win10，pycharm专业版</p>
+<h2 id="从Anacanda开始"><a href="#从Anacanda开始" class="headerlink" title="从Anacanda开始"></a>从Anacanda开始</h2><p>Jupyter在爬虫和数据分析这一块用起来非常方便。</p>
+<p>方便一点的方法是安装<a href="https://www.anaconda.com/">Anaconda</a>，并勾选jupyter notebook模块，Anaconda的安装就不细说了，看这里</p>
+<p> <a href="https://www.jianshu.com/p/62f155eb6ac5">简书-Anaconda介绍、安装及使用教程</a></p>
+<h2 id="使用vscode插件集成"><a href="#使用vscode插件集成" class="headerlink" title="使用vscode插件集成"></a>使用vscode插件集成</h2><p>但是我是本着少折腾的心直接在vscode里装的jupyter插件，也就是直接pip安装jupyter及其相关依赖库。至于安装的方法嘛，写爬虫作业时，vscode的右下角一直弹窗推荐使用jupyter插件，随手就点了。。。然后是pip安装若干依赖包，一路yes下去就完了</p>
+<p>pip list一下，看上去直接相关的有</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip list</span><br><span class="line">Package             Version</span><br><span class="line">------------------- ---------</span><br><span class="line">jupyter             1.0.0</span><br><span class="line">jupyter-client      6.1.7</span><br><span class="line">jupyter-console     6.2.0</span><br><span class="line">jupyter-core        4.6.3</span><br><span class="line">jupyterlab-pygments 0.1.2</span><br></pre></td></tr></table></figure>
+
+<p>当然vscode自然是全配置好了，新建<code>.ipynb</code>文件，直接点击即可生成页面</p>
+<p>默认情况下，画出的图形呈现在各自的窗口中。要直接在 notebook 中呈现图形，应将通过命令 <code>%matplotlib inline</code> 内联后端。</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png"></p>
+<h2 id="pycharm关联Jupyter服务"><a href="#pycharm关联Jupyter服务" class="headerlink" title="pycharm关联Jupyter服务"></a>pycharm关联Jupyter服务</h2><p>想给pycharm也带上，对我这样的菜鸟来说，pycharm的语法提示还是舒服，而且debug也很方便</p>
+<p>目录下新建一个jupyter notebook文件</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm_jupyter.png"></p>
+<p>由于没有配置运行环境，所以不能运行，查看运行配置，需要服务的地址和token</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm%E9%85%8D%E7%BD%AE.png"></p>
+<p>所以需要先将jupyter跑起来，再将页面的url和token填到pycharm里</p>
+<p>服务启动命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+
+<p>如果命令行无法识别jupyter命令，需要将其添加到环境变量</p>
+<p>默认的路径是<code>C:\Users\用户名\AppData\Roaming\Python\Python37\Scripts</code>，找到自己的Scripts目录，将其加至系统环境变量path，启动服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br><span class="line">[I 22:55:02.380 NotebookApp] Serving notebooks from local directory: E:\phpEnv\tools\Cmder</span><br><span class="line">[I 22:55:02.381 NotebookApp] Jupyter Notebook 6.1.4 is running at:</span><br><span class="line">[I 22:55:02.381 NotebookApp] http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.382 NotebookApp]  or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.383 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span><br><span class="line">[C 22:55:02.539 NotebookApp]</span><br><span class="line"></span><br><span class="line">    To access the notebook, open this file in a browser:</span><br><span class="line">        file:///C:/Users/17498/AppData/Roaming/jupyter/runtime/nbserver-19644-open.html</span><br><span class="line">    Or copy and paste one of these URLs:</span><br><span class="line">        http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">     or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br></pre></td></tr></table></figure>
+
+<p><code>token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</code>，此时浏览器自动打开Jupyter的页面，初始目录为命令运行的当前目录，所以建议先cd到代码目录再运行服务</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/tree.png"></p>
+<p>jupyter的默认端口是8888</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/url%E7%AB%AF%E5%8F%A3.png"></p>
+<p>点击运行，登陆弹窗，所填token是先前的<code>39928e57fedd0f64aad19afaec923217a89809ce577e154c</code></p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/token.png"></p>
+<p>点击ok，运行代码，似乎还自带debug效果</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/result.png"></p>
+<p>可以看到，结果和代码并没有在同一个窗口，好处是代码更直观了，而且debug很方便，但是窗口太小看运行结果不是很舒服，见仁见智了，用来敲代码稍微多一点的项目还是很不错的。</p>
+<p>有了IDE就不需要在浏览器上打开notebook页面了。jupyter启动服务器但不打开浏览器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook --no-browser</span><br></pre></td></tr></table></figure>
+
+<p>此时，将会在终端显示启动的服务器信息，包括浏览器页面的链接和token。</p>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>

@@ -27,18 +27,29 @@
     var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
-  <meta name="description" content="因为山就在那里">
-<meta property="og:type" content="website">
-<meta property="og:title" content="mednight4">
-<meta property="og:url" content="https://mednight4.github.io/categories/%E7%88%AC%E8%99%AB/index.html">
+  <meta name="description" content="pycharm配置jupyter运行环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pycharm运行Jupyter notebook(pip安装)">
+<meta property="og:url" content="https://mednight4.github.io/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/index.html">
 <meta property="og:site_name" content="mednight4">
-<meta property="og:description" content="因为山就在那里">
+<meta property="og:description" content="pycharm配置jupyter运行环境">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm_jupyter.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/tree.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/url%E7%AB%AF%E5%8F%A3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/token.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/result.png">
+<meta property="article:published_time" content="2020-12-16T14:16:46.000Z">
+<meta property="article:modified_time" content="2020-12-16T15:47:14.405Z">
 <meta property="article:author" content="mednight4">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png">
 
 
-<link rel="canonical" href="https://mednight4.github.io/categories/%E7%88%AC%E8%99%AB/">
+<link rel="canonical" href="https://mednight4.github.io/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/">
 
 
 <script class="page-configurations">
@@ -46,12 +57,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: 爬虫 | mednight4</title>
+  <title>Pycharm运行Jupyter notebook(pip安装) | mednight4</title>
   
 
 
@@ -200,7 +211,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -213,6 +224,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85"><span class="nav-text">Pycharm运行Jupyter notebook(pip安装)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EAnacanda%E5%BC%80%E5%A7%8B"><span class="nav-text">从Anacanda开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8vscode%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90"><span class="nav-text">使用vscode插件集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pycharm%E5%85%B3%E8%81%94Jupyter%E6%9C%8D%E5%8A%A1"><span class="nav-text">pycharm关联Jupyter服务</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -302,78 +314,138 @@
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">爬虫
-          <small>分类</small>
-        </h2>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Pycharm运行Jupyter notebook(pip安装)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+      <time title="创建时间：2020-12-16 22:16:46 / 修改时间：23:47:14" itemprop="dateCreated datePublished" datetime="2020-12-16T22:16:46+08:00">2020-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">pycharm配置jupyter运行环境</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Pycharm运行Jupyter-notebook-pip安装"><a href="#Pycharm运行Jupyter-notebook-pip安装" class="headerlink" title="Pycharm运行Jupyter notebook(pip安装)"></a>Pycharm运行Jupyter notebook(pip安装)</h1><p>环境：win10，pycharm专业版</p>
+<h2 id="从Anacanda开始"><a href="#从Anacanda开始" class="headerlink" title="从Anacanda开始"></a>从Anacanda开始</h2><p>Jupyter在爬虫和数据分析这一块用起来非常方便。</p>
+<p>方便一点的方法是安装<a target="_blank" rel="noopener" href="https://www.anaconda.com/">Anaconda</a>，并勾选jupyter notebook模块，Anaconda的安装就不细说了，看这里</p>
+<p> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/62f155eb6ac5">简书-Anaconda介绍、安装及使用教程</a></p>
+<h2 id="使用vscode插件集成"><a href="#使用vscode插件集成" class="headerlink" title="使用vscode插件集成"></a>使用vscode插件集成</h2><p>但是我是本着少折腾的心直接在vscode里装的jupyter插件，也就是直接pip安装jupyter及其相关依赖库。至于安装的方法嘛，写爬虫作业时，vscode的右下角一直弹窗推荐使用jupyter插件，随手就点了。。。然后是pip安装若干依赖包，一路yes下去就完了</p>
+<p>pip list一下，看上去直接相关的有</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br><span class="line">Package             Version</span><br><span class="line">------------------- ---------</span><br><span class="line">jupyter             1.0.0</span><br><span class="line">jupyter-client      6.1.7</span><br><span class="line">jupyter-console     6.2.0</span><br><span class="line">jupyter-core        4.6.3</span><br><span class="line">jupyterlab-pygments 0.1.2</span><br></pre></td></tr></table></figure>
+
+<p>当然vscode自然是全配置好了，新建<code>.ipynb</code>文件，直接点击即可生成页面</p>
+<p>默认情况下，画出的图形呈现在各自的窗口中。要直接在 notebook 中呈现图形，应将通过命令 <code>%matplotlib inline</code> 内联后端。</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png"></p>
+<h2 id="pycharm关联Jupyter服务"><a href="#pycharm关联Jupyter服务" class="headerlink" title="pycharm关联Jupyter服务"></a>pycharm关联Jupyter服务</h2><p>想给pycharm也带上，对我这样的菜鸟来说，pycharm的语法提示还是舒服，而且debug也很方便</p>
+<p>目录下新建一个jupyter notebook文件</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm_jupyter.png"></p>
+<p>由于没有配置运行环境，所以不能运行，查看运行配置，需要服务的地址和token</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm%E9%85%8D%E7%BD%AE.png"></p>
+<p>所以需要先将jupyter跑起来，再将页面的url和token填到pycharm里</p>
+<p>服务启动命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+
+<p>如果命令行无法识别jupyter命令，需要将其添加到环境变量</p>
+<p>默认的路径是<code>C:\Users\用户名\AppData\Roaming\Python\Python37\Scripts</code>，找到自己的Scripts目录，将其加至系统环境变量path，启动服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br><span class="line">[I 22:55:02.380 NotebookApp] Serving notebooks from local directory: E:\phpEnv\tools\Cmder</span><br><span class="line">[I 22:55:02.381 NotebookApp] Jupyter Notebook 6.1.4 is running at:</span><br><span class="line">[I 22:55:02.381 NotebookApp] http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.382 NotebookApp]  or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.383 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span><br><span class="line">[C 22:55:02.539 NotebookApp]</span><br><span class="line"></span><br><span class="line">    To access the notebook, open this file in a browser:</span><br><span class="line">        file:///C:/Users/17498/AppData/Roaming/jupyter/runtime/nbserver-19644-open.html</span><br><span class="line">    Or copy and paste one of these URLs:</span><br><span class="line">        http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">     or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br></pre></td></tr></table></figure>
+
+<p><code>token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</code>，此时浏览器自动打开Jupyter的页面，初始目录为命令运行的当前目录，所以建议先cd到代码目录再运行服务</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/tree.png"></p>
+<p>jupyter的默认端口是8888</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/url%E7%AB%AF%E5%8F%A3.png"></p>
+<p>点击运行，登陆弹窗，所填token是先前的<code>39928e57fedd0f64aad19afaec923217a89809ce577e154c</code></p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/token.png"></p>
+<p>点击ok，运行代码，似乎还自带debug效果</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/result.png"></p>
+<p>可以看到，结果和代码并没有在同一个窗口，好处是代码更直观了，而且debug很方便，但是窗口太小看运行结果不是很舒服，见仁见智了，用来敲代码稍微多一点的项目还是很不错的。</p>
+<p>有了IDE就不需要在浏览器上打开notebook页面了。jupyter启动服务器但不打开浏览器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --no-browser</span><br></pre></td></tr></table></figure>
+
+<p>此时，将会在终端显示启动的服务器信息，包括浏览器页面的链接和token。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-12-14T14:25:17+08:00"
-              content="2020-12-14">
-          12-14
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/14/pa-qu-zhi-hu-top50-shu-ju-qing-xi-yu-pd2csv-ge-shi/" itemprop="url">
-            <span itemprop="name">爬取知乎top50,数据清洗与pd2csv格式</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/15/zhi-lian-de-domain-huo-ip/" rel="prev" title="直连的Domain或IP">
+                  <i class="fa fa-chevron-left"></i> 直连的Domain或IP
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-10-19T20:16:18+08:00"
-              content="2020-10-19">
-          10-19
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/19/dou-ban-pa-qu-top250/" itemprop="url">
-            <span itemprop="name">豆瓣爬取top250</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
 
 
 
       
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -546,6 +618,25 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '8474fbefa93b78997764',
+      clientSecret: '5f1f7cdfb509b93090f38123bb1f6ece9336f493',
+      repo        : 'mednight4.github.io',
+      owner       : 'mednight4',
+      admin       : ['mednight4'],
+      id          : 'a88efe6addc8ef0c645cf03c2b7ea98c',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 <script>
             window.imageLazyLoadSetting = {
