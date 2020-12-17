@@ -17,10 +17,10 @@
   --btn-default-hover-bg: transparent;
   --btn-default-hover-color: var(--link-hover-color);
   --btn-default-hover-border-color: var(--link-hover-color);
-  --highlight-background: #f8f8f8;
-  --highlight-foreground: #333;
-  --highlight-gutter-background: #e4e4e4;
-  --highlight-gutter-foreground: #464646;
+  --highlight-background: #fafafa;
+  --highlight-foreground: #383a42;
+  --highlight-gutter-background: #e6e6e7;
+  --highlight-gutter-foreground: #4b4d54;
 }
 html {
   line-height: 1.15; /* 1 */
@@ -363,7 +363,21 @@ td {
 }
 /*
 
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
 
 */
 
@@ -371,86 +385,65 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #333;
-  background: #f8f8f8;
+  color: #383a42;
+  background: #fafafa;
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #998;
+  color: #a0a1a7;
   font-style: italic;
 }
 
+.hljs-doctag,
 .hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst {
-  color: #333;
-  font-weight: bold;
+.hljs-formula {
+  color: #a626a4;
 }
 
-.hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag .hljs-attr {
-  color: #008080;
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
 }
 
 .hljs-string,
-.hljs-doctag {
-  color: #d14;
-}
-
-.hljs-title,
-.hljs-section,
-.hljs-selector-id {
-  color: #900;
-  font-weight: bold;
-}
-
-.hljs-subst {
-  font-weight: normal;
-}
-
-.hljs-type,
-.hljs-class .hljs-title {
-  color: #458;
-  font-weight: bold;
-}
-
-.hljs-tag,
-.hljs-name,
-.hljs-attribute {
-  color: #000080;
-  font-weight: normal;
-}
-
 .hljs-regexp,
-.hljs-link {
-  color: #009926;
-}
-
-.hljs-symbol,
-.hljs-bullet {
-  color: #990073;
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #50a14f;
 }
 
 .hljs-built_in,
-.hljs-builtin-name {
-  color: #0086b3;
+.hljs-class .hljs-title {
+  color: #c18401;
 }
 
-.hljs-meta {
-  color: #999;
-  font-weight: bold;
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
 }
 
-.hljs-deletion {
-  background: #fdd;
-}
-
-.hljs-addition {
-  background: #dfd;
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
 }
 
 .hljs-emphasis {
@@ -459,6 +452,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-strong {
   font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
 }
 
 .highlight:hover .copy-btn,
@@ -473,11 +470,13 @@ pre:hover .copy-btn {
   padding: 2px 6px;
   position: absolute;
   transition: opacity 0.2s ease-in-out;
-  background: #fff;
-  border: 0;
+  background-color: #eee;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
   font-size: 0.8125em;
-  right: 0;
-  top: 0;
+  right: 4px;
+  top: 8px;
 }
 code,
 kbd,
@@ -2010,7 +2009,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .post-body {
-    font-size: 1.06em;
+    font-size: 1em;
   }
 }
 @media (min-width: 992px) {
@@ -2975,7 +2974,7 @@ hr {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #daff70;
+  background: #4b0409;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

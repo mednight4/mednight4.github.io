@@ -4,14 +4,14 @@
   <url>
     <loc>https://mednight4.github.io/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/</loc>
     
-    <lastmod>2020-12-16</lastmod>
+    <lastmod>2020-12-17</lastmod>
     
   </url>
   
   <url>
     <loc>https://mednight4.github.io/2020/12/09/md5-suan-fa-ji-chu-shi-xian/</loc>
     
-    <lastmod>2020-12-15</lastmod>
+    <lastmod>2020-12-17</lastmod>
     
   </url>
   
@@ -249,14 +249,14 @@
 
   
   <url>
-    <loc>https://mednight4.github.io/tags/linux/</loc>
+    <loc>https://mednight4.github.io/tags/python/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/tags/python/</loc>
+    <loc>https://mednight4.github.io/tags/linux/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -300,13 +300,6 @@
 
   
   <url>
-    <loc>https://mednight4.github.io/categories/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
@@ -314,7 +307,21 @@
   </url>
   
   <url>
+    <loc>https://mednight4.github.io/categories/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mednight4.github.io/categories/web/</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/categories/%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -336,13 +343,6 @@
   
   <url>
     <loc>https://mednight4.github.io/categories/%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mednight4.github.io/categories/%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
