@@ -1857,7 +1857,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# yum install samba</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * c7-media: </span><br><span class="line">...</span><br><span class="line">Installed size: 29 M</span><br><span class="line">Is this ok [y/d/N]: y</span><br><span class="line">Downloading packages:</span><br><span class="line">...</span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
 
 <p><strong>备份服务配置文件</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# ls /etc/samba</span><br><span class="line">lmhosts  smb.conf  smb.conf.example</span><br><span class="line">[root@localhost ~]# cp /etc/samba/smb.conf /etc/samba.conf.bak</span><br><span class="line">[root@localhost ~]# vi /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# ls /etc/samba</span><br><span class="line">lmhosts  smb.conf  smb.conf.example</span><br><span class="line">[root@localhost ~]# cp /etc/samba/smb.conf /etc/samba/smb.conf.bak</span><br><span class="line">[root@localhost ~]# vi /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
 
 <p><strong>修改配置文件</strong></p>
 <p>此处192.168.5.1为物理机vmnet8的网卡地址</p>
