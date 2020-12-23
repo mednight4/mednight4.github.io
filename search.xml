@@ -3443,4 +3443,112 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
         <tag>python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>虚拟机配置smb服务</title>
+    <url>/2020/12/23/xu-ni-ji-pei-zhi-smb-fu-wu/</url>
+    <content><![CDATA[<h1 id="虚拟机配置smb服务"><a href="#虚拟机配置smb服务" class="headerlink" title="虚拟机配置smb服务"></a>虚拟机配置smb服务</h1><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>Samba服务器的配置：</p>
+<ul>
+<li><p>  修改工作组为WORKGROUP。</p>
+</li>
+<li><p>  注释[homes]和[printers]的内容。</p>
+</li>
+<li><p>  共享名为webdata。</p>
+</li>
+<li><p>  webdata可浏览、可写。</p>
+</li>
+<li><p>  共享目录为/data/web_data，且Apache用户对该目录有读、写、执行权限，使用setfacl命令配置目录权限。</p>
+</li>
+<li><p>  只有IP地址为192.168.222.2的主机可以访问该目录。</p>
+</li>
+<li><p>  添加一个Apache用户（密码自定义）并对外提供Samba服务。</p>
+</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><strong>先拍个快照，真的不麻烦</strong></p>
+<p><strong>安装samba服务器</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# yum install samba</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * c7-media: </span><br><span class="line">...</span><br><span class="line">Installed size: 29 M</span><br><span class="line">Is this ok [y/d/N]: y</span><br><span class="line">Downloading packages:</span><br><span class="line">...</span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
+
+<p><strong>备份服务配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# ls /etc/samba</span><br><span class="line">lmhosts  smb.conf  smb.conf.example</span><br><span class="line">[root@localhost ~]# cp /etc/samba/smb.conf /etc/samba.conf.bak</span><br><span class="line">[root@localhost ~]# vi /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改配置文件</strong></p>
+<p>此处192.168.5.1为物理机vmnet8的网卡地址</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> See smb.conf.example <span class="keyword">for</span> a more detailed config file or</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">read</span> the smb.conf manpage.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Run <span class="string">&#x27;testparm&#x27;</span> to verify the config is correct after</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> you modified it.</span></span><br><span class="line">[global]</span><br><span class="line">        workgroup = WORKGROUP</span><br><span class="line">        security = user</span><br><span class="line">        passdb backend = tdbsam</span><br><span class="line">        printing = cups</span><br><span class="line">        printcap name = cups</span><br><span class="line">        load printers = yes</span><br><span class="line">        cups options = raw</span><br><span class="line">[webdata]</span><br><span class="line">        hosts allow = 192.168.5.1        #VMnet8</span><br><span class="line">        writable = yes</span><br><span class="line">        browseable = yes</span><br><span class="line">        path = /data/web_data</span><br><span class="line"><span class="meta">#</span><span class="bash">[homes]</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       comment = Home Directories</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       valid users = %S, %D%w%S</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       browseable = No</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       <span class="built_in">read</span> only = No</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       inherit acls = Yes</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="bash"><span class="comment">#[printers]</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">       comment = All Printers</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       path = /var/tmp</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       printable = Yes</span></span><br><span class="line">&quot;/etc/samba/smb.conf&quot; 39L, 830C</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置模版</strong></p>
+<p>如果有其他要求，可以在此找到键</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/samba/smb.conf.example | grep -v &quot;#&quot; | grep -v &quot;^$&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# testparm  /etc/samba/smb.conf</span><br><span class="line">Load smb config files from /etc/samba/smb.conf</span><br><span class="line">Loaded services file OK.</span><br><span class="line">Server role: ROLE_STANDALONE</span><br><span class="line"></span><br><span class="line">Press enter to see a dump of your service definitions</span><br></pre></td></tr></table></figure>
+
+<p><strong>建立网络服务文件</strong> </p>
+<p>然后查看其权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# mkdir -p /data/web_data</span><br><span class="line">[root@localhost ~]# echo &quot;hello&quot; &gt; /data/web_data/hello.txt</span><br><span class="line">[root@localhost ~]# getfacl /data/web_data</span><br><span class="line">getfacl: Removing leading &#x27;/&#x27; from absolute path names</span><br><span class="line"><span class="meta">#</span><span class="bash"> file: data/web_data</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> owner: root</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> group: root</span></span><br><span class="line">user::rwx</span><br><span class="line">group::r-x</span><br><span class="line">other::r-x</span><br></pre></td></tr></table></figure>
+
+<p><strong>新建linux用户</strong></p>
+<p>Apache</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# useradd Apache</span><br><span class="line">[root@localhost ~]# passwd Apache</span><br><span class="line">Changing password for user Apache.</span><br><span class="line">New password: </span><br><span class="line">BAD PASSWORD: The password is shorter than 8 characters</span><br><span class="line">Retype new password: </span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
+
+<p><strong>给smb服务配置用户</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# pdbedit -a -u Apache</span><br><span class="line">new password:</span><br><span class="line">retype new password:</span><br><span class="line">Unix username:        Apache</span><br><span class="line">NT username:          </span><br><span class="line">Account Flags:        [U          ]</span><br><span class="line">User SID:             S-1-5-21-2237892677-58617703-3176231605-1000</span><br><span class="line">Primary Group SID:    S-1-5-21-2237892677-58617703-3176231605-513</span><br><span class="line">Full Name:            </span><br><span class="line">Home Directory:       \\localhost\apache</span><br><span class="line">HomeDir Drive:        </span><br><span class="line">Logon Script:         </span><br><span class="line">Profile Path:         \\localhost\apache\profile</span><br><span class="line">Domain:               LOCALHOST</span><br><span class="line">Account desc:         </span><br><span class="line">Workstations:         </span><br><span class="line">Munged dial:          </span><br><span class="line">Logon time:           0</span><br><span class="line">Logoff time:          Wed, 06 Feb 2036 10:06:39 EST</span><br><span class="line">Kickoff time:         Wed, 06 Feb 2036 10:06:39 EST</span><br><span class="line">Password last set:    Wed, 23 Dec 2020 09:13:58 EST</span><br><span class="line">Password can change:  Wed, 23 Dec 2020 09:13:58 EST</span><br><span class="line">Password must change: never</span><br><span class="line">Last bad password   : 0</span><br><span class="line">Bad password count  : 0</span><br><span class="line">Logon hours         : FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</span><br></pre></td></tr></table></figure>
+
+<p><strong>将web_data文件授权给Apache</strong></p>
+<p>随后查看权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# setfacl -m u:Apache:rwx /data/web_data</span><br><span class="line">[root@localhost ~]# getfacl /data/web_data</span><br><span class="line">getfacl: Removing leading &#x27;/&#x27; from absolute path names</span><br><span class="line"><span class="meta">#</span><span class="bash"> file: data/web_data</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> owner: root</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> group: root</span></span><br><span class="line">user::rwx</span><br><span class="line">user:Apache:rwx</span><br><span class="line">group::r-x</span><br><span class="line">mask::rwx</span><br><span class="line">other::r-x</span><br></pre></td></tr></table></figure>
+
+<p><strong>SElinux弱策略</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# setenforce 0</span><br></pre></td></tr></table></figure>
+
+<p><strong>防火墙服务授权</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --add-service samba</span><br><span class="line">success</span><br></pre></td></tr></table></figure>
+
+<p><strong>开启smb服务</strong></p>
+<p>设置自启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# systemctl start smb</span><br><span class="line">[root@localhost ~]# systemctl enable  smb</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/smb.service to /usr/lib/systemd/system/smb.service.</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看smb服务</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# systemctl status smb</span><br><span class="line">● smb.service - Samba SMB Daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/smb.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Wed 2020-12-23 09:17:53 EST; 48s ago</span><br><span class="line">     Docs: man:smbd(8)</span><br><span class="line">           man:samba(7)</span><br><span class="line">           man:smb.conf(5)</span><br><span class="line"> Main PID: 3810 (smbd)</span><br><span class="line">   Status: &quot;smbd: ready to serve connections...&quot;</span><br><span class="line">   CGroup: /system.slice/smb.service</span><br><span class="line">           ├─3810 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line">           ├─3812 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line">           ├─3813 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line">           └─3814 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line"></span><br><span class="line">Dec 23 09:17:53 localhost.localdomain systemd[1]: Starting Samba SMB Daemon...</span><br><span class="line">Dec 23 09:17:53 localhost.localdomain smbd[3810]: [2020/12/23 09:17:53.592344,  0] ../../lib/...y)</span><br><span class="line">Dec 23 09:17:53 localhost.localdomain systemd[1]: Started Samba SMB Daemon.</span><br><span class="line">Dec 23 09:17:53 localhost.localdomain smbd[3810]:   daemon_ready: daemon &#x27;smbd&#x27; finished star...ns</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure>
+
+<p><strong>windows连接</strong></p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%9C%BA.png"></p>
+<p>会弹出一个窗口，输入<strong>给smb服务配置用户</strong>这一步中新建的用户id和passwd，进入文件夹</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png"></p>
+<p>登陆的用户拥有该目录的rwx权，可以在此操作文件</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6.png"></p>
+<p>同时，文件会同步到linux服务器</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/linux%E5%90%8C%E6%AD%A5.png"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li><p>  此次实验虚拟机为nat静态连接，ip地址设置在Vmnet8网段</p>
+</li>
+<li><p>  不要额外给/data/web_dat目录额外授权777了，<strong>如果你的pc弹窗地址无权访问，更可能是linux防火墙设置的问题，而不是共享文件夹的属性权限问题</strong></p>
+</li>
+<li><p>  不需要关闭windows的防火墙</p>
+</li>
+<li><p>  win10的这个服务也不需要开</p>
+</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/win10%E8%AE%BE%E7%BD%AE.png"></p>
+<ul>
+<li>  跟这些东西并没有关系</li>
+</ul>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/win10%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE.png"></p>
+<p>其实开始做这个实验时，出了些问题，百度一圈回来，找了一堆没用的建议，重做一遍发现结果是我配置文件里发布地址输错了。</p>
+<hr>
+<p>配置出问题了怎么办？</p>
+<ul>
+<li><p>  如果你的win10在警告弹窗有<strong>检测问题</strong>这个选项，记得看一下，某些时候还是挺有用的</p>
+</li>
+<li><p>  <code>testparm  /etc/samba/smb.conf</code>很好，可以检测你的配置文件是否“合格”</p>
+</li>
+<li><p>  可能只是某个步骤敲错了，回档再配一次</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
 </search>
