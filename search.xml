@@ -3551,4 +3551,151 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
         <tag>python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ELGamal公钥体制加密加签</title>
+    <url>/2020/12/24/elgamal-gong-yao-ti-zhi-jia-mi-jia-qian/</url>
+    <content><![CDATA[<h1 id="ELGamal公钥体制加密加签"><a href="#ELGamal公钥体制加密加签" class="headerlink" title="ELGamal公钥体制加密加签"></a>ELGamal公钥体制加密加签</h1><h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>注意事项：（关于ElGamal数字签名体制的参数p）</p>
+<ul>
+<li><p>  p的选择与在*Zp**中计算离散对数的算法有直接关系。从目前的计算水平来看，p至少应该是二进制512位的素数，从长期安全性考虑，应使用1024位或更长的素数。</p>
+</li>
+<li><p>  p-1最好有大的素因子</p>
+</li>
+<li><p>  私钥x最好是Zp的素数阶子群的生成元。</p>
+</li>
+</ul>
+<p>关键点：</p>
+<ul>
+<li>  不要泄露随机数k，否则，根据：</li>
+</ul>
+<p>$$<br>s\equiv(M-x*r)k^{-1}\pmod{p-1}<br>$$</p>
+<p>​            可以计算出私钥<br>$$<br>x\equiv(M-x*k)r^{-1}\pmod{p-1}<br>$$</p>
+<ul>
+<li>  不要使用同一个随机数k给两个不同的消息签名</li>
+</ul>
+<h2 id="大素数生成"><a href="#大素数生成" class="headerlink" title="大素数生成"></a>大素数生成</h2><p>知识点：</p>
+<ul>
+<li><p>  <strong>Miller-Rabin 素性检测</strong></p>
+</li>
+<li><p>  <strong>Miller-Rabin 测试</strong></p>
+</li>
+</ul>
+<p><code>function.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fastExpMod</span>(<span class="params">b, e, m</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    模N大数的幂乘的快速算法</span></span><br><span class="line"><span class="string">    b底数，e幂，m大数N</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    result = <span class="number">1</span></span><br><span class="line">    e = <span class="built_in">int</span>(e)</span><br><span class="line">    <span class="keyword">while</span> e != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> e % <span class="number">2</span> != <span class="number">0</span>:  <span class="comment"># 按位与</span></span><br><span class="line">            e -= <span class="number">1</span></span><br><span class="line">            result = (result * b) % m</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        e &gt;&gt;= <span class="number">1</span></span><br><span class="line">        b = (b * b) % m</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">    <span class="comment"># 测试案例</span></span><br><span class="line">    <span class="comment"># c = fastExpMod(3,22,12)</span></span><br><span class="line">    <span class="comment"># print(c) 9</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">miller_rabin_test</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;针对随机取得p的素性检测&quot;&quot;&quot;</span></span><br><span class="line">    p = n - <span class="number">1</span>  <span class="comment"># p为要检验得数</span></span><br><span class="line">    r = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> p % <span class="number">2</span> == <span class="number">0</span>:  <span class="comment"># 最后得到为奇数的p(即m)</span></span><br><span class="line">        r += <span class="number">1</span></span><br><span class="line">        p /= <span class="number">2</span></span><br><span class="line">    b = random.randint(<span class="number">2</span>, n - <span class="number">2</span>)  <span class="comment"># 随机取b=（0.n）</span></span><br><span class="line">    <span class="comment"># 如果情况1    b得p次方  与1  同余  mod n</span></span><br><span class="line">    <span class="keyword">if</span> fastExpMod(b, <span class="built_in">int</span>(p), n) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span>  <span class="comment"># 通过测试,可能为素数</span></span><br><span class="line">    <span class="comment"># 情况2  b得（2^r  *p）次方  与-1 (n-1) 同余  mod n</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">7</span>):  <span class="comment"># 检验六次</span></span><br><span class="line">        <span class="keyword">if</span> fastExpMod(b, (<span class="number">2</span> ** i) * p, n) == n - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span>  <span class="comment"># 如果该数可能为素数，</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># 不可能是素数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_prime_num</span>(<span class="params">start, end</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成大素数 start-end为素数取值区间&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        n = random.randint(start, end)</span><br><span class="line">        <span class="keyword">if</span> n % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">            found = <span class="literal">True</span></span><br><span class="line">            <span class="comment"># 如果经过10次素性检测，那么很大概率上，这个数就是素数</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">                <span class="keyword">if</span> miller_rabin_test(n):</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    found = <span class="literal">False</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> found:</span><br><span class="line">                <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ex_gcd</span>(<span class="params">a, mod</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;扩展欧几里德算法，内置&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> math.gcd(a, mod) != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    u1, u2, u3 = <span class="number">1</span>, <span class="number">0</span>, a</span><br><span class="line">    v1, v2, v3 = <span class="number">0</span>, <span class="number">1</span>, mod</span><br><span class="line">    <span class="keyword">while</span> v3 != <span class="number">0</span>:</span><br><span class="line">        q = u3 // v3</span><br><span class="line">        v1, v2, v3, u1, u2, u3 = (u1 - q * v1), (u2 - q * v2), (u3 - q * v3), v1, v2, v3</span><br><span class="line">    <span class="keyword">return</span> u1 % mod</span><br></pre></td></tr></table></figure>
+
+<h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><p><code>ELGamal.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> funtion <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_key</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成密钥，p和g的随机范围可调整&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># todo 可选：0&lt;m&lt;p用为ascii码表表长为255，此处将start初始化为255</span></span><br><span class="line">    start = <span class="number">255</span>  <span class="comment"># ascii长度为起始，保证输入数m一定小于p</span></span><br><span class="line">    end = <span class="number">1024</span>  <span class="comment"># p的最大取值范围</span></span><br><span class="line">    p = create_prime_num(start, end)</span><br><span class="line">    <span class="comment"># todo 可选：g的随机取值范围</span></span><br><span class="line">    g = random.randint(<span class="number">0</span>, <span class="number">100</span>)  <span class="comment"># g是一个本原元</span></span><br><span class="line">    x = random.randint(<span class="number">0</span>, p)</span><br><span class="line">    y = g ** x % p</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;pk&#x27;</span>: (p, g, y), <span class="string">&#x27;sk&#x27;</span>: (p, g, y, x)&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode</span>(<span class="params">m, pk</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;加密算法0&lt;m&lt;p&quot;&quot;&quot;</span></span><br><span class="line">    p, g, y = pk</span><br><span class="line">    k = random.randint(<span class="number">0</span>, p)</span><br><span class="line">    c1 = g ** k % p</span><br><span class="line">    c2 = (m * (y ** k)) % p</span><br><span class="line">    <span class="keyword">return</span> c1, c2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">c, sk</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;解密算法&quot;&quot;&quot;</span></span><br><span class="line">    c1, c2 = c</span><br><span class="line">    p, g, y, x = sk</span><br><span class="line">    m = c2 * ex_gcd(c1 ** x, p) % p</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;主函数&quot;&quot;&quot;</span></span><br><span class="line">    k = get_key()</span><br><span class="line">    print(k)</span><br><span class="line">    raw_m = <span class="built_in">input</span>(<span class="string">&quot;请输入待加密字符串：\n&gt; &quot;</span>)</span><br><span class="line">    m = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">ord</span>, raw_m))</span><br><span class="line">    c = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        c_unit = encode(i, k[<span class="string">&#x27;pk&#x27;</span>])</span><br><span class="line">        c.append(c_unit)</span><br><span class="line">    print(<span class="string">&#x27;密文&#x27;</span>, c)</span><br><span class="line">    m = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> c:</span><br><span class="line">        m_unit = decode(i, k[<span class="string">&#x27;sk&#x27;</span>])</span><br><span class="line">        m.append(m_unit)</span><br><span class="line">    print(<span class="string">&#x27;明文&#x27;</span>, m)</span><br><span class="line">    print(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">chr</span>, m))))</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">&quot;G:\python environment\python.exe&quot; &quot;G:/Code/IntelliJ Pycharm/Cryptology/ElGamal/ELGamal.py&quot;</span><br><span class="line">&#123;&#x27;pk&#x27;: (829, 89, 795), &#x27;sk&#x27;: (829, 89, 795, 579)&#125;</span><br><span class="line">请输入待加密字符串：</span><br><span class="line">&gt; mednight4</span><br><span class="line">密文 [(221, 605), (131, 383), (269, 346), (688, 505), (597, 77), (394, 485), (223, 178), (89, 201), (616, 665)]</span><br><span class="line">明文 [109, 101, 100, 110, 105, 103, 104, 116, 52]</span><br><span class="line">mednight4</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="加签"><a href="#加签" class="headerlink" title="加签"></a>加签</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> funtion <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_key</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成加签的私钥和公钥，p和g的随机范围可调整&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># todo 可选：p和g的随机取值范围</span></span><br><span class="line">    p = create_prime_num(<span class="number">0</span>, <span class="number">1024</span>)</span><br><span class="line">    g = random.randint(<span class="number">0</span>, p)</span><br><span class="line">    x = random.randint(<span class="number">1</span>, p - <span class="number">1</span>)</span><br><span class="line">    y = g ** x % p</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;pk&#x27;</span>: (p, g, y), <span class="string">&#x27;sk&#x27;</span>: (p, g, y, x)&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">value_k</span>(<span class="params">p</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;选择k时，k应该与p-1互素，否则没有逆元&quot;&quot;&quot;</span></span><br><span class="line">    k_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, p - <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> math.gcd(i, p - <span class="number">1</span>) == <span class="number">1</span>:</span><br><span class="line">            k_list.append(i)</span><br><span class="line">    <span class="keyword">return</span> k_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sig</span>(<span class="params">m, sk</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;签名算法&quot;&quot;&quot;</span></span><br><span class="line">    p, g, y, x = sk</span><br><span class="line">    k = random.choice(value_k(p))</span><br><span class="line">    r = (g ** k) % p</span><br><span class="line">    s = ((m - x * r) * ex_gcd(k, p - <span class="number">1</span>)) % (p - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> r, s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span>(<span class="params">m, sig, pk</span>):</span></span><br><span class="line">    r, s = sig</span><br><span class="line">    p, g, y = pk</span><br><span class="line">    <span class="keyword">return</span> (y ** r) * (r ** s) % p == g ** m % p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;主函数&quot;&quot;&quot;</span></span><br><span class="line">    print(<span class="string">&quot;&#123;&#x27;pk&#x27;: (p, g, y), &#x27;sk&#x27;: (p, g, y, x)&#125;&quot;</span>)</span><br><span class="line">    k = get_key()</span><br><span class="line">    print(k)</span><br><span class="line">    raw_m = <span class="built_in">input</span>(<span class="string">&quot;请输入待签名字符串：\n&gt; &quot;</span>)</span><br><span class="line">    m = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">ord</span>, raw_m))</span><br><span class="line">    sign = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        sign_unit = sig(i, k[<span class="string">&#x27;sk&#x27;</span>])</span><br><span class="line">        sign.append(sign_unit)</span><br><span class="line">    print(<span class="string">&#x27;签名&#x27;</span>, sign)</span><br><span class="line">    tip = <span class="string">&#x27;验签成功&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i,s <span class="keyword">in</span> <span class="built_in">zip</span>(m,sign):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> check(i, s, k[<span class="string">&#x27;pk&#x27;</span>]):</span><br><span class="line">            tip = <span class="string">&#x27;验签失败&#x27;</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    print(tip)</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">&quot;G:\python environment\python.exe&quot; &quot;G:/Code/IntelliJ Pycharm/Cryptology/ElGamal/ELGamal_sig.py&quot;</span><br><span class="line">&#123;&#x27;pk&#x27;: (p, g, y), &#x27;sk&#x27;: (p, g, y, x)&#125;</span><br><span class="line">&#123;&#x27;pk&#x27;: (101, 31, 58), &#x27;sk&#x27;: (101, 31, 58, 63)&#125;</span><br><span class="line">请输入待签名字符串：</span><br><span class="line">&gt; mednight4</span><br><span class="line">签名 [(54, 11), (24, 83), (19, 37), (78, 24), (37, 86), (25, 24), (81, 59), (24, 88), (88, 92)]</span><br><span class="line">验签成功</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>密码学</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NFS服务器配置</title>
+    <url>/2020/12/24/nfs-fu-wu-qi-pei-zhi/</url>
+    <content><![CDATA[<h1 id="NFS服务器配置"><a href="#NFS服务器配置" class="headerlink" title="NFS服务器配置"></a>NFS服务器配置</h1><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>在Vmware虚拟机中启动两台Linux系统</p>
+<p>一台作为NFS服务器，本例中给出的IP地址为192.168.5.20</p>
+<p>一台作为NFS客户端，本例中给出的IP地址为192.168.5.10</p>
+<p>配置一个NFS服务器，使得客户机可以浏览NFS服务器中/home/ftp目录下的内容，但不可以修改。</p>
+<p>虚拟机网络采用nat静态，与Vmnet8同一网段。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="服务器的配置"><a href="#服务器的配置" class="headerlink" title="服务器的配置"></a>服务器的配置</h3><ol>
+<li> <strong>检测安装NFS所需的软件包</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> rpm -qa nfs-utils</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -qa rpcbind</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm install nfs-utils</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm install rpcbind</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li> <strong>修改配置文件</strong></li>
+</ol>
+<p>修改配置文件/etc/exports，添加行：/home/ftp 192.168.5.10（ro）</p>
+<p>ro表示只读</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vi /etc/exports</span></span><br></pre></td></tr></table></figure>
+
+<p>添加允许的ip</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /home/ftp 192.168.5.10(ro)</span></span><br></pre></td></tr></table></figure>
+
+<p>表示将文件共享到IP为192.168..10的主机，方式为只读。修改后，存盘退出</p>
+<ol start="3">
+<li> <strong>启动NFS服务</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl start rpcbind</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> rpcbind</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl start nfs</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> nfs</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li> <strong>配置并重启防火墙</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=111/tcp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=111/udp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=2049/tcp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=2049/udp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=20048/tcp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=20048/udp</span></span><br></pre></td></tr></table></figure>
+
+<p>或者直接开启相关服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-service=nfs</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li> <strong>检查NFS服务器的状态</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> showmount -e 127.0.0.1</span></span><br><span class="line">Export list for 127.0.0.1:</span><br><span class="line">/home/ftp 192.168.5.20</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li> <strong>创建一个文件</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /home/ftp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;hello&quot;</span> &gt; text.txt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="客户机的配置"><a href="#客户机的配置" class="headerlink" title="客户机的配置"></a>客户机的配置</h3><ol>
+<li> <strong>安装nfs-utils客户端</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install nfs-utils</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li> <strong>显示NFS服务器上的共享目录</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> showmount -e 192.168.5.20</span></span><br><span class="line">Export list for 192.168.5.20</span><br><span class="line">/home/ftp/192.168.5.10</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li> <strong>挂载服务器网络文件夹</strong></li>
+</ol>
+<p>将NFS服务器（192.168.5.20）上的/home/ftp目录安装到本地机192.168.222.2的/home/test目录下。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mount 192.168.5.20:/home/ftp /home/<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mount | grep nfs</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li> <strong>查看文件夹内容</strong></li>
+</ol>
+<p>挂载成功后可以利用ls等命令操作/home/test目录，实际操作的为192.168.5.20服务器上/home/ftp目录下的内容</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ls /home/<span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li> <strong>卸载共享目录</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> umount /home/<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls /home/<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mount | grep nfs</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li><p>控制客户端读写权限的参数是/etc/exports文件路径里的：</p>
+<p>  ro：只读设置，这样NFS客户端只能读、不能写（默认设置）</p>
+<p>  rw：读写设置，NFS 客户端可读写</p>
+</li>
+<li><p>  客户机只需要安装nfs客户端nfs-utils,不需要rpcbind服务</p>
+</li>
+<li><p>  NFS服务开启后，还需要给服务器的防火墙端口配置启动状态，否则，即使客户机能找到服务器地址也不能访问NFS服务。NFS默认端口为111、2049、20048</p>
+</li>
+<li><p>未配置好防火墙或者服务器主机未将客户机IP纳入exports允许范围时，出现：</p>
+  <figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">mount.nfs:access denied by server while mounting 192.168.5.20:/home/ftp </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若想同时允许一个网段192.168.5.0的所有主机读写访问，可以在exports里编辑：</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">home/ftp 192.168.5.*(rw)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
 </search>
