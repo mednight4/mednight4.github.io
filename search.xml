@@ -2051,7 +2051,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p>会弹出一个窗口，输入<strong>给smb服务配置用户</strong>这一步中新建的用户id和passwd，进入文件夹</p>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png"></p>
 <p>登陆的用户拥有该目录的rwx权，可以在此操作文件</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6.png"><img data-src="https://github.com/mednight4/picbed/blob/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6.png"></p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6.png"></p>
 <p>同时，文件会同步到linux服务器</p>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/linux%E5%90%8C%E6%AD%A5.png"></p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
