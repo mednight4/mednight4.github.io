@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mednight4.github.io/2020/02/05/bo-ke-xiu-gai/</loc>
+    
+    <lastmod>2020-12-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://mednight4.github.io/2020/12/08/yaml-json-he-xml/</loc>
     
     <lastmod>2020-12-26</lastmod>
@@ -82,13 +89,6 @@
     <loc>https://mednight4.github.io/2020/11/29/pandas-chang-yong-fang-fa/</loc>
     
     <lastmod>2020-12-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://mednight4.github.io/2020/02/05/bo-ke-xiu-gai/</loc>
-    
-    <lastmod>2020-12-08</lastmod>
     
   </url>
   
