@@ -2950,7 +2950,7 @@ hr {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #fbf;
+  background: #7affff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2985,10 +2985,10 @@ body {
   background-size: cover;
 }
 .sidebar {
+  opacity: 1;
   background: url("/images/sidebar.png");
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1;
 }
 .header-inner {
   opacity: 1;
