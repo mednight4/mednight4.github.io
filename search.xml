@@ -134,7 +134,7 @@
     <url>/2020/12/24/elgamal-gong-yao-ti-zhi-jia-mi-jia-qian/</url>
     <content><![CDATA[<h1 id="ELGamal公钥体制加密加签"><a href="#ELGamal公钥体制加密加签" class="headerlink" title="ELGamal公钥体制加密加签"></a>ELGamal公钥体制加密加签</h1><h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>注意事项：（关于ElGamal数字签名体制的参数p）</p>
 <ul>
-<li><p>  p的选择与在*Zp**中计算离散对数的算法有直接关系。从目前的计算水平来看，p至少应该是二进制512位的素数，从长期安全性考虑，应使用1024位或更长的素数。</p>
+<li><p>  p的选择与在<strong>Zp</strong>中计算离散对数的算法有直接关系。从目前的计算水平来看，p至少应该是二进制512位的素数，从长期安全性考虑，应使用1024位或更长的素数。</p>
 </li>
 <li><p>  p-1最好有大的素因子</p>
 </li>
@@ -1256,7 +1256,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip list</span><br><span class="line">Package             Version</span><br><span class="line">------------------- ---------</span><br><span class="line">jupyter             1.0.0</span><br><span class="line">jupyter-client      6.1.7</span><br><span class="line">jupyter-console     6.2.0</span><br><span class="line">jupyter-core        4.6.3</span><br><span class="line">jupyterlab-pygments 0.1.2</span><br></pre></td></tr></table></figure>
 
 <p>当然vscode自然是全配置好了，新建<code>.ipynb</code>文件，直接点击即可生成页面</p>
-<p>默认情况下，画出的图形呈现在各自的窗口中。要直接在 notebook 中呈现图形，应将通过命令 <code>%matplotlib inline</code> 内联后端。</p>
+<p>默认情况下，画出的图形呈现在各自的窗口中。要直接在 notebook 中呈现图形，可通过命令 <code>%matplotlib inline</code> 内联后端。</p>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png"></p>
 <h2 id="pycharm关联Jupyter服务"><a href="#pycharm关联Jupyter服务" class="headerlink" title="pycharm关联Jupyter服务"></a>pycharm关联Jupyter服务</h2><p>想给pycharm也带上，对我这样的菜鸟来说，pycharm的语法提示还是舒服，而且debug也很方便</p>
 <p>目录下新建一个jupyter notebook文件</p>
@@ -3720,6 +3720,73 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Win10终端美化指北</title>
+    <url>/2020/12/28/win10-zhong-duan-mei-hua-zhi-bei/</url>
+    <content><![CDATA[<h1 id="Win10终端美化指北"><a href="#Win10终端美化指北" class="headerlink" title="Win10终端美化指北"></a>Win10终端美化指北</h1><p>周所周知，win10下无论是cmd还是powershell都丑的一塌糊涂。</p>
+<p>所以折腾了一波，把win10下的终端弄好看了一点，当然，和linux和mac的终端还是有差距。</p>
+<p>最终效果：</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Win10%E7%BB%88%E7%AB%AF%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8C%97/%E7%BE%8E%E5%8C%96%E5%90%8E%E7%9A%84%E7%BB%88%E7%AB%AF.png"></p>
+<h2 id="PowerLine"><a href="#PowerLine" class="headerlink" title="PowerLine"></a>PowerLine</h2><p>在PowerShell里面安装PowerLine。</p>
+<p>安装包括两个模块：</p>
+<ul>
+<li>  oh-my-posh上图中<code>&gt;G:\Code\Blog\blog&gt;</code>色块的效果。</li>
+<li>  post-git上图中<code>master = + 43 ~5 -2</code>的效果</li>
+</ul>
+<p>如果只是在当前用户安装，打开PowerShell，输入</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用管理员权限打开PowerShell并且想把oh-my-posh安装到所有用户，则输入</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br></pre></td></tr></table></figure>
+
+<p>提示关于不可信的来源，输入<code>Y</code>表示同意即可。</p>
+<p>安装完成后，输入</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Set-Theme</span> PowerLine</span><br></pre></td></tr></table></figure>
+
+<p>前两步导入模块，最后一步设置PowerLine主题。</p>
+<p>如果你的电脑里没有安装Git，在输入<code>Import-Module posh-git</code>会报错，解决方法是<a href="https://git-scm.com/">安装Git</a>或者把这一行去掉。</p>
+<p>但是这次使用<code>Import-Module</code>的指令，再次启动PowerShell就会发现没有效果，这是因为这些指令仅限于本次会话的PowerShell有效，因此，若要使这一效果在每次启动的时候都有效，那就要将其添加到启动脚本中。</p>
+<p>在PowerShell中输入<code>code $profile</code> ，然后输入以下内容，保存。如果你没有安装VS Code，则使用<code>notepad $profile</code>。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Set-Theme</span> AgnosterPlus</span><br><span class="line"><span class="built_in">clear</span></span><br></pre></td></tr></table></figure>
+
+<p>如果提示禁止执行脚本之类的错误信息，请将脚本执行策略更改为<code>RemoteSigned</code>。使用具有管理员权限的PowerShell，然后输入</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
+
+<p>这样，在每次PoweShell打开的时候都能启用PowerLine主题。</p>
+<h2 id="sarasa-gothic-ttf"><a href="#sarasa-gothic-ttf" class="headerlink" title="sarasa-gothic-ttf"></a>sarasa-gothic-ttf</h2><p>如果你在安装完oh-my-posh后，没有出现图片中显示的色块效果，比如像这样 </p>
+<p><code>口master口 +43 ~5 -2</code></p>
+<p>这是因为你使用的字体不支持powerline里的插图，可以安装这款 </p>
+<p><a href="https://github.com/be5invis/Sarasa-Gothic/releases">Github-更纱黑体</a></p>
+<p>安装ttf包即可。解压，里面有很多种，只需要找一种安装，如果全装了C盘会少很多个G的。例如我装的是<code>sarasa-term-sc-</code>的，将这个系列开头的10种不同状态的字体安装就行了。</p>
+<p>然后你会发现powershell字体增加了更纱黑体选项。</p>
+<h2 id="PSColor"><a href="#PSColor" class="headerlink" title="PSColor"></a>PSColor</h2><p>PSColor的作用是使目录下不同的文件高亮，类似linux系统里把文件夹蓝色高亮的效果。</p>
+<p>和上面一样：</p>
+<p>为所有用户安装 <code>Install-Module PSColor</code></p>
+<p>或者使用普通用户安装<br><code>Install-Module PSColor -Scope CurrentUser</code></p>
+<p>安装完导入模块<br> <code>Import-Module PSColor</code></p>
+<p>加入初始话脚本<code>notepad $profile</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> posh<span class="literal">-git</span></span><br><span class="line"><span class="built_in">Import-Module</span> <span class="built_in">oh</span><span class="literal">-my</span><span class="literal">-posh</span></span><br><span class="line"><span class="built_in">Import-Module</span> PSColor</span><br><span class="line"><span class="built_in">Set-Theme</span> AgnosterPlus</span><br><span class="line"><span class="built_in">clear</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Fluent-Terminal"><a href="#Fluent-Terminal" class="headerlink" title="Fluent Terminal"></a>Fluent Terminal</h2><p>专属 Windows 平台 UWP 的轻量终端模拟器。</p>
+<blockquote>
+<p>  <a href="https://github.com/felixse/FluentTerminal/releases/tag/0.7.4.0">github项目地址</a></p>
+</blockquote>
+<p>win10的商店也上架了，搜索Fluent Terminal即可</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Win10%E7%BB%88%E7%AB%AF%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8C%97/Fluent%E5%95%86%E5%BA%97.png"></p>
+<p>以github为例：下载解压，右键点击 <code>Install.ps1</code>，选择使用 PowerShell 运行，安装完成。</p>
+<p>如果不安装第三方终端，只用powershell，也会比原来好看很多：</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Win10%E7%BB%88%E7%AB%AF%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8C%97/%E7%BE%8E%E5%8C%96%E5%90%8E%E7%9A%84powershell.png"></p>
+<h2 id="题外"><a href="#题外" class="headerlink" title="题外"></a>题外</h2><p>以上插件大概还有更好的替代，例如PowerLine和PSColor，只要肯折腾。</p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a href="https://zhuanlan.zhihu.com/p/76436374">Windows Terminal 美化实例</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/56808199">告别 Windows 终端的难看难用，从改造 PowerShell 的外观开始</a></p>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>others</tag>
       </tags>
   </entry>
 </search>
