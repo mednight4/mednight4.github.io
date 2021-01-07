@@ -9,6 +9,48 @@
   </url>
   
   <url>
+    <loc>https://mednight4.github.io/2020/10/30/http-zhuang-tai-ma/</loc>
+    
+    <lastmod>2021-01-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/2020/12/08/yaml-json-he-xml/</loc>
+    
+    <lastmod>2021-01-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/2020/01/21/vbscript-ji-chu/</loc>
+    
+    <lastmod>2021-01-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/2020/01/31/cmd-ji-chu/</loc>
+    
+    <lastmod>2021-01-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/2020/11/29/ming-ling-xing-jin-du-tiao/</loc>
+    
+    <lastmod>2021-01-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/2020/11/24/tuo-yuan-qu-xian-mi-ma-ti-ji-suan-qi/</loc>
+    
+    <lastmod>2021-01-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://mednight4.github.io/2020/12/24/elgamal-gong-yao-ti-zhi-jia-mi-jia-qian/</loc>
     
     <lastmod>2021-01-07</lastmod>
@@ -31,13 +73,6 @@
   
   <url>
     <loc>https://mednight4.github.io/2020/11/11/idea-jia-jie-mi-ji-chu-shi-xian/</loc>
-    
-    <lastmod>2021-01-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://mednight4.github.io/2020/11/24/tuo-yuan-qu-xian-mi-ma-ti-ji-suan-qi/</loc>
     
     <lastmod>2021-01-07</lastmod>
     
@@ -128,13 +163,6 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/2020/12/08/yaml-json-he-xml/</loc>
-    
-    <lastmod>2021-01-02</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/2020/12/28/win10-zhong-duan-mei-hua-zhi-bei/</loc>
     
     <lastmod>2020-12-29</lastmod>
@@ -205,13 +233,6 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/2020/11/29/ming-ling-xing-jin-du-tiao/</loc>
-    
-    <lastmod>2020-11-29</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/2020/11/13/python-nei-zhi-jin-zhi-zhuan-huan/</loc>
     
     <lastmod>2020-11-28</lastmod>
@@ -254,13 +275,6 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/2020/01/21/vbscript-ji-chu/</loc>
-    
-    <lastmod>2020-11-25</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/2020/10/18/python-cookbook-bi-ji-1.1-1.53/</loc>
     
     <lastmod>2020-11-25</lastmod>
@@ -268,21 +282,7 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/2020/10/30/http-zhuang-tai-ma/</loc>
-    
-    <lastmod>2020-11-25</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/2020/02/23/html-ji-chu/</loc>
-    
-    <lastmod>2020-11-25</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://mednight4.github.io/2020/01/31/cmd-ji-chu/</loc>
     
     <lastmod>2020-11-25</lastmod>
     
@@ -333,13 +333,6 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2021-01-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/tags/vbscript/</loc>
     <lastmod>2021-01-07</lastmod>
     <changefreq>daily</changefreq>
@@ -377,13 +370,6 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/categories/web/</loc>
-    <lastmod>2021-01-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mednight4.github.io/categories/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-01-07</lastmod>
     <changefreq>daily</changefreq>
@@ -391,21 +377,7 @@
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/categories/%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2021-01-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mednight4.github.io/categories/debug/</loc>
-    <lastmod>2021-01-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mednight4.github.io/categories/%E6%96%B9%E6%B3%95/</loc>
+    <loc>https://mednight4.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-01-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
