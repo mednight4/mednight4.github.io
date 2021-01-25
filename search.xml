@@ -1001,9 +1001,9 @@
 </div>
 
 <h2 id="Group-pictures图片组"><a href="#Group-pictures图片组" class="headerlink" title="Group-pictures图片组"></a>Group-pictures图片组</h2><p>next主题默认开启此功能。<br>md里这么写：</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture 6-5%&#125;</span><br><span class="line">  ![](http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day<span class="emphasis">_at_</span>Camp.png.943x630<span class="emphasis">_q100.png)</span></span><br><span class="line"><span class="emphasis">  ![](http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_</span>q100.png)</span><br><span class="line">  ![](http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630<span class="emphasis">_q100.png)</span></span><br><span class="line"><span class="emphasis">&#123;% endgrouppicture %&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture 6-5%&#125;</span><br><span class="line">  ![](http://www.example.com/pic1.png)</span><br><span class="line">  ![](http://www.example.com/pic2.png)</span><br><span class="line">  ![](http://www.example.com/pic3.png)</span><br><span class="line">&#123;% endgrouppicture %&#125;</span><br></pre></td></tr></table></figure>
 
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day_at_Camp.png.943x630_q100.png"></div><div class="group-picture-column"><img data-src="http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_q100.png"></div><div class="group-picture-column"><img data-src="http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630_q100.png"></div></div><div class="group-picture-row"></div></div>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223550.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223609.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125224105.png"></div></div><div class="group-picture-row"></div></div>
 
 <h2 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h2><p>基础写法：</p>
 <figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% button #, Text,Icons %&#125;</span><br></pre></td></tr></table></figure>
@@ -1032,7 +1032,7 @@
 <figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% pdf https://example.com/sample.pdf 600px %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>呈现效果:</p>
-<div class="pdfobject-container" data-target="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf" data-height="600px"></div>
+<div class="pdfobject-container" data-target="https://github.com/mednight4/algorithm-book/raw/master/C%E5%92%8C%E6%8C%87%E9%92%88.pdf" data-height="600px"></div>
 
 <h2 id="Tabs标签"><a href="#Tabs标签" class="headerlink" title="Tabs标签"></a>Tabs标签</h2><p>yaml设置md：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
