@@ -27,34 +27,25 @@
     var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
-  <meta name="description" content="想弄个图床存放图片，听说PicGo+Github不错，试试">
+  <meta name="description" content="搭配hexo使用的一些md技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="配置个人图床">
-<meta property="og:url" content="https://mednight4.github.io/2020/01/22/pei-zhi-ge-ren-tu-chuang/index.html">
+<meta property="og:title" content="MD技巧">
+<meta property="og:url" content="https://mednight4.github.io/2021/01/25/md-ji-qiao/index.html">
 <meta property="og:site_name" content="mednight4">
-<meta property="og:description" content="想弄个图床存放图片，听说PicGo+Github不错，试试">
+<meta property="og:description" content="搭配hexo使用的一些md技巧">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%AD%98%E5%9B%BE.gif">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%A4%8D%E5%88%B6%E9%93%BE%E6%8E%A5%E6%88%90%E5%8A%9F.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%BE%E7%BD%AE.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%BF%9B%E8%AE%BE%E7%BD%AE.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%88%9B%E7%AB%8Btokens.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%8B%BErepo.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%B0%E5%BD%95token.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/picgo%E8%AE%BE%E7%BD%AE.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%90%8C%E6%AD%A5.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E7%9B%B8%E5%86%8C%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.gif">
-<meta property="article:published_time" content="2020-01-22T05:02:17.000Z">
-<meta property="article:modified_time" content="2020-12-15T12:45:17.835Z">
+<meta property="og:image" content="http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day_at_Camp.png.943x630_q100.png">
+<meta property="og:image" content="http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_q100.png">
+<meta property="og:image" content="http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630_q100.png">
+<meta property="article:published_time" content="2021-01-25T12:45:37.000Z">
+<meta property="article:modified_time" content="2021-01-25T14:25:43.532Z">
 <meta property="article:author" content="mednight4">
 <meta property="article:tag" content="others">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%AD%98%E5%9B%BE.gif">
+<meta name="twitter:image" content="http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day_at_Camp.png.943x630_q100.png">
 
 
-<link rel="canonical" href="https://mednight4.github.io/2020/01/22/pei-zhi-ge-ren-tu-chuang/">
+<link rel="canonical" href="https://mednight4.github.io/2021/01/25/md-ji-qiao/">
 
 
 <script class="page-configurations">
@@ -67,7 +58,7 @@
   };
 </script>
 
-  <title>配置个人图床 | mednight4</title>
+  <title>MD技巧 | mednight4</title>
   
 
 
@@ -229,7 +220,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8PicGo-Github%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A"><span class="nav-text">使用PicGo+Github快速部署个人图床</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-PicGo%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1. PicGo是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%AC%E5%85%B1%E5%9B%BE%E5%BA%8A%E6%8E%A8%E8%8D%90"><span class="nav-text">2. 公共图床推荐</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2"><span class="nav-text">二、快速部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85PicGo"><span class="nav-text">1. 安装PicGo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%87%86%E5%A4%87GitHub%E4%BB%93%E5%BA%93"><span class="nav-text">2. 准备GitHub仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%94%9F%E6%88%90-token"><span class="nav-text">3. 生成 token</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%AE%BE%E7%BD%AE"><span class="nav-text">进设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E7%AB%8Btoken"><span class="nav-text">创立token</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8B%BErepo"><span class="nav-text">勾repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95token"><span class="nav-text">记录token</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%AE%BE%E7%BD%AEPicGo"><span class="nav-text">4. 设置PicGo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E"><span class="nav-text">5. 其他说明</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MD%E6%8A%80%E5%B7%A7"><span class="nav-text">MD技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Note%E4%BE%BF%E7%AD%BE"><span class="nav-text">Note便签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group-pictures%E5%9B%BE%E7%89%87%E7%BB%84"><span class="nav-text">Group-pictures图片组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Button%E6%8C%89%E9%92%AE"><span class="nav-text">Button按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Video%E8%A7%86%E9%A2%91"><span class="nav-text">Video视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PDF%E6%96%87%E6%A1%A3"><span class="nav-text">PDF文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tabs%E6%A0%87%E7%AD%BE"><span class="nav-text">Tabs标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Center-quote%E5%BC%95%E7%94%A8"><span class="nav-text">Center-quote引用</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -333,7 +324,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2020/01/22/pei-zhi-ge-ren-tu-chuang/">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/01/25/md-ji-qiao/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -346,7 +337,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          配置个人图床
+          MD技巧
         </h1>
 
         <div class="post-meta-container">
@@ -356,16 +347,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-01-22 13:02:17" itemprop="dateCreated datePublished" datetime="2020-01-22T13:02:17+08:00">2020-01-22</time>
+      <time title="创建时间：2021-01-25 20:45:37 / 修改时间：22:25:43" itemprop="dateCreated datePublished" datetime="2021-01-25T20:45:37+08:00">2021-01-25</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-15 20:45:17" itemprop="dateModified" datetime="2020-12-15T20:45:17+08:00">2020-12-15</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -379,7 +364,7 @@
   
 </div>
 
-            <div class="post-description">想弄个图床存放图片，听说PicGo+Github不错，试试</div>
+            <div class="post-description">搭配hexo使用的一些md技巧</div>
         </div>
       </header>
 
@@ -387,69 +372,100 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="使用PicGo-Github快速部署个人图床"><a href="#使用PicGo-Github快速部署个人图床" class="headerlink" title="使用PicGo+Github快速部署个人图床"></a>使用PicGo+Github快速部署个人图床</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><h3 id="1-PicGo是什么"><a href="#1-PicGo是什么" class="headerlink" title="1. PicGo是什么"></a>1. PicGo是什么</h3><p>PicGo是一款<strong>图床工具</strong>，支持微博图床，七牛云，腾讯云COS，又拍云，GitHub，阿里云OSS，SM.MS，Imgur 等8种常用图床，简单易用。</p>
-<ul>
-<li>简单易用<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%AD%98%E5%9B%BE.gif"></li>
-<li>复制Markdown链接<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%A4%8D%E5%88%B6%E9%93%BE%E6%8E%A5%E6%88%90%E5%8A%9F.jpg"></li>
-<li>支持的图床<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%BE%E7%BD%AE.jpg"></li>
-</ul>
-<h3 id="2-公共图床推荐"><a href="#2-公共图床推荐" class="headerlink" title="2. 公共图床推荐"></a>2. 公共图床推荐</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore">微博图床</a> : 封装成chrome插件，比较方便</li>
-<li><a target="_blank" rel="noopener" href="https://imgur.com/">imgur</a></li>
-<li><a target="_blank" rel="noopener" href="https://sm.ms/">sm.ms</a> </li>
-<li><a target="_blank" rel="noopener" href="https://www.superbed.cn/">聚合图床</a></li>
-<li><a target="_blank" rel="noopener" href="https://imgchr.com/">路过图床</a> : 不允许使用梯子</li>
-<li>。。。</li>
-</ul>
-<h2 id="二、快速部署"><a href="#二、快速部署" class="headerlink" title="二、快速部署"></a>二、快速部署</h2><p>网上有很多教程，所以就简短说明一下可能会踩的坑</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html">参考PicGo官方配置手册</a></p>
+        <h1 id="MD技巧"><a href="#MD技巧" class="headerlink" title="MD技巧"></a>MD技巧</h1><blockquote>
+<p>  基于hexo-theme-next-8.0.2自带的hexo插件实现</p>
 </blockquote>
-<h3 id="1-安装PicGo"><a href="#1-安装PicGo" class="headerlink" title="1. 安装PicGo"></a>1. 安装PicGo</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">PicGo项目地址</a></p>
-</blockquote>
-<h3 id="2-准备GitHub仓库"><a href="#2-准备GitHub仓库" class="headerlink" title="2. 准备GitHub仓库"></a>2. 准备GitHub仓库</h3><p>这里我干脆直接新建了一个专门用做图床的仓库</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg"></p>
-<ul>
-<li>注意仓库必须设置为公开</li>
-</ul>
-<h3 id="3-生成-token"><a href="#3-生成-token" class="headerlink" title="3. 生成 token"></a>3. 生成 <em>token</em></h3><p>在 GitHub 上生成一个 <em>token</em> 以便 PicGo 操作我们的仓库，来到个人中心，选择 <em>Developer settings</em> 就能看到 <em>Personal access tokens</em>，我们在这里创建需要的 <em>token</em>。</p>
-<h4 id="进设置"><a href="#进设置" class="headerlink" title="进设置"></a>进设置</h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%BF%9B%E8%AE%BE%E7%BD%AE.jpg"></p>
-<h4 id="创立token"><a href="#创立token" class="headerlink" title="创立token"></a>创立<em>token</em></h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%88%9B%E7%AB%8Btokens.jpg"></p>
-<h4 id="勾repo"><a href="#勾repo" class="headerlink" title="勾repo"></a>勾repo</h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%8B%BErepo.jpg"></p>
-<h4 id="记录token"><a href="#记录token" class="headerlink" title="记录token"></a>记录token</h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%B0%E5%BD%95token.jpg"></p>
-<ul>
-<li>建议把token记好</li>
-</ul>
-<h3 id="4-设置PicGo"><a href="#4-设置PicGo" class="headerlink" title="4. 设置PicGo"></a>4. 设置PicGo</h3><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/picgo%E8%AE%BE%E7%BD%AE.jpg"></p>
-<ul>
-<li>设定仓库名的时候，是按照“账户名/仓库名的格式填写”，<strong>不能带空格</strong></li>
-<li>分支名填写<em>master</em>即可</li>
-<li>将刚才的<em>token</em>贴在<em>设定Token</em></li>
-<li><em>指定储存路径</em>可不写，写了的话会在<em>repository</em>下创建一个与之对应的文件夹</li>
-<li>自定义域名的作用是，在上传图片后成功后，PicGo会生成“自定义域名+上传的图片名”形式的访问链接，将其放到剪切板。这是格式：   <code>https://raw.githubusercontent.com/用户名/项目名/分支名</code></li>
-<li>一般可以不写自定义域名</li>
-</ul>
-<h3 id="5-其他说明"><a href="#5-其他说明" class="headerlink" title="5. 其他说明"></a>5. 其他说明</h3><ol>
-<li>建议设置一下热键</li>
-<li>这个工具的作用是<strong>把本地图片推到仓库去</strong>，默认不同步删除操作。即<ul>
-<li>将PicGo相册的图片删除后，仓库里的图片不会咋样；</li>
-<li>直接把仓库删了,PicGo相册里的图片也暂时不会消失。当然，链接会挂。<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%90%8C%E6%AD%A5.jpg"></li>
-</ul>
-</li>
-<li>PicGo支持扩展<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/zWingz/picgo-plugin-github-plus">githubPlus插件地址</a></li>
-</ul>
-</li>
-<li>如果遇到这种无法显示的问题：<ul>
-<li>图片外链能够正常打开</li>
-<li>应用程序的相册无法显示<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E7%9B%B8%E5%86%8C%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.jpg"></li>
-<li>点击单张图片，稍加加载之后无法显示<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.gif"><br>…大概率只是网不好…毕竟国内直连Github也不是很稳定，挂个代理试试</li>
-</ul>
-</li>
-<li>介于以上原因，我还是文章图片一起推好了…:first_quarter_moon:</li>
-</ol>
+<p>在hexo这个框架下可以使用的一些特别的md排版技巧，这里用的next默认自带的插件，如果你这么写了却无效，那是因为你的hexo主题没有默认安装对应的依赖插件，可以搜索对应的hexo插件并使用npm安装。</p>
+<p>对了，这里用到了大量的<code>&#123;&#123;&#125;&#125;，&#123;% %&#125;</code>这种hexo无法转义的字符。如果会出现<code>hexo g</code>或者<code>hexo d</code>报错的情况，考虑你的文档里是否存在<code>&#123;% %&#125;</code>这样单独的，没有写成一对<code>&#123;% %&#125;&#123;% %&#125;</code>的语法。</p>
+<h2 id="Note便签"><a href="#Note便签" class="headerlink" title="Note便签"></a>Note便签</h2><p>在Next的主题配置文件里：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span> </span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
+<p>md可以这么写：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% note default %&#125;default&#123;% endnote %&#125;</span><br><span class="line">&#123;% note primary %&#125;primary&#123;% endnote %&#125;</span><br><span class="line">&#123;% note success %&#125;success&#123;% endnote %&#125;</span><br><span class="line">&#123;% note info %&#125;info&#123;% endnote %&#125;</span><br><span class="line">&#123;% note warning %&#125;warning&#123;% endnote %&#125;</span><br><span class="line">&#123;% note danger %&#125;danger&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<div class="note default"><p>default</p>
+</div>
+
+ <div class="note primary"><p>primary</p>
+</div>
+
+ <div class="note success"><p>success</p>
+</div>
+
+ <div class="note info"><p>info</p>
+</div>
+
+ <div class="note warning"><p>warning</p>
+</div>
+
+ <div class="note danger"><p>danger</p>
+</div>
+
+<p>这里icons开关是打开的，如果想不带图标，可以这么写：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% note info no-icon %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon"><p>info</p>
+</div>
+
+<h2 id="Group-pictures图片组"><a href="#Group-pictures图片组" class="headerlink" title="Group-pictures图片组"></a>Group-pictures图片组</h2><p>next主题默认开启此功能。<br>md里这么写：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% grouppicture 6-5%&#125;</span><br><span class="line">  ![](http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day<span class="emphasis">_at_</span>Camp.png.943x630<span class="emphasis">_q100.png)</span></span><br><span class="line"><span class="emphasis">  ![](http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_</span>q100.png)</span><br><span class="line">  ![](http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630<span class="emphasis">_q100.png)</span></span><br><span class="line"><span class="emphasis">&#123;% endgrouppicture %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.gif" data-original="http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day_at_Camp.png.943x630_q100.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.gif" data-original="http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_q100.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.gif" data-original="http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630_q100.png"></div></div><div class="group-picture-row"></div></div>
+
+<h2 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h2><p>基础写法：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% button #, Text,Icons %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;% btn a链接, 名称, 本地图表名 %&#125;</code></p>
+<p>md:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% btn https://example.com/sample.pdf,1%&#125;</span><br><span class="line">&#123;% btn #,Ⅱ%&#125;</span><br><span class="line">&#123;% btn #,叁,fa fa-heart%&#125;</span><br><span class="line">&#123;% btn #,,fa fa-heart%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<a class="btn" target="_blank" rel="noopener" href="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf ">1</a>
+<a class="btn" href="#">Ⅱ</a>
+<a class="btn" href="#"><i class="fa fa-heart"></i>叁</a>
+<a class="btn" href="#"><i class="fa fa-heart"></i></a>
+
+
+<h2 id="Video视频"><a href="#Video视频" class="headerlink" title="Video视频"></a>Video视频</h2><p>md:</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% video https://example.com/sample.mp4 %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<video src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm" preload="metadata" controlslist="nodownload" controls playsinline poster=""></video>
+
+<h2 id="PDF文档"><a href="#PDF文档" class="headerlink" title="PDF文档"></a>PDF文档</h2><p>yaml配置文件可以设置默认高度，在具体使用的时候可以加大小参数。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PDF tag</span></span><br><span class="line"><span class="comment"># NexT will try to load pdf files natively, if failed, pdf.js will be used.</span></span><br><span class="line"><span class="comment"># So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/theme-next-pdf</span></span><br><span class="line"><span class="attr">pdf:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Default height</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">1000px</span></span><br></pre></td></tr></table></figure>
+
+<p>md:</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% pdf https://example.com/sample.pdf 600px %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果:</p>
+<div class="pdfobject-container" data-target="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf" data-height="600px"></div>
+
+<h2 id="Tabs标签"><a href="#Tabs标签" class="headerlink" title="Tabs标签"></a>Tabs标签</h2><p>yaml设置md：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>文档说明：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tabs Unique name, [index] %&#125;</span><br><span class="line"><span class="comment">&lt;!-- tab [Tab caption] [@icon] --&gt;</span></span><br><span class="line">Any content (support inline tags too).</span><br><span class="line"><span class="comment">&lt;!-- endtab --&gt;</span></span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br><span class="line">Unique name   : Unique name of tabs block tag without comma.</span><br><span class="line">                Will be used in #id&#x27;s as prefix for each tab with their index numbers.</span><br><span class="line">                If there are whitespaces in name, for generate #id all whitespaces will replaced by dashes.</span><br><span class="line">                Only for current url of post/page must be unique!</span><br><span class="line">[index]       : Index number of active tab.</span><br><span class="line">                If not specified, first tab (1) will be selected.</span><br><span class="line">                If index is -1, no tab will be selected. It&#x27;s will be something like spoiler.</span><br><span class="line">                Optional parameter.</span><br><span class="line">[Tab caption] : Caption of current tab.</span><br><span class="line">                If not caption specified, unique name with tab index suffix will be used as caption of tab.</span><br><span class="line">                If not caption specified, but specified icon, caption will empty.</span><br><span class="line">                Optional parameter.</span><br><span class="line">[@icon]       : FontAwesome icon name (without &#x27;fa-&#x27; at the begining).</span><br><span class="line">                Can be specified with or without space; e.g. &#x27;Tab caption @icon&#x27; similar to &#x27;Tab caption@icon&#x27;.</span><br><span class="line">                Optional parameter.</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的<code>&lt;!-- tab --&gt;</code>并非省略，而是起到了标志的作用。</p>
+<p>md写法1，参数默认，展开一项：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tabs First unique name %&#125;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">First unique name 1</a></li><li class="tab"><a href="#first-unique-name-2">First unique name 2</a></li><li class="tab"><a href="#first-unique-name-3">First unique name 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p>This is Tab 1</p></div><div class="tab-pane" id="first-unique-name-2"><p>This is Tab 2</p></div><div class="tab-pane" id="first-unique-name-3"><p>This is Tab 3</p></div></div></div>
+
+<h2 id="Center-quote引用"><a href="#Center-quote引用" class="headerlink" title="Center-quote引用"></a>Center-quote引用</h2><p>md写法：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% centerquote %&#125;Quote1&#123;% endcenterquote %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以简写为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% cq %&#125;Quote2&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<blockquote class="blockquote-center">
+<p>may the flame guide thee</p>
+
+</blockquote>
     </div>
 
     
@@ -465,13 +481,10 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/01/31/cmd-ji-chu/" rel="prev" title="Cmd基础">
-                  <i class="fa fa-chevron-left"></i> Cmd基础
-                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/01/21/vbscript-ji-chu/" rel="next" title="VBScript基础">
-                  VBScript基础 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/01/23/linux-wen-jian-mu-lu-jie-gou/" rel="next" title="linux文件目录结构">
+                  linux文件目录结构 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -669,7 +682,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'mednight4.github.io',
       owner       : 'mednight4',
       admin       : ['mednight4'],
-      id          : '551e86f8a1ae278e05614a815af42e43',
+      id          : 'ad5cc41d334f19c6b502f2c3a52826b4',
         language: 'zh-CN',
       distractionFreeMode: true
     });

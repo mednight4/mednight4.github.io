@@ -962,6 +962,110 @@
       </tags>
   </entry>
   <entry>
+    <title>MD技巧</title>
+    <url>/2021/01/25/md-ji-qiao/</url>
+    <content><![CDATA[<h1 id="MD技巧"><a href="#MD技巧" class="headerlink" title="MD技巧"></a>MD技巧</h1><blockquote>
+<p>  基于hexo-theme-next-8.0.2自带的hexo插件实现</p>
+</blockquote>
+<p>在hexo这个框架下可以使用的一些特别的md排版技巧，这里用的next默认自带的插件，如果你这么写了却无效，那是因为你的hexo主题没有默认安装对应的依赖插件，可以搜索对应的hexo插件并使用npm安装。</p>
+<p>对了，这里用到了大量的<code>&#123;&#123;&#125;&#125;，&#123;% %&#125;</code>这种hexo无法转义的字符。如果会出现<code>hexo g</code>或者<code>hexo d</code>报错的情况，考虑你的文档里是否存在<code>&#123;% %&#125;</code>这样单独的，没有写成一对<code>&#123;% %&#125;&#123;% %&#125;</code>的语法。</p>
+<h2 id="Note便签"><a href="#Note便签" class="headerlink" title="Note便签"></a>Note便签</h2><p>在Next的主题配置文件里：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span> </span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>md可以这么写：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;default&#123;% endnote %&#125;</span><br><span class="line">&#123;% note primary %&#125;primary&#123;% endnote %&#125;</span><br><span class="line">&#123;% note success %&#125;success&#123;% endnote %&#125;</span><br><span class="line">&#123;% note info %&#125;info&#123;% endnote %&#125;</span><br><span class="line">&#123;% note warning %&#125;warning&#123;% endnote %&#125;</span><br><span class="line">&#123;% note danger %&#125;danger&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<div class="note default"><p>default</p>
+</div>
+
+ <div class="note primary"><p>primary</p>
+</div>
+
+ <div class="note success"><p>success</p>
+</div>
+
+ <div class="note info"><p>info</p>
+</div>
+
+ <div class="note warning"><p>warning</p>
+</div>
+
+ <div class="note danger"><p>danger</p>
+</div>
+
+<p>这里icons开关是打开的，如果想不带图标，可以这么写：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% note info no-icon %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon"><p>info</p>
+</div>
+
+<h2 id="Group-pictures图片组"><a href="#Group-pictures图片组" class="headerlink" title="Group-pictures图片组"></a>Group-pictures图片组</h2><p>next主题默认开启此功能。<br>md里这么写：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture 6-5%&#125;</span><br><span class="line">  ![](http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day<span class="emphasis">_at_</span>Camp.png.943x630<span class="emphasis">_q100.png)</span></span><br><span class="line"><span class="emphasis">  ![](http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_</span>q100.png)</span><br><span class="line">  ![](http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630<span class="emphasis">_q100.png)</span></span><br><span class="line"><span class="emphasis">&#123;% endgrouppicture %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="http://static.simpledesktops.com/uploads/desktops/2020/09/15/Day_at_Camp.png.943x630_q100.png"></div><div class="group-picture-column"><img data-src="http://static.simpledesktops.com/uploads/desktops/2020/08/22/1.png.943x630_q100.png"></div><div class="group-picture-column"><img data-src="http://static.simpledesktops.com/uploads/desktops/2020/09/02/%E6%8F%92%E5%A4%B4.png.943x630_q100.png"></div></div><div class="group-picture-row"></div></div>
+
+<h2 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h2><p>基础写法：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% button #, Text,Icons %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;% btn a链接, 名称, 本地图表名 %&#125;</code></p>
+<p>md:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% btn https://example.com/sample.pdf,1%&#125;</span><br><span class="line">&#123;% btn #,Ⅱ%&#125;</span><br><span class="line">&#123;% btn #,叁,fa fa-heart%&#125;</span><br><span class="line">&#123;% btn #,,fa fa-heart%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<a class="btn" href="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf ">1</a>
+<a class="btn" href="#">Ⅱ</a>
+<a class="btn" href="#"><i class="fa fa-heart"></i>叁</a>
+<a class="btn" href="#"><i class="fa fa-heart"></i></a>
+
+
+<h2 id="Video视频"><a href="#Video视频" class="headerlink" title="Video视频"></a>Video视频</h2><p>md:</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% video https://example.com/sample.mp4 %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<video src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm" preload="metadata" controlslist="nodownload" controls playsinline poster=""></video>
+
+<h2 id="PDF文档"><a href="#PDF文档" class="headerlink" title="PDF文档"></a>PDF文档</h2><p>yaml配置文件可以设置默认高度，在具体使用的时候可以加大小参数。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># PDF tag</span></span><br><span class="line"><span class="comment"># NexT will try to load pdf files natively, if failed, pdf.js will be used.</span></span><br><span class="line"><span class="comment"># So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/theme-next-pdf</span></span><br><span class="line"><span class="attr">pdf:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Default height</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">1000px</span></span><br></pre></td></tr></table></figure>
+
+<p>md:</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% pdf https://example.com/sample.pdf 600px %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果:</p>
+<div class="pdfobject-container" data-target="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf" data-height="600px"></div>
+
+<h2 id="Tabs标签"><a href="#Tabs标签" class="headerlink" title="Tabs标签"></a>Tabs标签</h2><p>yaml设置md：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>文档说明：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&#123;% tabs Unique name, [index] %&#125;</span><br><span class="line"><span class="comment">&lt;!-- tab [Tab caption] [@icon] --&gt;</span></span><br><span class="line">Any content (support inline tags too).</span><br><span class="line"><span class="comment">&lt;!-- endtab --&gt;</span></span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br><span class="line">Unique name   : Unique name of tabs block tag without comma.</span><br><span class="line">                Will be used in #id&#x27;s as prefix for each tab with their index numbers.</span><br><span class="line">                If there are whitespaces in name, for generate #id all whitespaces will replaced by dashes.</span><br><span class="line">                Only for current url of post/page must be unique!</span><br><span class="line">[index]       : Index number of active tab.</span><br><span class="line">                If not specified, first tab (1) will be selected.</span><br><span class="line">                If index is -1, no tab will be selected. It&#x27;s will be something like spoiler.</span><br><span class="line">                Optional parameter.</span><br><span class="line">[Tab caption] : Caption of current tab.</span><br><span class="line">                If not caption specified, unique name with tab index suffix will be used as caption of tab.</span><br><span class="line">                If not caption specified, but specified icon, caption will empty.</span><br><span class="line">                Optional parameter.</span><br><span class="line">[@icon]       : FontAwesome icon name (without &#x27;fa-&#x27; at the begining).</span><br><span class="line">                Can be specified with or without space; e.g. &#x27;Tab caption @icon&#x27; similar to &#x27;Tab caption@icon&#x27;.</span><br><span class="line">                Optional parameter.</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的<code>&lt;!-- tab --&gt;</code>并非省略，而是起到了标志的作用。</p>
+<p>md写法1，参数默认，展开一项：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% tabs First unique name %&#125;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">First unique name 1</a></li><li class="tab"><a href="#first-unique-name-2">First unique name 2</a></li><li class="tab"><a href="#first-unique-name-3">First unique name 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p>This is Tab 1</p></div><div class="tab-pane" id="first-unique-name-2"><p>This is Tab 2</p></div><div class="tab-pane" id="first-unique-name-3"><p>This is Tab 3</p></div></div></div>
+
+<h2 id="Center-quote引用"><a href="#Center-quote引用" class="headerlink" title="Center-quote引用"></a>Center-quote引用</h2><p>md写法：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% centerquote %&#125;Quote1&#123;% endcenterquote %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以简写为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;Quote2&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<blockquote class="blockquote-center">
+<p>may the flame guide thee</p>
+
+</blockquote>]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>others</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Matplotlib常用方法</title>
     <url>/2020/11/29/matplotlib-chang-yong-fang-fa/</url>
     <content><![CDATA[<h1 id="Matplotlib常用方法"><a href="#Matplotlib常用方法" class="headerlink" title="Matplotlib常用方法"></a>Matplotlib常用方法</h1><blockquote>
@@ -1261,6 +1365,54 @@
       </tags>
   </entry>
   <entry>
+    <title>Pycharm运行Jupyter notebook(pip安装)</title>
+    <url>/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/</url>
+    <content><![CDATA[<h1 id="Pycharm运行Jupyter-notebook-pip安装"><a href="#Pycharm运行Jupyter-notebook-pip安装" class="headerlink" title="Pycharm运行Jupyter notebook(pip安装)"></a>Pycharm运行Jupyter notebook(pip安装)</h1><p>环境：win10，pycharm专业版</p>
+<h2 id="从Anacanda开始"><a href="#从Anacanda开始" class="headerlink" title="从Anacanda开始"></a>从Anacanda开始</h2><p>Jupyter在爬虫和数据分析这一块用起来非常方便。</p>
+<p>方便一点的方法是安装<a href="https://www.anaconda.com/">Anaconda</a>，并勾选jupyter notebook模块，Anaconda的安装就不细说了，看这里</p>
+<p> <a href="https://www.jianshu.com/p/62f155eb6ac5">简书-Anaconda介绍、安装及使用教程</a></p>
+<h2 id="使用vscode插件集成"><a href="#使用vscode插件集成" class="headerlink" title="使用vscode插件集成"></a>使用vscode插件集成</h2><p>但是我是本着少折腾的心直接在vscode里装的jupyter插件，也就是直接pip安装jupyter及其相关依赖库。至于安装的方法嘛，写爬虫作业时，vscode的右下角一直弹窗推荐使用jupyter插件，随手就点了。。。然后是pip安装若干依赖包，一路yes下去就完了</p>
+<p>pip list一下，看上去直接相关的有</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip list</span><br><span class="line">Package             Version</span><br><span class="line">------------------- ---------</span><br><span class="line">jupyter             1.0.0</span><br><span class="line">jupyter-client      6.1.7</span><br><span class="line">jupyter-console     6.2.0</span><br><span class="line">jupyter-core        4.6.3</span><br><span class="line">jupyterlab-pygments 0.1.2</span><br></pre></td></tr></table></figure>
+
+<p>当然vscode自然是全配置好了，新建<code>.ipynb</code>文件，直接点击即可生成页面</p>
+<p>默认情况下，画出的图形呈现在各自的窗口中。要直接在 notebook 中呈现图形，可通过命令 <code>%matplotlib inline</code> 内联后端。</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png"></p>
+<h2 id="pycharm关联Jupyter服务"><a href="#pycharm关联Jupyter服务" class="headerlink" title="pycharm关联Jupyter服务"></a>pycharm关联Jupyter服务</h2><p>想给pycharm也带上，对我这样的菜鸟来说，pycharm的语法提示还是舒服，而且debug也很方便</p>
+<p>目录下新建一个jupyter notebook文件</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm_jupyter.png"></p>
+<p>由于没有配置运行环境，所以不能运行，查看运行配置，需要服务的地址和token</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm%E9%85%8D%E7%BD%AE.png"></p>
+<p>所以需要先将jupyter跑起来，再将页面的url和token填到pycharm里</p>
+<p>服务启动命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+
+<p>如果命令行无法识别jupyter命令，需要将其添加到环境变量</p>
+<p>默认的路径是<code>C:\Users\用户名\AppData\Roaming\Python\Python37\Scripts</code>，找到自己的Scripts目录，将其加至系统环境变量path，启动服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br><span class="line">[I 22:55:02.380 NotebookApp] Serving notebooks from local directory: E:\phpEnv\tools\Cmder</span><br><span class="line">[I 22:55:02.381 NotebookApp] Jupyter Notebook 6.1.4 is running at:</span><br><span class="line">[I 22:55:02.381 NotebookApp] http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.382 NotebookApp]  or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.383 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span><br><span class="line">[C 22:55:02.539 NotebookApp]</span><br><span class="line"></span><br><span class="line">    To access the notebook, open this file in a browser:</span><br><span class="line">        file:///C:/Users/17498/AppData/Roaming/jupyter/runtime/nbserver-19644-open.html</span><br><span class="line">    Or copy and paste one of these URLs:</span><br><span class="line">        http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">     or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br></pre></td></tr></table></figure>
+
+<p><code>token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</code>，此时浏览器自动打开Jupyter的页面，初始目录为命令运行的当前目录，所以建议先cd到代码目录再运行服务</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/tree.png"></p>
+<p>jupyter的默认端口是8888</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/url%E7%AB%AF%E5%8F%A3.png"></p>
+<p>点击运行，登陆弹窗，所填token是先前的<code>39928e57fedd0f64aad19afaec923217a89809ce577e154c</code></p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/token.png"></p>
+<p>点击ok，运行代码，似乎还自带debug效果</p>
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/result.png"></p>
+<p>可以看到，结果和代码并没有在同一个窗口，好处是代码更直观了，而且debug很方便，但是窗口太小看运行结果不是很舒服，见仁见智了，用来敲代码稍微多一点的项目还是很不错的。</p>
+<p>有了IDE就不需要在浏览器上打开notebook页面了。jupyter启动服务但不打开浏览器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook --no-browser</span><br></pre></td></tr></table></figure>
+
+<p>此时，将会在终端显示启动的服务信息，包括浏览器页面的链接和token。</p>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RSA加解密基础实现</title>
     <url>/2020/11/19/rsa-jia-jie-mi-ji-chu-shi-xian/</url>
     <content><![CDATA[<h1 id="RSA加解密基础实现"><a href="#RSA加解密基础实现" class="headerlink" title="RSA加解密基础实现"></a>RSA加解密基础实现</h1><blockquote>
@@ -1441,301 +1593,6 @@
       </categories>
       <tags>
         <tag>vbscript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pycharm运行Jupyter notebook(pip安装)</title>
-    <url>/2020/12/16/pycharm-yun-xing-jupyter-notebook-pip-an-zhuang/</url>
-    <content><![CDATA[<h1 id="Pycharm运行Jupyter-notebook-pip安装"><a href="#Pycharm运行Jupyter-notebook-pip安装" class="headerlink" title="Pycharm运行Jupyter notebook(pip安装)"></a>Pycharm运行Jupyter notebook(pip安装)</h1><p>环境：win10，pycharm专业版</p>
-<h2 id="从Anacanda开始"><a href="#从Anacanda开始" class="headerlink" title="从Anacanda开始"></a>从Anacanda开始</h2><p>Jupyter在爬虫和数据分析这一块用起来非常方便。</p>
-<p>方便一点的方法是安装<a href="https://www.anaconda.com/">Anaconda</a>，并勾选jupyter notebook模块，Anaconda的安装就不细说了，看这里</p>
-<p> <a href="https://www.jianshu.com/p/62f155eb6ac5">简书-Anaconda介绍、安装及使用教程</a></p>
-<h2 id="使用vscode插件集成"><a href="#使用vscode插件集成" class="headerlink" title="使用vscode插件集成"></a>使用vscode插件集成</h2><p>但是我是本着少折腾的心直接在vscode里装的jupyter插件，也就是直接pip安装jupyter及其相关依赖库。至于安装的方法嘛，写爬虫作业时，vscode的右下角一直弹窗推荐使用jupyter插件，随手就点了。。。然后是pip安装若干依赖包，一路yes下去就完了</p>
-<p>pip list一下，看上去直接相关的有</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip list</span><br><span class="line">Package             Version</span><br><span class="line">------------------- ---------</span><br><span class="line">jupyter             1.0.0</span><br><span class="line">jupyter-client      6.1.7</span><br><span class="line">jupyter-console     6.2.0</span><br><span class="line">jupyter-core        4.6.3</span><br><span class="line">jupyterlab-pygments 0.1.2</span><br></pre></td></tr></table></figure>
-
-<p>当然vscode自然是全配置好了，新建<code>.ipynb</code>文件，直接点击即可生成页面</p>
-<p>默认情况下，画出的图形呈现在各自的窗口中。要直接在 notebook 中呈现图形，可通过命令 <code>%matplotlib inline</code> 内联后端。</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/vscode.png"></p>
-<h2 id="pycharm关联Jupyter服务"><a href="#pycharm关联Jupyter服务" class="headerlink" title="pycharm关联Jupyter服务"></a>pycharm关联Jupyter服务</h2><p>想给pycharm也带上，对我这样的菜鸟来说，pycharm的语法提示还是舒服，而且debug也很方便</p>
-<p>目录下新建一个jupyter notebook文件</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm_jupyter.png"></p>
-<p>由于没有配置运行环境，所以不能运行，查看运行配置，需要服务的地址和token</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/pycharm%E9%85%8D%E7%BD%AE.png"></p>
-<p>所以需要先将jupyter跑起来，再将页面的url和token填到pycharm里</p>
-<p>服务启动命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
-
-<p>如果命令行无法识别jupyter命令，需要将其添加到环境变量</p>
-<p>默认的路径是<code>C:\Users\用户名\AppData\Roaming\Python\Python37\Scripts</code>，找到自己的Scripts目录，将其加至系统环境变量path，启动服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br><span class="line">[I 22:55:02.380 NotebookApp] Serving notebooks from local directory: E:\phpEnv\tools\Cmder</span><br><span class="line">[I 22:55:02.381 NotebookApp] Jupyter Notebook 6.1.4 is running at:</span><br><span class="line">[I 22:55:02.381 NotebookApp] http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.382 NotebookApp]  or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">[I 22:55:02.383 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span><br><span class="line">[C 22:55:02.539 NotebookApp]</span><br><span class="line"></span><br><span class="line">    To access the notebook, open this file in a browser:</span><br><span class="line">        file:///C:/Users/17498/AppData/Roaming/jupyter/runtime/nbserver-19644-open.html</span><br><span class="line">    Or copy and paste one of these URLs:</span><br><span class="line">        http://localhost:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br><span class="line">     or http://127.0.0.1:8888/?token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</span><br></pre></td></tr></table></figure>
-
-<p><code>token=39928e57fedd0f64aad19afaec923217a89809ce577e154c</code>，此时浏览器自动打开Jupyter的页面，初始目录为命令运行的当前目录，所以建议先cd到代码目录再运行服务</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/tree.png"></p>
-<p>jupyter的默认端口是8888</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/url%E7%AB%AF%E5%8F%A3.png"></p>
-<p>点击运行，登陆弹窗，所填token是先前的<code>39928e57fedd0f64aad19afaec923217a89809ce577e154c</code></p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/token.png"></p>
-<p>点击ok，运行代码，似乎还自带debug效果</p>
-<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/Pycharm%E8%BF%90%E8%A1%8CJupyter-notebook-pip%E5%AE%89%E8%A3%85/result.png"></p>
-<p>可以看到，结果和代码并没有在同一个窗口，好处是代码更直观了，而且debug很方便，但是窗口太小看运行结果不是很舒服，见仁见智了，用来敲代码稍微多一点的项目还是很不错的。</p>
-<p>有了IDE就不需要在浏览器上打开notebook页面了。jupyter启动服务但不打开浏览器</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook --no-browser</span><br></pre></td></tr></table></figure>
-
-<p>此时，将会在终端显示启动的服务信息，包括浏览器页面的链接和token。</p>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux文件目录结构</title>
-    <url>/2021/01/23/linux-wen-jian-mu-lu-jie-gou/</url>
-    <content><![CDATA[<h1 id="linux文件目录结构"><a href="#linux文件目录结构" class="headerlink" title="linux文件目录结构"></a>linux文件目录结构</h1><blockquote>
-<p>  引用自《鸟哥的linux私房菜 基础篇》</p>
-<ul>
-<li>  <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/44.html">5.3.1 Linux目录配置的依据–FHS</a></li>
-</ul>
-</blockquote>
-<p>通过<code>ls /</code>就会发现，在<code>/</code>下包涵很多的目录，比如<code>etc</code>、<code>usr</code>、<code>var</code>、<code>bin</code> …等等。平时虚拟机做实验自然是随便放，但真要日常使用的话，还是需要知道对应目录的意思，虽然大多数教材都有介绍，不过实际使用起来光是课本教程那点简单介绍还是不够的。</p>
-<p>规定这一标准的是FHS（Filesystem Hierarchy Standard ）机构。<a href="http://www.pathname.com/fhs/">FHS的官方文件</a>指出了每个特定的目录下应该放置的特定数据。 </p>
-<p>根据标准，可以将目录定义成为四种交互作用的形态：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>可分享的(shareable)</th>
-<th>不可分享的(unshareable)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>不变的(static)</td>
-<td><code>/usr</code> (软件放置处)</td>
-<td><code>/etc </code>(配置文件)</td>
-</tr>
-<tr>
-<td>—</td>
-<td><code>/opt</code> (第三方协力软件)</td>
-<td><code>/boot </code>(开机与核心档)</td>
-</tr>
-<tr>
-<td>可变动的(variable)</td>
-<td><code>/var/mail </code>(使用者邮件信箱)</td>
-<td><code>/var/run</code> (程序相关)</td>
-</tr>
-<tr>
-<td>—</td>
-<td><code>/var/spool/news </code>(新闻组)</td>
-<td><code>/var/lock </code>(程序相关)</td>
-</tr>
-</tbody></table>
-<p><strong>可分享的：</strong>可以分享给其他系统挂载使用的目录，所以包括执行文件与用户的邮件等数据， 是能够分享给网络上其他主机挂载用的目录；<br><strong>不可分享的：</strong>自己机器上面运作的装置文件或者是与程序有关的socket文件等， 由于仅与自身机器有关，所以当然就不适合分享给其他主机了。<br><strong>不变的：</strong>有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；<br><strong>可变动的：</strong>经常改变的数据，例如登录文件、一般用户可自行收受的新闻组等。</p>
-<p>FHS仅涉及到三层目录下：</p>
-<table>
-<thead>
-<tr>
-<th>路径</th>
-<th>意思</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/</code></td>
-<td>root根目录</td>
-<td>与开机系统有关</td>
-</tr>
-<tr>
-<td><code>/usr</code></td>
-<td>unix software resource</td>
-<td>与软件安装/执行有关</td>
-</tr>
-<tr>
-<td><code>/var</code></td>
-<td>variable</td>
-<td>与系统运作过程有关</td>
-</tr>
-</tbody></table>
-<h3 id="根目录"><a href="#根目录" class="headerlink" title="根目录 (/)"></a>根目录 (/)</h3><p>根目录和Windows的C盘一个样。</p>
-<p>根目录与开机、还原、系统修复等动作有关。 由于系统开机时需要特定的开机软件、核心文件、开机所需程序、 函式库等等文件数据，若系统出现错误时，根目录也必须要包含有能够修复文件系统的程序才行。</p>
-<p>FHS希望根目录不要放在非常大的分区，因为越大的分区内你会放入越多的数据，如此一来根目录所在分区就可能会有较多发生错误的机会。应用程序所安装的软件最好不要与根目录放在同一个分区内，保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p>
-<p>根据以上原因，FHS认为根目录(/)下应该包含如下子目录：</p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>应放置档案内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/bin</code></td>
-<td>系统有很多放置执行档的目录，但<code>/bin</code>比较特殊。因为<code>/bin</code>放置的是在单人维护模式下还能够被操作的指令。在<code>/bin</code>底下的指令可以被root与一般帐号所使用，主要有：<code>cat,chmod, chown, date, mv, mkdir, cp, bash</code>等等常用的指令。</td>
-</tr>
-<tr>
-<td><code>/boot</code></td>
-<td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。Linux kernel常用的档名为：vmlinuz ，如果使用的是grub这个开机管理程式，则还会存在<code>/boot/grub/</code>这个目录。</td>
-</tr>
-<tr>
-<td><code>/dev</code></td>
-<td>在Linux系统上，任何装置与周边设备都是以档案的型态存在于这个目录当中。 只要通过存取这个目录下的某个档案，就等于存取某个装置。比要重要的档案有<code>/dev/null, /dev/zero, /dev/tty , /dev/lp*, / dev/hd*, /dev/sd*</code>等等</td>
-</tr>
-<tr>
-<td><code>/etc</code></td>
-<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，但是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有：<code>/etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/</code>等等。 另外，其下重要的目录有：<code>/etc/init.d/</code> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：<code> /etc/init.d/iptables start</code>、<code>/etc/init.d/ iptables stop/etc/xinetd.d/ </code>：这就是所谓的super daemon管理的各项服务的设定档目录。 <code>/etc/X11/</code> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
-</tr>
-<tr>
-<td><code>/home</code></td>
-<td>这是系统预设的使用者家目录。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录，而 ~guest：则代表用户名为guest的家目录。</td>
-</tr>
-<tr>
-<td><code>/lib</code></td>
-<td>系统的函式库非常的多，而/lib放置的则是在开机时会用到的函式库，以及在<code>/bin</code>或<code>/sbin</code>底下的指令会呼叫的函式库而已 。尤其重要的是<code>/lib/modules/</code>这个目录，因为该目录会放置核心相关的模组(驱动程式)。</td>
-</tr>
-<tr>
-<td><code>/media</code></td>
-<td>media是媒体的英文，顾名思义，这个<code>/media</code>底下放置的就是可移除的装置。 包括软碟、光碟、DVD等等装置都暂时挂载于此。 常见的档名有：<code>/media/floppy, /media/cdrom</code>等等。</td>
-</tr>
-<tr>
-<td><code>/mnt</code></td>
-<td>如果妳想要暂时挂载某些额外的装置，一般建议你可以放置到这个目录中。在古早时候，这个目录的用途与<code>/media</code>相同。 只是有了<code>/media</code>之后，这个目录就用来暂时挂载用了。</td>
-</tr>
-<tr>
-<td><code>/opt </code>  <code>(/usr/local)</code></td>
-<td>这个是给第三方软件放置的目录 。 什么是第三方软件啊？举例来说，KDE这个桌面管理系统是一个独立的软件，不过他可以安装到Linux系统中，因此KDE的软件就建议放置到此目录下了。 另外，如果你想要自行安装额外的软件(非原本的distribution提供的)，那么也能够将你的软件安装到这里来。 不过，以前的Linux系统中，我们还是习惯放置在<code>/usr/local</code>目录下。</td>
-</tr>
-<tr>
-<td><code>/root</code></td>
-<td>系统管理员(root)的家目录。 之所以放在这里，是因为如果进入单人维护模式而仅挂载根目录时，该目录就能够拥有root的家目录，所以我们会希望root的家目录与根目录放置在同一个分区中。</td>
-</tr>
-<tr>
-<td><code>/sbin</code></td>
-<td>Linux有非常多指令是用来设定系统环境的，这些指令只有root才能够利用来设定系统，其他使用者最多只能用来查询而已。放在<code>/sbin</code>底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软件程式，一般则放置到<code>/usr/sbin/</code>当中。至于本机自行安装的软件所产生的系统执行档(system binary)，则放置到<code>/usr/local/sbin/</code>当中了。常见的指令包括：<code>fdisk, fsck, ifconfig, init, mkfs</code>等等。</td>
-</tr>
-<tr>
-<td><code>/srv</code></td>
-<td>srv可以视为service的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在<code>/srv/www/</code>里面。平时我们编写的代码应该放到这里了。</td>
-</tr>
-<tr>
-<td><code>/tmp</code></td>
-<td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊。 因为FHS甚至建议在开机时，应该要将/tmp下的资料都删除。</td>
-</tr>
-</tbody></table>
-<p>FHS针对根目录所定义的标准就仅限于上表，不过仍有些目录也需要我们了解一下，具体如下： </p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>应放置文件内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/lost+found</code></td>
-<td>这个目录是使用标准的ext2/ext3档案系统格式才会产生的一个目录，目的在于当档案系统发生错误时，将一些遗失的片段放置到这个目录下。 这个目录通常会在分割槽的最顶层存在，例如你加装一个硬盘于/disk中，那在这个系统下就会自动产生一个这样的目录/disk/lost+found</td>
-</tr>
-<tr>
-<td><code>/proc</code></td>
-<td>这个目录本身是一个虚拟文件系统(virtual filesystem)喔。 他放置的资料都是在内存当中，例如系统核心、行程资讯(process)、周边装置的状态及网络状态等等。因为这个目录下的资料都是在记忆体（内存）当中，所以本身不占任何硬盘空间。比较重要的档案（目录）例如：<code> /proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/*</code>等等。</td>
-</tr>
-<tr>
-<td><code>/sys</code></td>
-<td>这个目录其实跟<code>/proc</code>非常类似，也是一个虚拟的档案系统，主要也是记录与核心相关的资讯。 包括目前已载入的核心模组与核心侦测到的硬体装置资讯等等。 这个目录同样不占硬盘容量。</td>
-</tr>
-</tbody></table>
-<p>除了这些目录的内容之外，另外要注意的是，因为根目录与开机有关，开机过程中仅有根目录会被挂载， 其他分区则是在开机完成之后才会持续的进行挂载的行为。就是因为如此，因此根目录下与开机过程有关的目录， 就不能够与根目录放到不同的分区去，有底下这些：</p>
-<p><strong>/etc：</strong>配置文件<br><strong>/bin：</strong>重要执行档<br><strong>/dev：</strong>所需要的设备文件<br><strong>/lib：</strong>执行档所需的函式库与核心所需的模块<br><strong>/sbin：</strong>重要的系统执行文件</p>
-<p>这五个目录不可与根目录分开在不同的分区。</p>
-<h3 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h3><p>依据FHS的基本定义，<code>/usr</code>里面放置的数据属于可分享的与不可变动的(shareable, static)， 如果你知道如何透过网络进行分区的挂载(例如在服务器篇会谈到的NFS服务器)，那么<code>/usr</code>确实可以分享给局域网络内的其他主机来使用喔。</p>
-<p><code>/usr</code>不是user的缩写，其实usr是Unix Software Resource的缩写， 也就是Unix操作系统软件资源所放置的目录，而不是用户的数据，这点要注意。 FHS建议所有软件开发者，应该将他们的数据合理的分别放置到这个目录下的次目录，而不要自行建立该软件自己独立的目录。</p>
-<p>因为是所有系统默认的软件(distribution发布者提供的软件)都会放置到<code>/usr</code>底下，因此这个目录有点类似Windows 系统的<code>C:\Windows\ </code> <code> C:\Program files\</code>这两个目录的综合体，系统刚安装完毕时，这个目录会占用最多的硬盘容量。 一般来说，<code>/usr</code>的次目录建议有底下这些：</p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>应放置文件内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/usr/X11R6/</code></td>
-<td>为X Window System重要数据所放置的目录，之所以取名为X11R6是因为最后的X版本为第11版，且该版的第6次释出之意。</td>
-</tr>
-<tr>
-<td><code>/usr/bin/</code></td>
-<td>绝大部分的用户可使用指令都放在这里。请注意到他与<code>/bin</code>的不同之处。(是否与开机过程有关)</td>
-</tr>
-<tr>
-<td><code>/usr/include/</code></td>
-<td>c/c++等程序语言的档头(header)与包含档(include)放置处，当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时，会使用到里头的许多包含档。</td>
-</tr>
-<tr>
-<td><code>/usr/lib/</code></td>
-<td>包含各应用软件的函式库、目标文件(object file)，以及不被一般使用者惯用的执行档或脚本(script)。 某些软件会提供一些特殊的指令来进行服务器的设定，这些指令也不会经常被系统管理员操作， 那就会被摆放到这个目录下啦。要注意的是，如果你使用的是X86_64的Linux系统， 那可能会有<code>/usr/lib64/</code>目录产生</td>
-</tr>
-<tr>
-<td><code>/usr/local/</code></td>
-<td>统管理员在本机自行安装自己下载的软件(非distribution默认提供者)，建议安装到此目录， 这样会比较便于管理。举例来说，你的distribution提供的软件较旧，你想安装较新的软件但又不想移除旧版， 此时你可以将新版软件安装于<code>/usr/local/</code>目录下，可与原先的旧版软件有分别啦。 你可以自行到<code>/usr/local</code>去看看，该目录下也是具有<code>bin, etc, include, lib...</code>的次目录</td>
-</tr>
-<tr>
-<td><code>/usr/sbin/</code></td>
-<td>非系统正常运作所需要的系统指令。最常见的就是某些网络服务器软件的服务指令(daemon)</td>
-</tr>
-<tr>
-<td><code>/usr/share/</code></td>
-<td>放置共享文件的地方，在这个目录下放置的数据几乎是不分硬件架构均可读取的数据， 因为几乎都是文本文件嘛。在此目录下常见的还有这些次目录：<code>/usr/share/man</code>：联机帮助文件<code>/usr/share/doc</code>：软件杂项的文件说明<code>/usr/share/zoneinfo</code>：与时区有关的时区文件</td>
-</tr>
-<tr>
-<td><code>/usr/src/</code></td>
-<td>一般原始码建议放置到这里，src有source的意思。至于核心原始码则建议放置到<code>/usr/src/linux/</code>目录下。</td>
-</tr>
-</tbody></table>
-<p><strong>三.  /var 的意义与内容：</strong></p>
-<p>如果<code>/usr</code>是安装时会占用较大硬盘容量的目录，那么<code>/var</code>就是在系统运作后才会渐渐占用硬盘容量的目录。 因为<code>/var</code>目录主要针对常态性变动的文件，包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等。常见的次目录有：</p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>应放置文件内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/var/cache/</code></td>
-<td>应用程序本身运作过程中会产生的一些暂存档</td>
-</tr>
-<tr>
-<td><code>/var/lib/</code></td>
-<td>程序本身执行的过程中，需要使用到的数据文件放置的目录。在此目录下各自的软件应该要有各自的目录。 举例来说，MySQL的数据库放置到<code>/var/lib/mysql/</code>而rpm的数据库则放到<code>/var/lib/rpm</code>去</td>
-</tr>
-<tr>
-<td><code>/var/lock/</code></td>
-<td>某些装置或者是文件资源一次只能被一个应用程序所使用，如果同时有两个程序使用该装置时， 就可能产生一些错误的状况，因此就得要将该装置上锁(lock)，以确保该装置只会给单一软件所使用。 举例来说，刻录机正在刻录一块光盘，你想一下，会不会有两个人同时在使用一个刻录机烧片？ 如果两个人同时刻录，那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁， 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用</td>
-</tr>
-<tr>
-<td><code>/var/log/</code></td>
-<td>非常重要。这是登录文件放置的目录。里面比较重要的文件如<code>/var/log/messages</code>, <code>/var/log/wtmp</code>(记录登入者的信息)等。</td>
-</tr>
-<tr>
-<td><code>/var/mail/</code></td>
-<td>放置个人电子邮件信箱的目录，不过这个目录也被放置到<code>/var/spool/mail/</code>目录中，通常这两个目录是互为链接文件。</td>
-</tr>
-<tr>
-<td><code>/var/run/</code></td>
-<td>某些程序或者是服务启动后，会将他们的PID放置在这个目录下</td>
-</tr>
-<tr>
-<td><code>/var/spool/</code></td>
-<td>这个目录通常放置一些队列数据，所谓的“队列”就是排队等待其他程序使用的数据。 这些数据被使用后通常都会被删除。举例来说，系统收到新信会放置到<code>/var/spool/mail/</code>中， 但使用者收下该信件后该封信原则上就会被删除。信件如果暂时寄不出去会被放到<code>/var/spool/mqueue/</code>中， 等到被送出后就被删除。如果是工作排程数据(crontab)，就会被放置到<code>/var/spool/cron/</code>目录中。</td>
-</tr>
-</tbody></table>
-<p>由于FHS仅是定义出最上层(/)及次层(/usr, /var)的目录内容应该要放置的文件或目录数据， 因此，在其他次目录层级内，就可以随开发者自行来配置了。</p>
-<h3 id="run-sh"><a href="#run-sh" class="headerlink" title="./run.sh"></a>./run.sh</h3><p><strong>网络文件常常提到类似<code>./run.sh</code>之类的数据，这个指令的意义为何？</strong></p>
-<p>由于指令的执行需要变量的支持，若你的执行文件放置在本目录，并且本目录并非正规的执行文件目录(<code>/bin</code>, <code>/usr/bin</code>等为正规)，此时要执行指令就得要严格指定该执行档。<code>./</code>代表本目录的意思，所以<code>./run.sh</code>代表执行本目录下， 名为run.sh的文件。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2354,9 +2211,16 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <h3 id="添加scrollbar伪选择器样式"><a href="#添加scrollbar伪选择器样式" class="headerlink" title="添加scrollbar伪选择器样式"></a>添加scrollbar伪选择器样式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">::-webkit-scrollbar &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">width</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-track &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">border-radius</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-thumb &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">border-radius</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">background-color</span>: <span class="selector-id">#000000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="添加背景图片"><a href="#添加背景图片" class="headerlink" title="添加背景图片"></a>添加背景图片</h3><p>分别给body和侧栏添加图片</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">body &#123; //by mednight4</span><br><span class="line">  background :url(<span class="string">&quot;/images/body.png&quot;</span>);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-attachment:fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sidebar &#123;</span><br><span class="line">  background:url(<span class="string">&quot;/images/sidebar.png&quot;</span>);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">body &#123; //by mednight4</span><br><span class="line">  background :url(<span class="string">&quot;/images/body.png&quot;</span>);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-attachment:fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sidebar &#123;</span><br><span class="line">  opacity:<span class="number">1</span>;</span><br><span class="line">  background:url(<span class="string">&quot;/images/sidebar.png&quot;</span>);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>图片的路径在<code>/themes/hexo-theme-next-8.0.2/source/images</code>，也是放在主题文件夹的source里。</p>
+<h3 id="修改链接颜色"><a href="#修改链接颜色" class="headerlink" title="修改链接颜色"></a>修改链接颜色</h3><p>其实是修改左侧sidebar的a链接颜色，想直接在base.style里改，没找到。干脆在<code>custom.styl</code>覆盖好了。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.sidebar</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#fc6423</span>;</span><br><span class="line">  <span class="attribute">border-bottom-color</span>: <span class="number">#555</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 ]]></content>
       <categories>
         <category>配置</category>
@@ -2715,13 +2579,11 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p>闪电标识（闪电标识和雷电接口没关系，只是表明使用该接口后，电脑在关机的情况下可以继续给移动设备充电）</p>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%BA%8F/20210124194832.png"></p>
 <h3 id="硬盘盒"><a href="#硬盘盒" class="headerlink" title="硬盘盒"></a>硬盘盒</h3><p>m.2硬盘盒的挑选主要看主控芯片。当下主流的m.2硬盘盒主控芯片有ASM2362、JMS583、RTL9210。我买的RTL9210的货，支持USB 3.1 gen2，其实买贵了，我的本子接口不支持gen2。</p>
-<ul>
-<li>  介绍</li>
-</ul>
+<p>介绍视频</p>
 <iframe id="m41" src="//player.bilibili.com/player.html?aid=41074995&bvid=BV17t411a71P&cid=72146035&page=1" scrolling="no" border="0" frameborder="true" framespacing="0" allowfullscreen="true" width=100%> </iframe>
 <script type="text/javascript"> document.getElementById("m41").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";
 </script>
--   测试
+测试视频
 
 <iframe id="m42" src="//player.bilibili.com/player.html?aid=752727755&bvid=BV13k4y1R7EZ&cid=176435283&page=1" scrolling="no" border="0" frameborder="true" framespacing="0" allowfullscreen="true" width=100%> </iframe>
 <script type="text/javascript"> document.getElementById("m42").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";
@@ -4323,6 +4185,253 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux文件目录结构</title>
+    <url>/2021/01/23/linux-wen-jian-mu-lu-jie-gou/</url>
+    <content><![CDATA[<h1 id="linux文件目录结构"><a href="#linux文件目录结构" class="headerlink" title="linux文件目录结构"></a>linux文件目录结构</h1><blockquote>
+<p>  引用自《鸟哥的linux私房菜 基础篇》</p>
+<ul>
+<li>  <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/44.html">5.3.1 Linux目录配置的依据–FHS</a></li>
+</ul>
+</blockquote>
+<p>通过<code>ls /</code>就会发现，在<code>/</code>下包涵很多的目录，比如<code>etc</code>、<code>usr</code>、<code>var</code>、<code>bin</code> …等等。平时虚拟机做实验自然是随便放，但真要日常使用的话，还是需要知道对应目录的意思，虽然大多数教材都有介绍，不过实际使用起来光是课本教程那点简单介绍还是不够的。</p>
+<p>规定这一标准的是FHS（Filesystem Hierarchy Standard ）机构。<a href="http://www.pathname.com/fhs/">FHS的官方文件</a>指出了每个特定的目录下应该放置的特定数据。 </p>
+<p>根据标准，可以将目录定义成为四种交互作用的形态：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>可分享的(shareable)</th>
+<th>不可分享的(unshareable)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不变的(static)</td>
+<td><code>/usr</code> (软件放置处)</td>
+<td><code>/etc </code>(配置文件)</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>/opt</code> (第三方协力软件)</td>
+<td><code>/boot </code>(开机与核心档)</td>
+</tr>
+<tr>
+<td>可变动的(variable)</td>
+<td><code>/var/mail </code>(使用者邮件信箱)</td>
+<td><code>/var/run</code> (程序相关)</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>/var/spool/news </code>(新闻组)</td>
+<td><code>/var/lock </code>(程序相关)</td>
+</tr>
+</tbody></table>
+<p><strong>可分享的：</strong>可以分享给其他系统挂载使用的目录，所以包括执行文件与用户的邮件等数据， 是能够分享给网络上其他主机挂载用的目录；<br><strong>不可分享的：</strong>自己机器上面运作的装置文件或者是与程序有关的socket文件等， 由于仅与自身机器有关，所以当然就不适合分享给其他主机了。<br><strong>不变的：</strong>有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；<br><strong>可变动的：</strong>经常改变的数据，例如登录文件、一般用户可自行收受的新闻组等。</p>
+<p>FHS仅涉及到三层目录下：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>意思</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>root根目录</td>
+<td>与开机系统有关</td>
+</tr>
+<tr>
+<td><code>/usr</code></td>
+<td>unix software resource</td>
+<td>与软件安装/执行有关</td>
+</tr>
+<tr>
+<td><code>/var</code></td>
+<td>variable</td>
+<td>与系统运作过程有关</td>
+</tr>
+</tbody></table>
+<h3 id="根目录"><a href="#根目录" class="headerlink" title="根目录 (/)"></a>根目录 (/)</h3><p>根目录和Windows的C盘一个样。</p>
+<p>根目录与开机、还原、系统修复等动作有关。 由于系统开机时需要特定的开机软件、核心文件、开机所需程序、 函式库等等文件数据，若系统出现错误时，根目录也必须要包含有能够修复文件系统的程序才行。</p>
+<p>FHS希望根目录不要放在非常大的分区，因为越大的分区内你会放入越多的数据，如此一来根目录所在分区就可能会有较多发生错误的机会。应用程序所安装的软件最好不要与根目录放在同一个分区内，保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p>
+<p>根据以上原因，FHS认为根目录(/)下应该包含如下子目录：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置档案内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/bin</code></td>
+<td>系统有很多放置执行档的目录，但<code>/bin</code>比较特殊。因为<code>/bin</code>放置的是在单人维护模式下还能够被操作的指令。在<code>/bin</code>底下的指令可以被root与一般帐号所使用，主要有：<code>cat,chmod, chown, date, mv, mkdir, cp, bash</code>等等常用的指令。</td>
+</tr>
+<tr>
+<td><code>/boot</code></td>
+<td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。Linux kernel常用的档名为：vmlinuz ，如果使用的是grub这个开机管理程式，则还会存在<code>/boot/grub/</code>这个目录。</td>
+</tr>
+<tr>
+<td><code>/dev</code></td>
+<td>在Linux系统上，任何装置与周边设备都是以档案的型态存在于这个目录当中。 只要通过存取这个目录下的某个档案，就等于存取某个装置。比要重要的档案有<code>/dev/null, /dev/zero, /dev/tty , /dev/lp*, / dev/hd*, /dev/sd*</code>等等</td>
+</tr>
+<tr>
+<td><code>/etc</code></td>
+<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，但是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有：<code>/etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/</code>等等。 另外，其下重要的目录有：<code>/etc/init.d/</code> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：<code> /etc/init.d/iptables start</code>、<code>/etc/init.d/ iptables stop/etc/xinetd.d/ </code>：这就是所谓的super daemon管理的各项服务的设定档目录。 <code>/etc/X11/</code> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
+</tr>
+<tr>
+<td><code>/home</code></td>
+<td>这是系统预设的使用者家目录。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录，而 ~guest：则代表用户名为guest的家目录。</td>
+</tr>
+<tr>
+<td><code>/lib</code></td>
+<td>系统的函式库非常的多，而/lib放置的则是在开机时会用到的函式库，以及在<code>/bin</code>或<code>/sbin</code>底下的指令会呼叫的函式库而已 。尤其重要的是<code>/lib/modules/</code>这个目录，因为该目录会放置核心相关的模组(驱动程式)。</td>
+</tr>
+<tr>
+<td><code>/media</code></td>
+<td>media是媒体的英文，顾名思义，这个<code>/media</code>底下放置的就是可移除的装置。 包括软碟、光碟、DVD等等装置都暂时挂载于此。 常见的档名有：<code>/media/floppy, /media/cdrom</code>等等。</td>
+</tr>
+<tr>
+<td><code>/mnt</code></td>
+<td>如果妳想要暂时挂载某些额外的装置，一般建议你可以放置到这个目录中。在古早时候，这个目录的用途与<code>/media</code>相同。 只是有了<code>/media</code>之后，这个目录就用来暂时挂载用了。</td>
+</tr>
+<tr>
+<td><code>/opt </code>  <code>(/usr/local)</code></td>
+<td>这个是给第三方软件放置的目录 。 什么是第三方软件啊？举例来说，KDE这个桌面管理系统是一个独立的软件，不过他可以安装到Linux系统中，因此KDE的软件就建议放置到此目录下了。 另外，如果你想要自行安装额外的软件(非原本的distribution提供的)，那么也能够将你的软件安装到这里来。 不过，以前的Linux系统中，我们还是习惯放置在<code>/usr/local</code>目录下。</td>
+</tr>
+<tr>
+<td><code>/root</code></td>
+<td>系统管理员(root)的家目录。 之所以放在这里，是因为如果进入单人维护模式而仅挂载根目录时，该目录就能够拥有root的家目录，所以我们会希望root的家目录与根目录放置在同一个分区中。</td>
+</tr>
+<tr>
+<td><code>/sbin</code></td>
+<td>Linux有非常多指令是用来设定系统环境的，这些指令只有root才能够利用来设定系统，其他使用者最多只能用来查询而已。放在<code>/sbin</code>底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软件程式，一般则放置到<code>/usr/sbin/</code>当中。至于本机自行安装的软件所产生的系统执行档(system binary)，则放置到<code>/usr/local/sbin/</code>当中了。常见的指令包括：<code>fdisk, fsck, ifconfig, init, mkfs</code>等等。</td>
+</tr>
+<tr>
+<td><code>/srv</code></td>
+<td>srv可以视为service的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在<code>/srv/www/</code>里面。平时我们编写的代码应该放到这里了。</td>
+</tr>
+<tr>
+<td><code>/tmp</code></td>
+<td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊。 因为FHS甚至建议在开机时，应该要将/tmp下的资料都删除。</td>
+</tr>
+</tbody></table>
+<p>FHS针对根目录所定义的标准就仅限于上表，不过仍有些目录也需要我们了解一下，具体如下： </p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/lost+found</code></td>
+<td>这个目录是使用标准的ext2/ext3档案系统格式才会产生的一个目录，目的在于当档案系统发生错误时，将一些遗失的片段放置到这个目录下。 这个目录通常会在分割槽的最顶层存在，例如你加装一个硬盘于/disk中，那在这个系统下就会自动产生一个这样的目录/disk/lost+found</td>
+</tr>
+<tr>
+<td><code>/proc</code></td>
+<td>这个目录本身是一个虚拟文件系统(virtual filesystem)喔。 他放置的资料都是在内存当中，例如系统核心、行程资讯(process)、周边装置的状态及网络状态等等。因为这个目录下的资料都是在记忆体（内存）当中，所以本身不占任何硬盘空间。比较重要的档案（目录）例如：<code> /proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/*</code>等等。</td>
+</tr>
+<tr>
+<td><code>/sys</code></td>
+<td>这个目录其实跟<code>/proc</code>非常类似，也是一个虚拟的档案系统，主要也是记录与核心相关的资讯。 包括目前已载入的核心模组与核心侦测到的硬体装置资讯等等。 这个目录同样不占硬盘容量。</td>
+</tr>
+</tbody></table>
+<p>除了这些目录的内容之外，另外要注意的是，因为根目录与开机有关，开机过程中仅有根目录会被挂载， 其他分区则是在开机完成之后才会持续的进行挂载的行为。就是因为如此，因此根目录下与开机过程有关的目录， 就不能够与根目录放到不同的分区去，有底下这些：</p>
+<p><strong>/etc：</strong>配置文件<br><strong>/bin：</strong>重要执行档<br><strong>/dev：</strong>所需要的设备文件<br><strong>/lib：</strong>执行档所需的函式库与核心所需的模块<br><strong>/sbin：</strong>重要的系统执行文件</p>
+<p>这五个目录不可与根目录分开在不同的分区。</p>
+<h3 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h3><p>依据FHS的基本定义，<code>/usr</code>里面放置的数据属于可分享的与不可变动的(shareable, static)， 如果你知道如何透过网络进行分区的挂载(例如在服务器篇会谈到的NFS服务器)，那么<code>/usr</code>确实可以分享给局域网络内的其他主机来使用喔。</p>
+<p><code>/usr</code>不是user的缩写，其实usr是Unix Software Resource的缩写， 也就是Unix操作系统软件资源所放置的目录，而不是用户的数据，这点要注意。 FHS建议所有软件开发者，应该将他们的数据合理的分别放置到这个目录下的次目录，而不要自行建立该软件自己独立的目录。</p>
+<p>因为是所有系统默认的软件(distribution发布者提供的软件)都会放置到<code>/usr</code>底下，因此这个目录有点类似Windows 系统的<code>C:\Windows\ </code> <code> C:\Program files\</code>这两个目录的综合体，系统刚安装完毕时，这个目录会占用最多的硬盘容量。 一般来说，<code>/usr</code>的次目录建议有底下这些：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/usr/X11R6/</code></td>
+<td>为X Window System重要数据所放置的目录，之所以取名为X11R6是因为最后的X版本为第11版，且该版的第6次释出之意。</td>
+</tr>
+<tr>
+<td><code>/usr/bin/</code></td>
+<td>绝大部分的用户可使用指令都放在这里。请注意到他与<code>/bin</code>的不同之处。(是否与开机过程有关)</td>
+</tr>
+<tr>
+<td><code>/usr/include/</code></td>
+<td>c/c++等程序语言的档头(header)与包含档(include)放置处，当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时，会使用到里头的许多包含档。</td>
+</tr>
+<tr>
+<td><code>/usr/lib/</code></td>
+<td>包含各应用软件的函式库、目标文件(object file)，以及不被一般使用者惯用的执行档或脚本(script)。 某些软件会提供一些特殊的指令来进行服务器的设定，这些指令也不会经常被系统管理员操作， 那就会被摆放到这个目录下啦。要注意的是，如果你使用的是X86_64的Linux系统， 那可能会有<code>/usr/lib64/</code>目录产生</td>
+</tr>
+<tr>
+<td><code>/usr/local/</code></td>
+<td>统管理员在本机自行安装自己下载的软件(非distribution默认提供者)，建议安装到此目录， 这样会比较便于管理。举例来说，你的distribution提供的软件较旧，你想安装较新的软件但又不想移除旧版， 此时你可以将新版软件安装于<code>/usr/local/</code>目录下，可与原先的旧版软件有分别啦。 你可以自行到<code>/usr/local</code>去看看，该目录下也是具有<code>bin, etc, include, lib...</code>的次目录</td>
+</tr>
+<tr>
+<td><code>/usr/sbin/</code></td>
+<td>非系统正常运作所需要的系统指令。最常见的就是某些网络服务器软件的服务指令(daemon)</td>
+</tr>
+<tr>
+<td><code>/usr/share/</code></td>
+<td>放置共享文件的地方，在这个目录下放置的数据几乎是不分硬件架构均可读取的数据， 因为几乎都是文本文件嘛。在此目录下常见的还有这些次目录：<code>/usr/share/man</code>：联机帮助文件<code>/usr/share/doc</code>：软件杂项的文件说明<code>/usr/share/zoneinfo</code>：与时区有关的时区文件</td>
+</tr>
+<tr>
+<td><code>/usr/src/</code></td>
+<td>一般原始码建议放置到这里，src有source的意思。至于核心原始码则建议放置到<code>/usr/src/linux/</code>目录下。</td>
+</tr>
+</tbody></table>
+<p><strong>三.  /var 的意义与内容：</strong></p>
+<p>如果<code>/usr</code>是安装时会占用较大硬盘容量的目录，那么<code>/var</code>就是在系统运作后才会渐渐占用硬盘容量的目录。 因为<code>/var</code>目录主要针对常态性变动的文件，包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等。常见的次目录有：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/var/cache/</code></td>
+<td>应用程序本身运作过程中会产生的一些暂存档</td>
+</tr>
+<tr>
+<td><code>/var/lib/</code></td>
+<td>程序本身执行的过程中，需要使用到的数据文件放置的目录。在此目录下各自的软件应该要有各自的目录。 举例来说，MySQL的数据库放置到<code>/var/lib/mysql/</code>而rpm的数据库则放到<code>/var/lib/rpm</code>去</td>
+</tr>
+<tr>
+<td><code>/var/lock/</code></td>
+<td>某些装置或者是文件资源一次只能被一个应用程序所使用，如果同时有两个程序使用该装置时， 就可能产生一些错误的状况，因此就得要将该装置上锁(lock)，以确保该装置只会给单一软件所使用。 举例来说，刻录机正在刻录一块光盘，你想一下，会不会有两个人同时在使用一个刻录机烧片？ 如果两个人同时刻录，那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁， 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用</td>
+</tr>
+<tr>
+<td><code>/var/log/</code></td>
+<td>非常重要。这是登录文件放置的目录。里面比较重要的文件如<code>/var/log/messages</code>, <code>/var/log/wtmp</code>(记录登入者的信息)等。</td>
+</tr>
+<tr>
+<td><code>/var/mail/</code></td>
+<td>放置个人电子邮件信箱的目录，不过这个目录也被放置到<code>/var/spool/mail/</code>目录中，通常这两个目录是互为链接文件。</td>
+</tr>
+<tr>
+<td><code>/var/run/</code></td>
+<td>某些程序或者是服务启动后，会将他们的PID放置在这个目录下</td>
+</tr>
+<tr>
+<td><code>/var/spool/</code></td>
+<td>这个目录通常放置一些队列数据，所谓的“队列”就是排队等待其他程序使用的数据。 这些数据被使用后通常都会被删除。举例来说，系统收到新信会放置到<code>/var/spool/mail/</code>中， 但使用者收下该信件后该封信原则上就会被删除。信件如果暂时寄不出去会被放到<code>/var/spool/mqueue/</code>中， 等到被送出后就被删除。如果是工作排程数据(crontab)，就会被放置到<code>/var/spool/cron/</code>目录中。</td>
+</tr>
+</tbody></table>
+<p>由于FHS仅是定义出最上层(/)及次层(/usr, /var)的目录内容应该要放置的文件或目录数据， 因此，在其他次目录层级内，就可以随开发者自行来配置了。</p>
+<h3 id="run-sh"><a href="#run-sh" class="headerlink" title="./run.sh"></a>./run.sh</h3><p><strong>网络文件常常提到类似<code>./run.sh</code>之类的数据，这个指令的意义为何？</strong></p>
+<p>由于指令的执行需要变量的支持，若你的执行文件放置在本目录，并且本目录并非正规的执行文件目录(<code>/bin</code>, <code>/usr/bin</code>等为正规)，此时要执行指令就得要严格指定该执行档。<code>./</code>代表本目录的意思，所以<code>./run.sh</code>代表执行本目录下， 名为run.sh的文件。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
