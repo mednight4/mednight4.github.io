@@ -968,7 +968,7 @@
 <p>  基于hexo-theme-next-8.0.2自带的hexo插件实现</p>
 </blockquote>
 <p>在hexo这个框架下可以使用的一些特别的md排版技巧，这里用的next默认自带的插件，如果你这么写了却无效，那是因为你的hexo主题没有默认安装对应的依赖插件，可以搜索对应的hexo插件并使用npm安装。</p>
-<p>对了，这里用到了大量的<code>&#123;&#123;&#125;&#125;，&#123;% %&#125;</code>这种hexo无法转义的字符。如果会出现<code>hexo g</code>或者<code>hexo d</code>报错的情况，考虑你的文档里是否存在<code>&#123;% %&#125;</code>这样单独的，没有写成一对<code>&#123;% %&#125;&#123;% %&#125;</code>的语法。</p>
+<p>对了，这里用到了大量的<code>&#123;&#123;&#125;&#125;，&#123;% %&#125;</code>这种hexo无法转义的字符。如果会出现<code>hexo g</code>或者<code>hexo s</code>报错的情况，考虑你的文档里是否存在<code>&#123;% %&#125;</code>这样单独的，没有写成一对<code>&#123;% %&#125;&#123;% %&#125;</code>的语法。</p>
 <h2 id="Note便签"><a href="#Note便签" class="headerlink" title="Note便签"></a>Note便签</h2><p>在Next的主题配置文件里：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span> </span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
@@ -994,21 +994,21 @@
  <div class="note danger"><p>danger</p>
 </div>
 
-<p>这里icons开关是打开的，如果想不带图标，可以这么写：</p>
+<p>这里icons开关已经设置成打开了，如果想不带图标，可以这么写：</p>
 <figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% note info no-icon %&#125;</span><br></pre></td></tr></table></figure>
 
 <div class="note info no-icon"><p>info</p>
 </div>
 
 <h2 id="Group-pictures图片组"><a href="#Group-pictures图片组" class="headerlink" title="Group-pictures图片组"></a>Group-pictures图片组</h2><p>next主题默认开启此功能。<br>md里这么写：</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture idm4 %&#125;</span><br><span class="line">  ![](http://www.example.com/pic1.png)</span><br><span class="line">  ![](http://www.example.com/pic2.png)</span><br><span class="line">  ![](http://www.example.com/pic3.png)</span><br><span class="line">&#123;% endgrouppicture %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture m4-1 %&#125;</span><br><span class="line">  ![](http://www.example.com/pic1.png)</span><br><span class="line">  ![](http://www.example.com/pic2.png)</span><br><span class="line">  ![](http://www.example.com/pic3.png)</span><br><span class="line">&#123;% endgrouppicture %&#125;</span><br></pre></td></tr></table></figure>
 
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223550.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223609.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125224105.png"></div></div><div class="group-picture-row"></div></div>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223550.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223609.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125224105.png"></div></div></div>
 
 <h2 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h2><p>基础写法：</p>
 <figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% button #, Text,Icons %&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>&#123;% btn a链接, 名称, 本地图表名 %&#125;</code></p>
+<p><code>&#123;% btn 链接, 按钮名称, 本地图标 %&#125;</code></p>
 <p>md:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% btn https://example.com/sample.pdf,1%&#125;</span><br><span class="line">&#123;% btn #,Ⅱ%&#125;</span><br><span class="line">&#123;% btn #,叁,fa fa-heart%&#125;</span><br><span class="line">&#123;% btn #,,fa fa-heart%&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1025,7 +1025,7 @@
 <p>呈现效果：</p>
 <video src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm" preload="metadata" controlslist="nodownload" controls playsinline poster=""></video>
 
-<h2 id="PDF文档"><a href="#PDF文档" class="headerlink" title="PDF文档"></a>PDF文档</h2><p>yaml配置文件可以设置默认高度，在具体使用的时候可以加大小参数。</p>
+<h2 id="PDF文档"><a href="#PDF文档" class="headerlink" title="PDF文档"></a>PDF文档</h2><p>yaml配置文件设置了默认高度为1000px，在具体使用的时候可以更大小参数覆盖。</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># PDF tag</span></span><br><span class="line"><span class="comment"># NexT will try to load pdf files natively, if failed, pdf.js will be used.</span></span><br><span class="line"><span class="comment"># So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/theme-next-pdf</span></span><br><span class="line"><span class="attr">pdf:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Default height</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">1000px</span></span><br></pre></td></tr></table></figure>
 
 <p>md:</p>
@@ -2583,8 +2583,9 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <iframe id="m41" src="//player.bilibili.com/player.html?aid=41074995&bvid=BV17t411a71P&cid=72146035&page=1" scrolling="no" border="0" frameborder="true" framespacing="0" allowfullscreen="true" width=100%> </iframe>
 <script type="text/javascript"> document.getElementById("m41").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";
 </script>
-测试视频
 
+
+<p>测试视频</p>
 <iframe id="m42" src="//player.bilibili.com/player.html?aid=752727755&bvid=BV13k4y1R7EZ&cid=176435283&page=1" scrolling="no" border="0" frameborder="true" framespacing="0" allowfullscreen="true" width=100%> </iframe>
 <script type="text/javascript"> document.getElementById("m42").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";
 </script>]]></content>
@@ -4228,7 +4229,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <td><code>/var/lock </code>(程序相关)</td>
 </tr>
 </tbody></table>
-<p><strong>可分享的：</strong>可以分享给其他系统挂载使用的目录，所以包括执行文件与用户的邮件等数据， 是能够分享给网络上其他主机挂载用的目录；<br><strong>不可分享的：</strong>自己机器上面运作的装置文件或者是与程序有关的socket文件等， 由于仅与自身机器有关，所以当然就不适合分享给其他主机了。<br><strong>不变的：</strong>有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；<br><strong>可变动的：</strong>经常改变的数据，例如登录文件、一般用户可自行收受的新闻组等。</p>
+<p><strong>可分享的：</strong>可以分享给其他系统挂载使用的目录，包括执行文件与用户的邮件等数据， 能够分享给网络上其他主机挂载用的目录；<br><strong>不可分享的：</strong>自己机器上面运作的装置文件或者是与程序有关的socket文件等， 由于仅与自身机器有关，所以当然就不适合分享给其他主机了。<br><strong>不变的：</strong>有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；<br><strong>可变动的：</strong>经常改变的数据，例如登录文件、一般用户可自行收受的新闻组等。</p>
 <p>FHS仅涉及到三层目录下：</p>
 <table>
 <thead>
@@ -4254,8 +4255,8 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <td>与系统运作过程有关</td>
 </tr>
 </tbody></table>
-<h2 id="根目录"><a href="#根目录" class="headerlink" title="根目录 (/)"></a>根目录 (/)</h2><p>根目录和Windows的C盘一个样。</p>
-<p>根目录与开机、还原、系统修复等动作有关。 由于系统开机时需要特定的开机软件、核心文件、开机所需程序、 函式库等等文件数据，若系统出现错误时，根目录也必须要包含有能够修复文件系统的程序才行。</p>
+<h2 id="根目录"><a href="#根目录" class="headerlink" title="根目录 (/)"></a>根目录 (/)</h2><p>根目录和Windows的C盘一样。</p>
+<p>根目录与开机、还原、系统修复等动作有关。 由于系统开机时需要特定的开机软件、核心文件、开机所需程序、 函式库等等文件数据，系统出现错误时，根目录也必须要包含有能够修复文件系统的程序才行。</p>
 <p>FHS希望根目录不要放在非常大的分区，因为越大的分区内你会放入越多的数据，如此一来根目录所在分区就可能会有较多发生错误的机会。应用程序所安装的软件最好不要与根目录放在同一个分区内，保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p>
 <p>根据以上原因，FHS认为根目录(/)下应该包含如下子目录：</p>
 <table>
@@ -4279,15 +4280,15 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/etc</code></td>
-<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，但是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有：<code>/etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/</code>等等。 另外，其下重要的目录有：<code>/etc/init.d/</code> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：<code> /etc/init.d/iptables start</code>、<code>/etc/init.d/ iptables stop/etc/xinetd.d/ </code>：这就是所谓的super daemon管理的各项服务的设定档目录。 <code>/etc/X11/</code> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
+<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，但是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有：<code>/etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/</code>等等。 另外，其下重要的目录有：<code>/etc/init.d/</code> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：<code> /etc/init.d/iptables start</code>、<code>/etc/init.d/iptables stop </code> 、<code>/etc/xinetd.d/ </code>：这就是所谓的super daemon管理的各项服务的设定档目录。 <code>/etc/X11/</code> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
 </tr>
 <tr>
 <td><code>/home</code></td>
-<td>这是系统预设的使用者家目录。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录，而 ~guest：则代表用户名为guest的家目录。</td>
+<td>这是系统预设的使用者家目录。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录；而 ~guest：则代表用户名为guest的家目录。</td>
 </tr>
 <tr>
 <td><code>/lib</code></td>
-<td>系统的函式库非常的多，而/lib放置的则是在开机时会用到的函式库，以及在<code>/bin</code>或<code>/sbin</code>底下的指令会呼叫的函式库而已 。尤其重要的是<code>/lib/modules/</code>这个目录，因为该目录会放置核心相关的模组(驱动程式)。</td>
+<td>系统的函式库非常的多，而<code>/lib</code>放置的则是在开机时会用到的函式库，与<code>/bin</code>或<code>/sbin</code>底下的指令会呼叫的函式库。尤其重要的是<code>/lib/modules/</code>这个目录，因为该目录会放置核心相关的模组(驱动程式)。</td>
 </tr>
 <tr>
 <td><code>/media</code></td>
@@ -4299,7 +4300,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/opt </code>  <code>(/usr/local)</code></td>
-<td>这个是给第三方软件放置的目录 。 什么是第三方软件啊？举例来说，KDE这个桌面管理系统是一个独立的软件，不过他可以安装到Linux系统中，因此KDE的软件就建议放置到此目录下了。 另外，如果你想要自行安装额外的软件(非原本的distribution提供的)，那么也能够将你的软件安装到这里来。 不过，以前的Linux系统中，我们还是习惯放置在<code>/usr/local</code>目录下。</td>
+<td>这个是给第三方软件放置的目录 。 什么是第三方软件？举例来说，KDE这个桌面管理系统是一个独立的软件，不过他可以安装到Linux系统中，因此KDE就建议放置到此目录下了。 另外，如果你想要自行安装额外的软件(非原本的distribution提供的)，那么也能够将你的软件安装到这里来。 不过，以前的Linux系统中，我们还是习惯放置在<code>/usr/local</code>目录下。</td>
 </tr>
 <tr>
 <td><code>/root</code></td>
@@ -4311,11 +4312,11 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/srv</code></td>
-<td>srv可以视为service的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在<code>/srv/www/</code>里面。平时我们编写的代码应该放到这里了。</td>
+<td>srv可以视为service的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在<code>/srv/www/</code>里面。平时我们部署的web项目应该放到这里了。</td>
 </tr>
 <tr>
 <td><code>/tmp</code></td>
-<td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊。 因为FHS甚至建议在开机时，应该要将/tmp下的资料都删除。</td>
+<td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊。 因为FHS甚至建议在开机时，应该要将<code>/tmp</code>下的资料都删除。</td>
 </tr>
 </tbody></table>
 <p>FHS针对根目录所定义的标准就仅限于上表，不过仍有些目录也需要我们了解一下，具体如下： </p>
@@ -4328,21 +4329,21 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </thead>
 <tbody><tr>
 <td><code>/lost+found</code></td>
-<td>这个目录是使用标准的ext2/ext3档案系统格式才会产生的一个目录，目的在于当档案系统发生错误时，将一些遗失的片段放置到这个目录下。 这个目录通常会在分割槽的最顶层存在，例如你加装一个硬盘于/disk中，那在这个系统下就会自动产生一个这样的目录/disk/lost+found</td>
+<td>这个目录是使用标准的<code>ext2/ext3</code>档案系统格式才会产生的一个目录，目的在于当档案系统发生错误时，将一些遗失的片段放置到这个目录下。 这个目录通常会在分割槽的最顶层存在，例如你加装一个硬盘于<code>/disk</code>中，那在这个系统下就会自动产生一个这样的目录<code>/disk/lost+found</code></td>
 </tr>
 <tr>
 <td><code>/proc</code></td>
-<td>这个目录本身是一个虚拟文件系统(virtual filesystem)喔。 他放置的资料都是在内存当中，例如系统核心、行程资讯(process)、周边装置的状态及网络状态等等。因为这个目录下的资料都是在记忆体（内存）当中，所以本身不占任何硬盘空间。比较重要的档案（目录）例如：<code> /proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/*</code>等等。</td>
+<td>这个目录本身是一个虚拟文件系统(virtual filesystem)。 他放置的资料都是在内存当中，例如系统核心、行程资讯(process)、周边装置的状态及网络状态等等。因为这个目录下的资料都是在内存当中，所以本身不占任何硬盘空间。比较重要的目录：<code> /proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/*</code>等。</td>
 </tr>
 <tr>
 <td><code>/sys</code></td>
-<td>这个目录其实跟<code>/proc</code>非常类似，也是一个虚拟的档案系统，主要也是记录与核心相关的资讯。 包括目前已载入的核心模组与核心侦测到的硬体装置资讯等等。 这个目录同样不占硬盘容量。</td>
+<td>这个目录跟<code>/proc</code>非常类似，也是一个虚拟的档案系统，主要也是记录与核心相关的资讯。 包括目前已载入的核心模组与核心侦测到的硬体装置资讯等等。 这个目录同样不占硬盘容量。</td>
 </tr>
 </tbody></table>
 <p>除了这些目录的内容之外，另外要注意的是，因为根目录与开机有关，开机过程中仅有根目录会被挂载， 其他分区则是在开机完成之后才会持续的进行挂载的行为。就是因为如此，因此根目录下与开机过程有关的目录， 就不能够与根目录放到不同的分区去，有底下这些：</p>
-<p><strong>/etc：</strong>配置文件<br><strong>/bin：</strong>重要执行档<br><strong>/dev：</strong>所需要的设备文件<br><strong>/lib：</strong>执行档所需的函式库与核心所需的模块<br><strong>/sbin：</strong>重要的系统执行文件</p>
-<p>这五个目录不可与根目录分开在不同的分区。</p>
-<h2 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h2><p>依据FHS的基本定义，<code>/usr</code>里面放置的数据属于可分享的与不可变动的(shareable, static)， 如果你知道如何透过网络进行分区的挂载(例如在服务器篇会谈到的NFS服务器)，那么<code>/usr</code>确实可以分享给局域网络内的其他主机来使用喔。</p>
+<p><code>/etc</code>：配置文件<br><code>/bin</code>：重要执行档<br><code>/dev</code>：所需要的设备文件<br><code>/lib</code>：执行档所需的函式库与核心所需的模块<br><code>/sbin</code>：重要的系统执行文件</p>
+<p>这五个目录必须在根目录所在分区。</p>
+<h2 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h2><p>依据FHS的基本定义，<code>/usr</code>里面放置的数据属于可分享的与不可变动的(shareable, static)， 如果你知道如何通过网络进行分区挂载(例如在服务器篇会谈到的NFS服务器)，那么<code>/usr</code>确实可以分享给局域网络内的其他主机来使用。</p>
 <p><code>/usr</code>不是user的缩写，其实usr是Unix Software Resource的缩写， 也就是Unix操作系统软件资源所放置的目录，而不是用户的数据，这点要注意。 FHS建议所有软件开发者，应该将他们的数据合理的分别放置到这个目录下的次目录，而不要自行建立该软件自己独立的目录。</p>
 <p>因为是所有系统默认的软件(distribution发布者提供的软件)都会放置到<code>/usr</code>底下，因此这个目录有点类似Windows 系统的<code>C:\Windows\ </code> <code> C:\Program files\</code>这两个目录的综合体，系统刚安装完毕时，这个目录会占用最多的硬盘容量。 一般来说，<code>/usr</code>的次目录建议有底下这些：</p>
 <table>
@@ -4362,7 +4363,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/usr/include/</code></td>
-<td>c/c++等程序语言的档头(header)与包含档(include)放置处，当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时，会使用到里头的许多包含档。</td>
+<td>c/c++等程序语言的header与include放置处，当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时，会使用到里头的许多包含档。</td>
 </tr>
 <tr>
 <td><code>/usr/lib/</code></td>
@@ -4370,7 +4371,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/usr/local/</code></td>
-<td>统管理员在本机自行安装自己下载的软件(非distribution默认提供者)，建议安装到此目录， 这样会比较便于管理。举例来说，你的distribution提供的软件较旧，你想安装较新的软件但又不想移除旧版， 此时你可以将新版软件安装于<code>/usr/local/</code>目录下，可与原先的旧版软件有分别啦。 你可以自行到<code>/usr/local</code>去看看，该目录下也是具有<code>bin, etc, include, lib...</code>的次目录</td>
+<td>管理员在本机自行安装自己下载的软件(非distribution默认提供者)，建议安装到此目录， 这样会比较便于管理。举例来说，你的distribution提供的软件较旧，你想安装较新的软件但又不想移除旧版， 此时你可以将新版软件安装于<code>/usr/local/</code>目录下，与原先的旧版软件有所分别。 可以自行到<code>/usr/local</code>去看看，该目录下也是具有<code>bin, etc, include, lib...</code>的次目录的。</td>
 </tr>
 <tr>
 <td><code>/usr/sbin/</code></td>
@@ -4378,14 +4379,14 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/usr/share/</code></td>
-<td>放置共享文件的地方，在这个目录下放置的数据几乎是不分硬件架构均可读取的数据， 因为几乎都是文本文件嘛。在此目录下常见的还有这些次目录：<code>/usr/share/man</code>：联机帮助文件<code>/usr/share/doc</code>：软件杂项的文件说明<code>/usr/share/zoneinfo</code>：与时区有关的时区文件</td>
+<td>放置共享文件的地方，在这个目录下放置的数据几乎是不分硬件架构均可读取的数据， 因为几乎都是文本文件。在此目录下常见的还有这些次目录：<code>/usr/share/man</code>：联机帮助文件<code>/usr/share/doc</code>：软件杂项的文件说明<code>/usr/share/zoneinfo</code>：与时区有关的时区文件</td>
 </tr>
 <tr>
 <td><code>/usr/src/</code></td>
 <td>一般原始码建议放置到这里，src有source的意思。至于核心原始码则建议放置到<code>/usr/src/linux/</code>目录下。</td>
 </tr>
 </tbody></table>
-<h2 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h2><p>如果<code>/usr</code>是安装时会占用较大硬盘容量的目录，那么<code>/var</code>就是在系统运作后才会渐渐占用硬盘容量的目录。 因为<code>/var</code>目录主要针对常态性变动的文件，包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等。常见的次目录有：</p>
+<h2 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h2><p>如果说<code>/usr</code>是安装时就会占用较大硬盘容量的目录，那么<code>/var</code>就是在系统运作后才会渐渐占用硬盘容量的目录。 因为<code>/var</code>目录主要针对常态性变动的文件，包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等。常见的次目录有：</p>
 <table>
 <thead>
 <tr>
@@ -4395,15 +4396,15 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </thead>
 <tbody><tr>
 <td><code>/var/cache/</code></td>
-<td>应用程序本身运作过程中会产生的一些暂存档</td>
+<td>应用程序本身运作过程中会产生的一些缓存。</td>
 </tr>
 <tr>
 <td><code>/var/lib/</code></td>
-<td>程序本身执行的过程中，需要使用到的数据文件放置的目录。在此目录下各自的软件应该要有各自的目录。 举例来说，MySQL的数据库放置到<code>/var/lib/mysql/</code>而rpm的数据库则放到<code>/var/lib/rpm</code>去</td>
+<td>程序本身执行的过程中，需要使用到的数据文件的放置目录。在此目录下各自的软件应该要有各自的目录。 举例来说，MySQL的数据库放置到<code>/var/lib/mysql/</code>而rpm的数据库则放到<code>/var/lib/rpm</code>去。</td>
 </tr>
 <tr>
 <td><code>/var/lock/</code></td>
-<td>某些装置或者是文件资源一次只能被一个应用程序所使用，如果同时有两个程序使用该装置时， 就可能产生一些错误的状况，因此就得要将该装置上锁(lock)，以确保该装置只会给单一软件所使用。 举例来说，刻录机正在刻录一块光盘，你想一下，会不会有两个人同时在使用一个刻录机烧片？ 如果两个人同时刻录，那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁， 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用</td>
+<td>某些装置或者是文件资源一次只能被一个应用程序所使用，如果同时有两个程序使用该装置时， 就可能产生一些错误的状况，因此就得要将该装置上锁(lock)，以确保该装置只会给单一软件所使用。 举例来说，刻录机正在刻录一块光盘，你想一下，会不会有两个人同时在使用一个刻录机烧片？ 如果两个人同时刻录，那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁， 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用。</td>
 </tr>
 <tr>
 <td><code>/var/log/</code></td>
@@ -4415,7 +4416,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </tr>
 <tr>
 <td><code>/var/run/</code></td>
-<td>某些程序或者是服务启动后，会将他们的PID放置在这个目录下</td>
+<td>某些程序或者是服务启动后，会将他们的PID放置在这个目录下。</td>
 </tr>
 <tr>
 <td><code>/var/spool/</code></td>
