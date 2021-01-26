@@ -969,6 +969,73 @@
 </blockquote>
 <p>在hexo这个框架下可以使用的一些特别的md排版技巧，这里用的next默认自带的插件，如果你这么写了却无效，那是因为你的hexo主题没有默认安装对应的依赖插件，可以搜索对应的hexo插件并使用npm安装。</p>
 <p>对了，这里用到了大量的<code>&#123;&#123;&#125;&#125;，&#123;% %&#125;</code>这种hexo无法转义的字符。如果会出现<code>hexo g</code>或者<code>hexo s</code>报错的情况，考虑你的文档里是否存在<code>&#123;% %&#125;</code>这样单独的，没有写成一对<code>&#123;% %&#125;&#123;% %&#125;</code>的语法。</p>
+<h2 id="mathjax公式"><a href="#mathjax公式" class="headerlink" title="mathjax公式"></a>mathjax公式</h2><p>在yaml配置文件里打开开关：</p>
+<p>一般数学公式用mathjax就行了，katex专业排论文的，关于katex，我以后会开一篇帖子记录一下语法。</p>
+<blockquote>
+<p>  mathjax项目地址：<a href="https://github.com/mathjax/MathJax">https://github.com/mathjax/MathJax</a></p>
+<p>  katex项目地址：<a href="https://github.com/KaTeX/KaTeX">https://github.com/KaTeX/KaTeX</a></p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Math Formulas Render Support</span></span><br><span class="line"><span class="comment"># Warning: Please install / uninstall the relevant renderer according to the documentation.</span></span><br><span class="line"><span class="comment"># See: https://theme-next.js.org/docs/third-party-services/math-equations</span></span><br><span class="line"><span class="comment"># Server-side plugin: https://github.com/next-theme/hexo-filter-mathjax</span></span><br><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="comment"># Default (false) will load mathjax / katex script on demand.</span></span><br><span class="line">  <span class="comment"># That is it only render those page which has `mathjax: true` in front-matter.</span></span><br><span class="line">  <span class="comment"># If you set it to true, it will load mathjax / katex srcipt EVERY PAGE.</span></span><br><span class="line">  <span class="attr">every_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">katex:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span></span><br><span class="line">    <span class="attr">copy_tex:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>mathjax语法看这里：<a href="https://www.jianshu.com/p/25f0139637b7">markdown中公式编辑教程 - 简书 (jianshu.com)</a>，比较多，就不复制粘贴了。跳转页面预览：</p>
+<iframe id="m4_iframe" src="https://www.jianshu.com/p/25f0139637b7" scrolling="yes" frameborder="no" width=100%> </iframe>
+<script type="text/javascript">  
+document.getElementById("m4_iframe").style.height=document.getElementById("m4_iframe").scrollWidth*0.76+"px";</script>
+
+<p>更多介绍公式语法的博客：</p>
+<blockquote>
+<p>  <a href="https://blog.csdn.net/dabokele/article/details/79577072">Mathjax公式教程_dabokele的博客</a></p>
+<p>  <a href="https://blog.csdn.net/ethmery/article/details/50670297">基本数学公式语法(of MathJax)_树屋Treehouse-CSDN博客</a></p>
+<p>  <a href="https://blog.csdn.net/lilongsy/article/details/79378620">常用数学符号的LaTeX表示方法_小龙在线</a></p>
+</blockquote>
+<h2 id="iframe的响应式"><a href="#iframe的响应式" class="headerlink" title="iframe的响应式"></a>iframe的响应式</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;m4_iframe&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">&quot;https://www.jianshu.com/p/25f0139637b7&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">scrolling</span>=<span class="string">&quot;yes&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">frameborder</span>=<span class="string">&quot;no&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">width</span>=<span class="string">100%</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span>  </span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.getElementById(<span class="string">&quot;m4_iframe&quot;</span>).style.height</span></span><br><span class="line"><span class="javascript">        =<span class="built_in">document</span>.getElementById(<span class="string">&quot;m4_iframe&quot;</span>).scrollWidth*<span class="number">0.76</span>+<span class="string">&quot;px&quot;</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Center-quote引用"><a href="#Center-quote引用" class="headerlink" title="Center-quote引用"></a>Center-quote引用</h2><p>md写法：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% centerquote %&#125;Quote1&#123;% endcenterquote %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以简写为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;Quote2&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<blockquote class="blockquote-center">
+<p>may the flame guide thee</p>
+
+</blockquote>
+
+<h2 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h2><p>基础写法：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% button #, Text,Icons %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;% btn 链接, 按钮名称, 本地图标 %&#125;</code></p>
+<p>md:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% btn https://example.com/sample.pdf,1%&#125;</span><br><span class="line">&#123;% btn #,Ⅱ%&#125;</span><br><span class="line">&#123;% btn #,叁,fa fa-heart%&#125;</span><br><span class="line">&#123;% btn #,,fa fa-heart%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<a class="btn" href="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf ">1</a>
+<a class="btn" href="#">Ⅱ</a>
+<a class="btn" href="#"><i class="fa fa-heart"></i>叁</a>
+<a class="btn" href="#"><i class="fa fa-heart"></i></a>
+
+<h2 id="Group-pictures图片组"><a href="#Group-pictures图片组" class="headerlink" title="Group-pictures图片组"></a>Group-pictures图片组</h2><p>next主题默认开启此功能。<br>md里这么写：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture m4-1 %&#125;</span><br><span class="line">  ![](http://www.example.com/pic1.png)</span><br><span class="line">  ![](http://www.example.com/pic2.png)</span><br><span class="line">  ![](http://www.example.com/pic3.png)</span><br><span class="line">&#123;% endgrouppicture %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223550.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223609.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125224105.png"></div></div></div>
+
+
+<h2 id="Video视频"><a href="#Video视频" class="headerlink" title="Video视频"></a>Video视频</h2><p>md:</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% video https://example.com/sample.mp4 %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果：</p>
+<video src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm" preload="metadata" controlslist="nodownload" controls playsinline poster=""></video>
+
+<h2 id="PDF文档"><a href="#PDF文档" class="headerlink" title="PDF文档"></a>PDF文档</h2><p>yaml配置文件设置了默认高度为1000px，在具体使用的时候可以自定大小覆盖。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># PDF tag</span></span><br><span class="line"><span class="comment"># NexT will try to load pdf files natively, if failed, pdf.js will be used.</span></span><br><span class="line"><span class="comment"># So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/theme-next-pdf</span></span><br><span class="line"><span class="attr">pdf:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Default height</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">1000px</span></span><br></pre></td></tr></table></figure>
+
+<p>md:</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% pdf https://example.com/sample.pdf 600px %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呈现效果:</p>
+<div class="pdfobject-container" data-target="https://www.lob.de/pdf/helloworld.pdf" data-height="600px"></div>
+
 <h2 id="Note便签"><a href="#Note便签" class="headerlink" title="Note便签"></a>Note便签</h2><p>在Next的主题配置文件里：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span> </span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
@@ -1000,69 +1067,44 @@
 <div class="note info no-icon"><p>info</p>
 </div>
 
-<h2 id="Group-pictures图片组"><a href="#Group-pictures图片组" class="headerlink" title="Group-pictures图片组"></a>Group-pictures图片组</h2><p>next主题默认开启此功能。<br>md里这么写：</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% grouppicture m4-1 %&#125;</span><br><span class="line">  ![](http://www.example.com/pic1.png)</span><br><span class="line">  ![](http://www.example.com/pic2.png)</span><br><span class="line">  ![](http://www.example.com/pic3.png)</span><br><span class="line">&#123;% endgrouppicture %&#125;</span><br></pre></td></tr></table></figure>
-
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223550.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125223609.png"></div><div class="group-picture-column"><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/MD%E6%8A%80%E5%B7%A7/20210125224105.png"></div></div></div>
-
-<h2 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h2><p>基础写法：</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% button #, Text,Icons %&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>&#123;% btn 链接, 按钮名称, 本地图标 %&#125;</code></p>
-<p>md:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% btn https://example.com/sample.pdf,1%&#125;</span><br><span class="line">&#123;% btn #,Ⅱ%&#125;</span><br><span class="line">&#123;% btn #,叁,fa fa-heart%&#125;</span><br><span class="line">&#123;% btn #,,fa fa-heart%&#125;</span><br></pre></td></tr></table></figure>
-
-<p>呈现效果：</p>
-<a class="btn" href="http://image.sciencenet.cn/olddata/kexue.com.cn/upload/blog/file/2010/5/2010510183555815223.pdf ">1</a>
-<a class="btn" href="#">Ⅱ</a>
-<a class="btn" href="#"><i class="fa fa-heart"></i>叁</a>
-<a class="btn" href="#"><i class="fa fa-heart"></i></a>
-
-
-<h2 id="Video视频"><a href="#Video视频" class="headerlink" title="Video视频"></a>Video视频</h2><p>md:</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% video https://example.com/sample.mp4 %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>呈现效果：</p>
-<video src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm" preload="metadata" controlslist="nodownload" controls playsinline poster=""></video>
-
-<h2 id="PDF文档"><a href="#PDF文档" class="headerlink" title="PDF文档"></a>PDF文档</h2><p>yaml配置文件设置了默认高度为1000px，在具体使用的时候可以更大小参数覆盖。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># PDF tag</span></span><br><span class="line"><span class="comment"># NexT will try to load pdf files natively, if failed, pdf.js will be used.</span></span><br><span class="line"><span class="comment"># So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/theme-next-pdf</span></span><br><span class="line"><span class="attr">pdf:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Default height</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">1000px</span></span><br></pre></td></tr></table></figure>
-
-<p>md:</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% pdf https://example.com/sample.pdf 600px %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>呈现效果:</p>
-<div class="pdfobject-container" data-target="https://www.lob.de/pdf/helloworld.pdf" data-height="600px"></div>
-
-<h2 id="Tabs标签"><a href="#Tabs标签" class="headerlink" title="Tabs标签"></a>Tabs标签</h2><p>yaml设置md：</p>
+<h2 id="Tabs标签"><a href="#Tabs标签" class="headerlink" title="Tabs标签"></a>Tabs标签</h2><p>yaml设置：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <p>文档说明：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&#123;% tabs Unique name, [index] %&#125;</span><br><span class="line"><span class="comment">&lt;!-- tab [Tab caption] [@icon] --&gt;</span></span><br><span class="line">Any content (support inline tags too).</span><br><span class="line"><span class="comment">&lt;!-- endtab --&gt;</span></span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br><span class="line">Unique name   : Unique name of tabs block tag without comma.</span><br><span class="line">                Will be used in #id&#x27;s as prefix for each tab with their index numbers.</span><br><span class="line">                If there are whitespaces in name, for generate #id all whitespaces will replaced by dashes.</span><br><span class="line">                Only for current url of post/page must be unique!</span><br><span class="line">[index]       : Index number of active tab.</span><br><span class="line">                If not specified, first tab (1) will be selected.</span><br><span class="line">                If index is -1, no tab will be selected. It&#x27;s will be something like spoiler.</span><br><span class="line">                Optional parameter.</span><br><span class="line">[Tab caption] : Caption of current tab.</span><br><span class="line">                If not caption specified, unique name with tab index suffix will be used as caption of tab.</span><br><span class="line">                If not caption specified, but specified icon, caption will empty.</span><br><span class="line">                Optional parameter.</span><br><span class="line">[@icon]       : FontAwesome icon name (without &#x27;fa-&#x27; at the begining).</span><br><span class="line">                Can be specified with or without space; e.g. &#x27;Tab caption @icon&#x27; similar to &#x27;Tab caption@icon&#x27;.</span><br><span class="line">                Optional parameter.</span><br></pre></td></tr></table></figure>
 
-<p>注意这里的<code>&lt;!-- tab --&gt;</code>并非省略，而是起到了标志的作用。</p>
-<p>md写法1，参数默认，展开一项：</p>
+<p>注意这里的<code>&lt;!-- tab --&gt;</code>并非省略，而是起到了标志的作用；此处的逗号是英文格式。</p>
+<ul>
+<li>  <strong>写法1：</strong></li>
+</ul>
+<p>参数默认，展开一项：</p>
 <figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% tabs First unique name %&#125;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">This is Tab 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>呈现效果：</p>
 <div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">First unique name 1</a></li><li class="tab"><a href="#first-unique-name-2">First unique name 2</a></li><li class="tab"><a href="#first-unique-name-3">First unique name 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p>This is Tab 1</p></div><div class="tab-pane" id="first-unique-name-2"><p>This is Tab 2</p></div><div class="tab-pane" id="first-unique-name-3"><p>This is Tab 3</p></div></div></div>
 
-<h2 id="Center-quote引用"><a href="#Center-quote引用" class="headerlink" title="Center-quote引用"></a>Center-quote引用</h2><p>md写法：</p>
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% centerquote %&#125;Quote1&#123;% endcenterquote %&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>  <strong>写法2：</strong></li>
+</ul>
+<p>添加标签名称，-1表示折叠，2表示展开第二项：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 标签集,-1 %&#125;</span><br><span class="line">&lt;!-- tab one --&gt;</span><br><span class="line">This is Tab 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab Ⅱ --&gt;</span><br><span class="line">This is Tab 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 叁--&gt;</span><br><span class="line">This is Tab 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以简写为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;Quote2&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+<p>折叠呈现效果：</p>
+<div class="tabs" id="标签集"><ul class="nav-tabs"><li class="tab"><a href="#标签集-1">one</a></li><li class="tab"><a href="#标签集-2">Ⅱ</a></li><li class="tab"><a href="#标签集-3">叁</a></li></ul><div class="tab-content"><div class="tab-pane" id="标签集-1"><p>This is Tab 1</p></div><div class="tab-pane" id="标签集-2"><p>This is Tab 2</p></div><div class="tab-pane" id="标签集-3"><p>This is Tab 3</p></div></div></div>
 
-<p>呈现效果：</p>
-<blockquote class="blockquote-center">
-<p>may the flame guide thee</p>
+<ul>
+<li>  <strong>写法3：</strong></li>
+</ul>
+<p>-1改为2，默认显示第二项；注意每个tab集的名称id需要是独一无二的，将标签集改为标签集2：</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 标签集2,2%&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
 
-</blockquote>]]></content>
+<p>默认打开第二项：</p>
+<div class="tabs" id="标签集2"><ul class="nav-tabs"><li class="tab"><a href="#标签集2-1">one</a></li><li class="tab active"><a href="#标签集2-2">Ⅱ</a></li><li class="tab"><a href="#标签集2-3">叁</a></li></ul><div class="tab-content"><div class="tab-pane" id="标签集2-1"><p>1</p></div><div class="tab-pane active" id="标签集2-2"><p>2</p></div><div class="tab-pane" id="标签集2-3"><p>3</p></div></div></div>]]></content>
       <categories>
-        <category>配置</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>others</tag>
+        <tag>md</tag>
       </tags>
   </entry>
   <entry>
@@ -2124,7 +2166,10 @@
   <entry>
     <title>博客修改</title>
     <url>/2020/02/05/bo-ke-xiu-gai/</url>
-    <content><![CDATA[<h1 id="自定义主题"><a href="#自定义主题" class="headerlink" title="自定义主题"></a>自定义主题</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
+    <content><![CDATA[<div class="note primary"><p>本帖持续更新中。。。</p>
+</div>
+
+<h1 id="自定义主题"><a href="#自定义主题" class="headerlink" title="自定义主题"></a>自定义主题</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
 <p>博客主题：<a href="https://github.com/blinkfox/hexo-theme-matery">matery</a></p>
 </blockquote>
 <p>拿谷歌的<a href="https://developers.google.com/speed/pagespeed/insights/">pagespeed</a>做个很粗糙的测试：</p>
@@ -2148,11 +2193,16 @@
 
 <br />
 
-<h3 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h3><p>特别的，对于<strong>由于版权保护，无法生成外链</strong>的音乐，我们找到<em>生成外链播放器</em>，检查，并复制链接<code>/outchain/2/16468500/</code><br><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9/%E6%A3%80%E6%9F%A5%E5%85%83%E7%B4%A0.jpg"><br>将<code>/outchain/2/16468500/</code>插入到<code>http://music.163.com/#/href</code>后，<code>http://music.163.com/#//outchain/2/16468500/</code>就是生成外链的网址。<br>把HTML代码拷到post文档里就行了：<br><code>&lt;div align=&quot;middle&quot;&gt;这里粘贴刚刚复制的代码&lt;/div&gt;</code></p>
-<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 play=false src="//music.163.com/outchain/player?type=2&id=16468500&auto=1&height=66"></iframe></div>
-~~好听吗，不好听就说明这个方法已经失效了~~
+<h3 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h3><p>特别的，对于<strong>由于版权保护，无法生成外链</strong>的音乐，我们找到<em>生成外链播放器</em>，检查，并复制a链接<code>/outchain/2/16468500/</code><br><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9/%E6%A3%80%E6%9F%A5%E5%85%83%E7%B4%A0.jpg"><br>将<code>/outchain/2/16468500/</code>插入到<code>http://music.163.com/#/href</code>后，<code>http://music.163.com/#//outchain/2/16468500/</code>就是生成外链的网址。<br>把HTML代码拷到post文档里就行了：<br><code>&lt;div align=&quot;middle&quot;&gt;这里粘贴刚刚复制的代码&lt;/div&gt;</code></p>
+<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=16468500&auto=0&height=66"></iframe></div>
 
+<p><del>好听吗，不好听就说明这个方法已经失效了</del></p>
 <hr>
+<p>更正：主题更新到next之后，Aplayer无了，直接拷贝网易的iframe吧：</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=849739&auto=0&height=66"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=849739&auto=0&height=32"></iframe>
+
 <h2 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h2><p>我用的Gitalk插件。</p>
 <p>最近Github疯狂给我发邮件，说是GitHub不赞成使用<a href="https://developer.github.com/v3/oauth_authorizations">Authorizations API</a>，将要<a href="https://developer.github.com/changes/2019-11-05-deprecated-passwords-and-authorizations-api/">Deprecated APIs and authentication</a>，原因嘛，可能是这个：<a href="https://www.v2ex.com/t/535608">建议大家弃用 Gitalk 和 Gitment 等权限过高的 Github OAuth App</a>，额，水一水了，看大佬怎么处理的：<a href="https://github.com/gitalk/gitalk/issues/343">Gitalk Issues</a>。到时候补充。。。</p>
 <hr>
@@ -2201,20 +2251,23 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p>next主题是<code>next-boot.js</code>文件。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 屏蔽F12</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event &amp;&amp; <span class="built_in">window</span>.event.keyCode == <span class="number">123</span>) &#123;</span><br><span class="line">        event.keyCode = <span class="number">0</span>;</span><br><span class="line">        event.returnValue = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event &amp;&amp; <span class="built_in">window</span>.event.keyCode == <span class="number">13</span>) &#123;</span><br><span class="line">        <span class="built_in">window</span>.event.keyCode = <span class="number">505</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event &amp;&amp; <span class="built_in">window</span>.event.keyCode == <span class="number">8</span>) &#123;</span><br><span class="line">        alert(str + <span class="string">&quot;\n请使用Del键进行字符的删除操作！&quot;</span>);</span><br><span class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 屏蔽右键菜单</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event) &#123;</span><br><span class="line">        event = <span class="built_in">window</span>.event;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> the = event.srcElement;</span><br><span class="line">        <span class="keyword">if</span> (!((the.tagName == <span class="string">&quot;INPUT&quot;</span> &amp;&amp; the.type.toLowerCase() == <span class="string">&quot;text&quot;</span>) || the.tagName == <span class="string">&quot;TEXTAREA&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 屏蔽粘贴</span></span><br><span class="line"><span class="built_in">document</span>.onpaste = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event) &#123;</span><br><span class="line">        event = <span class="built_in">window</span>.event;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> the = event.srcElement;</span><br><span class="line">        <span class="keyword">if</span> (!((the.tagName == <span class="string">&quot;INPUT&quot;</span> &amp;&amp; the.type.toLowerCase() == <span class="string">&quot;text&quot;</span>) || the.tagName == <span class="string">&quot;TEXTAREA&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//屏蔽复制，不建议开启</span></span><br><span class="line"><span class="built_in">document</span>.oncopy = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event) &#123;</span><br><span class="line">        event = <span class="built_in">window</span>.event;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> the = event.srcElement;</span><br><span class="line">        <span class="keyword">if</span> (!((the.tagName == <span class="string">&quot;INPUT&quot;</span> &amp;&amp; the.type.toLowerCase() == <span class="string">&quot;text&quot;</span>) || the.tagName == <span class="string">&quot;TEXTAREA&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 屏蔽剪贴</span></span><br><span class="line"><span class="built_in">document</span>.oncut = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.event) &#123;</span><br><span class="line">        event = <span class="built_in">window</span>.event;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> the = event.srcElement;</span><br><span class="line">        <span class="keyword">if</span> (!((the.tagName == <span class="string">&quot;INPUT&quot;</span> &amp;&amp; the.type.toLowerCase() == <span class="string">&quot;text&quot;</span>) || the.tagName == <span class="string">&quot;TEXTAREA&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="自定义css"><a href="#自定义css" class="headerlink" title="自定义css"></a>自定义css</h2><p>现在正式改为了next主题，next的滚动条为原生默认的，不是很搭，自定义一下滚动条。</p>
+<h1 id="Next主题自定义css"><a href="#Next主题自定义css" class="headerlink" title="Next主题自定义css"></a>Next主题自定义css</h1><blockquote>
+<p>基于hexo-theme-next-8.0.2自带插件</p>
+</blockquote>
+<p>现在正式改为了next主题，next的滚动条为原生默认的，不是很搭，自定义一下滚动条。</p>
 <p>next的css样式文件为<code>.styl</code>，我之前只接触过<code>.css</code>，算是摸石头过河了。为了方便git拉取更新文件，最好将用户css样式放在自建的样式文件里，否则到时候冲突太多很麻烦。</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.njk</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.njk</span></span><br><span class="line">  <span class="comment">#sidebar: source/_data/sidebar.njk</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.njk</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.njk</span></span><br><span class="line">  <span class="comment">#footer: source/_data/footer.njk</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.njk</span></span><br><span class="line">  <span class="comment">#variable: source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">themes/hexo-theme-next-8.0.2/source/css/_custom/custom.styl</span></span><br></pre></td></tr></table></figure>
 
 <p>这里style的路径从博客根目录开始：</p>
 <p>既然是主题文件，我就直接放在主题文件夹下面的source里，以后想换其他主题也方便。</p>
 <p>在css文件夹里新建<code>_custom</code>，然后在<code>_custom</code>文件夹里新建<code>custom.styl</code>，将用户自定义css放在此文件里即可。</p>
-<h3 id="添加scrollbar伪选择器样式"><a href="#添加scrollbar伪选择器样式" class="headerlink" title="添加scrollbar伪选择器样式"></a>添加scrollbar伪选择器样式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">::-webkit-scrollbar &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">width</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-track &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">border-radius</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-thumb &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">border-radius</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">background-color</span>: <span class="selector-id">#000000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="添加scrollbar伪选择器样式"><a href="#添加scrollbar伪选择器样式" class="headerlink" title="添加scrollbar伪选择器样式"></a>添加scrollbar伪选择器样式</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">::-webkit-scrollbar &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">width</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 5<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-track &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">border-radius</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-thumb &#123;//by mednight4</span><br><span class="line">    <span class="selector-tag">border-radius</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">background-color</span>: <span class="selector-id">#000000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="添加背景图片"><a href="#添加背景图片" class="headerlink" title="添加背景图片"></a>添加背景图片</h3><p>分别给body和侧栏添加图片</p>
+<h2 id="添加背景图片"><a href="#添加背景图片" class="headerlink" title="添加背景图片"></a>添加背景图片</h2><p>分别给body和侧栏添加图片</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">body &#123; //by mednight4</span><br><span class="line">  background :url(<span class="string">&quot;/images/body.png&quot;</span>);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-attachment:fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sidebar &#123;</span><br><span class="line">  opacity:<span class="number">1</span>;</span><br><span class="line">  background:url(<span class="string">&quot;/images/sidebar.png&quot;</span>);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>图片的路径在<code>/themes/hexo-theme-next-8.0.2/source/images</code>，也是放在主题文件夹的source里。</p>
-<h3 id="修改链接颜色"><a href="#修改链接颜色" class="headerlink" title="修改链接颜色"></a>修改链接颜色</h3><p>其实是修改左侧sidebar的a链接颜色，想直接在base.style里改，没找到。干脆在<code>custom.styl</code>覆盖好了。</p>
+<h2 id="修改sidebar链接颜色"><a href="#修改sidebar链接颜色" class="headerlink" title="修改sidebar链接颜色"></a>修改sidebar链接颜色</h2><p>其实是修改左侧sidebar的a链接颜色，想直接在base.style里改，没找到。干脆在<code>custom.styl</code>覆盖好了。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.sidebar</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#fc6423</span>;</span><br><span class="line">  <span class="attribute">border-bottom-color</span>: <span class="number">#555</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -2223,7 +2276,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 
 ]]></content>
       <categories>
-        <category>配置</category>
+        <category>博客</category>
       </categories>
       <tags>
         <tag>others</tag>
@@ -2579,15 +2632,14 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p>闪电标识（闪电标识和雷电接口没关系，只是表明使用该接口后，电脑在关机的情况下可以继续给移动设备充电）</p>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%BA%8F/20210124194832.png"></p>
 <h3 id="硬盘盒"><a href="#硬盘盒" class="headerlink" title="硬盘盒"></a>硬盘盒</h3><p>m.2硬盘盒的挑选主要看主控芯片。当下主流的m.2硬盘盒主控芯片有ASM2362、JMS583、RTL9210。我买的RTL9210的货，支持USB 3.1 gen2，其实买贵了，我的本子接口不支持gen2。</p>
-<p>介绍视频</p>
+<p><strong>介绍视频</strong></p>
 <iframe id="m41" src="//player.bilibili.com/player.html?aid=41074995&bvid=BV17t411a71P&cid=72146035&page=1" scrolling="no" border="0" frameborder="true" framespacing="0" allowfullscreen="true" width=100%> </iframe>
-<script type="text/javascript"> document.getElementById("m41").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";
+<script type="text/javascript"> document.getElementById("m41").style.height=document.getElementById("m41").scrollWidth*0.76+"px";
 </script>
+**测试视频**
 
-
-<p>测试视频</p>
 <iframe id="m42" src="//player.bilibili.com/player.html?aid=752727755&bvid=BV13k4y1R7EZ&cid=176435283&page=1" scrolling="no" border="0" frameborder="true" framespacing="0" allowfullscreen="true" width=100%> </iframe>
-<script type="text/javascript"> document.getElementById("m42").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";
+<script type="text/javascript"> document.getElementById("m42").style.height=document.getElementById("m42").scrollWidth*0.76+"px";
 </script>]]></content>
       <categories>
         <category>装机</category>
