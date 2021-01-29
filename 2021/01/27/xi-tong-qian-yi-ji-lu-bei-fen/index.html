@@ -27,21 +27,28 @@
     var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
-  <meta name="description" content="学习记录">
+  <meta name="description" content="windows10的已安装软件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NFS服务器配置">
-<meta property="og:url" content="https://mednight4.github.io/2020/12/24/nfs-fu-wu-qi-pei-zhi/index.html">
+<meta property="og:title" content="系统迁移记录-备份">
+<meta property="og:url" content="https://mednight4.github.io/2021/01/27/xi-tong-qian-yi-ji-lu-bei-fen/index.html">
 <meta property="og:site_name" content="mednight4">
-<meta property="og:description" content="学习记录">
+<meta property="og:description" content="windows10的已安装软件">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-24T01:20:47.000Z">
-<meta property="article:modified_time" content="2021-01-07T02:46:09.502Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192918.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192919.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192920.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192922.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192923.png">
+<meta property="article:published_time" content="2021-01-27T11:34:27.000Z">
+<meta property="article:modified_time" content="2021-01-29T11:33:41.322Z">
 <meta property="article:author" content="mednight4">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="windows">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192918.png">
 
 
-<link rel="canonical" href="https://mednight4.github.io/2020/12/24/nfs-fu-wu-qi-pei-zhi/">
+<link rel="canonical" href="https://mednight4.github.io/2021/01/27/xi-tong-qian-yi-ji-lu-bei-fen/">
 
 
 <script class="page-configurations">
@@ -54,7 +61,7 @@
   };
 </script>
 
-  <title>NFS服务器配置 | mednight4</title>
+  <title>系统迁移记录-备份 | mednight4</title>
   
 
 
@@ -216,7 +223,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NFS%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="nav-text">NFS服务器配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">服务器的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">客户机的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD"><span class="nav-text">系统迁移记录-备份</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%90%8D%E5%8D%95"><span class="nav-text">软件名单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7"><span class="nav-text">生产</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6"><span class="nav-text">效率插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F"><span class="nav-text">系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A8%B1%E4%B9%90"><span class="nav-text">娱乐</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8E%E6%8F%92%E4%BB%B6"><span class="nav-text">配置文件与插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%AB%E7%BB%92"><span class="nav-text">火绒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DISM"><span class="nav-text">DISM++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#edge"><span class="nav-text">edge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#terminal"><span class="nav-text">terminal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95"><span class="nav-text">输入法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code%E6%8F%92%E4%BB%B6"><span class="nav-text">Code插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E5%AD%98%E6%A1%A3"><span class="nav-text">游戏存档</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -320,7 +327,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2020/12/24/nfs-fu-wu-qi-pei-zhi/">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/01/27/xi-tong-qian-yi-ji-lu-bei-fen/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -333,7 +340,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          NFS服务器配置
+          系统迁移记录-备份
         </h1>
 
         <div class="post-meta-container">
@@ -344,14 +351,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-24 09:20:47" itemprop="dateCreated datePublished" datetime="2020-12-24T09:20:47+08:00">2020-12-24</time>
+      <time title="创建时间：2021-01-27 19:34:27" itemprop="dateCreated datePublished" datetime="2021-01-27T19:34:27+08:00">2021-01-27</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-07 10:46:09" itemprop="dateModified" datetime="2021-01-07T10:46:09+08:00">2021-01-07</time>
+        <time title="修改时间：2021-01-29 19:33:41" itemprop="dateModified" datetime="2021-01-29T19:33:41+08:00">2021-01-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -359,14 +366,14 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+          <a href="/categories/%E8%A3%85%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">装机</span></a>
         </span>
     </span>
 
   
 </div>
 
-            <div class="post-description">学习记录</div>
+            <div class="post-description">windows10的已安装软件</div>
         </div>
       </header>
 
@@ -374,93 +381,89 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="NFS服务器配置"><a href="#NFS服务器配置" class="headerlink" title="NFS服务器配置"></a>NFS服务器配置</h1><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>在Vmware虚拟机中启动两台Linux系统</p>
-<p>一台作为NFS服务器，本例中给出的IP地址为192.168.5.20</p>
-<p>一台作为NFS客户端，本例中给出的IP地址为192.168.5.10</p>
-<p>配置一个NFS服务器，使得客户机可以浏览NFS服务器中/home/ftp目录下的内容，但不可以修改。</p>
-<p>虚拟机网络采用nat静态，与Vmnet8同一网段。</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="服务器的配置"><a href="#服务器的配置" class="headerlink" title="服务器的配置"></a>服务器的配置</h3><ol>
-<li> <strong>检测安装NFS所需的软件包</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> rpm -qa nfs-utils</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -qa rpcbind</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm install nfs-utils</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm install rpcbind</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li> <strong>修改配置文件</strong></li>
-</ol>
-<p>修改配置文件/etc/exports，添加行：/home/ftp 192.168.5.10（ro）</p>
-<p>ro表示只读</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vi /etc/exports</span></span><br></pre></td></tr></table></figure>
-
-<p>添加允许的ip</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /home/ftp 192.168.5.10(ro)</span></span><br></pre></td></tr></table></figure>
-
-<p>表示将文件共享到IP为192.168..10的主机，方式为只读。修改后，存盘退出</p>
-<ol start="3">
-<li> <strong>启动NFS服务</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl start rpcbind</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> rpcbind</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl start nfs</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> nfs</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li> <strong>配置并重启防火墙</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=111/tcp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=111/udp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=2049/tcp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=2049/udp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=20048/tcp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-port=20048/udp</span></span><br></pre></td></tr></table></figure>
-
-<p>或者直接开启相关服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> firewall-cmd --permanent --add-service=nfs</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li> <strong>检查NFS服务器的状态</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> showmount -e 127.0.0.1</span></span><br><span class="line">Export list for 127.0.0.1:</span><br><span class="line">/home/ftp 192.168.5.20</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li> <strong>创建一个文件</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /home/ftp</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;hello&quot;</span> &gt; text.txt</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="客户机的配置"><a href="#客户机的配置" class="headerlink" title="客户机的配置"></a>客户机的配置</h3><ol>
-<li> <strong>安装nfs-utils客户端</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install nfs-utils</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li> <strong>显示NFS服务器上的共享目录</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> showmount -e 192.168.5.20</span></span><br><span class="line">Export list for 192.168.5.20</span><br><span class="line">/home/ftp/192.168.5.10</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li> <strong>挂载服务器网络文件夹</strong></li>
-</ol>
-<p>将NFS服务器（192.168.5.20）上的/home/ftp目录安装到本地机192.168.222.2的/home/test目录下。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mount 192.168.5.20:/home/ftp /home/<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mount | grep nfs</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li> <strong>查看文件夹内容</strong></li>
-</ol>
-<p>挂载成功后可以利用ls等命令操作/home/test目录，实际操作的为192.168.5.20服务器上/home/ftp目录下的内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ls /home/<span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li> <strong>卸载共享目录</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> umount /home/<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls /home/<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mount | grep nfs</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
-<li><p>控制客户端读写权限的参数是/etc/exports文件路径里的：</p>
-<p>  ro：只读设置，这样NFS客户端只能读、不能写（默认设置）</p>
-<p>  rw：读写设置，NFS 客户端可读写</p>
-</li>
-<li><p>  客户机只需要安装nfs客户端nfs-utils,不需要rpcbind服务</p>
-</li>
-<li><p>  NFS服务开启后，还需要给服务器的防火墙端口配置启动状态，否则，即使客户机能找到服务器地址也不能访问NFS服务。NFS默认端口为111、2049、20048</p>
-</li>
-<li><p>未配置好防火墙或者服务器主机未将客户机IP纳入exports允许范围时，出现：</p>
-  <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount.nfs:access denied by server while mounting 192.168.5.20:/home/ftp </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>若想同时允许一个网段192.168.5.0的所有主机读写访问，可以在exports里编辑：</p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">home/ftp 192.168.5.*(rw)</span><br></pre></td></tr></table></figure>
-
-</li>
+        <h1 id="系统迁移记录-备份"><a href="#系统迁移记录-备份" class="headerlink" title="系统迁移记录-备份"></a>系统迁移记录-备份</h1><p>关于系统迁移，其实有两种解决方案。</p>
+<p>第一种：通过专业的分区助手等软件将整个C盘拷到新磁盘，然后再将新盘设置为C盘。这是较平滑的一种过渡方式。如果要把系统所在盘替换成新盘，再借个临时盘中转一下即可。这个方案缺点是，移动的同时C盘里的一些垃圾也迁移过去了，而且据反馈有可能会出现路径问题。具体方式可百度。</p>
+<p>第二种方式：直接重装系统。我这里采用第二种，为了把一些用不到的软件完全卸载掉。</p>
+<p>因为我只换了ssd，hdd还是在的，先把原ssd的资料备份到hdd。新ssd装好系统后再把hdd的资料移到ssd，最后格式化hdd来装第二个系统。所以其实我几乎不需要担心数据丢失问题，ssd只是128G，数据都在hdd，只是注册表空了后软件运行找不到路径了。</p>
+<h2 id="软件名单"><a href="#软件名单" class="headerlink" title="软件名单"></a>软件名单</h2><p>且当做安利就行。划掉的就当卸载了。</p>
+<h3 id="生产"><a href="#生产" class="headerlink" title="生产"></a>生产</h3><ul>
+<li>  学单片机用。</li>
+</ul>
+<p><del>Proteus 8 Professional：单片机电路模拟</del><br><del>arm KEIL C51：ide</del></p>
+<ul>
+<li>  网络模拟。</li>
+</ul>
+<p>Cisco Packet Tracer：网络模拟<br>Wireshark：抓包</p>
+<ul>
+<li>  专业软件</li>
+</ul>
+<p><del>Microsoft SQL SEVER Management Sstudio ：非必要不安装，卸载是真的麻烦</del><br><del>Matlab：数字软件，非必要不安装</del><br>VSCode-win32-x64：code<br>Dev cpp：提供了gcc和g++，顺便作为一款轻量的ide<br>visual studio：宇宙第一ide<br><del>eclipse：现在转用jb公司的产品了</del><br>IntelliJ IDEA：java code<br>IntelliJ PyCharm：python code<br>微信web开发者工具：js code<br><del>WinHex15.1SR-8：查看文件进制编码，轻量用VScode就够了</del><br><del>Fluent Terminal：转用windows Terminal</del></p>
+<ul>
+<li>  虚拟机</li>
+</ul>
+<p>WMware Workstation Pro：虚拟机<br>xshell：连接终端<br>xftp：互传文件<br>dnplayer2：雷电安卓模拟器</p>
+<ul>
+<li>  文字</li>
+</ul>
+<p>Typora：码字<br>pandoc：文字格式导出插件<br>PicGo：图床<br>XMind：结构图<br>office四件套<br>OneNote：笔记</p>
+<ul>
+<li>  爱逗比</li>
+</ul>
+<p>Adobe_Premiere<br>Adobe_Photoshop<br>Adobe_Audition<br>Adobe_After_Effects</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>tomcat：java servlet解析服务<br>Java JDK<br>python<br><del>SQL Server</del><br>Git<br>NodeJS<br>phpEnv：集成mysql，apache，php 懒人用<br>anaconda：python大杂烩</p>
+<h3 id="效率插件"><a href="#效率插件" class="headerlink" title="效率插件"></a>效率插件</h3><p>Everything：文件搜索<br>QTTabBar：资源管理器增强<br>天若OCR开源版V5.0.0：OCR<br>Bandicam-Portable：截视频<br>小丸工具箱：视频压缩<br>ScreenToGif：截gif<br>Snipaste：截图<br>CClose：窗口置顶<br>Core Temp：CPU温度<br>TranslucentTB：状态栏透明<br>TrafficMonitor：流量监视<br><del>YoudaoDict：截图翻译</del><br>Netkeeper：一键连校园网</p>
+<ul>
+<li>  字体</li>
+</ul>
+<p>sarasa-gothic-ttf<br>JetBrainsMono<br>Monaco<br>Fira</p>
+<h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><ul>
+<li>  必备</li>
+</ul>
+<p>Dism++：系统设置集成<br>Huorong：火绒<br>图吧工具箱：系统硬件工具集成<br>PalmInput：手心输入法<br>PeaZip：解压缩<br>Uninstall Tool：卸载工具<br>potplayer：视频播放器<br>MusicPlayer2：音频播放器<br>lx-music-desktop：音乐下载器<br>IDM：多线程下载器<br>Thunder特定版：种子下载器<br>xdown：aria2下载器<br>OneDrive：oneNote同步<br>v2rayN-Core：v2ray客户端</p>
+<ul>
+<li>  驱动</li>
+</ul>
+<p>VTDriver：鼠标驱动<br>GeForce Experience：显卡驱动</p>
+<h3 id="娱乐"><a href="#娱乐" class="headerlink" title="娱乐"></a>娱乐</h3><ul>
+<li>  游戏</li>
+</ul>
+<p>Steam<br>BATTLE<br>EPIC<br>GOG Galaxy<br>Uplay<br>LeiGod_Acc：加速器</p>
+<ul>
+<li>  通讯</li>
+</ul>
+<p>TIM<br>WeChat</p>
+<h2 id="配置文件与插件"><a href="#配置文件与插件" class="headerlink" title="配置文件与插件"></a>配置文件与插件</h2><p>导出软件设置并备份软件的配置文件。不能导出设置的软件记录一下关键设置。<br>大部分软件的配置目录在<code>C:\Users\你的用户名\AppData\Roaming\</code>下，类似于linux的<code>/etc</code>，出于安全考虑，建议将<code>C:\Users\你的用户名</code>及以下目录全部备份，大概有10个G左右。</p>
+<h3 id="火绒"><a href="#火绒" class="headerlink" title="火绒"></a>火绒</h3><p>火绒高级设置-自定义保护-文件规则：</p>
+<ul>
+<li>本地用户默认 ?:\Users*\AppData\Local*\User Data\Default*<br>  Chrome用户默认 ?:\Users*\AppData\Local*\Chrome\User Data\Default*<br>  window历史记录 <em>\User Data\Default\History<br>  火狐配置 ?:\Users\</em>\AppData\Roaming\Mozilla\Firefox\Profiles*</li>
+</ul>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192918.png"></p>
+<h3 id="DISM"><a href="#DISM" class="headerlink" title="DISM++"></a>DISM++</h3><p>文件清理白名单：</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192919.png"></p>
+<h3 id="edge"><a href="#edge" class="headerlink" title="edge"></a>edge</h3><p>作为浏览器，edge和chrome可以云同步绝大多数数据，包括书签、密码、插件等，但是唯独插件配置这一项不能同步，相信chrome用户对插件的依赖是离不开了。例如：油猴订阅脚本、广告过滤订阅规则等等。建议去插件设置项里导出设置。或者直接备份全部插件：<br>edge：<code>C:\Users\17498\AppData\Local\Microsoft\Edge\User Data\Default\Extensions</code></p>
+<h3 id="terminal"><a href="#terminal" class="headerlink" title="terminal"></a>terminal</h3><ul>
+<li>  xftp：</li>
+</ul>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192920.png"></p>
+<ul>
+<li>  fluent terminal</li>
+</ul>
+<blockquote>
+<p>  <a href="https://mednight4.github.io/2020/12/28/win10-zhong-duan-mei-hua-zhi-bei/">Win10终端美化指北</a></p>
+</blockquote>
+<h3 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h3><p>一直用的手心输入法，似乎<a target="_blank" rel="noopener" href="https://rime.im/">rime</a>也不错。手心设置，qq登陆账户，可备份/导入设置项和词库，有效期30天。</p>
+<h3 id="Code插件"><a href="#Code插件" class="headerlink" title="Code插件"></a>Code插件</h3><p>Vscode插件：</p>
+<p>路径<code>C:\Users\17498\.vscode\extensions</code></p>
+<p>VS studio插件：</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192921.png"></p>
+<p>Pycharm插件：</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192922.png"></p>
+<p>Idea插件：</p>
+<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%A4%87%E4%BB%BD/20210129192923.png"></p>
+<h3 id="游戏存档"><a href="#游戏存档" class="headerlink" title="游戏存档"></a>游戏存档</h3><p>游戏平台对大多数游戏都支持云同步，但注意只是大部分。<br>此外，steam有备份/还原功能，平滑迁移，不过需要同等大的硬盘空间。</p>
+<ul>
+<li>  黑魂3：<code>C:\Users\17498\AppData\Roaming\DarkSoulsIII</code> 。无云同步，存档丢了会很难受。</li>
+<li>  时光之帽：<code>F:\SteamLibrary\steamapps\common\HatinTime\HatinTimeGame\SaveData</code></li>
 </ul>
 
     </div>
@@ -471,20 +474,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/windows/" rel="tag"># windows</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/12/28/win10-zhong-duan-mei-hua-zhi-bei/" rel="prev" title="Win10终端美化指北">
-                  <i class="fa fa-chevron-left"></i> Win10终端美化指北
+                <a href="/2021/01/27/xi-tong-qian-yi-ji-lu-xi-tong-an-zhuang/" rel="prev" title="系统迁移记录-系统安装">
+                  <i class="fa fa-chevron-left"></i> 系统迁移记录-系统安装
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/12/24/elgamal-gong-yao-ti-zhi-jia-mi-jia-qian/" rel="next" title="ELGamal公钥体制加密加签">
-                  ELGamal公钥体制加密加签 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/01/25/md-ji-qiao/" rel="next" title="MD技巧">
+                  MD技巧 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -682,7 +685,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'mednight4.github.io',
       owner       : 'mednight4',
       admin       : ['mednight4'],
-      id          : '00b1ffe1d2b592d9ee60cd0ac14c98fe',
+      id          : 'fe6500271eb3dfe09ee88a6168dc40f3',
         language: 'zh-CN',
       distractionFreeMode: true
     });
