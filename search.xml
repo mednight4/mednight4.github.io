@@ -6154,10 +6154,10 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p>先<code>wslconfig /l</code>+ <code>wslconfig /u</code>，然后powershell输入上述的<code>Get-AppxPackage</code>+<code>remove-Appxpackage</code>，如果你有win10的卸载工具uninstall或者geek，进入windows应用卸载选项，卸载应用后顺便把对应的注册表删了。</p>
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/WSL2-linux%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/20210209053417.png?raw=true"></p>
 <p>最后使用everthing搜索kaliLinux关键词，将对应的文件全部删除，重启。然后用火绒或dism++之类的清理软件清理一下注册表的垃圾文件。</p>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/WSL2-linux%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/20210209053419.png?raw=true" alt="image-20210209052636893"></p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/WSL2-linux%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/20210209053419.png?raw=true"></p>
 <h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p>WSL对Docker的支持一直很好：<a href="https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-containers">WSL 2 上的 Docker 远程容器入门</a></p>
 <p>WSL2比起WSL增加了对cuda的支持，可以用N卡炼丹了：<a href="https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute">适用于 Linux 的 Windows 子系统中的 GPU 加速机器学习培训</a></p>
-<p>关于储存空间占用问题：[搭建 WSL2 下的 Kali 环境（含GUI及空间优化）](搭建 WSL2 下的 Kali 环境（含GUI及空间优化）)</p>
+<p>关于储存空间占用问题：<a href="https://zhuanlan.zhihu.com/p/263658960">搭建 WSL2 下的 Kali 环境（含GUI及空间优化）</a></p>
 ]]></content>
       <categories>
         <category>配置</category>
