@@ -399,7 +399,7 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">下载 Windows 10 (microsoft.com)</a></p>
 </blockquote>
-<p>电脑直接进去只有镜像制作工具，不提供镜像下载入口。因为网站通过响应式检测到浏览器是pc端，ctrl+shift+I进入调试，将响应式改为手机并刷新，选择你的win10版本对应镜像并下载。镜像一般是家庭中文版，可以在<strong>设置-关于</strong>里查看。当然，你也可以下载镜像制作工具，运行后选择从ISO安装，然后再下载ISO镜像。<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155429.png"></p>
+<p>电脑直接进去只有镜像制作工具，不提供镜像下载入口。因为网站通过响应式检测到浏览器是pc端，ctrl+shift+I进入调试，将响应式改为手机并刷新，选择你的win10版本对应镜像并下载。镜像一般是家庭中文版，可以在<strong>设置-关于</strong>里查看。当然，你也可以下载镜像制作工具，运行后选择从ISO安装，然后再下载ISO镜像。<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155429.png"></p>
 <h3 id="U盘安装PE系统"><a href="#U盘安装PE系统" class="headerlink" title="U盘安装PE系统"></a>U盘安装PE系统</h3><details class="note "><summary><p>warming</p>
 </summary>
 <p>其实可以直接将镜像做在U盘里，BIOS引导改为U盘启动，开机直接安装系统。但是没有PE就不能对分区进行转换、对齐等操作，还是不推荐。</p>
@@ -415,15 +415,15 @@
 </div>
 
 <p>当然我是不介意U盘多出一个分区来安装系统。</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155430.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155430.png"></p>
 <p>分区结果：</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155431.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155431.png"></p>
 <p>安装完PE后将上一步的.ISO镜像文件拷贝到ESD-USB里即可。</p>
 <h3 id="拆机更换固态"><a href="#拆机更换固态" class="headerlink" title="拆机更换固态"></a>拆机更换固态</h3><p>稳妥起见，拆机前插上U盘，将引导顺序改为 U盘 &gt; 系统，看下之前的ISO是否能正常挂载运行。</p>
 <p>进入BIOS修改引导顺序，每个品牌进入BIOS按键不一致，自查（hp的进入键是F10）：</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155435.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155435.jpg"></p>
 <p>查看ISO镜像挂载情况，右键镜像挂载后进入文件夹，有一个setup.exe文件，可以运行查看，出现安装win10的选项后确认无误，退出。</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155434.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155434.png"></p>
 <p>拆机，更换固态，如果是笔记本，更换固态前最好将电池拆下。更换完后别急着拧D面螺丝，先开一下机看是否能正常进入PE，确保硬件无误。<strong>更换固态后摁下开机键，头一两次不能正常开机是很正常的事情，多摁几次就行了。</strong></p>
 <p>如果能正常进入PE，把电脑装好。</p>
 <h3 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h3><p>在挂载ISO安装之前：</p>
@@ -441,7 +441,7 @@
 <li><p>BIOS更改确认，重启。</p>
 </li>
 <li><p>直面多嘴的小娜。</p>
-<p> <img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155433.png"></p>
+<p> <img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155433.png"></p>
 </li>
 <li><p>小娜会让你连接网络，并在后续让你登陆微软账户。如果你对你的网络状况缺乏信心，或者对微软的土豆服务器缺乏信心，请尝试<strong>连接手机热点</strong>。因为：</p>
  <div class="note danger"><p><strong>微软系统安装选项不包含上一步。</strong></p>
@@ -458,7 +458,7 @@
 </li>
 </ol>
 <p>开始使用win10。</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155432.png" alt="win10新系统的分区情况"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155432.png" alt="win10新系统的分区情况"></p>
 
     </div>
 

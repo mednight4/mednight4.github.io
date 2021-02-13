@@ -450,13 +450,13 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl status smb</span><br><span class="line">● smb.service - Samba SMB Daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/smb.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Wed 2020-12-23 09:17:53 EST; 48s ago</span><br><span class="line">     Docs: man:smbd(8)</span><br><span class="line">           man:samba(7)</span><br><span class="line">           man:smb.conf(5)</span><br><span class="line"> Main PID: 3810 (smbd)</span><br><span class="line">   Status: &quot;smbd: ready to serve connections...&quot;</span><br><span class="line">   CGroup: /system.slice/smb.service</span><br><span class="line">           ├─3810 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line">           ├─3812 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line">           ├─3813 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line">           └─3814 /usr/sbin/smbd --foreground --no-process-group</span><br><span class="line"></span><br><span class="line">Dec 23 09:17:53 localhost.localdomain systemd[1]: Starting Samba SMB Daemon...</span><br><span class="line">Dec 23 09:17:53 localhost.localdomain smbd[3810]: [2020/12/23 09:17:53.592344,  0] ../../lib/...y)</span><br><span class="line">Dec 23 09:17:53 localhost.localdomain systemd[1]: Started Samba SMB Daemon.</span><br><span class="line">Dec 23 09:17:53 localhost.localdomain smbd[3810]:   daemon_ready: daemon &#x27;smbd&#x27; finished star...ns</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure>
 
 <p><strong>windows连接</strong></p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%9C%BA.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%9C%BA.png"></p>
 <p>会弹出一个窗口，输入<strong>给smb服务配置用户</strong>这一步中新建的用户id和passwd，进入文件夹</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png"></p>
 <p>登陆的用户拥有该目录的rwx权，可以在此操作文件</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6.png"></p>
 <p>同时，文件会同步到linux服务器</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/linux%E5%90%8C%E6%AD%A5.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/linux%E5%90%8C%E6%AD%A5.png"></p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
 <li><p>  此次实验虚拟机为nat静态连接，ip地址设置在Vmnet8网段</p>
 </li>
@@ -467,11 +467,11 @@
 <li><p>  win10的这个服务也不需要开</p>
 </li>
 </ul>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/win10%E8%AE%BE%E7%BD%AE.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/win10%E8%AE%BE%E7%BD%AE.png"></p>
 <ul>
 <li>  跟这些东西并没有关系</li>
 </ul>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/win10%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AEsmb%E6%9C%8D%E5%8A%A1/win10%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE.png"></p>
 <p>其实开始做这个实验时，出了些问题，百度一圈回来，找了一堆没用的建议，重做一遍发现结果是我配置文件里发布地址输错了。</p>
 <hr>
 <p>配置出问题了怎么办？</p>

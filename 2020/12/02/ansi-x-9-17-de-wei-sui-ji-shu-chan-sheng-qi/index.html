@@ -388,7 +388,7 @@
 <p>  代码用到了三重DES加密，正好之前写分组时写完了DES，直接导来用了。</p>
 <p>  <a href="https://mednight4.github.io/2020/11/11/des-jia-jie-mi-ji-chu-shi-xian/">DES加解密基础实现 | mednight4</a></p>
 </blockquote>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/ANSI_X_9.17%E7%9A%84%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%BA%A7%E7%94%9F%E5%99%A8/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%BA%A7%E7%94%9F%E5%99%A8.png"></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/ANSI_X_9.17%E7%9A%84%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%BA%A7%E7%94%9F%E5%99%A8/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%BA%A7%E7%94%9F%E5%99%A8.png"></p>
 <p>可以简单理解为不用random来实现随机数的生成。</p>
 <h2 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h2><p><strong>64位日期的生成。</strong>由于之前写DES时底层的0和1用的是字符而不是位运算，所以在此日期转64位bit只能转为字符串了。</p>
 <p>64位日期格式，我想到了<code>np.datetime.now()</code></p>

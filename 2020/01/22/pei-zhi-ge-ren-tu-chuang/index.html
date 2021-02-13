@@ -394,9 +394,9 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="使用PicGo-Github快速部署个人图床"><a href="#使用PicGo-Github快速部署个人图床" class="headerlink" title="使用PicGo+Github快速部署个人图床"></a>使用PicGo+Github快速部署个人图床</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><h3 id="1-PicGo是什么"><a href="#1-PicGo是什么" class="headerlink" title="1. PicGo是什么"></a>1. PicGo是什么</h3><p>PicGo是一款<strong>图床工具</strong>，支持微博图床，七牛云，腾讯云COS，又拍云，GitHub，阿里云OSS，SM.MS，Imgur 等8种常用图床，简单易用。</p>
 <ul>
-<li>简单易用<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%AD%98%E5%9B%BE.gif"></li>
-<li>复制Markdown链接<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%A4%8D%E5%88%B6%E9%93%BE%E6%8E%A5%E6%88%90%E5%8A%9F.jpg"></li>
-<li>支持的图床<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%BE%E7%BD%AE.jpg"></li>
+<li>简单易用<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%AD%98%E5%9B%BE.gif"></li>
+<li>复制Markdown链接<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%A4%8D%E5%88%B6%E9%93%BE%E6%8E%A5%E6%88%90%E5%8A%9F.jpg"></li>
+<li>支持的图床<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%BE%E7%BD%AE.jpg"></li>
 </ul>
 <h3 id="2-公共图床推荐"><a href="#2-公共图床推荐" class="headerlink" title="2. 公共图床推荐"></a>2. 公共图床推荐</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore">微博图床</a> : 封装成chrome插件，比较方便</li>
@@ -414,19 +414,19 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">PicGo项目地址</a></p>
 </blockquote>
 <h3 id="2-准备GitHub仓库"><a href="#2-准备GitHub仓库" class="headerlink" title="2. 准备GitHub仓库"></a>2. 准备GitHub仓库</h3><p>这里我干脆直接新建了一个专门用做图床的仓库</p>
-<p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg"></p>
 <ul>
 <li>注意仓库必须设置为公开</li>
 </ul>
 <h3 id="3-生成-token"><a href="#3-生成-token" class="headerlink" title="3. 生成 token"></a>3. 生成 <em>token</em></h3><p>在 GitHub 上生成一个 <em>token</em> 以便 PicGo 操作我们的仓库，来到个人中心，选择 <em>Developer settings</em> 就能看到 <em>Personal access tokens</em>，我们在这里创建需要的 <em>token</em>。</p>
-<h4 id="进设置"><a href="#进设置" class="headerlink" title="进设置"></a>进设置</h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%BF%9B%E8%AE%BE%E7%BD%AE.jpg"></p>
-<h4 id="创立token"><a href="#创立token" class="headerlink" title="创立token"></a>创立<em>token</em></h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%88%9B%E7%AB%8Btokens.jpg"></p>
-<h4 id="勾repo"><a href="#勾repo" class="headerlink" title="勾repo"></a>勾repo</h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%8B%BErepo.jpg"></p>
-<h4 id="记录token"><a href="#记录token" class="headerlink" title="记录token"></a>记录token</h4><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%B0%E5%BD%95token.jpg"></p>
+<h4 id="进设置"><a href="#进设置" class="headerlink" title="进设置"></a>进设置</h4><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%BF%9B%E8%AE%BE%E7%BD%AE.jpg"></p>
+<h4 id="创立token"><a href="#创立token" class="headerlink" title="创立token"></a>创立<em>token</em></h4><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%88%9B%E7%AB%8Btokens.jpg"></p>
+<h4 id="勾repo"><a href="#勾repo" class="headerlink" title="勾repo"></a>勾repo</h4><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%8B%BErepo.jpg"></p>
+<h4 id="记录token"><a href="#记录token" class="headerlink" title="记录token"></a>记录token</h4><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E8%AE%B0%E5%BD%95token.jpg"></p>
 <ul>
 <li>建议把token记好</li>
 </ul>
-<h3 id="4-设置PicGo"><a href="#4-设置PicGo" class="headerlink" title="4. 设置PicGo"></a>4. 设置PicGo</h3><p><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/picgo%E8%AE%BE%E7%BD%AE.jpg"></p>
+<h3 id="4-设置PicGo"><a href="#4-设置PicGo" class="headerlink" title="4. 设置PicGo"></a>4. 设置PicGo</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/picgo%E8%AE%BE%E7%BD%AE.jpg"></p>
 <ul>
 <li>设定仓库名的时候，是按照“账户名/仓库名的格式填写”，<strong>不能带空格</strong></li>
 <li>分支名填写<em>master</em>即可</li>
@@ -439,7 +439,7 @@
 <li>建议设置一下热键</li>
 <li>这个工具的作用是<strong>把本地图片推到仓库去</strong>，默认不同步删除操作。即<ul>
 <li>将PicGo相册的图片删除后，仓库里的图片不会咋样；</li>
-<li>直接把仓库删了,PicGo相册里的图片也暂时不会消失。当然，链接会挂。<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%90%8C%E6%AD%A5.jpg"></li>
+<li>直接把仓库删了,PicGo相册里的图片也暂时不会消失。当然，链接会挂。<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%90%8C%E6%AD%A5.jpg"></li>
 </ul>
 </li>
 <li>PicGo支持扩展<ul>
@@ -448,8 +448,8 @@
 </li>
 <li>如果遇到这种无法显示的问题：<ul>
 <li>图片外链能够正常打开</li>
-<li>应用程序的相册无法显示<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E7%9B%B8%E5%86%8C%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.jpg"></li>
-<li>点击单张图片，稍加加载之后无法显示<br><img data-src="\images\lazy_load.gif" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.gif"><br>…大概率只是网不好…毕竟国内直连Github也不是很稳定，挂个代理试试</li>
+<li>应用程序的相册无法显示<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E7%9B%B8%E5%86%8C%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.jpg"></li>
+<li>点击单张图片，稍加加载之后无法显示<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA.gif"><br>…大概率只是网不好…毕竟国内直连Github也不是很稳定，挂个代理试试</li>
 </ul>
 </li>
 <li>介于以上原因，我还是文章图片一起推好了…:first_quarter_moon:</li>
