@@ -6236,7 +6236,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </div>
 
 <p>OneDrive有不同的版本。例如我使用学校邮箱注册的版本就是A1版（教育版）。管理员是可以查看、删除其中文件的，所以请不要搞事情。</p>
-<p><strong>如何查看版本呢？</strong><br>onedrive, 教育版A1，企业版E3 ，个人版都是走全球CDN, 经测试E3和A1账户域名后缀是sharepoint.com，走的CDN线路一样的。以下是我使用的版本：</p>
+<p><strong>如何查看版本呢？</strong><br>onedrive, 教育版A1，企业版E3 ，个人版都是走全球CDN, 经测试E3和A1账户域名后缀是sharepoint.com，走的CDN线路一样的。也可登录后在<strong>设置-订阅</strong>中查看。以下是我使用的版本：</p>
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235211.png?raw=true"></p>
 <p>若想了解更多OneDrive版本的问题，看这篇帖子：<a href="https://www.hostloc.com/thread-545474-1-1.html">【总结】对比下A1 E3 GD等最近讨论热度大的网盘。。-美国VPS综合讨论-全球主机交流论坛 - Powered by Discuz! (hostloc.com)</a></p>
 <p>总结一下就是：</p>
@@ -6251,7 +6251,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p>个人临时邮箱：<a href="https://temp-mail.org/zh/">Temp Mail - 临时性 - 匿名电子邮件 (temp-mail.org)</a></p>
 </blockquote>
 <h4 id="商业版本-安全"><a href="#商业版本-安全" class="headerlink" title="商业版本 - 安全"></a>商业版本 - 安全</h4><p>若想了解更多账户安全相关的问题，看这篇帖子：<a href="https://answers.microsoft.com/zh-hans/msoffice/forum/all/%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%AD%A6%E7%9A%84/7491b2ac-3965-4360-af01-48b451ce71bb?page=1">使用大学的邮箱，我上传到onedrive的文件会被管理员查看到吗？ - Microsoft Community</a>。下面补上帖子中未发的图片：</p>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235213.png?raw=true"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235212.png?raw=true"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235217.png?raw=true"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235216.png?raw=true"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235214.png?raw=true"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235218.png?raw=true"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235215.png?raw=true"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235219.png?raw=true"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235221.png?raw=true"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235223.png?raw=true"></div></div></div>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235213.png?raw=true" alt="1"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235212.png?raw=true" alt="2"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235217.png?raw=true" alt="3"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235216.png?raw=true" alt="4"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235214.png?raw=true" alt="5"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235218.png?raw=true" alt="6"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235215.png?raw=true" alt="7"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235219.png?raw=true" alt="8"></div><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235221.png?raw=true" alt="9"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235223.png?raw=true" alt="10"></div></div></div>
 
 <h3 id="搭建下载站"><a href="#搭建下载站" class="headerlink" title="搭建下载站"></a>搭建下载站</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
 <p>项目地址：<a href="https://github.com/qkqpttgf/OneManager-php">https://github.com/qkqpttgf/OneManager-php</a><br>最终效果：<a href="https://netdisk.mednight4.com/Share/">首页 - Share - mednight4’netdisk</a></p>
@@ -6264,7 +6264,8 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235220.png?raw=true"></p>
 <p>具体使用方法请<a href="https://github.com/qkqpttgf/OneManager-php">查看项目readme</a>。<br>但是作者的readme写得比较省略，所以诞生了不少博文教程，我列出一些可以借鉴的：</p>
 <blockquote>
-<p>Heroku：<a href="https://github.com/wallleap/auroraBlog/issues/55">利用OneManager和Heroku搭建自己的网盘 · Issue #55 · wallleap/auroraBlog (github.com)</a> CloudFlare：<a href="https://www.blueskyxn.com/202102/3903.html">OneManager+CloudFlare Workers：CFW版OM·图文部署教程【支持世纪互联OD和世纪互联SP】</a></p>
+<p>Heroku： <a href="https://github.com/wallleap/auroraBlog/issues/55">利用OneManager和Heroku搭建自己的网盘 · Issue #55 · wallleap/auroraBlog (github.com)</a></p>
+<p>CloudFlare： <a href="https://www.blueskyxn.com/202102/3903.html">OneManager+CloudFlare Workers：CFW版OM·图文部署教程【支持世纪互联OD和世纪互联SP】</a></p>
 </blockquote>
 <p>我使用的SCF 腾讯无服务器云函数。方法也很简单，作者readme已给出，无脑下一步就行。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
@@ -6282,7 +6283,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <ol start="4">
 <li><p><strong>云函数-函数服务-触发管理</strong>中可以看到一个访问路径，访问它，进入安装页。</p>
 </li>
-<li><p>如果你有域名，可绑定自定义域名。这里我有参考<a href="https://logi.im/back-end/scf-onedrive-filelistor.html">FODI博客 - 自定义域名(可选)部分</a>。选择 <strong>API网关-服务-自定义域名-新建</strong>：</p>
+<li><p>如果你有域名，可绑定自定义域名。这里我参考了FODI的博客<a href="https://logi.im/back-end/scf-onedrive-filelistor.html">自定义域名(可选)部分</a>。选择 <strong>API网关-服务-自定义域名-新建</strong>：</p>
 </li>
 </ol>
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235224.png?raw=true"></p>
@@ -6292,28 +6293,28 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <ul>
 <li>方式1（较麻烦）：<br>  <strong>SSL证书-我的证书-申请免费证书-亚洲诚信-设置相关项</strong>：</li>
 </ul>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235228.png?raw=true"></p>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235230.png?raw=true">- </p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235228.png?raw=true" alt="申请证书"></p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235230.png?raw=true" alt="选择证书"></p>
 <ul>
 <li>方式2（推荐）：<br>  可以通过<strong>DNS解析DNSPod-域名解析列表-<a href="https://console.dnspod.cn/dns/list?source=cloud&from=cns_list_post">点此前往 DNSPod 控制台</a>-域名设置-添加记录-记录类型CNAME</strong>，记录值在触发方式的访问路径里，把.com后的的部分去掉就行了。最后点击操作里的<strong>SSL</strong>，选择添加，DNSPod控制台会自动为此记录指定的子域名绑定证书，你可以在<strong>证书管理</strong>里查看，部署成功后查看网站，会重定向到子域名，也可查看到网址证书：</li>
 </ul>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235234.png?raw=true"></p>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235229.png?raw=true"></p>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235232.png?raw=true"></p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235234.png?raw=true" alt="添加SSL证书"></p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235229.png?raw=true" alt="查看我的证书"></p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235232.png?raw=true" alt="浏览器网址查看证书"></p>
 <ol start="6">
 <li><p>设置OneDrive。设置选项详解可以看帖子：</p>
 <blockquote>
 <p><a href="https://www.2bboy.com/archives/176.html">Onedrive云盘程序——OneManager小白设置指南 - 醉后的星星 (2bboy.com)</a></p>
 </blockquote>
 <p> 给出我自己的设置图：</p>
-<p> <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235231.png?raw=true"></p>
-<p> <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235235.png?raw=true"></p>
+<p> <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235231.png?raw=true" alt="1"></p>
+<p> <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235235.png?raw=true" alt="2"></p>
 </li>
 </ol>
 <h4 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h4><ul>
 <li><p>主题选择：最美观的主题是renexmoe，缺点是缺少部分文件类型预览(pdf)，多文件时缺乏分页功能，只能显示第一页的内容，无法上传。<br>  功能比较全的主题有classic、purecool、onemoe、nchyn_grey，这些主题都具备满血的OneManage功能。但是目前OneManage本身仍然有Bug，例如在大量文件展示时，文件分页的最后一页为空，无法显示。<br>  主题样式表文件均托管在CDN，所以会先加载CDN的官方样式表，再加载自定义样式，如果你想给你的网盘自定一张分辨率很高的背景图就必须考虑图片加载速度的问题。也可以从CDN下载样式并修改，然后托管到自己订阅的CDN服务。</p>
-<p>  <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235233.png?raw=true"></p>
-<p>  <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235237.png?raw=true"></p>
+<p>  <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235233.png?raw=true" alt="主题选择"></p>
+<p>  <img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235237.png?raw=true" alt="分页bug"></p>
 </li>
 <li><p>绑定OneDrive网盘。学校邮箱注册的OneDrive版本是国际版。我曾使用微软的Azure控制台新建应用，添加id和key的方式去绑定，给一个<a href="https://www.puresourcecode.com/dotnet/azure/save-and-retrieve-secret-from-azure-keyvault/">教程</a>，这种方式实在是不方便。<strong>A1版本（教育版）建议在设置里直接添加OneDrive分享链接</strong>，分享的链接有两种方式，访问者可编辑和访问者不可编辑，区别在于部署完后你的网盘站点是否支持上传，不可编辑当然就会上传出错了。个人版本（5G版本）无法通过分享链接创建，只能通过<a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">Azure新建应用</a>添加client，我添加应用的时候出现网络错误，应该是国内网络的锅，所以个人账户搭建就流产了。</p>
 </li>
@@ -6322,7 +6323,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </ul>
 <p>OneDrive部分到此结束。</p>
 <h2 id="Github学生包"><a href="#Github学生包" class="headerlink" title="Github学生包"></a>Github学生包</h2><p>大多数开发相关的都放到github学生包了，免费的CDN托管、免费一年的域名等等…详情可以看<a href="https://education.github.com/pack">优惠页</a>。</p>
-<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235236.png?raw=true"></p>
+<p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235236.png?raw=true" alt="优惠项节选"></p>
 <blockquote>
 <p>申请：<a href="https://education.github.com/discount_requests/student_application">Request a discount - GitHub Education</a></p>
 </blockquote>
