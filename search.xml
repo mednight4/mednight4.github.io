@@ -6240,7 +6240,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235211.png?raw=true"></p>
 <p>若想了解更多OneDrive版本的问题，看这篇帖子：<a href="https://www.hostloc.com/thread-545474-1-1.html">【总结】对比下A1 E3 GD等最近讨论热度大的网盘。。-美国VPS综合讨论-全球主机交流论坛 - Powered by Discuz! (hostloc.com)</a></p>
 <p>总结一下就是：</p>
-<div class="tabs" id="onedrive-classes"><ul class="nav-tabs"><li class="tab active"><a href="#onedrive-classes-1">个人版</a></li><li class="tab"><a href="#onedrive-classes-2">世纪互联版</a></li><li class="tab"><a href="#onedrive-classes-3">开发者e3</a></li><li class="tab"><a href="#onedrive-classes-4">教育版a1p</a></li><li class="tab"><a href="#onedrive-classes-5">教育版a1</a></li></ul><div class="tab-content"><div class="tab-pane active" id="onedrive-classes-1"><p>价格：60-100年（拼车）<br>空间：1T<br>隐私：保障。<br>国内线路稳定性：好。<br>国内：可用。<br>翻车指标：准付费，无所畏惧</p></div><div class="tab-pane" id="onedrive-classes-2"><p>价格：最低32.00/月<br>空间：1T<br>隐私：保障。<br>国内线路稳定性：非常好。<br>国内：可用。<br>翻车指标：准付费，无所畏惧</p></div><div class="tab-pane" id="onedrive-classes-3"><p>价格：300-500<br>空间：5T*25个账号  感谢大佬指正<br>隐私：保障。<br>国内线路稳定性：不好。<br>国内：可用。（附带桌面应用）<br>翻车指标：微软风控。后续微软政策变更等。</p></div><div class="tab-pane" id="onedrive-classes-4"><p>价格：0-30<br>空间：5T<br>隐私：无保障。<br>国内线路稳定性：不好。<br>国内：可用。（附带桌面应用）<br>翻车指标：微软风控。后续微软政策变更等。</p></div><div class="tab-pane" id="onedrive-classes-5"><p>价格：0-10<br>空间：5T<br>隐私：无保障。<br>国内线路稳定性：不好。<br>国内：可用。<br>翻车指标：微软风控。后续微软政策变更等。</p></div></div></div>
+<div class="tabs" id="onedrive-classes"><ul class="nav-tabs"><li class="tab active"><a href="#onedrive-classes-1">个人版</a></li><li class="tab"><a href="#onedrive-classes-2">世纪互联版</a></li><li class="tab"><a href="#onedrive-classes-3">开发者e3</a></li><li class="tab"><a href="#onedrive-classes-4">教育版a1p</a></li><li class="tab"><a href="#onedrive-classes-5">教育版a1</a></li></ul><div class="tab-content"><div class="tab-pane active" id="onedrive-classes-1"><p>价格：60-100/年（拼车）<br>空间：1T<br>隐私：保障。<br>国内线路稳定性：好。<br>国内：可用。<br>翻车指标：准付费，无所畏惧</p></div><div class="tab-pane" id="onedrive-classes-2"><p>价格：最低32.00/月<br>空间：1T<br>隐私：保障。<br>国内线路稳定性：非常好。<br>国内：可用。<br>翻车指标：准付费，无所畏惧</p></div><div class="tab-pane" id="onedrive-classes-3"><p>价格：300-500<br>空间：5T*25个账号<br>隐私：保障。<br>国内线路稳定性：不好。<br>国内：可用。（附带桌面应用）<br>翻车指标：微软风控。后续微软政策变更等。</p></div><div class="tab-pane" id="onedrive-classes-4"><p>价格：0-30<br>空间：5T<br>隐私：无保障。<br>国内线路稳定性：不好。<br>国内：可用。（附带桌面应用）<br>翻车指标：微软风控。后续微软政策变更等。</p></div><div class="tab-pane" id="onedrive-classes-5"><p>价格：0-10<br>空间：5T<br>隐私：无保障。<br>国内线路稳定性：不好。<br>国内：可用。<br>翻车指标：微软风控。后续微软政策变更等。</p></div></div></div>
 
 <h4 id="个人版本-升级"><a href="#个人版本-升级" class="headerlink" title="个人版本 - 升级"></a>个人版本 - 升级</h4><p>个人用户（任意邮箱注册的用户拥有5G的空间），通过邀请链接注册的方式，每邀请一个人双方可以提升0.5G空间，最多邀请20个人升级到15G。</p>
 <blockquote>
@@ -6286,7 +6286,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </li>
 </ol>
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235224.png?raw=true"></p>
-<p>选择<strong>自定义路径映射</strong>，<strong>新建</strong>一条记录，路径为 <strong>/**，指向</strong>发布**环境。</p>
+<p>选择<strong>自定义路径映射</strong>，<strong>新建</strong>一条记录，路径为 <strong>/</strong>  ，指向<strong>发布</strong>环境。</p>
 <p><img data-src="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235227.png?raw=true"></p>
 <p>这里有个证书选项，默认是空的，可以采用以下两种方式申请免费证书，</p>
 <ul>
