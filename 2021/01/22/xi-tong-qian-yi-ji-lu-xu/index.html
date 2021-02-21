@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%BA%8F/20210124194831.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E5%BA%8F/20210124194832.png">
 <meta property="article:published_time" content="2021-01-22T09:57:44.000Z">
-<meta property="article:modified_time" content="2021-01-29T11:33:51.508Z">
+<meta property="article:modified_time" content="2021-02-21T13:55:47.516Z">
 <meta property="article:author" content="mednight4">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -369,7 +369,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-29 19:33:51" itemprop="dateModified" datetime="2021-01-29T19:33:51+08:00">2021-01-29</time>
+        <time title="修改时间：2021-02-21 21:55:47" itemprop="dateModified" datetime="2021-02-21T21:55:47+08:00">2021-02-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -396,7 +396,7 @@
 <h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p>打算1T ssd留给win10，hdd分两个区，256G hdd划为双系统资料交换区，剩下的留给linux。</p>
 <p>因为文件系统的原因，安装Win10分区的文件系统为NTFS，安装Linux分区的文件系统为ext4，linux可以直接访问读写NTFS，win10默认不能访问ext4格式，但可以借助第三方工具LinuxReader等提取。遗憾的是，假如linux写了win10下的文件的话，可能还是会出问题。因此建议各自用各自的文件，互不干扰。关键时刻系统之间需要互传资料怎么办呢？可以用U盘，exFAT文件系统，被win10、mac、linux所兼容，同时也支持4G以上的文件。</p>
 <p>多出来的128G固态条当然也不能就这么丢了。京东上花百来块钱买个m.2硬盘盒，当移动硬盘用。</p>
-<p>这次升级的操作很麻烦，同时风险也挺大的，因为很多东西仅仅停留在理论上。我打算慢慢试错，分几期记录：<code>序-文件备份-系统安装-软件安装</code>。</p>
+<p>这次升级的操作很麻烦，同时风险也挺大的，因为很多东西仅仅停留在理论上。我打算慢慢试错，分几期记录：<code>序-文件备份-系统安装</code>。</p>
 <p>单子已经下了，希望不会翻车。</p>
 <h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><p>之前的主力系统一直是win10，linux只在虚拟机里跑过。用的较多是CentOS和Deepin，一个用来做实验写报告，一个用来当学习入门，还有呃…挂浏览器刷网课。要说最省事的当然是Deepin，没啥好折腾的，颜值也还好，开箱即用，啥都预装好了，以致于让人感觉不到这其实是一台linux，专心用软件就行了。后来久闻arch系大名，动了歪脑筋，就装了manjaro来玩，不得不说pacman和yay实在是太顶了，一件部署非常方便。ubuntu装过，感觉丑，卸了，不过桌面环境能换，丑不是问题。</p>
 <p>目前考虑当桌面机使用的是manjaro、mint、ubuntu和deepin。都没有非常深入的了解，说个具体印象吧：</p>
@@ -411,7 +411,7 @@
 </blockquote>
 <p>虽然很久没更新了。</p>
 <p>ubuntu界面大家都见过，就不放图了。</p>
-<h3 id="mint"><a href="#mint" class="headerlink" title="mint"></a>mint</h3><p>mint基于ubuntu，出现问题直接百度ubuntu解决方案即可。作为用户桌面系统，热度比ubuntu火，次于manjaro。以前没装过，只知道桌面比较特别，mate和cinnamon桌面操作逻辑像win7。界面简洁风，挺好看的。据说继承了ubuntu的所有优点，没有了ubuntu著名的内部错误？而且mint对驱动支持不错，安装完直接就可以用了，自带一个驱动管理器。软件仓库方面，mint有自己的仓库，因此软件数量比ubuntu多一点。ubuntu系装闭源软件都要添加ppa（Personal Package Archives，个人软件包文档）。</p>
+<h3 id="mint"><a href="#mint" class="headerlink" title="mint"></a>mint</h3><p>大薄荷基于ubuntu，出现问题直接百度ubuntu解决方案即可。作为用户桌面系统，热度比ubuntu火，次于manjaro。以前没装过，只知道桌面比较特别，mate和cinnamon桌面操作逻辑像win7。界面简洁风，挺好看的。据说继承了ubuntu的所有优点，没有了ubuntu著名的内部错误？而且mint对驱动支持不错，安装完直接就可以用了，自带一个驱动管理器。软件仓库方面，mint有自己的仓库，因此软件数量比ubuntu多一点。ubuntu系装闭源软件都要添加ppa（Personal Package Archives，个人软件包文档）。</p>
 <p>安装时随便截下的图，界面非常优雅：</p>
 <ul>
 <li>  图1：一边安装系统一边更新源，右上角提示无需安装其他驱动。</li>

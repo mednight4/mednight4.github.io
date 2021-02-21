@@ -2650,7 +2650,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p>打算1T ssd留给win10，hdd分两个区，256G hdd划为双系统资料交换区，剩下的留给linux。</p>
 <p>因为文件系统的原因，安装Win10分区的文件系统为NTFS，安装Linux分区的文件系统为ext4，linux可以直接访问读写NTFS，win10默认不能访问ext4格式，但可以借助第三方工具LinuxReader等提取。遗憾的是，假如linux写了win10下的文件的话，可能还是会出问题。因此建议各自用各自的文件，互不干扰。关键时刻系统之间需要互传资料怎么办呢？可以用U盘，exFAT文件系统，被win10、mac、linux所兼容，同时也支持4G以上的文件。</p>
 <p>多出来的128G固态条当然也不能就这么丢了。京东上花百来块钱买个m.2硬盘盒，当移动硬盘用。</p>
-<p>这次升级的操作很麻烦，同时风险也挺大的，因为很多东西仅仅停留在理论上。我打算慢慢试错，分几期记录：<code>序-文件备份-系统安装-软件安装</code>。</p>
+<p>这次升级的操作很麻烦，同时风险也挺大的，因为很多东西仅仅停留在理论上。我打算慢慢试错，分几期记录：<code>序-文件备份-系统安装</code>。</p>
 <p>单子已经下了，希望不会翻车。</p>
 <h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><p>之前的主力系统一直是win10，linux只在虚拟机里跑过。用的较多是CentOS和Deepin，一个用来做实验写报告，一个用来当学习入门，还有呃…挂浏览器刷网课。要说最省事的当然是Deepin，没啥好折腾的，颜值也还好，开箱即用，啥都预装好了，以致于让人感觉不到这其实是一台linux，专心用软件就行了。后来久闻arch系大名，动了歪脑筋，就装了manjaro来玩，不得不说pacman和yay实在是太顶了，一件部署非常方便。ubuntu装过，感觉丑，卸了，不过桌面环境能换，丑不是问题。</p>
 <p>目前考虑当桌面机使用的是manjaro、mint、ubuntu和deepin。都没有非常深入的了解，说个具体印象吧：</p>
@@ -2665,7 +2665,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </blockquote>
 <p>虽然很久没更新了。</p>
 <p>ubuntu界面大家都见过，就不放图了。</p>
-<h3 id="mint"><a href="#mint" class="headerlink" title="mint"></a>mint</h3><p>mint基于ubuntu，出现问题直接百度ubuntu解决方案即可。作为用户桌面系统，热度比ubuntu火，次于manjaro。以前没装过，只知道桌面比较特别，mate和cinnamon桌面操作逻辑像win7。界面简洁风，挺好看的。据说继承了ubuntu的所有优点，没有了ubuntu著名的内部错误？而且mint对驱动支持不错，安装完直接就可以用了，自带一个驱动管理器。软件仓库方面，mint有自己的仓库，因此软件数量比ubuntu多一点。ubuntu系装闭源软件都要添加ppa（Personal Package Archives，个人软件包文档）。</p>
+<h3 id="mint"><a href="#mint" class="headerlink" title="mint"></a>mint</h3><p>大薄荷基于ubuntu，出现问题直接百度ubuntu解决方案即可。作为用户桌面系统，热度比ubuntu火，次于manjaro。以前没装过，只知道桌面比较特别，mate和cinnamon桌面操作逻辑像win7。界面简洁风，挺好看的。据说继承了ubuntu的所有优点，没有了ubuntu著名的内部错误？而且mint对驱动支持不错，安装完直接就可以用了，自带一个驱动管理器。软件仓库方面，mint有自己的仓库，因此软件数量比ubuntu多一点。ubuntu系装闭源软件都要添加ppa（Personal Package Archives，个人软件包文档）。</p>
 <p>安装时随便截下的图，界面非常优雅：</p>
 <ul>
 <li>  图1：一边安装系统一边更新源，右上角提示无需安装其他驱动。</li>
@@ -2840,6 +2840,16 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 </ol>
 <p>开始使用win10。</p>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155432.png" alt="win10新系统的分区情况"></p>
+<h2 id="openSuSE-leap15-2系统安装"><a href="#openSuSE-leap15-2系统安装" class="headerlink" title="openSuSE leap15.2系统安装"></a>openSuSE leap15.2系统安装</h2><h3 id="manjaro和openSuSE"><a href="#manjaro和openSuSE" class="headerlink" title="manjaro和openSuSE"></a>manjaro和openSuSE</h3><p>我先知道的manjaro。虚拟机里试了一下manjaro的两个桌面kde5和gnome3，相比与kde，gnome版本开箱不需要太多配置，装好常用软件就能使用，ohmyzsh、ranger也都默认装好了，字体渲染也很棒，只是我单纯不喜欢gnome这种为了简洁而把设置项藏得很深的风格；kde定制性很强，但感觉manjaro对这个桌面调教欠佳，比如字体渲染方面就很奇怪，过渡动画偶然卡顿，需要大折腾一把，把主题、图标、窗口界面、字体啥的统统更换一遍，没配置好桌面容易崩溃。</p>
+<p>其实以上提到的这些问题不大，真正比较烦的是manjaro作为arch的下游发行版，软件适配的优先级arch &gt; manjaro，archlinuxcn的包是基于arch打包的，如果manjaro有包没有及时更新，可能会出现问题。一个实际的例子就是：qv2ray 前一阵子在 arch 能跑，manjaro 上就不能正常使用：<br><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210221222414.png" alt="Qv2ray的贴心警告"></p>
+<p>简单来说，上了arch系就需要谨慎操作考虑系统稳定性。我个人是喜欢折腾软件的，但不喜欢花大时间做系统回滚和重装，丢了资料就纯作死了。</p>
+<p>后来通过一个视频偶然了解到SuSE系，打开新世界大门。稳：openSUSE的leap版和服务器SUSE的内核保持一致；软件安装方便：打包侠打包工具OBS，opi命令可一键添加用户仓库并安装社区软件，有ppa+aur那味；美观：对kde的调教是一众发行版中最好的，因为openSUSE开发人员在kde社区兼职；管理简单，YaST类似win10的控制面板；参考文档齐全。</p>
+<iframe id="spkj" src="https://player.bilibili.com/player.html?aid=926599141&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100%> </iframe>
+<script type="text/javascript">  
+document.getElementById("spkj").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";</script>
+
+<p>然后我就投奔大蜥蜴了。</p>
+<p>安装以后补。</p>
 ]]></content>
       <categories>
         <category>装机</category>
