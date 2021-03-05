@@ -382,14 +382,21 @@
 
   
   <url>
-    <loc>https://mednight4.github.io/tags/python/</loc>
+    <loc>https://mednight4.github.io/tags/linux/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mednight4.github.io/tags/linux/</loc>
+    <loc>https://mednight4.github.io/tags/C/</loc>
+    <lastmod>2021-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/tags/python/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -437,21 +444,7 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://mednight4.github.io/tags/C/</loc>
-    <lastmod>2021-03-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
-  
-  <url>
-    <loc>https://mednight4.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
-    <lastmod>2021-03-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>https://mednight4.github.io/categories/%E9%85%8D%E7%BD%AE/</loc>
@@ -462,6 +455,13 @@
   
   <url>
     <loc>https://mednight4.github.io/categories/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2021-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mednight4.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
