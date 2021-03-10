@@ -6841,7 +6841,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p><a href="https://mrswolf.github.io/zh-cn/2019/05/24/manjaro%E8%B8%A9%E5%9D%91%E8%AE%B0/#%E5%AE%89%E8%A3%85nodejs">manjaro踩坑记 - swolf的博客 (mrswolf.github.io)</a></p>
 </blockquote>
 <p>nodejs - hexo</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装nvm版本管理（直接安装nodejs会有权限错误）</span></span><br><span class="line">yay -S nvm</span><br><span class="line"><span class="built_in">source</span> /usr/share/nvm/init-nvm.sh</span><br><span class="line">nvm install node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装npm和hexo</span></span><br><span class="line">sudo pacman -S npm</span><br><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org  <span class="comment"># 源加速</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装nvm版本管理（直接安装nodejs会有权限错误）</span></span><br><span class="line">yay -S nvm</span><br><span class="line"><span class="built_in">source</span> /usr/share/nvm/init-nvm.sh</span><br><span class="line">nvm install node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装npm和hexo</span></span><br><span class="line">sudo pacman -S npm</span><br><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org  <span class="comment"># 淘宝源，下载大多数软件可加速</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/  <span class="comment"># 改回官方源，小部分软件还是得靠官方源</span></span><br></pre></td></tr></table></figure>
 
 <p>复制博客文件到linux下，配置git。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;user_name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;user_email&quot;</span></span><br><span class="line">git config user.name  <span class="comment"># 查看回显</span></span><br><span class="line">git config user.email</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;user_email&quot;</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub </span><br><span class="line"><span class="comment"># copy cat回显</span></span><br></pre></td></tr></table></figure>
@@ -6856,6 +6856,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p><a href="https://hexo.io/zh-cn/docs/">文档 | Hexo</a></p>
 </blockquote>
 <p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305210422.png"></p>
+<h4 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h4><p>两个系统nodejs版本跨度太大可能会导致博客环境炸掉，而linux滚完的nodejs一般都是最新的…尽量在统一的环境下generate-deploy吧。</p>
 <h2 id="可选配置"><a href="#可选配置" class="headerlink" title="可选配置"></a>可选配置</h2><h3 id="软件-1"><a href="#软件-1" class="headerlink" title="软件"></a>软件</h3><p><strong>软件集整合推荐</strong></p>
 <blockquote>
 <p><a href="https://www.biaodianfu.com/install-manjaro-linux.html#comment-161818">Manjaro Linux 安装与使用 – 标点符 (biaodianfu.com)</a><br><a href="https://yqsas.com/2019/03/03/manjaro-in-t480s/">折腾之 Manjaro 安装使用指北 - yqsas的博客 | Yqsas Blog</a><br><a href="https://juejin.cn/post/6844903910168068109">Manjaro 安装体验小结 (juejin.cn)</a><br><a href="https://blog.kaaass.net/archives/1205">Arch Linux (Manjaro) 配置与常用软件安装指南 | KAAAsS’s blog</a><br><a href="https://blog.csdn.net/weixin_30687587/article/details/97824447?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">archlinux/manjaro常用软件推荐_weixin_30687587的博客-CSDN博客</a><br><a href="https://zhuanlan.zhihu.com/p/89847601">KDE美化之路 - 知乎 (zhihu.com)</a></p>
@@ -6991,6 +6992,35 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
 <p><a href="https://www.gnome-look.org/browse/cat/109/order/latest/">GRUB Themes - Gnome-look.org (gnome-look.org)</a></p>
 </blockquote>
 <p>挑选按照github官方说明安装。</p>
+<h1 id="后续问题"><a href="#后续问题" class="headerlink" title="后续问题"></a>后续问题</h1><h2 id="grub添加win10引导"><a href="#grub添加win10引导" class="headerlink" title="grub添加win10引导"></a>grub添加win10引导</h2><p>2021-03-8：滚动更新了grub（似乎警告了一句配置文件迁移），生成了新的grub默认配置文件，没有自动添加win10引导，导致grub选择页面缺失windows manage boot，无法直接点击进win10了。好在两个系统的引导还在，只是互相没有关联了，麻烦点可以从bios更改引导顺序进入不同的系统。</p>
+<p>为了方便还是手动把manage boot添加到grub。</p>
+<p><strong>grub语法</strong></p>
+<p>在开机后grub页有个C按键可进入Command，grub有自己的一套命令。目前要用到的基本是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">insmod part_gpt      <span class="comment"># 磁盘格式是gpt</span></span><br><span class="line">insmod fat           <span class="comment"># 分区格式fat</span></span><br><span class="line">ls                   <span class="comment"># 列出(hd0,gpt0)、(hd0)等等</span></span><br><span class="line"><span class="built_in">set</span> root=(hd1,gpt1)  <span class="comment"># 选择此磁盘为启动根目录</span></span><br><span class="line">ls /     <span class="comment"># 此时可以查看此磁盘下的文件，efi分区下都有efi文件夹，可以ls (hdX,X)/一圈，选到微软的efi分区为止</span></span><br><span class="line">chainloader /EFI/Microsoft/Boot/bootmgfw.efi    <span class="comment"># 加载此引导文件，路径固定</span></span><br><span class="line">boot                 <span class="comment"># go</span></span><br></pre></td></tr></table></figure>
+
+<p>在grub如此一番操作可以手动选择引导进入win10，然后我们把这波操作写到开机配置文件。<br>进入系统后，<strong>grub配置文件地址</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动配置</span></span><br><span class="line">/boot/grub/grub.cfg <span class="comment"># 30_os-prober</span></span><br><span class="line"><span class="comment"># 功能配置</span></span><br><span class="line">/etc/grub.d/30_os-prober <span class="comment">## 这个可以不管它</span></span><br></pre></td></tr></table></figure>
+
+<p>进入配置文件，并添加配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l <span class="comment"># 查看磁盘 我win10的efi是/dev/nvme0n1p1</span></span><br><span class="line">sudo grub-probe -t fs_uuid -d /dev/nvme0n1p1 <span class="comment"># 查看该磁盘的uuid</span></span><br><span class="line">sudo vim /boot/grub/grub.cfg</span><br><span class="line"><span class="comment"># BEGIN /etc/grub.d/30_os-prober</span></span><br><span class="line">menuentry <span class="string">&#x27;Microsoft Windows 10&#x27;</span> &#123;</span><br><span class="line">	insmod part_gpt</span><br><span class="line">	insmod fat</span><br><span class="line">	insmod chain</span><br><span class="line">	<span class="built_in">set</span> root=<span class="string">&#x27;(hd1,gpt1)&#x27;</span> <span class="comment">## 这里一定要选对，选不对就看参考文章用变量代替</span></span><br><span class="line">	chainloader /EFI/Microsoft/Boot/bootmgfw.efi</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># END /etc/grub.d/30_os-prober</span></span><br><span class="line">shutdown now</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210310173846.png"></p>
+<p>配置文件被配烂了可以重新生成。不过在此之前，其实grub可以自动检测到win10然后把它添加到引导菜单：</p>
+<blockquote>
+<p>注：<a href="http://lanlingzi.cn/post/notes/2016/0313_grub_win10/">后经验证，grub-mkconfig无法扫描到win10，是由于少安装了os-prober：</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S os-prober</span><br><span class="line"><span class="comment"># 生成文件</span></span><br><span class="line">sudo grub-mkconfig -o /boot/grub/grub.cfg</span><br><span class="line"><span class="comment"># 或者 更新文件</span></span><br><span class="line">sudo update-grub</span><br><span class="line"><span class="comment"># 或者 linux重装引导</span></span><br><span class="line">sudo grub-install /dev/XXX <span class="comment"># XXX=你的引导设备</span></span><br><span class="line"><span class="comment">## 重装引导时不要没装完就退出了，引导文件丢了很麻烦</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>参考</strong></p>
+<blockquote>
+<p><a href="https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BC%95%E5%AF%BC%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">GRUB (简体中文) - ArchWiki (archlinux.org)</a>|</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 链式加载 UEFI 模式下安装的 Windows/Linux</span></span><br><span class="line">insmod fat  <span class="comment"># 文件系统</span></span><br><span class="line"><span class="built_in">set</span> root=(hd1,gpt1) <span class="comment"># 选择磁盘</span></span><br><span class="line">chainloader (<span class="variable">$&#123;root&#125;</span>)/EFI/Microsoft/Boot/bootmgfw.efi <span class="comment"># win10的引导地址，路径是固定的</span></span><br><span class="line">boot <span class="comment"># go</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/weixin_43669969/article/details/110820419">为双系统grub添加Windows10引导启动项_Scar~let的博客-CSDN博客_grub2引导win10</a><br><a href="https://www.jb51.net/article/47645.htm">grub命令行启动系统简明教程_Linux_脚本之家 (jb51.net)</a></p>
+</blockquote>
+<hr>
+<p><strong>3.10补充</strong></p>
+<p>manjaro已经卸了。<br>之后一段时间不会都动新系统了，太折腾。滚动发行版注定是要当主力机用的，但是目前环境下还是win适合办事。滚更了一个引导就折腾了小半天。<br>当下老老实实学好C#，整懂汇编，做完高数才是正道。<br>等我考完研再慢慢折腾吧。</p>
 ]]></content>
       <categories>
         <category>配置</category>
