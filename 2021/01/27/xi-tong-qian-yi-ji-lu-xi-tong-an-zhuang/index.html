@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="系统安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统迁移记录-系统安装">
+<meta property="og:url" content="https://mednight4.github.io/2021/01/27/xi-tong-qian-yi-ji-lu-xi-tong-an-zhuang/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="系统安装">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155429.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155430.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155431.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155435.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155434.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155433.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155432.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210221222414.png">
+<meta property="article:published_time" content="2021-01-27T11:38:27.000Z">
+<meta property="article:modified_time" content="2021-02-24T16:01:12.000Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155429.png">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2021/01/27/xi-tong-qian-yi-ji-lu-xi-tong-an-zhuang/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>系统迁移记录-系统安装 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">系统迁移记录-系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#win10%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">win10系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B0%E8%B4%AD%E5%9B%BA%E6%80%81"><span class="nav-text">初始化新购固态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDISO%E9%95%9C%E5%83%8F"><span class="nav-text">下载ISO镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#U%E7%9B%98%E5%AE%89%E8%A3%85PE%E7%B3%BB%E7%BB%9F"><span class="nav-text">U盘安装PE系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%86%E6%9C%BA%E6%9B%B4%E6%8D%A2%E5%9B%BA%E6%80%81"><span class="nav-text">拆机更换固态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-text">重装系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-text">linux系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#manjaro%E5%92%8CopenSuSE"><span class="nav-text">manjaro和openSuSE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-02-24%E6%9B%B4%E6%96%B0%E8%A1%A5%E5%85%85"><span class="nav-text">21.02.24更新补充</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/01/27/xi-tong-qian-yi-ji-lu-xi-tong-an-zhuang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          系统迁移记录-系统安装
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-27 19:38:27" itemprop="dateCreated datePublished" datetime="2021-01-27T19:38:27+08:00">2021-01-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-25 00:01:12" itemprop="dateModified" datetime="2021-02-25T00:01:12+08:00">2021-02-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%A3%85%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">装机</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">系统安装</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="系统迁移记录-系统安装"><a href="#系统迁移记录-系统安装" class="headerlink" title="系统迁移记录-系统安装"></a>系统迁移记录-系统安装</h1><h2 id="win10系统安装"><a href="#win10系统安装" class="headerlink" title="win10系统安装"></a>win10系统安装</h2><p>由于我对win10比较熟悉，先装win10。</p>
+<h3 id="初始化新购固态"><a href="#初始化新购固态" class="headerlink" title="初始化新购固态"></a>初始化新购固态</h3><p>关于新购的固态硬盘，写入东西之前需要先将磁盘转换为GPT分区格式（此外还有一种格式，但是固态装win10用那种格式会很蠢，我不介绍了）。转换为GPT格式的方法：</p>
+<ul>
+<li>有win10的情况下读取固态。<br>  具体情景：新装固态作为原有系统的磁盘拓展，此时：有硬盘盒可外接固态；或者本子有多个固态插口。<br>  处理办法：右键状态栏win10徽标键进入磁盘管理，会提示你对新装固态进行初始化，选择GBT格式即可。</li>
+<li>只能在无系统下新装固态。<br>  具体情景：垃圾佬刚把电脑硬件组装好。<br>  处理办法：在U盘安装一个PE系统。进PE的分区助手将固态初始化为GBT格式。这两步骤我将在后续说明。</li>
+</ul>
+<p>稳妥起见，利用PE系统+ISO镜像的方式安装win10。</p>
+<h3 id="下载ISO镜像"><a href="#下载ISO镜像" class="headerlink" title="下载ISO镜像"></a>下载ISO镜像</h3><p>不建议第三方提供的镜像。只建议两家：微软官网和<a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">MSDN I tell you</a>。这里默认你的网络状况很好，所以介绍微软官网的镜像。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">下载 Windows 10 (microsoft.com)</a></p>
+</blockquote>
+<p>电脑直接进去只有镜像制作工具，不提供镜像下载入口。因为网站通过响应式检测到浏览器是pc端，ctrl+shift+I进入调试，将响应式改为手机并刷新，选择你的win10版本对应镜像并下载。镜像一般是家庭中文版，可以在<strong>设置-关于</strong>里查看。当然，你也可以下载镜像制作工具，运行后选择从ISO安装，然后再下载ISO镜像。<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155429.png"></p>
+<h3 id="U盘安装PE系统"><a href="#U盘安装PE系统" class="headerlink" title="U盘安装PE系统"></a>U盘安装PE系统</h3><details class="note "><summary><p>warming</p>
+</summary>
+<p>其实可以直接将镜像做在U盘里，BIOS引导改为U盘启动，开机直接安装系统。但是没有PE就不能对分区进行转换、对齐等操作，还是不推荐。</p>
+
+</details>
+
+<p>装备一个大于8G的空U盘。纯净一点的PE工具建议PE工具箱。下载64位最新版V2.1即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.wepe.com.cn/download.html">微PE工具箱 - 下载 (wepe.com.cn)</a></p>
+</blockquote>
+<p>点击exe直接运行，选择安装PE到U盘，注意，如果你选择默认安装方案一，会将U盘划为三分区，ESD-USB分区为正常的U盘分区，可以照常存放文件；EFI分区里是PE系统文件和PE系统引导。还有一个未分配分区我也不知道干啥的。</p>
+<div class="note danger"><p>手动对U盘进行分区操作非常麻烦，win10自带的磁盘管理并不支持此操作，哪怕是PE的分区助手也不能对U盘分区拓展和合并，望周知并谨慎选择方案。</p>
+</div>
+
+<p>当然我是不介意U盘多出一个分区来安装系统。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155430.png"></p>
+<p>分区结果：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155431.png"></p>
+<p>安装完PE后将上一步的.ISO镜像文件拷贝到ESD-USB里即可。</p>
+<h3 id="拆机更换固态"><a href="#拆机更换固态" class="headerlink" title="拆机更换固态"></a>拆机更换固态</h3><p>稳妥起见，拆机前插上U盘，将引导顺序改为 U盘 &gt; 系统，看下之前的ISO是否能正常挂载运行。</p>
+<p>进入BIOS修改引导顺序，每个品牌进入BIOS按键不一致，自查（hp的进入键是F10）：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155435.jpg"></p>
+<p>查看ISO镜像挂载情况，右键镜像挂载后进入文件夹，有一个setup.exe文件，可以运行查看，出现安装win10的选项后确认无误，退出。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155434.png"></p>
+<p>拆机，更换固态，如果是笔记本，更换固态前最好将电池拆下。更换完后别急着拧D面螺丝，先开一下机看是否能正常进入PE，确保硬件无误。<strong>更换固态后摁下开机键，头一两次不能正常开机是很正常的事情，多摁几次就行了。</strong></p>
+<p>如果能正常进入PE，把电脑装好。</p>
+<h3 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h3><p>在挂载ISO安装之前：</p>
+<ol>
+<li><p>转换GBT格式。如果之前的步骤没有将固态初始化为GBT格式，此时可以进入桌面的分区助手，然后右键将分区转换为GPT格式。</p>
+</li>
+<li><p><strong>分区4k对齐</strong>。所谓4K对齐，是指符合“4K扇区”定义格式化过的硬盘，并按照“4K扇区”的规则写入数据。如果你的固态是使用过的，记得务必在 <strong>分区助手-固态磁盘-右键-高级-对磁盘4K对齐</strong>，否则性能损失极大。<br> 不过我更换新固态时没有看到此选项，装完系统后查看固态分区是已对齐的。<br>装系统的分区仍然是“未分配”的状态。</p>
+</li>
+<li><p>挂载ISO镜像，setup.exe安装系统，系统选择你账户拥有的（一般是家庭中文版），磁盘选择新固态的磁盘。</p>
+</li>
+<li><p>不出意外，等win10系统安装环境制作完毕，会退回PE系统，此时重启系统。</p>
+</li>
+<li><p>开机引导之前进入BIOS（F10），将引导顺序改回 系统 &gt; U盘，否则又会进入PE。</p>
+</li>
+<li><p>BIOS更改确认，重启。</p>
+</li>
+<li><p>直面多嘴的小娜。</p>
+<p> <img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155433.png"></p>
+</li>
+<li><p>小娜会让你连接网络，并在后续让你登陆微软账户。如果你对你的网络状况缺乏信心，或者对微软的土豆服务器缺乏信心，请尝试<strong>连接手机热点</strong>。因为：</p>
+ <div class="note danger"><p><strong>微软系统安装选项不包含上一步。</strong></p>
+</div>
+
+<p> 如果你的网络状况不行，必定会卡在后续的微软账户登陆界面，被迫只能选择本地账户登陆。<br> 同时你还不能返回上一步更改已连接的网络。</p>
+</li>
+<li><p>用户登陆。如果你有微软账户，此时请务必登陆账户，这样做可以：开机默认激活系统，同步前win10系统设置项，全同步Edge。</p>
+</li>
+<li><p>系统安装完成。可以断掉热点换成其他网络，因为此时系统会主动检测下载硬件所需驱动<del>（linux学学人家）</del>。</p>
+<p>联网晾一个小时左右，重启。</p>
+<p>右键开始win徽标，进入设备管理器，检查驱动安装情况，假如没有黄色感叹号，说明驱动正常，否则请手动下载安装问题驱动<del>（懒得找驱动就再重装一次系统吧）</del>。</p>
+<p>进win10的系统更新，将系统更至最新，再次重启。</p>
+</li>
+</ol>
+<p>开始使用win10。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210202155432.png" alt="win10新系统的分区情况"></p>
+<h2 id="linux系统安装"><a href="#linux系统安装" class="headerlink" title="linux系统安装"></a>linux系统安装</h2><h3 id="manjaro和openSuSE"><a href="#manjaro和openSuSE" class="headerlink" title="manjaro和openSuSE"></a>manjaro和openSuSE</h3><p>我先知道的manjaro。虚拟机里试了一下manjaro的两个桌面kde5和gnome3，相比与kde，gnome版本开箱不需要太多配置，装好常用软件就能使用，ohmyzsh、ranger也都默认装好了，字体渲染也很棒，只是我单纯不喜欢gnome这种为了简洁而把设置项藏得很深的风格；kde定制性很强，但感觉manjaro对这个桌面调教欠佳，比如字体渲染方面就很奇怪，过渡动画偶然卡顿，需要大折腾一把，把主题、图标、窗口界面、字体啥的统统更换一遍，没配置好桌面容易崩溃。</p>
+<p>其实以上提到的这些问题不大，比较烦的是manjaro作为arch的下游发行版，软件适配的优先级arch &gt; manjaro，archlinuxcn的包是基于arch打包的，如果manjaro有包没有及时更新，可能会出现问题。一个实际的例子就是：qv2ray 前一阵子在 arch 能跑，manjaro 上就不能正常使用：<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB%E8%AE%B0%E5%BD%95-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/20210221222414.png" alt="Qv2ray的贴心警告"></p>
+<p>简单来说，上了arch系就需要谨慎操作考虑系统稳定性。我个人是喜欢折腾软件的，但不喜欢花大时间做系统回滚和重装，丢了资料就纯作死了。</p>
+<p>后来通过一个视频偶然了解到SuSE系。稳：openSUSE的leap版和服务器SUSE的内核保持一致；软件安装方便：打包侠打包工具OBS，opi命令可一键添加用户仓库并安装社区软件，有ppa+aur那味；美观：对kde的调教是一众发行版中最好的，因为openSUSE开发人员在kde社区兼职；管理简单，YaST类似win10的控制面板；参考文档齐全。</p>
+<iframe id="spkj" src="https://player.bilibili.com/player.html?aid=926599141&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=100%> </iframe>
+<script type="text/javascript">  
+document.getElementById("spkj").style.height=document.getElementById("spkj").scrollWidth*0.76+"px";</script>
+缺点还是软件包的问题。我找了一些常用的软件，这个发行版用做开发工具很完美，但学校日常使用有点吃力。毕竟obs打包侠还是没有aur的勤快，而且虽然suse系支持rpm包，但更多厂商只提供deb包下载或ubuntu下的ppa仓库，比如typora（opi能搜到仅存的一个包还是上面视频的up打的）、比如微软edge on linux preview等等。
+
+<div class="note primary"><p>马上又开学了，时间不够折腾新系统了，以后主力机正式转linux再来补这方面的东西吧，现在wsl2能一定程度满足我对linux的要求。</p>
+</div>
+
+<h2 id="21-02-24更新补充"><a href="#21-02-24更新补充" class="headerlink" title="21.02.24更新补充"></a>21.02.24更新补充</h2><p>放个假天天玩发行版的各种包管理和花式装软件，结果到头来他妈也只学会装系统、装软件和美化，真正有用的linux命令和服务啥也没学到。<br>气死哦嘞！这些个没用的渣渣！！<br>好像也学了点文件类型。。开机引导进程。。源码打包。。啥的。。还顺便学了一手docker。。<br>总而言之，我是傻逼。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/windows/" rel="tag"># windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/08/wsl2-linux-pei-zhi-liu-cheng-chao-xiang-xi-zhi-nan/" rel="prev" title="WSL2+linux配置流程超详细指南">
+                  <i class="fa fa-chevron-left"></i> WSL2+linux配置流程超详细指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/27/xi-tong-qian-yi-ji-lu-bei-fen/" rel="next" title="系统迁移记录-备份">
+                  系统迁移记录-备份 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

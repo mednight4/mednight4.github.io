@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="主要内容是onedrive个人网盘的搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教育邮箱白嫖记">
+<meta property="og:url" content="https://mednight4.github.io/2021/02/16/jiao-yu-you-xiang-bai-piao-ji/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="主要内容是onedrive个人网盘的搭建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235210.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235211.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235213.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235212.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235217.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235216.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235214.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235218.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235215.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235219.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235221.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235223.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235220.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235225.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235222.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235226.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235224.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235227.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235228.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235230.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235234.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235229.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235232.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235231.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235235.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235233.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235237.png?raw=true">
+<meta property="og:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235236.png?raw=true">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210302130406.png">
+<meta property="article:published_time" content="2021-02-16T07:08:02.000Z">
+<meta property="article:modified_time" content="2021-03-02T05:04:24.000Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="others">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235210.png?raw=true">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2021/02/16/jiao-yu-you-xiang-bai-piao-ji/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>教育邮箱白嫖记 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%93%E4%BD%A0%E6%8B%A5%E6%9C%89%E4%B8%80%E4%B8%AA%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1"><span class="nav-text">当你拥有一个教育邮箱</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6"><span class="nav-text">Jetbrains全家桶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Office365%E6%95%99%E8%82%B2%E7%89%88"><span class="nav-text">Office365教育版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0HOST%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E8%A7%A3%E6%9E%90"><span class="nav-text">本地HOST文件添加本地解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E9%81%AD%E9%81%87DNS%E6%B1%A1%E6%9F%93"><span class="nav-text">怎么验证是否遭遇DNS污染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OneDrive%E7%BD%91%E7%9B%98"><span class="nav-text">OneDrive网盘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%88%E6%9C%AC"><span class="nav-text">版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E7%89%88%E6%9C%AC-%E5%8D%87%E7%BA%A7"><span class="nav-text">个人版本 - 升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%95%86%E4%B8%9A%E7%89%88%E6%9C%AC-%E5%AE%89%E5%85%A8"><span class="nav-text">商业版本 - 安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E4%B8%8B%E8%BD%BD%E7%AB%99"><span class="nav-text">搭建下载站</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91"><span class="nav-text">踩坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github%E5%AD%A6%E7%94%9F%E5%8C%85"><span class="nav-text">Github学生包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%A1%B9"><span class="nav-text">其他项</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/02/16/jiao-yu-you-xiang-bai-piao-ji/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          教育邮箱白嫖记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-16 15:08:02" itemprop="dateCreated datePublished" datetime="2021-02-16T15:08:02+08:00">2021-02-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-02 13:04:24" itemprop="dateModified" datetime="2021-03-02T13:04:24+08:00">2021-03-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">主要内容是onedrive个人网盘的搭建</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="当你拥有一个教育邮箱"><a href="#当你拥有一个教育邮箱" class="headerlink" title="当你拥有一个教育邮箱"></a>当你拥有一个教育邮箱</h1><p>最近在学校网站逛一圈找找资源，突然发现我还有一个教育邮箱账户没激活，教育邮箱的白嫖福利相必大家都懂，当然是要充分利用起来呀。</p>
+<p>如果你没有教育邮箱，就自行找一个稳定点的临时邮箱网站吧，网上这样的教程不少，比如：<a target="_blank" rel="noopener" href="https://yangyang.im/post/ONKcbU4-k/">羊羊自留地 (yangyang.im)</a>。我以前曾用过<a target="_blank" rel="noopener" href="https://t.odmail.cn/">t.odmail.cn</a>这个临时邮箱，不过目前它挂了。可以试一下这个：</p>
+<blockquote>
+<p>企业临时邮箱：<a target="_blank" rel="noopener" href="https://xkx.me/#">xkx - Jaz Mail | Temp Mail | 临时邮箱~</a></p>
+</blockquote>
+<p>下面是能领取到的教育福利：</p>
+<h2 id="Jetbrains全家桶"><a href="#Jetbrains全家桶" class="headerlink" title="Jetbrains全家桶"></a>Jetbrains全家桶</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jetbrains.com/shop/eform/students">JetBrains Products for Learning</a></p>
+</blockquote>
+<p>JB公司的产品无须多言。网上的注册码也是很泛滥了，但多数不稳定。<a target="_blank" rel="noopener" href="https://zhile.io/">zhile</a>大佬也对外宣布放弃维护了。目前能用的我先贴一个：<a target="_blank" rel="noopener" href="http://lookdiv.com/index/index/indexcodeindex.html">lookdiv</a>，提供的激活码还行，需要每月重新填一次。现在时间是2021.02.17，看这个站能活多久。<br>所以，咱有正当理由享受正版，有用不用是傻子。仅需要一个教育邮箱+验证：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235210.png?raw=true"></p>
+<p>以后用账号激活即可。可稳定升级，每隔一年需要在邮箱验证一遍账户。</p>
+<h2 id="Office365教育版"><a href="#Office365教育版" class="headerlink" title="Office365教育版"></a>Office365教育版</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://signup.microsoft.com/signup?sku=student">Office 365 教育版 (microsoft.com)</a></p>
+</blockquote>
+<p>享受免费的Word、Excel、PowerPoint、Teams、OneDrive。<br>其中主要内容是1T空间不限速的OneDrive商业版，1T还是5T取决于邮箱管理员的账户设置，管理员设置5T的教程：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/archive/blogs/educloud/increase-onedrive-for-business-storage-to-5tb">Increase OneDrive for Business Storage to 5TB | Microsoft Docs</a></p>
+</blockquote>
+<p>5T存储空间用到90%可以扩容到25T，还是需要管理员操作，扩容教程:</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.moerats.com/archives/975/">微软OneDrive网盘免费升级到25T容量教程 - Rat’s Blog (moerats.com)</a></p>
+</blockquote>
+<p>说明一下，国内大多数学校无心认证微软教育账户管理员，这有利有弊。管理员可以查看，控制组员的账户产品，例如查看、删除你的OneDrive文件，修改你的账户密码等等，组员当然不希望看到这种情况；没有管理员则不能对成员账户进行高级设置，成员账户均采用默认账户设置。</p>
+<blockquote>
+<p>管理员登陆后台：<a target="_blank" rel="noopener" href="https://admin.microsoft.com/Adminportal/Home">https://admin.microsoft.com/Adminportal/Home</a></p>
+</blockquote>
+<p>此外，如果你是用的国内三幻神114.114.114.114的DNS，OneDrive个人版的在线查看<a target="_blank" rel="noopener" href="https://onedrive.live.com/">onedrive.live.com</a>域名已被DNS污染。除了修改服务器，还可以在本地HOST文件添加本地解析。issues可看官方帖：<a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/msoffice/forum/msoffice_account-mso_windows8-mso_365hp/office-365%E4%B8%AA%E4%BA%BA%E7%89%88-office/ccace36a-15bb-4125-a1c4-01c971c17981">office 365个人版 office online服务无法使用 - Microsoft Community</a>。</p>
+<h3 id="本地HOST文件添加本地解析"><a href="#本地HOST文件添加本地解析" class="headerlink" title="本地HOST文件添加本地解析"></a>本地HOST文件添加本地解析</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 151.101.64.133    raw.githubusercontent.com</span><br><span class="line">134.170.108.26    onedrive.live.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="怎么验证是否遭遇DNS污染"><a href="#怎么验证是否遭遇DNS污染" class="headerlink" title="怎么验证是否遭遇DNS污染"></a>怎么验证是否遭遇DNS污染</h3><ol>
+<li><p>进PowerShell，ipconfig查看DNS的IP。</p>
+</li>
+<li><p>输入<code>nslookup [待解析域名] [你的DNS服务器IP(114.114.114.114)]</code>，查看是否成功。</p>
+</li>
+<li><p>输入<code>nslookup [待解析域名] [谷歌DNS服务器IP(8.8.8.8)]</code>作为对照，查看是否成功。</p>
+</li>
+</ol>
+<h3 id="OneDrive网盘"><a href="#OneDrive网盘" class="headerlink" title="OneDrive网盘"></a>OneDrive网盘</h3><p>如果你是购买的一线品牌的pc，正版的win系统都会自带一个OneDrive个人版，也就是5G阉割版，不过由于使用起来多有不便，比如网站打不开，下载抽风等等，很多人弃用了。其实整蛊整蛊之后OneDrive比百度云更适合作为个人云盘。</p>
+<p>开始首先之前，说明一下百度云盘和OneDrive最大的区别。</p>
+<p>百度。举个不是很恰当的例子：如果把用户上传下载文件这种使用云盘的行为比作为盛水，那百度网盘就好比是一个大水缸，每个用户掌管着这个水缸的水龙头，如果你充了会员，百度就把你的水龙头拧松一点，你接水速度就快；此外，百度云用户都知道文件的转储是非常快的，把别人的资源保存到自己的网盘是一瞬间的事情，之后你的网盘空间便会减少对应资源的大小，为什么转储速度会这么快呢？还是我所提到的大水缸原理，你的网盘并非是一个独立的盛水的碗，网盘里的文件并不是文件本身，而是文件在百度服务器地址的引用，或者说指针。所以百度对于网盘的空间发放一直是很大方的，因为这个所谓空间并非真正意义上的内存空间，其实是指针指向值的加法数值，实际给你的空间能容纳指针本身就行。基于此，有大佬自己写了第三方应用，做到了百度网盘存储空间无限大：既然网盘里存的是文件指针，那我就找到这个指针本身的地址，保存。对应项目也托管在Github，以前有b站up给这个项目引过流，不过视频被不可抗力封了，可惜我忘记给项目star了。</p>
+<p>OneDrive。与百度云盘这种蓄水池式的网盘不同，OneDrive网盘更像是一个移动硬盘online。最大的好处是没有资源被封的危险，缺点是下载稳定性和分享转储麻烦。于是为了提升易用性，很多大佬利用OneDrive的API搭建起了个人网盘，形式类似于资源发布下载站。</p>
+<h4 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h4><div class="note danger"><p>特此说明：非个人版本，管理员拥有你的账户所储存的文件的控制权。（当然，大多数国内学校网络部门无心认证OneDrive的管理员，即不存在更高权限者，你的账户仍是secret。）</p>
+</div>
+
+<p>OneDrive有不同的版本。例如我使用学校邮箱注册的版本就是A1版（教育版）。管理员是可以查看、删除其中文件的，所以请不要搞事情。</p>
+<p><strong>如何查看版本呢？</strong><br>onedrive, 教育版A1，企业版E3 ，个人版都是走全球CDN, 经测试E3和A1账户域名后缀是sharepoint.com，走的CDN线路一样的。也可登录后在<strong>设置-订阅</strong>中查看。以下是我使用的版本：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235211.png?raw=true"></p>
+<p>若想了解更多OneDrive版本的问题，看这篇帖子：<a target="_blank" rel="noopener" href="https://www.hostloc.com/thread-545474-1-1.html">【总结】对比下A1 E3 GD等最近讨论热度大的网盘。。-美国VPS综合讨论-全球主机交流论坛 - Powered by Discuz! (hostloc.com)</a></p>
+<p>总结一下就是：</p>
+<div class="tabs" id="onedrive-classes"><ul class="nav-tabs"><li class="tab active"><a href="#onedrive-classes-1">个人版</a></li><li class="tab"><a href="#onedrive-classes-2">世纪互联版</a></li><li class="tab"><a href="#onedrive-classes-3">开发者e3</a></li><li class="tab"><a href="#onedrive-classes-4">教育版a1p</a></li><li class="tab"><a href="#onedrive-classes-5">教育版a1</a></li></ul><div class="tab-content"><div class="tab-pane active" id="onedrive-classes-1"><p>价格：60-100/年（拼车）<br>空间：1T<br>隐私：保障。<br>国内线路稳定性：好。<br>国内：可用。<br>翻车指标：准付费，无所畏惧</p></div><div class="tab-pane" id="onedrive-classes-2"><p>价格：最低32.00/月<br>空间：1T<br>隐私：保障。<br>国内线路稳定性：非常好。<br>国内：可用。<br>翻车指标：准付费，无所畏惧</p></div><div class="tab-pane" id="onedrive-classes-3"><p>价格：300-500<br>空间：5T*25个账号<br>隐私：保障。<br>国内线路稳定性：不好。<br>国内：可用。（附带桌面应用）<br>翻车指标：微软风控。后续微软政策变更等。</p></div><div class="tab-pane" id="onedrive-classes-4"><p>价格：0-30<br>空间：5T<br>隐私：无保障。<br>国内线路稳定性：不好。<br>国内：可用。（附带桌面应用）<br>翻车指标：微软风控。后续微软政策变更等。</p></div><div class="tab-pane" id="onedrive-classes-5"><p>价格：0-10<br>空间：5T<br>隐私：无保障。<br>国内线路稳定性：不好。<br>国内：可用。<br>翻车指标：微软风控。后续微软政策变更等。</p></div></div></div>
+
+<h4 id="个人版本-升级"><a href="#个人版本-升级" class="headerlink" title="个人版本 - 升级"></a>个人版本 - 升级</h4><p>个人用户（任意邮箱注册的用户拥有5G的空间），通过邀请链接注册的方式，每邀请一个人双方可以提升0.5G空间，最多邀请20个人升级到15G。</p>
+<blockquote>
+<p>这是我的邀请链接：<a target="_blank" rel="noopener" href="https://onedrive.live.com/?invref=17395a74cd5dc896&amp;invscr=90">https://onedrive.live.com/?invref=17395a74cd5dc896&amp;invscr=90</a></p>
+</blockquote>
+<p>可以通过临时邮箱来注册账号，这里使用个人临时邮箱：</p>
+<blockquote>
+<p>个人临时邮箱：<a target="_blank" rel="noopener" href="https://temp-mail.org/zh/">Temp Mail - 临时性 - 匿名电子邮件 (temp-mail.org)</a></p>
+</blockquote>
+<h4 id="商业版本-安全"><a href="#商业版本-安全" class="headerlink" title="商业版本 - 安全"></a>商业版本 - 安全</h4><p>若想了解更多账户安全相关的问题，看这篇帖子：<a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/msoffice/forum/all/%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%AD%A6%E7%9A%84/7491b2ac-3965-4360-af01-48b451ce71bb?page=1">使用大学的邮箱，我上传到onedrive的文件会被管理员查看到吗？ - Microsoft Community</a>。下面补上帖子中未发的图片：</p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235213.png?raw=true" alt="1"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235212.png?raw=true" alt="2"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235217.png?raw=true" alt="3"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235216.png?raw=true" alt="4"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235214.png?raw=true" alt="5"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235218.png?raw=true" alt="6"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235215.png?raw=true" alt="7"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235219.png?raw=true" alt="8"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235221.png?raw=true" alt="9"></div></div><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235223.png?raw=true" alt="10"></div></div></div>
+
+<h3 id="搭建下载站"><a href="#搭建下载站" class="headerlink" title="搭建下载站"></a>搭建下载站</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/qkqpttgf/OneManager-php">https://github.com/qkqpttgf/OneManager-php</a><br>最终效果：<a target="_blank" rel="noopener" href="https://netdisk.mednight4.com/Share/">首页 - Share - mednight4’netdisk</a></p>
+</blockquote>
+<p>qkqpttgf/OneManager-php: An index &amp; manager of Onedrive based on serverless. Can be deployed to Heroku/Glitch/SCF/FG/FC/CFC/PHP web hosting/VPS.<br>OneManager是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，基于无服务器触发函数，支持直链下载、文件预览和文件上传。类似的程序有很多，比如OneIndex、OnePoint等等。这个程序的特点是支持多种OneDrive类型。<br>此外，基于此原理也有很多博主自己写了类似的项目，例如博主LOGI这个版本也可以考虑：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://logi.im/back-end/fodi-on-cloudflare.html">在 Cloudflare 部署 FODI 后端 - LOGI</a></p>
+</blockquote>
+<p>这里我依然使用的OneManager，OneManager的优势在于功能相对完善，可以在线预览word，pdf，excel，ppt，图片，视频，音乐等文件；相关用户提交了自定义主题，界面美观；最重要的，作者更新勤奋，支持在线更新，无须再部署。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235220.png?raw=true"></p>
+<p>具体使用方法请<a target="_blank" rel="noopener" href="https://github.com/qkqpttgf/OneManager-php">查看项目readme</a>。<br>但是作者的readme写得比较省略，所以诞生了不少博文教程，我列出一些可以借鉴的：</p>
+<blockquote>
+<p>Heroku： <a target="_blank" rel="noopener" href="https://github.com/wallleap/auroraBlog/issues/55">利用OneManager和Heroku搭建自己的网盘 · Issue #55 · wallleap/auroraBlog (github.com)</a></p>
+<p>CloudFlare： <a target="_blank" rel="noopener" href="https://www.blueskyxn.com/202102/3903.html">OneManager+CloudFlare Workers：CFW版OM·图文部署教程【支持世纪互联OD和世纪互联SP】</a></p>
+</blockquote>
+<p>我使用的SCF 腾讯无服务器云函数。方法也很简单，作者readme已给出，无脑下一步就行。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li><p>进入<strong>函数服务</strong>，上方选择<strong>地区（中国香港）</strong>，然后点击<strong>新建</strong>。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235225.png?raw=true"></p>
+</li>
+<li><p>输入<strong>函数名称</strong>，选择模<strong>板函数</strong>，在<strong>模糊搜索</strong>中输入<strong>onedrive</strong>，大小写随意，选择那个【获取onedrive信息…..】，点下一步，在代码界面不用动，直接点<strong>下一步</strong>。</p>
+</li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235222.png?raw=true"></p>
+<ol start="3">
+<li>直接<strong>完成</strong>就行。<br> <del>点击触发管理，创建触发器，触发方式改成API网关触发，底下勾选启用集成响应，提交。</del></li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235226.png?raw=true"></p>
+<ol start="4">
+<li><p><strong>云函数-函数服务-触发管理</strong>中可以看到一个访问路径，访问它，进入安装页。</p>
+</li>
+<li><p>如果你有域名，可绑定自定义域名。这里我参考了FODI的博客<a target="_blank" rel="noopener" href="https://logi.im/back-end/scf-onedrive-filelistor.html">自定义域名(可选)部分</a>。选择 <strong>API网关-服务-自定义域名-新建</strong>：</p>
+</li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235224.png?raw=true"></p>
+<p>选择<strong>自定义路径映射</strong>，<strong>新建</strong>一条记录，路径为 <strong>/</strong>  ，指向<strong>发布</strong>环境。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235227.png?raw=true"></p>
+<p>这里有个证书选项，默认是空的，可以采用以下两种方式申请免费证书，</p>
+<ul>
+<li>方式1（较麻烦）：<br>  <strong>SSL证书-我的证书-申请免费证书-亚洲诚信-设置相关项</strong>：</li>
+</ul>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235228.png?raw=true" alt="申请证书"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235230.png?raw=true" alt="选择证书"></p>
+<ul>
+<li>方式2（推荐）：<br>  可以通过<strong>DNS解析DNSPod-域名解析列表-<a target="_blank" rel="noopener" href="https://console.dnspod.cn/dns/list?source=cloud&from=cns_list_post">点此前往 DNSPod 控制台</a>-域名设置-添加记录-记录类型CNAME</strong>，记录值在触发方式的访问路径里，把.com后的的部分去掉就行了。最后点击操作里的<strong>SSL</strong>，选择添加，DNSPod控制台会自动为此记录指定的子域名绑定证书，你可以在<strong>证书管理</strong>里查看，部署成功后查看网站，会重定向到子域名，也可查看到网址证书：</li>
+</ul>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235234.png?raw=true" alt="添加SSL证书"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235229.png?raw=true" alt="查看我的证书"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235232.png?raw=true" alt="浏览器网址查看证书"></p>
+<ol start="6">
+<li><p>设置OneDrive。设置选项详解可以看帖子：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.2bboy.com/archives/176.html">Onedrive云盘程序——OneManager小白设置指南 - 醉后的星星 (2bboy.com)</a></p>
+</blockquote>
+<p> 给出我自己的设置图：</p>
+<p> <img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235231.png?raw=true" alt="1"></p>
+<p> <img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235235.png?raw=true" alt="2"></p>
+</li>
+</ol>
+<h4 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h4><ul>
+<li><p>主题选择：最美观的主题是renexmoe，缺点是缺少部分文件类型预览(pdf)，多文件时缺乏分页功能，只能显示第一页的内容，无法上传。<br>  功能比较全的主题有classic、purecool、onemoe、nchyn_grey，这些主题都具备满血的OneManage功能。但是目前OneManage本身仍然有Bug，例如在大量文件展示时，文件分页的最后一页为空，无法显示。<br>  主题样式表文件均托管在CDN，所以会先加载CDN的官方样式表，再加载自定义样式，如果你想给你的网盘自定一张分辨率很高的背景图就必须考虑图片加载速度的问题。也可以从CDN下载样式并修改，然后托管到自己订阅的CDN服务。</p>
+<p>  <img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235233.png?raw=true" alt="主题选择"></p>
+<p>  <img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235237.png?raw=true" alt="分页bug"></p>
+</li>
+<li><p>绑定OneDrive网盘。学校邮箱注册的OneDrive版本是国际版。我曾使用微软的Azure控制台新建应用，添加id和key的方式去绑定，给一个<a target="_blank" rel="noopener" href="https://www.puresourcecode.com/dotnet/azure/save-and-retrieve-secret-from-azure-keyvault/">教程</a>，这种方式实在是不方便。<strong>A1版本（教育版）建议在设置里直接添加OneDrive分享链接</strong>，分享的链接有两种方式，访问者可编辑和访问者不可编辑，区别在于部署完后你的网盘站点是否支持上传，不可编辑当然就会上传出错了。个人版本（5G版本）无法通过分享链接创建，只能通过<a target="_blank" rel="noopener" href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">Azure新建应用</a>添加client，我添加应用的时候出现网络错误，应该是国内网络的锅，所以个人账户搭建就流产了。</p>
+</li>
+<li><p>客户上传。假如你设置为可编辑链接，那管理员登陆后即可在任意路径上传文件，游客只能在Guest指定目录上传文件，且上传后的文件对游客不可见，只对管理员可见。<strong>建议给游客上传目录加一个访问密码，避免傻子恶意上传</strong>。</p>
+</li>
+</ul>
+<p>OneDrive部分到此结束。</p>
+<h2 id="Github学生包"><a href="#Github学生包" class="headerlink" title="Github学生包"></a>Github学生包</h2><p>大多数开发相关的都放到github学生包了，免费的CDN托管、免费一年的域名等等…详情可以看<a target="_blank" rel="noopener" href="https://education.github.com/pack">优惠页</a>。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://github.com/mednight4/picbed/blob/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210217235236.png?raw=true" alt="优惠项节选"></p>
+<blockquote>
+<p>申请：<a target="_blank" rel="noopener" href="https://education.github.com/discount_requests/student_application">Request a discount - GitHub Education</a></p>
+</blockquote>
+<p>这个申请需要教育邮箱账户和你的学生证照片，申请时间需要人工审核，需要等几周。</p>
+<div class="note info"><p>todo：等我申请到了再补。</p>
+</div>
+
+<p>两周后补充：</p>
+<p>已翻车。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E6%95%99%E8%82%B2%E9%82%AE%E7%AE%B1%E7%99%BD%E5%AB%96%E8%AE%B0/20210302130406.png"></p>
+<p>Github的申请很严格，开课了，无心搞事，以后有缘再弄。</p>
+<h2 id="其他项"><a href="#其他项" class="headerlink" title="其他项"></a>其他项</h2><p><a target="_blank" rel="noopener" href="https://www.qcloud.com/act/campus"><strong>腾讯云+校园</strong></a><br> 10 元一个月的云服务器，免费赠送 50GB 对象存储空间和移动者开发工具包</p>
+<p><a target="_blank" rel="noopener" href="https://promotion.aliyun.com/ntms/campus2017.html"><strong>阿里云 云翼</strong></a><br> 118元/年，阿里云 ECS+OSS+域名，需要学生身份认证</p>
+<p><a target="_blank" rel="noopener" href="http://www.autodesk.com.cn/education/home"><strong>Autodesk 学生包</strong></a><br> 旗下 AutoCAD , 3DMAX , Maya 等软件，其（教育版）免费试用期可延长至三年</p>
+<p><a target="_blank" rel="noopener" href="https://pantheon.io/edu"><strong>Pantheon 学生计划</strong></a><br> 免费的网站托管服务</p>
+<p><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/education/awseducate/"><strong>AWS 学生包</strong></a><br> 亚马逊云计算的学生包，可以获得至少 $40 的优惠和教育培训</p>
+<p><a target="_blank" rel="noopener" href="https://www.apple.com/us-hed/shop"><strong>苹果教育优惠</strong></a><br>产品打折</p>
+<p>等等，还有很多服务，暂时用不上我就不提了。随便去知乎逛逛都有专门的话题讨论。<br>学到了一点是：以后想订阅服务前先查看是否支持教育优惠，没准奇怪的优惠又增加了。当初我是就吃了没白嫖的亏，自己花钱买的域名。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0eed0b58d2c2">EDU教育邮箱福利 (通用) - 简书 (jianshu.com)</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/others/" rel="tag"># others</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/24/win10-manjaro-shuang-xi-tong/" rel="prev" title="win10+manjaro双系统">
+                  <i class="fa fa-chevron-left"></i> win10+manjaro双系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/08/wsl2-linux-pei-zhi-liu-cheng-chao-xiang-xi-zhi-nan/" rel="next" title="WSL2+linux配置流程超详细指南">
+                  WSL2+linux配置流程超详细指南 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

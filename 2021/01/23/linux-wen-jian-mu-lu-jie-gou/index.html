@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="linux文件管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux文件目录结构">
+<meta property="og:url" content="https://mednight4.github.io/2021/01/23/linux-wen-jian-mu-lu-jie-gou/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="linux文件管理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-23T15:46:03.000Z">
+<meta property="article:modified_time" content="2021-01-26T03:44:04.000Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2021/01/23/linux-wen-jian-mu-lu-jie-gou/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>linux文件目录结构 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">linux文件目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E7%9B%AE%E5%BD%95"><span class="nav-text">根目录 (&#x2F;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#usr"><span class="nav-text">&#x2F;usr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#var"><span class="nav-text">&#x2F;var</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#run-sh"><span class="nav-text">.&#x2F;run.sh</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/01/23/linux-wen-jian-mu-lu-jie-gou/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux文件目录结构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-23 23:46:03" itemprop="dateCreated datePublished" datetime="2021-01-23T23:46:03+08:00">2021-01-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-26 11:44:04" itemprop="dateModified" datetime="2021-01-26T11:44:04+08:00">2021-01-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">linux文件管理</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="linux文件目录结构"><a href="#linux文件目录结构" class="headerlink" title="linux文件目录结构"></a>linux文件目录结构</h1><blockquote>
+<p>  引用自《鸟哥的linux私房菜 基础篇》</p>
+<ul>
+<li>  <a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/44.html">5.3.1 Linux目录配置的依据–FHS</a></li>
+</ul>
+</blockquote>
+<p>通过<code>ls /</code>就会发现，在<code>/</code>下包涵很多的目录，比如<code>etc</code>、<code>usr</code>、<code>var</code>、<code>bin</code> …等等。平时虚拟机做实验自然是随便放，但真要日常使用的话，还是需要知道对应目录的意思，虽然大多数教材都有介绍，不过实际使用起来光是课本教程那点简单介绍还是不够的。</p>
+<p>规定这一标准的是FHS（Filesystem Hierarchy Standard ）机构。<a target="_blank" rel="noopener" href="http://www.pathname.com/fhs/">FHS的官方文件</a>指出了每个特定的目录下应该放置的特定数据。 </p>
+<p>根据标准，可以将目录定义成为四种交互作用的形态：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>可分享的(shareable)</th>
+<th>不可分享的(unshareable)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不变的(static)</td>
+<td><code>/usr</code> (软件放置处)</td>
+<td><code>/etc </code>(配置文件)</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>/opt</code> (第三方协力软件)</td>
+<td><code>/boot </code>(开机与核心档)</td>
+</tr>
+<tr>
+<td>可变动的(variable)</td>
+<td><code>/var/mail </code>(使用者邮件信箱)</td>
+<td><code>/var/run</code> (程序相关)</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>/var/spool/news </code>(新闻组)</td>
+<td><code>/var/lock </code>(程序相关)</td>
+</tr>
+</tbody></table>
+<p><strong>可分享的：</strong>可以分享给其他系统挂载使用的目录，包括执行文件与用户的邮件等数据， 能够分享给网络上其他主机挂载用的目录；<br><strong>不可分享的：</strong>自己机器上面运作的装置文件或者是与程序有关的socket文件等， 由于仅与自身机器有关，所以当然就不适合分享给其他主机了。<br><strong>不变的：</strong>有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；<br><strong>可变动的：</strong>经常改变的数据，例如登录文件、一般用户可自行收受的新闻组等。</p>
+<p>FHS仅涉及到三层目录下：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>意思</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>root根目录</td>
+<td>与开机系统有关</td>
+</tr>
+<tr>
+<td><code>/usr</code></td>
+<td>unix software resource</td>
+<td>与软件安装/执行有关</td>
+</tr>
+<tr>
+<td><code>/var</code></td>
+<td>variable</td>
+<td>与系统运作过程有关</td>
+</tr>
+</tbody></table>
+<h2 id="根目录"><a href="#根目录" class="headerlink" title="根目录 (/)"></a>根目录 (/)</h2><p>根目录和Windows的C盘一样。</p>
+<p>根目录与开机、还原、系统修复等动作有关。 由于系统开机时需要特定的开机软件、核心文件、开机所需程序、 函式库等等文件数据，系统出现错误时，根目录也必须要包含有能够修复文件系统的程序才行。</p>
+<p>FHS希望根目录不要放在非常大的分区，因为越大的分区内你会放入越多的数据，如此一来根目录所在分区就可能会有较多发生错误的机会。应用程序所安装的软件最好不要与根目录放在同一个分区内，保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p>
+<p>根据以上原因，FHS认为根目录(/)下应该包含如下子目录：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置档案内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/bin</code></td>
+<td>系统有很多放置执行档的目录，但<code>/bin</code>比较特殊。因为<code>/bin</code>放置的是在单人维护模式下还能够被操作的指令。在<code>/bin</code>底下的指令可以被root与一般帐号所使用，主要有：<code>cat,chmod, chown, date, mv, mkdir, cp, bash</code>等等常用的指令。</td>
+</tr>
+<tr>
+<td><code>/boot</code></td>
+<td>主要放置开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需设定档等等。Linux kernel常用的档名为：vmlinuz ，如果使用的是grub这个开机管理程式，则还会存在<code>/boot/grub/</code>这个目录。</td>
+</tr>
+<tr>
+<td><code>/dev</code></td>
+<td>在Linux系统上，任何装置与周边设备都是以档案的型态存在于这个目录当中。 只要通过存取这个目录下的某个档案，就等于存取某个装置。比要重要的档案有<code>/dev/null, /dev/zero, /dev/tty , /dev/lp*, / dev/hd*, /dev/sd*</code>等等</td>
+</tr>
+<tr>
+<td><code>/etc</code></td>
+<td>系统主要的设定档几乎都放置在这个目录内，例如人员的帐号密码档、各种服务的启始档等等。 一般来说，这个目录下的各档案属性是可以让一般使用者查阅的，但是只有root有权力修改。 FHS建议不要放置可执行档(binary)在这个目录中。 比较重要的档案有：<code>/etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/</code>等等。 另外，其下重要的目录有：<code>/etc/init.d/</code> ：所有服务的预设启动script都是放在这里的，例如要启动或者关闭iptables的话：<code> /etc/init.d/iptables start</code>、<code>/etc/init.d/iptables stop </code> 、<code>/etc/xinetd.d/ </code>：这就是所谓的super daemon管理的各项服务的设定档目录。 <code>/etc/X11/</code> ：与X Window有关的各种设定档都在这里，尤其是xorg.conf或XF86Config这两个X Server的设定档。</td>
+</tr>
+<tr>
+<td><code>/home</code></td>
+<td>这是系统预设的使用者家目录。 在你新增一个一般使用者帐号时，预设的使用者家目录都会规范到这里来。比较重要的是，家目录有两种代号： ~ ：代表当前使用者的家目录；而 ~guest：则代表用户名为guest的家目录。</td>
+</tr>
+<tr>
+<td><code>/lib</code></td>
+<td>系统的函式库非常的多，而<code>/lib</code>放置的则是在开机时会用到的函式库，与<code>/bin</code>或<code>/sbin</code>底下的指令会呼叫的函式库。尤其重要的是<code>/lib/modules/</code>这个目录，因为该目录会放置核心相关的模组(驱动程式)。</td>
+</tr>
+<tr>
+<td><code>/media</code></td>
+<td>media是媒体的英文，顾名思义，这个<code>/media</code>底下放置的就是可移除的装置。 包括软碟、光碟、DVD等等装置都暂时挂载于此。 常见的档名有：<code>/media/floppy, /media/cdrom</code>等等。</td>
+</tr>
+<tr>
+<td><code>/mnt</code></td>
+<td>如果妳想要暂时挂载某些额外的装置，一般建议你可以放置到这个目录中。在古早时候，这个目录的用途与<code>/media</code>相同。 只是有了<code>/media</code>之后，这个目录就用来暂时挂载用了。</td>
+</tr>
+<tr>
+<td><code>/opt </code>  <code>(/usr/local)</code></td>
+<td>这个是给第三方软件放置的目录 。 什么是第三方软件？举例来说，KDE这个桌面管理系统是一个独立的软件，不过他可以安装到Linux系统中，因此KDE就建议放置到此目录下了。 另外，如果你想要自行安装额外的软件(非原本的distribution提供的)，那么也能够将你的软件安装到这里来。 不过，以前的Linux系统中，我们还是习惯放置在<code>/usr/local</code>目录下。</td>
+</tr>
+<tr>
+<td><code>/root</code></td>
+<td>系统管理员(root)的家目录。 之所以放在这里，是因为如果进入单人维护模式而仅挂载根目录时，该目录就能够拥有root的家目录，所以我们会希望root的家目录与根目录放置在同一个分区中。</td>
+</tr>
+<tr>
+<td><code>/sbin</code></td>
+<td>Linux有非常多指令是用来设定系统环境的，这些指令只有root才能够利用来设定系统，其他使用者最多只能用来查询而已。放在<code>/sbin</code>底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。至于某些伺服器软件程式，一般则放置到<code>/usr/sbin/</code>当中。至于本机自行安装的软件所产生的系统执行档(system binary)，则放置到<code>/usr/local/sbin/</code>当中了。常见的指令包括：<code>fdisk, fsck, ifconfig, init, mkfs</code>等等。</td>
+</tr>
+<tr>
+<td><code>/srv</code></td>
+<td>srv可以视为service的缩写，是一些网路服务启动之后，这些服务所需要取用的资料目录。 常见的服务例如WWW, FTP等等。 举例来说，WWW伺服器需要的网页资料就可以放置在<code>/srv/www/</code>里面。平时我们部署的web项目应该放到这里了。</td>
+</tr>
+<tr>
+<td><code>/tmp</code></td>
+<td>这是让一般使用者或者是正在执行的程序暂时放置档案的地方。这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要资料不可放置在此目录啊。 因为FHS甚至建议在开机时，应该要将<code>/tmp</code>下的资料都删除。</td>
+</tr>
+</tbody></table>
+<p>FHS针对根目录所定义的标准就仅限于上表，不过仍有些目录也需要我们了解一下，具体如下： </p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/lost+found</code></td>
+<td>这个目录是使用标准的<code>ext2/ext3</code>档案系统格式才会产生的一个目录，目的在于当档案系统发生错误时，将一些遗失的片段放置到这个目录下。 这个目录通常会在分割槽的最顶层存在，例如你加装一个硬盘于<code>/disk</code>中，那在这个系统下就会自动产生一个这样的目录<code>/disk/lost+found</code></td>
+</tr>
+<tr>
+<td><code>/proc</code></td>
+<td>这个目录本身是一个虚拟文件系统(virtual filesystem)。 他放置的资料都是在内存当中，例如系统核心、行程资讯(process)、周边装置的状态及网络状态等等。因为这个目录下的资料都是在内存当中，所以本身不占任何硬盘空间。比较重要的目录：<code> /proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/*</code>等。</td>
+</tr>
+<tr>
+<td><code>/sys</code></td>
+<td>这个目录跟<code>/proc</code>非常类似，也是一个虚拟的档案系统，主要也是记录与核心相关的资讯。 包括目前已载入的核心模组与核心侦测到的硬体装置资讯等等。 这个目录同样不占硬盘容量。</td>
+</tr>
+</tbody></table>
+<p>除了这些目录的内容之外，另外要注意的是，因为根目录与开机有关，开机过程中仅有根目录会被挂载， 其他分区则是在开机完成之后才会持续的进行挂载的行为。就是因为如此，因此根目录下与开机过程有关的目录， 就不能够与根目录放到不同的分区去，有底下这些：</p>
+<p><code>/etc</code>：配置文件<br><code>/bin</code>：重要执行档<br><code>/dev</code>：所需要的设备文件<br><code>/lib</code>：执行档所需的函式库与核心所需的模块<br><code>/sbin</code>：重要的系统执行文件</p>
+<p>这五个目录必须在根目录所在分区。</p>
+<h2 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h2><p>依据FHS的基本定义，<code>/usr</code>里面放置的数据属于可分享的与不可变动的(shareable, static)， 如果你知道如何通过网络进行分区挂载(例如在服务器篇会谈到的NFS服务器)，那么<code>/usr</code>确实可以分享给局域网络内的其他主机来使用。</p>
+<p><code>/usr</code>不是user的缩写，其实usr是Unix Software Resource的缩写， 也就是Unix操作系统软件资源所放置的目录，而不是用户的数据，这点要注意。 FHS建议所有软件开发者，应该将他们的数据合理的分别放置到这个目录下的次目录，而不要自行建立该软件自己独立的目录。</p>
+<p>因为是所有系统默认的软件(distribution发布者提供的软件)都会放置到<code>/usr</code>底下，因此这个目录有点类似Windows 系统的<code>C:\Windows\ </code> <code> C:\Program files\</code>这两个目录的综合体，系统刚安装完毕时，这个目录会占用最多的硬盘容量。 一般来说，<code>/usr</code>的次目录建议有底下这些：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/usr/X11R6/</code></td>
+<td>为X Window System重要数据所放置的目录，之所以取名为X11R6是因为最后的X版本为第11版，且该版的第6次释出之意。</td>
+</tr>
+<tr>
+<td><code>/usr/bin/</code></td>
+<td>绝大部分的用户可使用指令都放在这里。请注意到他与<code>/bin</code>的不同之处。(是否与开机过程有关)</td>
+</tr>
+<tr>
+<td><code>/usr/include/</code></td>
+<td>c/c++等程序语言的header与include放置处，当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时，会使用到里头的许多包含档。</td>
+</tr>
+<tr>
+<td><code>/usr/lib/</code></td>
+<td>包含各应用软件的函式库、目标文件(object file)，以及不被一般使用者惯用的执行档或脚本(script)。 某些软件会提供一些特殊的指令来进行服务器的设定，这些指令也不会经常被系统管理员操作， 那就会被摆放到这个目录下啦。要注意的是，如果你使用的是X86_64的Linux系统， 那可能会有<code>/usr/lib64/</code>目录产生</td>
+</tr>
+<tr>
+<td><code>/usr/local/</code></td>
+<td>管理员在本机自行安装自己下载的软件(非distribution默认提供者)，建议安装到此目录， 这样会比较便于管理。举例来说，你的distribution提供的软件较旧，你想安装较新的软件但又不想移除旧版， 此时你可以将新版软件安装于<code>/usr/local/</code>目录下，与原先的旧版软件有所分别。 可以自行到<code>/usr/local</code>去看看，该目录下也是具有<code>bin, etc, include, lib...</code>的次目录的。</td>
+</tr>
+<tr>
+<td><code>/usr/sbin/</code></td>
+<td>非系统正常运作所需要的系统指令。最常见的就是某些网络服务器软件的服务指令(daemon)</td>
+</tr>
+<tr>
+<td><code>/usr/share/</code></td>
+<td>放置共享文件的地方，在这个目录下放置的数据几乎是不分硬件架构均可读取的数据， 因为几乎都是文本文件。在此目录下常见的还有这些次目录：<code>/usr/share/man</code>：联机帮助文件<code>/usr/share/doc</code>：软件杂项的文件说明<code>/usr/share/zoneinfo</code>：与时区有关的时区文件</td>
+</tr>
+<tr>
+<td><code>/usr/src/</code></td>
+<td>一般原始码建议放置到这里，src有source的意思。至于核心原始码则建议放置到<code>/usr/src/linux/</code>目录下。</td>
+</tr>
+</tbody></table>
+<h2 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h2><p>如果说<code>/usr</code>是安装时就会占用较大硬盘容量的目录，那么<code>/var</code>就是在系统运作后才会渐渐占用硬盘容量的目录。 因为<code>/var</code>目录主要针对常态性变动的文件，包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等。常见的次目录有：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>应放置文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/var/cache/</code></td>
+<td>应用程序本身运作过程中会产生的一些缓存。</td>
+</tr>
+<tr>
+<td><code>/var/lib/</code></td>
+<td>程序本身执行的过程中，需要使用到的数据文件的放置目录。在此目录下各自的软件应该要有各自的目录。 举例来说，MySQL的数据库放置到<code>/var/lib/mysql/</code>而rpm的数据库则放到<code>/var/lib/rpm</code>去。</td>
+</tr>
+<tr>
+<td><code>/var/lock/</code></td>
+<td>某些装置或者是文件资源一次只能被一个应用程序所使用，如果同时有两个程序使用该装置时， 就可能产生一些错误的状况，因此就得要将该装置上锁(lock)，以确保该装置只会给单一软件所使用。 举例来说，刻录机正在刻录一块光盘，你想一下，会不会有两个人同时在使用一个刻录机烧片？ 如果两个人同时刻录，那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁， 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用。</td>
+</tr>
+<tr>
+<td><code>/var/log/</code></td>
+<td>非常重要。这是登录文件放置的目录。里面比较重要的文件如<code>/var/log/messages</code>, <code>/var/log/wtmp</code>(记录登入者的信息)等。</td>
+</tr>
+<tr>
+<td><code>/var/mail/</code></td>
+<td>放置个人电子邮件信箱的目录，不过这个目录也被放置到<code>/var/spool/mail/</code>目录中，通常这两个目录是互为链接文件。</td>
+</tr>
+<tr>
+<td><code>/var/run/</code></td>
+<td>某些程序或者是服务启动后，会将他们的PID放置在这个目录下。</td>
+</tr>
+<tr>
+<td><code>/var/spool/</code></td>
+<td>这个目录通常放置一些队列数据，所谓的“队列”就是排队等待其他程序使用的数据。 这些数据被使用后通常都会被删除。举例来说，系统收到新信会放置到<code>/var/spool/mail/</code>中， 但使用者收下该信件后该封信原则上就会被删除。信件如果暂时寄不出去会被放到<code>/var/spool/mqueue/</code>中， 等到被送出后就被删除。如果是工作排程数据(crontab)，就会被放置到<code>/var/spool/cron/</code>目录中。</td>
+</tr>
+</tbody></table>
+<p>由于FHS仅是定义出最上层(/)及次层(/usr, /var)的目录内容应该要放置的文件或目录数据， 因此，在其他次目录层级内，就可以随开发者自行来配置了。</p>
+<h2 id="run-sh"><a href="#run-sh" class="headerlink" title="./run.sh"></a>./run.sh</h2><p><strong>网络文件常常提到类似<code>./run.sh</code>之类的数据，这个指令的意义为何？</strong></p>
+<p>由于指令的执行需要变量的支持，若你的执行文件放置在本目录，并且本目录并非正规的执行文件目录(<code>/bin</code>, <code>/usr/bin</code>等为正规)，此时要执行指令就得要严格指定该执行档。<code>./</code>代表本目录的意思，所以<code>./run.sh</code>代表执行本目录下， 名为run.sh的文件。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/25/md-ji-qiao/" rel="prev" title="MD技巧">
+                  <i class="fa fa-chevron-left"></i> MD技巧
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/22/xi-tong-qian-yi-ji-lu-xu/" rel="next" title="系统迁移记录-序">
+                  系统迁移记录-序 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

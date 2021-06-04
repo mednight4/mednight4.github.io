@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="免费ip池代理和随机请求头，防一手ip被ban">
+<meta property="og:type" content="article">
+<meta property="og:title" content="豆瓣爬取top250">
+<meta property="og:url" content="https://mednight4.github.io/2020/10/19/dou-ban-pa-qu-top250/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="免费ip池代理和随机请求头，防一手ip被ban">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/HTTP%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E8%BF%94%E5%9B%9E.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E5%BC%82%E5%B8%B8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/ip%E8%A2%ABban.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/%E8%AF%B7%E6%B1%82%E6%97%B6%E5%BB%B6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/yaml%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/pic.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/%E6%AD%A3%E5%88%99%E5%B8%B8%E7%94%A81.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/%E6%AD%A3%E5%88%99%E5%B8%B8%E7%94%A82.png">
+<meta property="article:published_time" content="2020-10-19T12:16:18.000Z">
+<meta property="article:modified_time" content="2020-12-08T08:37:40.000Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E5%8F%82%E6%95%B0.png">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2020/10/19/dou-ban-pa-qu-top250/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>豆瓣爬取top250 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB%E4%BD%9C%E4%B8%9A%E8%AF%B4%E8%B5%B7"><span class="nav-text">从一个爬虫作业说起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-requests%E5%AF%B9%E8%B1%A1"><span class="nav-text">一 requests对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E8%B5%84%E6%BA%90"><span class="nav-text">HTTP资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1"><span class="nav-text">返回对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-text">异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="nav-text">二 请求头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-Cookie"><span class="nav-text">三 Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%B0%86Cookie%E5%86%99%E5%9C%A8header%E5%A4%B4%E9%83%A8"><span class="nav-text">直接将Cookie写在header头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8requests%E6%8F%92%E5%85%A5Cookie"><span class="nav-text">使用requests插入Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E4%BB%A3%E7%90%86"><span class="nav-text">四 代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E4%BD%BF%E7%94%A8"><span class="nav-text">代理使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E8%B4%B9IP%E6%B1%A0"><span class="nav-text">免费IP池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%81%E5%AF%86%E4%BB%A3%E7%90%86"><span class="nav-text">私密代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-BeatifulSoup%E5%BA%93"><span class="nav-text">五 BeatifulSoup库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-yaml%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="nav-text">六 yaml文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99"><span class="nav-text">写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB"><span class="nav-text">读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-%E8%AF%B7%E6%B1%82%E6%97%B6%E5%BB%B6"><span class="nav-text">七 请求时延</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB-%E5%AE%9E%E4%BE%8B"><span class="nav-text">八 实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2020/10/19/dou-ban-pa-qu-top250/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          豆瓣爬取top250
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-19 20:16:18" itemprop="dateCreated datePublished" datetime="2020-10-19T20:16:18+08:00">2020-10-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-08 16:37:40" itemprop="dateModified" datetime="2020-12-08T16:37:40+08:00">2020-12-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">免费ip池代理和随机请求头，防一手ip被ban</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="从一个爬虫作业说起"><a href="#从一个爬虫作业说起" class="headerlink" title="从一个爬虫作业说起"></a>从一个爬虫作业说起</h1><blockquote>
+<p>看视频混个眼熟：<a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/BIT-1001870001#/learn/announce">https://www.icourse163.org/learn/BIT-1001870001#/learn/announce</a>     （大概两三个小时看完）</p>
+</blockquote>
+<h2 id="一-requests对象"><a href="#一-requests对象" class="headerlink" title="一 requests对象"></a>一 requests对象</h2><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E5%8F%82%E6%95%B0.png"></p>
+<ul>
+<li><p>params：字典或字节序列，作为参数增加到url中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kv=&#123;<span class="string">&#x27;key1&#x27;</span>:<span class="string">&#x27;value1&#x27;</span>,<span class="string">&#x27;key2&#x27;</span>:<span class="string">&#x27;value2&#x27;</span>&#125;</span><br><span class="line">r=requests.request(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;http://python123.io/ws&#x27;</span>,params=kv)</span><br><span class="line">print(r.ur1)</span><br><span class="line"><span class="comment"># http://python123.io/ws?key1=value1&amp;key2=value2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>data：字典、字节序列或文件对象，作为Request的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kv=&#123;<span class="string">&#x27;key1&#x27;</span>:<span class="string">&#x27;value1&#x27;</span>,<span class="string">&#x27;key2&#x27;</span>:<span class="string">&#x27;value2&#x27;</span>&#125;</span><br><span class="line">r=requests.request(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;http://python123.io/ws&#x27;</span>,data=kv）</span><br><span class="line">body=<span class="string">&quot;主体内容&quot;</span></span><br><span class="line">r=requests.request（<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;http://python123.io/ws&#x27;</span>,data=body)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>json: JSON格式的数据，作为Request的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kv=&#123;<span class="string">&#x27;key1&#x27;</span>:<span class="string">&#x27;value1&#x27;</span>&#125;</span><br><span class="line">r=requests.request(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;http://python123.io/ws&#x27;</span>,json=kv)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>headers：字典，HTTP定制头</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hd=&#123;<span class="string">&#x27;user-agent&#x27;</span>:<span class="string">&#x27;Chrome/10&#x27;</span>&#125;</span><br><span class="line">r=requests.request(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;http://python123.io/ws&#x27;</span>,headers=hd)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cookies：字典或CookieJar，Request中的cookie </p>
+</li>
+<li><p>auth：元组，支持HTTP认证功能</p>
+</li>
+<li><p>files：字典类型，传输文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fs=&#123;<span class="string">&#x27;file&#x27;</span>:<span class="built_in">open</span>(<span class="string">&#x27;data.x1s&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)&#125;</span><br><span class="line">r=requests.request(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;http://python123.io/ws&#x27;</span>,files=fs)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>timeout：设定超时时间，秒为单位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r=requests.request(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;http://vwww.baidu.com&#x27;</span>,timeout=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>proxies：字典类型，设定访问代理服务器，可以增加登录认证</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pxs=&#123;</span><br><span class="line">    <span class="string">&#x27;http&#x27;</span>:<span class="string">&#x27;http://user:pass@1e.10.10.1:1234&#x27;</span>,</span><br><span class="line">	<span class="string">&#x27;https&#x27;</span>:<span class="string">&#x27;https://10.10.10.1:4321&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.request(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;http://www.baidu.com&#x27;</span>,proxies=pxs)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>allow_redirects:  True/False，默认为True，重定向开关</p>
+</li>
+<li><p>stream:  True/False，默认为True，获取内容立即下载开关</p>
+</li>
+<li><p>verify:  True/False，默认为True，认证SSL证书开关</p>
+</li>
+<li><p>cert：本地SSL证书路径</p>
+</li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E6%96%B9%E6%B3%95.png"></p>
+<p><code>requests.request(method,url,**kwargs)</code></p>
+<ul>
+<li><code>requests.get(url,params=None,**kwargs)</code></li>
+<li><code>requests.head(url,**kwargs)</code></li>
+<li><code>requests.post(url,data=None,json=None,**kwargs)</code></li>
+<li><code>requests.put(url,data=None,**kwargs)</code></li>
+<li><code>requests.patch(url,data=None,**kwargs)</code></li>
+<li><code>requests.delete(url,**kwargs)</code></li>
+</ul>
+<h3 id="HTTP资源"><a href="#HTTP资源" class="headerlink" title="HTTP资源"></a>HTTP资源</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/HTTP%E5%8D%8F%E8%AE%AE.png"></p>
+<h3 id="返回对象"><a href="#返回对象" class="headerlink" title="返回对象"></a>返回对象</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E8%BF%94%E5%9B%9E.png"></p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/requests%E5%BC%82%E5%B8%B8.png"></p>
+<h2 id="二-请求头"><a href="#二-请求头" class="headerlink" title="二 请求头"></a>二 请求头</h2><p>爬虫爬取异常，返回错误码<code>503</code>，考虑修改请求头</p>
+<p>常用请求头：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">user_agent = [</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; rv:11.0) like Gecko&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/2.8.131 Version/11.11&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Maxthon 2.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; TencentTraveler 4.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; The World)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.50727; SE 2.X MetaSr 1.0)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; 360SE)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Avant Browser)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Opera/9.80 (Android 2.3.4; Linux; Opera Mobi/build-1107180945; U; en-GB) Presto/2.8.149 Version/11.10&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Linux; U; Android 3.0; en-us; Xoom Build/HRI39) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1+&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-US) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (SymbianOS/9.4; Series60/5.0 NokiaN97-1/20.0.019; Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) BrowserNG/7.1.18124&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; HTC; Titan)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;UCWEB7.0.2.37/28/999&quot;</span>,</span><br><span class="line">    <span class="string">&quot;NOKIA5700/ UCWEB7.0.2.37/28/999&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Openwave/ UCWEB7.0.2.37/28/999&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Mozilla/4.0 (compatible; MSIE 6.0; ) Opera/UCWEB7.0.2.37/28/999&quot;</span>,</span><br><span class="line">	<span class="string">&quot;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&quot;</span>,</span><br><span class="line">]</span><br><span class="line">headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: random.choice(user_agent)&#125;</span><br><span class="line"><span class="comment"># 随机获取一个请求头</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_user_agent</span>():</span></span><br><span class="line">    <span class="keyword">return</span> random.choice(USER_AGENTS)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>fake_useragent</code>模块随机生成请求头，（其实是一个从一个API获取到的）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 随机heard头</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> fake_useragent <span class="keyword">import</span> UserAgent</span><br><span class="line"><span class="comment"># 随机生成User-Agent</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_ua</span>():</span></span><br><span class="line">    ua = UserAgent()        <span class="comment"># 创建User-Agent对象</span></span><br><span class="line">    useragent = ua.random</span><br><span class="line">    <span class="keyword">return</span> useragent</span><br><span class="line">kv = &#123;<span class="string">&quot;user-agent&quot;</span>: get_random_ua()&#125;  <span class="comment"># 将请求标识改为标准的浏览器编识，返回状态码是403的话考虑这么做</span></span><br><span class="line">r = requests.get(url, timeout=<span class="number">50</span>, headers=kv)  <span class="comment"># 发送请求并取得返回值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三-Cookie"><a href="#三-Cookie" class="headerlink" title="三 Cookie"></a>三 Cookie</h2><h3 id="直接将Cookie写在header头部"><a href="#直接将Cookie写在header头部" class="headerlink" title="直接将Cookie写在header头部"></a>直接将Cookie写在header头部</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">cookie = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&quot;cisession&quot;:&quot;19dfd70a27ec0eecf1fe3fc2e48b7f91c7c83c60&quot;,</span></span><br><span class="line"><span class="string">&quot;CNZZDATA100020196&quot;:&quot;1815846425-1478580135-https%253A%252F%252Fwww.baidu.com%252F%7C1483922031&quot;,</span></span><br><span class="line"><span class="string">&quot;Hm_lvt_f805f7762a9a237a0deac37015e9f6d9&quot;:&quot;1482722012,1483926313&quot;,</span></span><br><span class="line"><span class="string">&quot;Hm_lpvt_f805f7762a9a237a0deac37015e9f6d9&quot;:&quot;1483926368&quot;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">header = &#123;</span><br><span class="line">	<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#x27;</span>,</span><br><span class="line">	<span class="string">&#x27;Connection&#x27;</span>: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">	<span class="string">&#x27;accept&#x27;</span>: <span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#x27;</span>,</span><br><span class="line">	<span class="string">&#x27;Cookie&#x27;</span>: cookie</span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://kankandou.com/book/view/22353.html&#x27;</span></span><br><span class="line">wbdata = requests.get(url,headers=header).text</span><br><span class="line">soup = BeautifulSoup(wbdata,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">print(soup)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用requests插入Cookie"><a href="#使用requests插入Cookie" class="headerlink" title="使用requests插入Cookie"></a>使用requests插入Cookie</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">cookie = &#123;</span><br><span class="line"><span class="string">&quot;cisession&quot;</span>:<span class="string">&quot;19dfd70a27ec0eecf1fe3fc2e48b7f91c7c83c60&quot;</span>,</span><br><span class="line"><span class="string">&quot;CNZZDATA100020196&quot;</span>:<span class="string">&quot;1815846425-1478580135-https%253A%252F%252Fwww.baidu.com%252F%7C1483922031&quot;</span>,</span><br><span class="line"><span class="string">&quot;Hm_lvt_f805f7762a9a237a0deac37015e9f6d9&quot;</span>:<span class="string">&quot;1482722012,1483926313&quot;</span>,</span><br><span class="line"><span class="string">&quot;Hm_lpvt_f805f7762a9a237a0deac37015e9f6d9&quot;</span>:<span class="string">&quot;1483926368&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://kankandou.com/book/view/22353.html&#x27;</span></span><br><span class="line">wbdata = requests.get(url,cookies=cookie).text</span><br><span class="line">soup = BeautifulSoup(wbdata,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">print(soup)</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-代理"><a href="#四-代理" class="headerlink" title="四 代理"></a>四 代理</h2><p>同一个IP访问过于频繁，可能会被ban，可以考虑挂代理IP池访问。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/ip%E8%A2%ABban.png"></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>匿名度：<br> 　<strong>- 透明</strong>：知道是代理ip，也会知道你的真实ip<br> 　<strong>- 匿名</strong>：知道是代理ip，不会知道你的真实ip<br> 　<strong>- 高匿</strong>：不知道是代理ip，不会知道你的真实ip</p>
+<p><strong>类型</strong>：</p>
+<ul>
+<li>http：只能请求http开头的url</li>
+<li>https：只能请求https开头的url</li>
+</ul>
+<p>分类：</p>
+<ul>
+<li><strong>正向代理</strong>：代理客户端获取数据。正向代理是为了保护客户端防止被追究责任</li>
+<li><strong>反向代理</strong>：代理服务器提供数据。反向代理是为了保护服务器或负责负载均衡</li>
+</ul>
+<h3 id="代理使用"><a href="#代理使用" class="headerlink" title="代理使用"></a>代理使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 代理的使用</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">proxy_list = [</span><br><span class="line">     &#123;<span class="string">&quot;http&quot;</span>: <span class="string">&quot;112.115.57.20:3128&quot;</span>&#125;,        </span><br><span class="line">     &#123;<span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;121.41.171.223:3128&#x27;</span>&#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 随机获取代理IP</span></span><br><span class="line">proxy = random.choice(proxy_list)</span><br><span class="line"><span class="comment"># 标准请求头</span></span><br><span class="line">headers = &#123;</span><br><span class="line">     <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 测试连接</span></span><br><span class="line">url = <span class="string">&#x27;https://www.baidu.com/s?wd=ip&#x27;</span></span><br><span class="line"><span class="comment"># 拿到页面</span></span><br><span class="line">page_text = requests.get(url=url,headers=headers,proxies=proxy).text</span><br></pre></td></tr></table></figure>
+
+<h3 id="免费IP池"><a href="#免费IP池" class="headerlink" title="免费IP池"></a>免费IP池</h3><p>从免费ip提供网站爬取<code>ip</code> <code> port</code> </p>
+<ul>
+<li>快代理免费：<a target="_blank" rel="noopener" href="https://www.kuaidaili.com/free/inha/1/">https://www.kuaidaili.com/free/inha/1/</a> 已测试，无效</li>
+<li>全网IP代理免费： <a target="_blank" rel="noopener" href="http://www.goubanjia.com/">http://www.goubanjia.com/</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试快代理免费IP池的可用性</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> fake_useragent <span class="keyword">import</span> UserAgent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GetProxy</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试快代理提供的免费proxy有效性&quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.url = <span class="string">&#x27;https://www.kuaidaili.com/free/inha/1/&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_random_ua</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;随机生成User-Agent&quot;&quot;&quot;</span></span><br><span class="line">        ua = UserAgent()  <span class="comment"># 创建User-Agent对象</span></span><br><span class="line">        useragent = ua.random</span><br><span class="line">        <span class="keyword">return</span> useragent</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;快代理网站上获取随机的代理IP&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: self.get_random_ua()&#125;</span><br><span class="line">        html = requests.get(url=self.url, headers=headers, timeout=<span class="number">5</span>).content.decode(<span class="string">&#x27;utf-8&#x27;</span>, <span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line">        soup = BeautifulSoup(html, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">        proxy = []</span><br><span class="line">        <span class="keyword">for</span> ip, port <span class="keyword">in</span> <span class="built_in">zip</span>(soup(<span class="string">&quot;td&quot;</span>, attrs=&#123;<span class="string">&quot;data-title&quot;</span>: <span class="string">&quot;IP&quot;</span>&#125;), soup(<span class="string">&quot;td&quot;</span>, attrs=&#123;<span class="string">&quot;data-title&quot;</span>: <span class="string">&quot;PORT&quot;</span>&#125;)):</span><br><span class="line">            proxy.append(ip.get_text() + <span class="string">&quot;:&quot;</span> + port.get_text())</span><br><span class="line">        print(proxy)</span><br><span class="line">        <span class="keyword">return</span> proxy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_proxy</span>(<span class="params">self, proxy</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试抓取的代理IP是否可用&quot;&quot;&quot;</span></span><br><span class="line">    L = proxy.split(<span class="string">&#x27;:&#x27;</span>)</span><br><span class="line">    proxy_ip = &#123;</span><br><span class="line">        <span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;http://&#123;&#125;:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(L[<span class="number">0</span>], L[<span class="number">1</span>]),</span><br><span class="line">        <span class="string">&#x27;https&#x27;</span>: <span class="string">&#x27;https://&#123;&#125;:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(L[<span class="number">0</span>], L[<span class="number">1</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    test_url = <span class="string">&#x27;https://www.baidu.com/&#x27;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        res = requests.get(url=test_url, proxies=proxy_ip, timeout=<span class="number">8</span>)</span><br><span class="line">        <span class="keyword">if</span> res.status_code == <span class="number">200</span>:</span><br><span class="line">            print(L[<span class="number">0</span>], <span class="string">&quot;:&quot;</span>, L[<span class="number">1</span>], <span class="string">&#x27;Success&#x27;</span>)</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;proxies.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(L[<span class="number">0</span>] + <span class="string">&#x27;:&#x27;</span> + L[<span class="number">1</span>] + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    	print(L[<span class="number">0</span>], L[<span class="number">1</span>], <span class="string">&#x27;Failed&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">for</span> proxy <span class="keyword">in</span> self.get_proxy():</span><br><span class="line">        self.test_proxy(proxy)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    spider = GetProxy()</span><br><span class="line">    spider.main()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从文件读取，并转化为可用数据</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_proxies</span>():</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;proxies.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        result = f.readlines()                  <span class="comment"># 读取所有行并返回列表</span></span><br><span class="line">        proxy_ip = random.choice(result)[:-<span class="number">1</span>]       <span class="comment"># 深拷贝获取所有代理IP，随机抽取</span></span><br><span class="line">        L = proxy_ip.split(<span class="string">&#x27;:&#x27;</span>)</span><br><span class="line">        proxy_ip = &#123;</span><br><span class="line">            <span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;http://&#123;&#125;:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(L[<span class="number">0</span>], L[<span class="number">1</span>]),</span><br><span class="line">            <span class="string">&#x27;https&#x27;</span>: <span class="string">&#x27;https://&#123;&#125;:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(L[<span class="number">0</span>], L[<span class="number">1</span>])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> proxy_ip</span><br><span class="line"><span class="comment"># 直接返回给requests.get(url=url,headers=headers,proxies=get_proxies())</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="私密代理"><a href="#私密代理" class="headerlink" title="私密代理"></a>私密代理</h3><p>常用在vpn等方面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 私密代理格式</span></span><br><span class="line">proxies = &#123;</span><br><span class="line">	<span class="string">&#x27;协议&#x27;</span>:<span class="string">&#x27;协议://用户名:密码@IP:端口号&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;http&#x27;</span>:<span class="string">&#x27;http://用户名:密码@IP:端口号&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span>:<span class="string">&#x27;https://用户名:密码@IP:端口号&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;http://309435365:szayclhp@106.75.71.140:16816&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span>:<span class="string">&#x27;https://309435365:szayclhp@106.75.71.140:16816&#x27;</span>,</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="五-BeatifulSoup库"><a href="#五-BeatifulSoup库" class="headerlink" title="五 BeatifulSoup库"></a>五 BeatifulSoup库</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/">漂亮汤官方文档</a>   需要代理</p>
+</blockquote>
+<p>也可以直接看这个快速上手：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5c239bcd05a3">简书</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">r = requests.get(<span class="string">&quot;http://python123.io/ws/demo.html&quot;</span>)</span><br><span class="line">demo = r.text</span><br><span class="line">soup = BeautifulSoup(demo, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">解析器有：</span></span><br><span class="line"><span class="string">    bs4的html解析器：    BeautifulSoup(mk,&quot;html.parser&quot;)    [安装bs4库]</span></span><br><span class="line"><span class="string">    lxml的html解析器:    BeautifulSoup(mk,&quot;lxml&quot;)           [pip install lxml]</span></span><br><span class="line"><span class="string">    lxml的xml解析器：    BeautifulSoup(mk,&quot;xml&quot;)             [pip install lxml]</span></span><br><span class="line"><span class="string">    html5lib的解析器:   BeautifulSoup(mk,&quot;html5lib&quot;)        [pip install html5lib]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">print(soup.prettify())  <span class="comment"># 格式化</span></span><br><span class="line">print(soup.title)   <span class="comment"># 标题包括尖括号</span></span><br><span class="line">print(soup.title.string)    <span class="comment"># 标题尖括号本身链接的内容</span></span><br><span class="line">print(soup.head.contents)    <span class="comment"># [&lt;title&gt;this is a python demo page&lt;/title&gt;]</span></span><br><span class="line">print(soup.a)   <span class="comment"># 第一个a标签内容</span></span><br><span class="line">print(soup.a.name)  <span class="comment"># a标签的标签名（a）</span></span><br><span class="line">print(soup.a.parent.name)   <span class="comment"># a标签的父标签标签名</span></span><br><span class="line">print(soup.a.parent.parent.name)    <span class="comment"># 父标签可以嵌套</span></span><br><span class="line">print(soup.a.attrs, <span class="built_in">type</span>(soup.a.attrs))  </span><br><span class="line"><span class="comment"># a标签的一整个属性内容，打包成字典，不包含a标签的的string本身内容</span></span><br><span class="line">print(soup.a.attrs[<span class="string">&#x27;class&#x27;</span>])    <span class="comment"># 对a标签字典内容的键取值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">...更多内容直接看官方文档吧</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>个人常用的几个解析函数：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html?highlight=find_all">find_all()</a> </li>
+<li><a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html?highlight=select">select()</a></li>
+<li><a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html?highlight=get_text">get_text()</a></li>
+<li><a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html?highlight=contents">contents()</a></li>
+</ul>
+<h2 id="六-yaml文件读写"><a href="#六-yaml文件读写" class="headerlink" title="六 yaml文件读写"></a>六 yaml文件读写</h2><h3 id="写"><a href="#写" class="headerlink" title="写"></a>写</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件写</span></span><br><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line">movies = []</span><br><span class="line">movie = &#123;</span><br><span class="line">    <span class="string">&quot;top&quot;</span>: movie_num,</span><br><span class="line">    <span class="string">&quot;titles&quot;</span>: movie_titles_list,</span><br><span class="line">    <span class="string">&quot;star&quot;</span>: movie_star,</span><br><span class="line">    <span class="string">&quot;link&quot;</span>: movie_link,</span><br><span class="line">    <span class="string">&quot;cover&quot;</span>: movie_cover,</span><br><span class="line">    <span class="string">&quot;quote&quot;</span>: movie_quote,</span><br><span class="line">    <span class="string">&quot;director&quot;</span>: movie_director,</span><br><span class="line">    <span class="string">&quot;actor&quot;</span>: movie_actor,</span><br><span class="line">    <span class="string">&quot;year&quot;</span>: movie_year,</span><br><span class="line">    <span class="string">&quot;country&quot;</span>: movie_country,</span><br><span class="line">    <span class="string">&quot;theme&quot;</span>: movie_theme,</span><br><span class="line">    <span class="string">&quot;story&quot;</span>: movie_story,</span><br><span class="line">&#125;</span><br><span class="line">movies.append(movie)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;movie.yaml&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># &quot;w&quot;只能写字符串，字典里有些键的值是数字，懒得转了，直接用wb，最后dump还是会编码为utf-8</span></span><br><span class="line">    f.write(yaml.dump(movies, encoding=<span class="string">&#x27;utf-8&#x27;</span>, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br><span class="line">    <span class="comment"># data数据中有汉字时，加上：encoding=&#x27;utf-8&#x27;,allow_unicode=True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="读"><a href="#读" class="headerlink" title="读"></a>读</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件读</span></span><br><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> billboard <span class="keyword">import</span> get_HTML</span><br><span class="line"><span class="comment"># 从yaml读取并获取zip(cover)</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;movie.yaml&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    movie_list = yaml.load(f.read(), Loader=yaml.FullLoader)</span><br><span class="line">urls = []  <span class="comment"># 从yaml文件获取图片链接地址</span></span><br><span class="line">titles = []</span><br><span class="line">top = <span class="number">0</span></span><br><span class="line"><span class="comment"># 将封面链接和标题分块打包</span></span><br><span class="line"><span class="keyword">for</span> movie <span class="keyword">in</span> movie_list:</span><br><span class="line">    urls.append(movie[<span class="string">&quot;cover&quot;</span>])</span><br><span class="line">    titles.append(movie[<span class="string">&quot;titles&quot;</span>][<span class="number">0</span>])</span><br><span class="line"><span class="comment"># [(标题,封面链接),(标题,封面链接)...]</span></span><br><span class="line"><span class="keyword">for</span> title, url <span class="keyword">in</span> <span class="built_in">zip</span>(titles, urls):</span><br><span class="line">    top += <span class="number">1</span></span><br><span class="line">    path = <span class="string">&quot;./pic/&quot;</span> + title + <span class="string">&quot;.jpg&quot;</span></span><br><span class="line">    <span class="comment"># 懒下载</span></span><br><span class="line">    <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">        print(<span class="string">&quot;top&quot;</span>, top, <span class="string">&quot;:&quot;</span>, title, <span class="string">&quot;&lt;&quot;</span>, url, <span class="string">&quot;&gt;：已经下载！&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(get_HTML(url, <span class="string">&quot;content&quot;</span>))</span><br><span class="line">        print(<span class="string">&quot;top&quot;</span>, top, <span class="string">&quot;:&quot;</span>, title, <span class="string">&quot;&lt;&quot;</span>, url, <span class="string">&quot;&gt;：已经下载！&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="七-请求时延"><a href="#七-请求时延" class="headerlink" title="七 请求时延"></a>七 请求时延</h2><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/%E8%AF%B7%E6%B1%82%E6%97%B6%E5%BB%B6.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模拟人手动访问网页，网站这还ban建议诅咒阿三程序员直接去世</span></span><br><span class="line"><span class="comment"># 在循环中插入</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">time.sleep(random.randint(<span class="number">4</span>,<span class="number">5</span>))  <span class="comment"># 4s-5s取随机</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="八-实例"><a href="#八-实例" class="headerlink" title="八 实例"></a>八 实例</h2><p>从豆瓣爬取TOP250电影</p>
+<p><code>billboard.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> fake_useragent <span class="keyword">import</span> UserAgent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_ua</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;随机生成User-Agent&quot;&quot;&quot;</span></span><br><span class="line">    ua = UserAgent()  <span class="comment"># 创建User-Agent对象</span></span><br><span class="line">    useragent = ua.random</span><br><span class="line">    print(<span class="string">&quot;useragent&quot;</span>, useragent)</span><br><span class="line">    <span class="keyword">return</span> useragent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_HTML</span>(<span class="params">url, <span class="built_in">type</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;获取整个页面&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        proxies = &#123;     <span class="comment"># 没用的代理</span></span><br><span class="line">            <span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;39.81.60.251:9000&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;https&#x27;</span>: <span class="string">&#x27;123.55.106.158:9999&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        kv = &#123;<span class="string">&quot;user-agent&quot;</span>: get_random_ua()&#125;  <span class="comment"># 将请求标识改为标准的浏览器编识，返回状态码是403的话考虑这么做</span></span><br><span class="line">        r = requests.get(url, timeout=<span class="number">50</span>, headers=kv)  <span class="comment"># 发送请求并取得返回值</span></span><br><span class="line">        print(r.request.headers)</span><br><span class="line">        r.raise_for_status()  <span class="comment"># 如果状态码不是200，引发HTTPError异常</span></span><br><span class="line">        r.encoding = <span class="string">&#x27;utf-8&#x27;</span>  <span class="comment"># r.encoding代表头文件提示编码，r.apparent_encoding代表分析内容得出的编码</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">type</span> == <span class="string">&quot;text&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> r.text  <span class="comment"># HTTP响应内容的字符串形式，content为二进制形式</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">type</span> == <span class="string">&quot;content&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> r.content</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        exit(<span class="string">&quot;大概是豆瓣把你禁了&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">&quot;pic&quot;</span>):  <span class="comment"># 无文件夹时创建</span></span><br><span class="line">        os.makedirs(<span class="string">&quot;pic&quot;</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    movies = []</span><br><span class="line">    <span class="keyword">while</span> i &lt;= <span class="number">25</span>:  <span class="comment"># 豆瓣提供250部</span></span><br><span class="line">        url = <span class="string">f&quot;https://movie.douban.com/top250?start=<span class="subst">&#123;i&#125;</span>&amp;filter=&quot;</span></span><br><span class="line">        <span class="comment"># print(get_HTML_text(url)[:16])</span></span><br><span class="line">        soup = BeautifulSoup(get_HTML(url, <span class="string">&quot;text&quot;</span>), <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> li <span class="keyword">in</span> soup.select(<span class="string">&quot;ol.grid_view &gt; li&quot;</span>):</span><br><span class="line">            print(<span class="string">&quot;------------------------------------------&quot;</span>)</span><br><span class="line">            <span class="comment"># print(li(&quot;em&quot;)[0].string) # 排名</span></span><br><span class="line">            movie_num = <span class="built_in">int</span>(li(<span class="string">&quot;em&quot;</span>)[<span class="number">0</span>].string)</span><br><span class="line">            print(<span class="string">&quot;top:&quot;</span>, movie_num)  <span class="comment"># 排名</span></span><br><span class="line">            <span class="comment"># print(li(&quot;span&quot;, class_=&quot;title&quot;)) # 标题</span></span><br><span class="line">            movie_titles = re.sub(<span class="string">r&#x27;(&lt;span class=&quot;title&quot;&gt;|&lt;/span&gt;|\xa0|\/|\[|\])&#x27;</span>, <span class="string">&quot;&quot;</span>,</span><br><span class="line">                                  <span class="built_in">str</span>(li(<span class="string">&quot;span&quot;</span>, class_=<span class="string">&quot;title&quot;</span>)))</span><br><span class="line">            movie_titles_list = re.split(<span class="string">r&#x27;, &#x27;</span>, movie_titles)  <span class="comment"># 列表化标题</span></span><br><span class="line">            print(<span class="string">&quot;titles:&quot;</span>, movie_titles, movie_titles_list)  <span class="comment"># 标题</span></span><br><span class="line">            <span class="comment"># print(li(attrs=&#123;&quot;property&quot;: &quot;v:average&quot;&#125;)) # 评分</span></span><br><span class="line">            movie_star = <span class="built_in">str</span>(li(attrs=&#123;<span class="string">&quot;property&quot;</span>: <span class="string">&quot;v:average&quot;</span>&#125;))</span><br><span class="line">            movie_star = <span class="built_in">float</span>(re.findall(<span class="string">r&#x27;\d.\d&#x27;</span>, movie_star)[<span class="number">0</span>])  <span class="comment"># 评分</span></span><br><span class="line">            print(<span class="string">&quot;star:&quot;</span>, movie_star)</span><br><span class="line">            <span class="comment"># print(str(li(&quot;a&quot;)[0]))    # 链接</span></span><br><span class="line">            movie_link = <span class="built_in">str</span>(re.findall(<span class="string">r&#x27;href=&quot;.+&quot;&#x27;</span>, <span class="built_in">str</span>(li(<span class="string">&quot;a&quot;</span>)[<span class="number">0</span>])))</span><br><span class="line">            movie_link = re.sub(<span class="string">r&#x27;(href=&quot;|&quot;|\&#x27;|\[|\])&#x27;</span>, <span class="string">&quot;&quot;</span>, movie_link).strip()</span><br><span class="line">            print(<span class="string">&quot;link:&quot;</span>, movie_link)  <span class="comment"># 链接</span></span><br><span class="line">            movie_cover = <span class="built_in">str</span>(re.findall(<span class="string">r&#x27;src=&quot;.+&quot;&#x27;</span>, <span class="built_in">str</span>(li(<span class="string">&quot;a&quot;</span>)[<span class="number">0</span>])))</span><br><span class="line">            movie_cover = re.sub(<span class="string">r&#x27;(src=&quot;|&quot;|\&#x27;|\[|\]|width.+|\xa0)&#x27;</span>, <span class="string">&quot;&quot;</span>, movie_cover).strip()</span><br><span class="line">            print(<span class="string">&quot;cover:&quot;</span>, movie_cover)  <span class="comment"># 封面链接</span></span><br><span class="line">            <span class="comment"># 频繁访问页面，防止ip被ban，设置时延  采用ip池可以关闭此项</span></span><br><span class="line">            time.sleep(random.randint(<span class="number">4</span>, <span class="number">6</span>))</span><br><span class="line">            soup_detail = BeautifulSoup(get_HTML(movie_link, <span class="string">&quot;text&quot;</span>), <span class="string">&quot;html.parser&quot;</span>)  <span class="comment"># 前往片子的详细地址爬取电影大纲</span></span><br><span class="line">            movie_story = <span class="built_in">str</span>(soup_detail.find_all(attrs=&#123;<span class="string">&quot;property&quot;</span>: <span class="string">&quot;v:summary&quot;</span>&#125;))</span><br><span class="line">            movie_story = re.sub(<span class="string">r&#x27;(&lt;span| class=&quot;&quot;| property=&quot;v:summary&quot;&gt;)|&lt;br/&gt;|&lt;/span&gt;|\[|\]|  *|\n&#x27;</span>, <span class="string">&quot;&quot;</span>,</span><br><span class="line">                                 movie_story)</span><br><span class="line">            movie_story = re.sub(<span class="string">r&#x27;　　&#x27;</span>, <span class="string">&#x27;\n\t&#x27;</span>, movie_story)  <span class="comment"># 排一下段落</span></span><br><span class="line">            print(<span class="string">&quot;story:&quot;</span>, movie_story)  <span class="comment"># 大纲</span></span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="comment"># print(li(&quot;p&quot;))  # 介绍</span></span><br><span class="line">                movie_quote = <span class="built_in">str</span>(li(<span class="string">&quot;p&quot;</span>)[<span class="number">1</span>])  <span class="comment"># 谏言</span></span><br><span class="line">                movie_quote = re.sub(<span class="string">r&#x27;(&lt;p class=&quot;quote&quot;&gt;|\n|&lt;span class=&quot;inq&quot;&gt;|&lt;/span&gt;|&lt;/p&gt;)&#x27;</span>, <span class="string">&quot;&quot;</span>, movie_quote)</span><br><span class="line">                print(<span class="string">&quot;quote:&quot;</span>, movie_quote)  <span class="comment"># 谏言</span></span><br><span class="line">                movie_intro = <span class="built_in">str</span>(li(<span class="string">&quot;p&quot;</span>)[<span class="number">0</span>])  <span class="comment"># 介绍</span></span><br><span class="line">                movie_intro = re.sub(<span class="string">r&#x27;(&lt;p class=&quot;&quot;&gt;|\n|&lt;br/&gt;|&lt;/p&gt;)&#x27;</span>, <span class="string">&quot;&quot;</span>, movie_intro)</span><br><span class="line">                movie_intro = re.split(<span class="string">r&#x27; &#123;28&#125;&#x27;</span>, movie_intro)</span><br><span class="line">                movie_intro.remove(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                <span class="comment"># print(movie_intro) # 介绍</span></span><br><span class="line">                movie_director, movie_actor = re.split(<span class="string">r&#x27;\xa0+&#x27;</span>, movie_intro[<span class="number">0</span>])[<span class="number">0</span>], re.split(<span class="string">r&#x27;\xa0+&#x27;</span>, movie_intro[<span class="number">0</span>])[<span class="number">1</span>]</span><br><span class="line">                movie_year, movie_country, movie_theme = movie_intro[<span class="number">1</span>].split(<span class="string">&quot;\xa0/\xa0&quot;</span>)</span><br><span class="line">                movie_year = <span class="built_in">int</span>(movie_year)</span><br><span class="line">                movie_country_list = movie_country.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line">                movie_theme = re.sub(<span class="string">r&#x27;  +&#x27;</span>, <span class="string">&#x27;&#x27;</span>, movie_theme)</span><br><span class="line">                movie_theme_list = movie_theme.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line">                print(<span class="string">&quot;director：&quot;</span>, movie_director)  <span class="comment"># 导演</span></span><br><span class="line">                print(<span class="string">&quot;actor：&quot;</span>, movie_actor)  <span class="comment"># 主演</span></span><br><span class="line">                print(<span class="string">&quot;year：&quot;</span>, movie_year)  <span class="comment"># 年份</span></span><br><span class="line">                print(<span class="string">&quot;country：&quot;</span>, movie_country, movie_country_list)  <span class="comment"># 国家</span></span><br><span class="line">                print(<span class="string">&quot;theme：&quot;</span>, movie_theme, movie_theme_list)  <span class="comment"># 题材</span></span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                print(<span class="string">&quot;此片子爬不到！！&quot;</span>)</span><br><span class="line">                movie_quote = <span class="string">&quot;未爬取&quot;</span></span><br><span class="line">                movie_director = <span class="string">&quot;未爬取&quot;</span></span><br><span class="line">                movie_actor = <span class="string">&quot;未爬取&quot;</span></span><br><span class="line">                movie_year = <span class="string">&quot;未爬取&quot;</span></span><br><span class="line">                movie_country_list = <span class="string">&quot;未爬取&quot;</span></span><br><span class="line">                movie_theme_list = <span class="string">&quot;未爬取&quot;</span></span><br><span class="line">            movie = &#123;</span><br><span class="line">                <span class="string">&quot;top&quot;</span>: movie_num,</span><br><span class="line">                <span class="string">&quot;titles&quot;</span>: movie_titles_list,</span><br><span class="line">                <span class="string">&quot;star&quot;</span>: movie_star,</span><br><span class="line">                <span class="string">&quot;link&quot;</span>: movie_link,</span><br><span class="line">                <span class="string">&quot;cover&quot;</span>: movie_cover,</span><br><span class="line">                <span class="string">&quot;quote&quot;</span>: movie_quote,</span><br><span class="line">                <span class="string">&quot;director&quot;</span>: movie_director,</span><br><span class="line">                <span class="string">&quot;actor&quot;</span>: movie_actor,</span><br><span class="line">                <span class="string">&quot;year&quot;</span>: movie_year,</span><br><span class="line">                <span class="string">&quot;country&quot;</span>: movie_country_list,</span><br><span class="line">                <span class="string">&quot;theme&quot;</span>: movie_theme_list,</span><br><span class="line">                <span class="string">&quot;story&quot;</span>: movie_story,</span><br><span class="line">            &#125;</span><br><span class="line">            movies.append(movie)</span><br><span class="line">        i += <span class="number">25</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;movie.yaml&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="comment"># data数据中有汉字时，加上：encoding=&#x27;utf-8&#x27;,allow_unicode=True</span></span><br><span class="line">        f.write(yaml.dump(movies, encoding=<span class="string">&#x27;utf-8&#x27;</span>, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>billboard.py</code>运行结果：</p>
+<p><code>movie.yaml</code></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/yaml%E6%96%87%E4%BB%B6.png"></p>
+<p>从<code>movie.yaml</code>读取信息并运行<code>billboard_cover.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> billboard <span class="keyword">import</span> get_HTML</span><br><span class="line"><span class="comment"># 从yaml读取并获取zip(cover)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;movie.yaml&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    movie_list = yaml.load(f.read(), Loader=yaml.FullLoader)</span><br><span class="line">urls = []  <span class="comment"># 从yaml文件获取图片链接地址</span></span><br><span class="line">titles = []</span><br><span class="line">top = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> movie <span class="keyword">in</span> movie_list:</span><br><span class="line">    urls.append(movie[<span class="string">&quot;cover&quot;</span>])</span><br><span class="line">    titles.append(movie[<span class="string">&quot;titles&quot;</span>][<span class="number">0</span>])</span><br><span class="line"><span class="keyword">for</span> title, url <span class="keyword">in</span> <span class="built_in">zip</span>(titles, urls):</span><br><span class="line">    top += <span class="number">1</span></span><br><span class="line">    path = <span class="string">&quot;./pic/&quot;</span> + title + <span class="string">&quot;.jpg&quot;</span></span><br><span class="line">    <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">        print(<span class="string">&quot;top&quot;</span>, top, <span class="string">&quot;:&quot;</span>, title, <span class="string">&quot;&lt;&quot;</span>, url, <span class="string">&quot;&gt;：已经下载！&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(get_HTML(url, <span class="string">&quot;content&quot;</span>))</span><br><span class="line">        print(<span class="string">&quot;top&quot;</span>, top, <span class="string">&quot;:&quot;</span>, title, <span class="string">&quot;&lt;&quot;</span>, url, <span class="string">&quot;&gt;：已经下载！&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>billboard_cover.py</code></p>
+<p>运行结果：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/pic.png"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>常用浏览器请求头:    <a target="_blank" rel="noopener" href="https://pengshiyu.blog.csdn.net/article/details/80182397">https://pengshiyu.blog.csdn.net/article/details/80182397</a></p>
+<p>代理:    <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5958b0cb3de2">https://www.jianshu.com/p/5958b0cb3de2</a></p>
+<p>代理服务:</p>
+<ul>
+<li><p>穷逼看这里：（测了一下快代理的免费名单，炸了，大概可能是我的姿势不对吧）</p>
+<p>快代理：<a target="_blank" rel="noopener" href="https://www.kuaidaili.com/free/inha/1/">https://www.kuaidaili.com/free/inha/1/</a></p>
+<p>全国代理ip：<a target="_blank" rel="noopener" href="http://www.goubanjia.com/">http://www.goubanjia.com/</a></p>
+</li>
+<li><p>石油佬：</p>
+<p>讯代理：<a target="_blank" rel="noopener" href="http://www.xdaili.cn/">http://www.xdaili.cn/</a></p>
+<p>蜻蜓代理：<a target="_blank" rel="noopener" href="https://proxy.horocn.com/">https://proxy.horocn.com/</a></p>
+</li>
+</ul>
+<p>爬虫使用cookie:    <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38706928/article/details/80376572">https://blog.csdn.net/weixin_38706928/article/details/80376572</a></p>
+<p>yaml文件读写:    <a target="_blank" rel="noopener" href="https://blog.csdn.net/lmj19851117/article/details/78843486">https://blog.csdn.net/lmj19851117/article/details/78843486</a></p>
+<p>漂亮汤官方文档：  <a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/">https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/</a></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/%E6%AD%A3%E5%88%99%E5%B8%B8%E7%94%A81.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E8%B1%86%E7%93%A3%E7%88%AC%E5%8F%96top250/%E6%AD%A3%E5%88%99%E5%B8%B8%E7%94%A82.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/30/http-zhuang-tai-ma/" rel="prev" title="HTTP状态码">
+                  <i class="fa fa-chevron-left"></i> HTTP状态码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/18/python-cookbook-bi-ji-1.1-1.53/" rel="next" title="python cookbook笔记[1.1-1.53]">
+                  python cookbook笔记[1.1-1.53] <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

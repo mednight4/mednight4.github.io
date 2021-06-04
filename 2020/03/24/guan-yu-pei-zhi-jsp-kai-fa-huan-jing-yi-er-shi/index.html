@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="关于配置JSP开发环境一二事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置JSP开发环境">
+<meta property="og:url" content="https://mednight4.github.io/2020/03/24/guan-yu-pei-zhi-jsp-kai-fa-huan-jing-yi-er-shi/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="关于配置JSP开发环境一二事">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/java.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/before.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/tomcat.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/Eclipse.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/server.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%AE%89%E8%A3%85%E6%96%B0%E8%BD%AF%E4%BB%B6.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E6%B7%BB%E5%8A%A0.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/Web....jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E6%8D%A2%E6%BA%90.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/serverapache.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/jst.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/new_project.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/java_ee.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/JSP.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/project.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/project_structure.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/WEB-INF.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/output_path.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/jars_or_directories.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/choose_lib.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/directory.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%BA%93.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/configuragurations.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/templates.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/add_tomcat.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/add_artifact.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/output.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E6%94%B9%E4%B8%BA%E6%AF%8F%E6%AC%A1%E5%88%B7%E6%96%B0.jpg">
+<meta property="article:published_time" content="2020-03-23T17:01:37.000Z">
+<meta property="article:modified_time" content="2021-01-11T07:26:12.000Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/java.jpg">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2020/03/24/guan-yu-pei-zhi-jsp-kai-fa-huan-jing-yi-er-shi/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>配置JSP开发环境 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">配置JSP开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85JAVA-JDK"><span class="nav-text">1.安装JAVA JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85JDK"><span class="nav-text">1.下载安装JDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text">2.配置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B5%8B%E8%AF%95"><span class="nav-text">3.测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85Tomcat"><span class="nav-text">2.安装Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BF%99%E9%87%8C%E6%BC%94%E7%A4%BA%E8%A7%A3%E5%8E%8B%E7%89%88"><span class="nav-text">1.这里演示解压版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="nav-text">2.环境变量配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Tomcat%E9%85%8D%E7%BD%AE"><span class="nav-text">3.Tomcat配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B0%86-Tomcat-%E5%92%8C-Eclipse-%E7%9B%B8%E5%85%B3%E8%81%94"><span class="nav-text">3.将 Tomcat 和 Eclipse 相关联</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Eclipse%E7%9A%84%E9%A6%96%E9%80%89%E9%A1%B9%E9%87%8C%E6%B2%A1%E6%9C%89server%E8%AE%BE%E7%BD%AE"><span class="nav-text">1.Eclipse的首选项里没有server设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%99Eclipse%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-text">2.给Eclipse换镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Eclipse%E4%B8%8D%E6%94%AF%E6%8C%81tomcat9-0%E7%89%88%E6%9C%AC"><span class="nav-text">3.Eclipse不支持tomcat9.0版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-InterliJ-IDEA%E9%85%8D%E7%BD%AETomcat"><span class="nav-text">4.InterliJ IDEA配置Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BD%BF%E7%94%A8JDBC%E8%BF%9E%E6%8E%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">5.使用JDBC连接mysql数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E8%A7%86%E5%9B%BE%E4%B8%AD%E8%BF%9E%E6%8E%A5%E5%B9%B6%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">在视图中连接并查看数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8JDBC%E8%BF%9E%E6%8E%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">使用JDBC连接mysql数据库</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2020/03/24/guan-yu-pei-zhi-jsp-kai-fa-huan-jing-yi-er-shi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          配置JSP开发环境
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-03-24 01:01:37" itemprop="dateCreated datePublished" datetime="2020-03-24T01:01:37+08:00">2020-03-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-11 15:26:12" itemprop="dateModified" datetime="2021-01-11T15:26:12+08:00">2021-01-11</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">关于配置JSP开发环境一二事</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="配置JSP开发环境"><a href="#配置JSP开发环境" class="headerlink" title="配置JSP开发环境"></a>配置JSP开发环境</h1><blockquote>
+<p>学校组织学习JSP，配置过程起了不少幺蛾子，记录一下，万一哪天电脑炸了可以回来看看。</p>
+</blockquote>
+<h2 id="1-安装JAVA-JDK"><a href="#1-安装JAVA-JDK" class="headerlink" title="1.安装JAVA JDK"></a>1.安装JAVA JDK</h2><h3 id="1-下载安装JDK"><a href="#1-下载安装JDK" class="headerlink" title="1.下载安装JDK"></a>1.下载安装JDK</h3><p>这个默认配置完了，顺便写一下。</p>
+<blockquote>
+<p>JDK下载地址：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-jdk8-downloads.html">Java SE Development Kit  8u241</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/java.jpg"></p>
+<p>双击下载的JDK安装包可执行文件开始安装，第一次为jdk的安装，第二次为jre的安装。建议两个文件夹放一块。JDK文件夹里包含jre。</p>
+<hr>
+<p>JRE和JDK是啥：<br>JRE：Java Runtime Environment<br>JDK：Java Development Kit<br>JRE是java运行时环境，包含了java虚拟机，java基础类库。java语言编写的程序运行所需要的软件环境，提供给运行java程序的用户使用。<br>JDK顾名思义是java开发工具包，是程序员使用java语言编写java程序所需的开发工具包，是提供给程序员使用的。</p>
+<hr>
+<p>顺便提一下：<br>以前下载页面长这样，所以很多博客教程给的下载地址是下面的页面：<br>那时下载JDK是不需要任何其他操作的，点击即可下载。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/before.jpg"><br>现在被Oracle公司收购了，需要注册Oracle账号。</p>
+<hr>
+<h3 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2.配置环境变量"></a>2.配置环境变量</h3><p>安装完成之后配置环境变量。</p>
+<ol>
+<li><p>JAVA_HOME环境变量。<br>作用：它指向jdk的安装目录，Tomcat就是通过搜索JAVA_HOME变量来找到并使用安装好的jdk。<br>配置方法：在系统变量里点击新建，变量名填写JAVA_HOME，变量值填写JDK的安装路径。<br><code>放的是jdk整个根目录</code></p>
+</li>
+<li><p>CLASSPATH环境变量。<br>作用：是指定类搜索路径，JVM通过CLASSPATH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中；或者直接把lib路径填在这里。当然，当前目录“.”也必须加入到该变量中，为了更快搜索到结果。</p>
+<p>另外：jdk1.5版本之后可不需要设置CLASS_PATH，建议继续设置以保证向下兼用问题。<br><code>放的是jdk的lib目录和.路径</code></p>
+</li>
+<li><p>PATH环境变量<br>作用：指定命令搜索路径，在命令行下面执行命令如javac编译java程序时，它会到PATH变量所指定的路径中查找看是否能找到相应的命令程序。<br>在系统变量里找到Path变量，这是系统自带的，不用新建。<code>放的是jdk的bin目录</code></p>
+</li>
+</ol>
+<p>linux下是在配置文件里加上：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/lib/java/jdk-15.0.1</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib</span><br></pre></td></tr></table></figure>
+
+<p>路径改为自己的。</p>
+<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3.测试"></a>3.测试</h3><p>打开命令行分别输入<code>java</code>，<code>javac</code>， <code>java -version</code>，没问题就ok了。</p>
+<hr>
+<h2 id="2-安装Tomcat"><a href="#2-安装Tomcat" class="headerlink" title="2.安装Tomcat"></a>2.安装Tomcat</h2><blockquote>
+<p>Tomcat：<a target="_blank" rel="noopener" href="http://tomcat.apache.org/">下载地址</a></p>
+</blockquote>
+<h3 id="1-这里演示解压版"><a href="#1-这里演示解压版" class="headerlink" title="1.这里演示解压版"></a>1.这里演示解压版</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/tomcat.jpg"></p>
+<p>解压，注意文件目录名不能有中文和空格。</p>
+<h3 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置"></a>2.环境变量配置</h3><blockquote>
+<p>目录介绍如下：</p>
+<ul>
+<li>bin：二进制执行文件。里面最常用的文件是<strong>startup.bat</strong>，如果是 Linux 或 Mac 系统启动文件为 <strong>startup.sh</strong>。</li>
+<li>conf:配置目录。里面最核心的文件是<strong>server.xml</strong>。可以在里面改端口号等。默认端口号是8080，也就是说，此端口号不能被其他应用程序占用。</li>
+<li>lib：库文件。tomcat运行时需要的jar包所在的目录</li>
+<li>logs：日志</li>
+<li>temp：临时产生的文件，即缓存</li>
+<li>webapps：web的应用程序。<strong>web应用放置到此目录下浏览器可以直接访问</strong></li>
+<li>work：编译以后的class文件。</li>
+</ul>
+</blockquote>
+<ol>
+<li><p>添加TOMCAT_HOME的环境变量，值为<code>盘符:\你解压的目录\tomcat根目录</code></p>
+</li>
+<li><p>添加CATALINA_HOME环境变量，值为<code>%TOMCAT_HOME%</code></p>
+</li>
+<li><p>添加CATALINA_BASE环境变量，值为<code>%TOMCAT_HOME%。</code></p>
+</li>
+<li><p>系统变量Path的最后面添加</p>
+<p><code>%CATALINA_HOME%\lib;%CATALINA_HOME%\lib\servlet-api.jar;%CATALINA_HOME%\lib\jsp-api.jar</code></p>
+<p>免安装版本需要配置这些环境变量，写成带“%”号是用变量替换路径，如需更改，只要更改TOMACAT_HOME一处路径即可。</p>
+</li>
+</ol>
+<h3 id="3-Tomcat配置"><a href="#3-Tomcat配置" class="headerlink" title="3.Tomcat配置"></a>3.Tomcat配置</h3><ol>
+<li>管理员的配置：进入根目录下的conf文件，编辑<code>tomcat-users.xml</code>以修改用户名和密码</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  &lt;role rolename=&quot;tomcat&quot;/&gt;</span></span><br><span class="line"><span class="comment">  &lt;role rolename=&quot;role1&quot;/&gt;</span></span><br><span class="line"><span class="comment">  &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;tomcat&quot;/&gt;</span></span><br><span class="line"><span class="comment">  &lt;user username=&quot;both&quot; password=&quot;tomcat&quot; roles=&quot;tomcat,role1&quot;/&gt;</span></span><br><span class="line"><span class="comment">  &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;tomcat&quot;/&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>解决乱码问题</p>
+<p>可能会出现由于出现字符编码不同导致的乱码：<br>找到根目录的<code>conf</code>文件下的<code>logging.properties</code>文件，编辑找到<code> java.util.logging.ConsoleHandler.encoding = utf-8</code></p>
+<p>改为<code>java.util.logging.ConsoleHandler.encoding = GBK</code></p>
+</li>
+<li><p>启动服务</p>
+<p>在根目录下<code>bin</code>文件夹里点击<code>startup.bat</code>批处理文件，最后出现</p>
+<p> <code>...org.apache.catalina.startup.Catalina.start Server startup in [756] milliseconds..</code></p>
+<p>服务启动成功后，浏览器打开本地默认端口<code>localhost:8080</code>，出现下面页面表示安装成功：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90.jpg"></p>
+</li>
+</ol>
+<hr>
+<h2 id="3-将-Tomcat-和-Eclipse-相关联"><a href="#3-将-Tomcat-和-Eclipse-相关联" class="headerlink" title="3.将 Tomcat 和 Eclipse 相关联"></a>3.将 Tomcat 和 Eclipse 相关联</h2><p>学校老师教学都用的Eclipse，所以先用Eclipse试一下。由于以前拿eclipse学过一点java，本人用的版本是这个：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/Eclipse.jpg"></p>
+<p>默认配置步骤按照<a target="_blank" rel="noopener" href="https://www.runoob.com/jsp/eclipse-jsp.html">菜鸟教程</a>走，当然，也不乏视频教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18s411u7EH?p=4">JavaWeb视频教程</a>。但是其中出现了许多很有趣的问题。</p>
+<h3 id="1-Eclipse的首选项里没有server设置"><a href="#1-Eclipse的首选项里没有server设置" class="headerlink" title="1.Eclipse的首选项里没有server设置"></a>1.Eclipse的首选项里没有server设置</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/server.jpg"></p>
+<p>Eclipse首选项里原本是没有server选项的，这里我参考了博主<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoxiaoweng/">七月晓晓翁</a>的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoxiaoweng/p/7298183.html">eclipse没有server选项解决方法</a>；<br>首先：</p>
+<ol>
+<li>安装新软件，找到对应的选项即可</li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%AE%89%E8%A3%85%E6%96%B0%E8%BD%AF%E4%BB%B6.jpg"></p>
+<ol start="2">
+<li>添加插件<code>Kepler - http://download.eclipse.org/releases/kepler</code></li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E6%B7%BB%E5%8A%A0.jpg"></p>
+<ol start="3">
+<li><p>点击Ok，找到选项<code>Web,XML, Java EE and OSGi Enterprise Development</code> 全部勾选。一直next即可。注意：这里如果你没有勾选勾选<code>Group items by category</code>是没有<code>Web,XML, Java EE and OSGi Enterprise Development</code>这一项分组的。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/Web....jpg"></p>
+</li>
+</ol>
+<h3 id="2-给Eclipse换镜像源"><a href="#2-给Eclipse换镜像源" class="headerlink" title="2.给Eclipse换镜像源"></a>2.给Eclipse换镜像源</h3><p>在刚才我们的一通操作，认识到Eclipse从默认源下载资源的速度令人骂娘，所以给它换个源。参考博客<a target="_blank" rel="noopener" href="https://blog.csdn.net/mashuai720/article/details/80001793">eclipse 更换国内镜像</a>。把所有<code>download.eclipse.org</code>换成国内镜像地址即可。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E6%8D%A2%E6%BA%90.jpg"></p>
+<blockquote>
+<p>1.企业贡献：</p>
+<p>搜狐开源镜像站：<a target="_blank" rel="noopener" href="http://mirrors.sohu.com/">http://mirrors.sohu.com/</a></p>
+<p>网易开源镜像站：<a target="_blank" rel="noopener" href="http://mirrors.163.com/">http://mirrors.163.com/</a></p>
+<p>首都在线科技股份有限公司：<a target="_blank" rel="noopener" href="http://mirrors.yun-idc.com/">http://mirrors.yun-idc.com/</a></p>
+<p>2.大学教学：</p>
+<p>镜像较多内容:<br>西安电子科技大学： <a href="ftp://linux.xidian.edu.cn/">ftp://linux.xidian.edu.cn</a></p>
+<p>哈尔滨工业大学： <a target="_blank" rel="noopener" href="http://run.hit.edu.cn/">http://run.hit.edu.cn/</a></p>
+<p>大连理工大学： <a target="_blank" rel="noopener" href="http://mirror.dlut.edu.cn/">http://mirror.dlut.edu.cn/</a></p>
+<p>北京理工大学：<br><a target="_blank" rel="noopener" href="http://mirror.bit.edu.cn/">http://mirror.bit.edu.cn</a> (IPv4 only)</p>
+<p> <a target="_blank" rel="noopener" href="http://mirror.bit6.edu.cn/">http://mirror.bit6.edu.cn</a> (IPv6only)</p>
+<p>北京交通大学： <a target="_blank" rel="noopener" href="http://mirror.bjtu.edu.cn/">http://mirror.bjtu.edu.cn</a> (IPv4 only) </p>
+<p><a target="_blank" rel="noopener" href="http://mirror6.bjtu.edu.cn/">http://mirror6.bjtu.edu.cn</a> (IPv6 only)</p>
+<p><a target="_blank" rel="noopener" href="http://debian.bjtu.edu.cn(ipv4+ipv6)/">http://debian.bjtu.edu.cn(IPv4+IPv6)</a></p>
+<p>兰州大学：<a target="_blank" rel="noopener" href="http://mirror.lzu.edu.cn/">http://mirror.lzu.edu.cn/</a></p>
+<p>厦门大学：<a target="_blank" rel="noopener" href="http://mirrors.xmu.edu.cn/">http://mirrors.xmu.edu.cn/</a></p>
+<p>上海交通大学：<br><a target="_blank" rel="noopener" href="http://ftp.sjtu.edu.cn/">http://ftp.sjtu.edu.cn/</a> (IPv4 only)  </p>
+<p> <a target="_blank" rel="noopener" href="http://ftp6.sjtu.edu.cn/">http://ftp6.sjtu.edu.cn</a> (IPv6 only)</p>
+<p>清华大学：<br><a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> (IPv4+IPv6)</p>
+<p><a target="_blank" rel="noopener" href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> (IPv6 only)</p>
+<p><a target="_blank" rel="noopener" href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> (IPv4 only)</p>
+<p>天津大学：<a target="_blank" rel="noopener" href="http://mirror.tju.edu.cn/">http://mirror.tju.edu.cn/</a></p>
+<p>浙江大学：<a target="_blank" rel="noopener" href="http://mirrors.zju.edu.cn/">http://mirrors.zju.edu.cn/</a></p>
+<p>中国科学技术大学：<br><a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/">http://mirrors.ustc.edu.cn/</a> (IPv4+IPv6)</p>
+<p><a target="_blank" rel="noopener" href="http://mirrors4.ustc.edu.cn/">http://mirrors4.ustc.edu.cn/</a></p>
+<p><a target="_blank" rel="noopener" href="http://mirrors6.ustc.edu.cn/">http://mirrors6.ustc.edu.cn/</a></p>
+<p>西南大学：<a target="_blank" rel="noopener" href="http://linux.swu.edu.cn/swudownload/Distributions/">http://linux.swu.edu.cn/swudownload/Distributions/</a></p>
+<p>华中科技大学：<a target="_blank" rel="noopener" href="http://mirrors.hust.edu.cn/">http://mirrors.hust.edu.cn/</a></p>
+<p>东北大学：<br><a target="_blank" rel="noopener" href="http://mirror.neu.edu.cn/">http://mirror.neu.edu.cn/</a>(IPv4 only)</p>
+<p><a target="_blank" rel="noopener" href="http://mirror.neu6.edu.cn/">http://mirror.neu6.edu.cn/</a> (IPv6 only)</p>
+<p>电子科技大学：<a target="_blank" rel="noopener" href="http://ubuntu.uestc.edu.cn/">http://ubuntu.uestc.edu.cn/</a></p>
+<p>青岛大学：<a target="_blank" rel="noopener" href="http://mirror.qdu.edu.cn/">http://mirror.qdu.edu.cn/</a></p>
+<p>东软信息学院： <a target="_blank" rel="noopener" href="http://mirrors.neusoft.edu.cn/">http://mirrors.neusoft.edu.cn/</a></p>
+<p>南京师范大学：<a target="_blank" rel="noopener" href="http://mirrors.njnu.edu.cn/">http://mirrors.njnu.edu.cn/</a></p>
+</blockquote>
+<h3 id="3-Eclipse不支持tomcat9-0版本"><a href="#3-Eclipse不支持tomcat9-0版本" class="headerlink" title="3.Eclipse不支持tomcat9.0版本"></a>3.Eclipse不支持tomcat9.0版本</h3><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/serverapache.jpg"></p>
+<p>我们在操作过程中发现没有我们下载的<code>Apacha Tomat v9.0</code>选项，尽管我的eclipse的版本是相对较新的。所以这里参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/wwd0501/article/details/78737736">eclipse不支持tomcat8.0版本解决</a>，在插件市场<code>marketplace</code>下载插件<code>Eclipse JST Server Adapters</code>,注意下载第一个：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/jst.jpg"></p>
+<ul>
+<li>然而并没有什么卵用…我沉默了…<br>当然，感兴趣的朋友可以继续：<a target="_blank" rel="noopener" href="https://blog.csdn.net/largestone_187/article/details/5748790">Eclipse下Lomboz插件安装</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/veteran_/article/details/7973653">JSP开发所需要的Eclipse插件及安装配置方法</a></li>
+<li>作为菜鸡，暂时不想在IDE上大费功夫，先不奉陪了…（笑）<br>算是学到了Eclipse  MyEclipse 和 Eclipse for Java EE的区别和联系，以后有精力再补充eclipse的插件安装和环境配置。</li>
+</ul>
+<hr>
+<h2 id="4-InterliJ-IDEA配置Tomcat"><a href="#4-InterliJ-IDEA配置Tomcat" class="headerlink" title="4.InterliJ IDEA配置Tomcat"></a>4.InterliJ IDEA配置Tomcat</h2><blockquote>
+<p>IDEA <strong>Ultimate</strong>版：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download/#section=windows">官网下载</a></p>
+</blockquote>
+<p>我以前用的IDEA的社区版，无法New一个Web Appplication，当然，有不少大佬利用maven来创建工程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012364631/article/details/47682011">IDEA Community(社区版) 使用Maven创建Web工程 并部署tomcat</a>。但是我这样的萌新还是先用集成好的Ultimate版靠谱。</p>
+<p>JB公司产品激活方法自询。</p>
+<hr>
+<p>然后就是新建项目了：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/new_project.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/java_ee.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/JSP.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/project.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/project_structure.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/WEB-INF.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/output_path.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/jars_or_directories.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/choose_lib.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/directory.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%BA%93.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/configuragurations.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/templates.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/add_tomcat.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/add_artifact.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/output.jpg"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1.jpg"></p>
+<p>搞定了，不得不说简直是新手的福音。<br>不过默认设置为每次修改jsp文件，重新生成页面都要重启tomcat，很麻烦。我们改为每次保存时刷新。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AEJSP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%8C%E4%BA%8B/%E6%94%B9%E4%B8%BA%E6%AF%8F%E6%AC%A1%E5%88%B7%E6%96%B0.jpg"></p>
+<p>OK，现在可以快乐地学习了。</p>
+<h2 id="5-使用JDBC连接mysql数据库"><a href="#5-使用JDBC连接mysql数据库" class="headerlink" title="5.使用JDBC连接mysql数据库"></a>5.使用JDBC连接mysql数据库</h2><h4 id="在视图中连接并查看数据库"><a href="#在视图中连接并查看数据库" class="headerlink" title="在视图中连接并查看数据库"></a>在视图中连接并查看数据库</h4><p>记得在idea的数据库连接设置里填上时区。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看数据库时区 mysql&gt; show variables like <span class="string">&#x27;%time_zone%&#x27;</span>;</span></span><br><span class="line"> +------------------+--------+</span><br><span class="line"> | Variable_name | Value | </span><br><span class="line"> +------------------+--------+ </span><br><span class="line"> | system_time_zone | EST |</span><br><span class="line"> | time_zone | SYSTEM |</span><br><span class="line"> +------------------+--------+ </span><br><span class="line"> 2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>mysql默认使用的SYSTEM时区，即EST时区，查询相关资料可知，EST时区要比北京时间（东八区）慢13个小时，在数据库中的表现即为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> select now();</span></span><br><span class="line"> +---------------------+</span><br><span class="line"> | now() |</span><br><span class="line"> +---------------------+ </span><br><span class="line"> | 2017-03-09 21:24:39 |</span><br><span class="line"> +---------------------+</span><br><span class="line"> 1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改方式一:</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置全局时区 mysql&gt; <span class="built_in">set</span> global time_zone = <span class="string">&#x27;+8:00&#x27;</span>;</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec) </span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置时区为东八区 mysql&gt; <span class="built_in">set</span> time_zone = <span class="string">&#x27;+8:00&#x27;</span>;</span> </span><br><span class="line">Query OK, 0 rows affected (0.00 sec) </span><br><span class="line"><span class="meta">#</span><span class="bash"> 刷新权限使设置立即生效 mysql&gt; flush privileges;</span> </span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show variables like <span class="string">&#x27;%time_zone%&#x27;</span>;</span></span><br><span class="line"> +------------------+--------+</span><br><span class="line"> | Variable_name    | Value  |</span><br><span class="line"> +------------------+--------+</span><br><span class="line"> | system_time_zone | EST    |</span><br><span class="line"> | time_zone        | +08:00 | </span><br><span class="line"> +------------------+--------+</span><br><span class="line"> 2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改方式二：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>在mysqld下边的配置中添加一行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default-time_zone = &#x27;+8:00&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>重启mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="使用JDBC连接mysql数据库"><a href="#使用JDBC连接mysql数据库" class="headerlink" title="使用JDBC连接mysql数据库"></a>使用JDBC连接mysql数据库</h4><p>将数据库连接的依赖包放在项目的lib文件夹里。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/06/27/ri-ji/" rel="prev" title="随笔">
+                  <i class="fa fa-chevron-left"></i> 随笔
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/23/html-ji-chu/" rel="next" title="HTML基础">
+                  HTML基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

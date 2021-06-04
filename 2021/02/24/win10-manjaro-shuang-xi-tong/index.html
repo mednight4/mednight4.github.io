@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="UEFI&#x2F;GPT,intel+nvidia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="win10+manjaro双系统">
+<meta property="og:url" content="https://mednight4.github.io/2021/02/24/win10-manjaro-shuang-xi-tong/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="UEFI&#x2F;GPT,intel+nvidia">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222036.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/Snipaste_2021-02-27_18-06-30.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210302122701.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210302122811.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/Snipaste_2021-02-27_16-12-32.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/Snipaste_2021-02-25_17-34-09.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221653.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221711.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221726.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221739.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221750.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221801.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221810.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221824.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221837.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221845.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221854.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221906.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221919.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305191353.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305191411.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221932.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301231416.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221941.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222001.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222011.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222020.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222029.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222036.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222055.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210302124857.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305210422.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210310173846.png">
+<meta property="article:published_time" content="2021-02-24T12:44:49.000Z">
+<meta property="article:modified_time" content="2021-06-04T09:42:10.090Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222036.png">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2021/02/24/win10-manjaro-shuang-xi-tong/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>win10+manjaro双系统 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#win10-manjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F"><span class="nav-text">win10+manjaro双系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D"><span class="nav-text">定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E5%85%B1%E4%BA%AB"><span class="nav-text">跨浏览器书签共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Win10%E5%87%86%E5%A4%87"><span class="nav-text">Win10准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A0%E9%99%A4"><span class="nav-text">系统安装与删除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC"><span class="nav-text">引导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-text">安装步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pacman-amp-yay"><span class="nav-text">Pacman &amp; yay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA"><span class="nav-text">开机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPPOE%E6%8B%A8%E5%8F%B7"><span class="nav-text">PPPOE拨号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rp-pppoe"><span class="nav-text">rp-pppoe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#openkeeper"><span class="nav-text">openkeeper</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-text">字体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%BA%90%E5%AD%97%E4%BD%93"><span class="nav-text">开源字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%BA%90Nerd%E5%AD%97%E4%BD%93"><span class="nav-text">开源Nerd字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#win10%E5%AD%97%E4%BD%93"><span class="nav-text">win10字体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KDE"><span class="nav-text">KDE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dock%E6%A0%8F"><span class="nav-text">dock栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kde%E9%83%A8%E4%BB%B6"><span class="nav-text">kde部件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E9%93%BAkde"><span class="nav-text">平铺kde</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kde%E4%B8%BB%E9%A2%98"><span class="nav-text">kde主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%86%E8%8A%82"><span class="nav-text">细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-text">软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF"><span class="nav-text">终端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91"><span class="nav-text">开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2"><span class="nav-text">博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="nav-text">权限问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E8%A1%A5%E5%85%85"><span class="nav-text">后续补充</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E9%85%8D%E7%BD%AE"><span class="nav-text">可选配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6-1"><span class="nav-text">软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%A2%9E%E5%BC%BA"><span class="nav-text">命令增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grub%E7%BE%8E%E5%8C%96"><span class="nav-text">grub美化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E9%97%AE%E9%A2%98"><span class="nav-text">后续问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grub%E6%B7%BB%E5%8A%A0win10%E5%BC%95%E5%AF%BC"><span class="nav-text">grub添加win10引导</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/02/24/win10-manjaro-shuang-xi-tong/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          win10+manjaro双系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-24 20:44:49" itemprop="dateCreated datePublished" datetime="2021-02-24T20:44:49+08:00">2021-02-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-04 17:42:10" itemprop="dateModified" datetime="2021-06-04T17:42:10+08:00">2021-06-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">UEFI/GPT,intel+nvidia</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222036.png"></p>
+<h1 id="win10-manjaro双系统"><a href="#win10-manjaro双系统" class="headerlink" title="win10+manjaro双系统"></a>win10+manjaro双系统</h1><h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><p>我没有纯manjaro的打算，adobe全家桶、office365、qq、微信、游戏等软件还得是win10，仅仅把manjaro作为开发+媒体娱乐+编辑性办公，已经够用了。linux大多数情况下开发体验都优于win10。<br>除了qq接收文件的体验一般，其他方面并不存在跨系统操作不同步的不适，win-lin资料共用，浏览器书签及时同步，已经能满足日用要求。<br>linux日用的最大的问题是：渣渣驱动太耗电了。使用时间比win节电模式短。<br>下面是准备步骤。</p>
+<h2 id="跨浏览器书签共享"><a href="#跨浏览器书签共享" class="headerlink" title="跨浏览器书签共享"></a>跨浏览器书签共享</h2><details class="note "><summary><p>warming</p>
+</summary>
+<p>2021.03.25更新：linux的edge dev版本已经支持账户登陆同步了，需要在dege://flags开启。忽略以下内容全平台向edge靠拢即可。</p>
+
+</details>
+
+<p>linux下的edge目前是残疾状态，没有登陆功能，所以建议先chrome，但又不想放弃win下edge体验。<br>可使用<strong>floccus+坚果云</strong>同步方案：</p>
+<blockquote>
+<p>楔子：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103281301">如何在 Chrome、Firefox、Edge、Safari 之间进行跨平台书签同步？ - 知乎 (zhihu.com)</a><br>具体步骤：<a target="_blank" rel="noopener" href="https://blog.naibabiji.com/skill/jian-guo-yun-floccus-shu-qian-tong-bu.html">不同浏览器书签同步方案：坚果云+Floccus_详细使用教程 - 奶爸建站笔记 (naibabiji.com)</a><br>视频演示：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pk4y1C7b4">WebDAV+Floccus 利用浏览器扩展在Chrome和Firefox之间实现书签同步_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</a></p>
+</blockquote>
+<p><strong>注意：</strong></p>
+<p>只需要一个 floccus插件+坚果云注册账号，不需要坚果云客户端。<br>初始化坚果云书签保存文件的下载地址：<a target="_blank" rel="noopener" href="https://mednight4.lanzoui.com/ixsPWm8y9wf">bookmarks.xbel</a><br>edge浏览器根下有三个主文件夹：收藏夹栏、移动收藏夹、其它收藏夹。如果想在不同浏览器书签全同步，需要为这三个文件夹分别建立数据文件。<br>设置旁边的向上向下箭头分别是推送和拉取，同步功能取并集。<br>坚果云账户-书签文件-更多-历史版本-恢复：回滚历史书签。<br>如果没有移动收藏夹，可能需要手机端下载应用同步后才自动创建。</p>
+<p><strong>我的配置：</strong></p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/Snipaste_2021-02-27_18-06-30.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210302122701.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210302122811.png"></div></div></div>
+
+<p>这个同步功能挺有意思的，我弄不清楚它的实现逻辑：<br>假如远程仓库增删了文件，本地点击同步，是将本地的数据推送到云，还是将云端更改拉取到本地呢？</p>
+<ul>
+<li>如果是仅仅从本地推送到云，那当A浏览器执行增删推送到云后，B浏览器又会将本地未修改数据推送到云，导致跨浏览器无法更新数据，云成了一个彻底的垃圾站；</li>
+<li>如果是仅仅从云端拉取到本地，那我只使用一个浏览器就永远无法删除书签了。</li>
+</ul>
+<p>所以当我们点击同步按钮的时候，后台做了什么？</p>
+<h2 id="Win10准备"><a href="#Win10准备" class="headerlink" title="Win10准备"></a>Win10准备</h2><p>本留了一块1t空机械盘安装新系统，已删除所有分区。后打算留400G做资料共享，余下的装系统。</p>
+<ol>
+<li><p>进入win10。新建分区400G（/dev/sda1），初始化为exfat(或者ntfs等双方支持的文件系统，manjaro开箱支持ntfs文件驱动<del>ntfs-3g</del>)，作为win-linxu文件共享区。</p>
+</li>
+<li><p>备份资料至此分区，win常用的图片，视频，代码项目等等。</p>
+</li>
+<li><p>备份待安装软件配置到此分区，浏览器扩展，扩展导出配置，vscode插件（C:\Users\用户\.vscode\extensions），picgo，typora主题等。</p>
+</li>
+<li><p>备份win10字体（C:\Windows\Fonts），majaro默认的字体渲染真难看。</p>
+</li>
+<li><p>查看主板架构，Win8及更高版本系统：按<strong>Win+R</strong> - <strong>msinfo32</strong>：如果BIOS：传统，表示系统启动方式为Legacy BIOS；如果为UEFI，则显示UEFI。<a target="_blank" rel="noopener" href="https://www.ithome.com/html/win10/146588.htm">-&gt;</a></p>
+<p> <strong>以下采用UEFI/GPT。</strong></p>
+</li>
+<li><p>manjaro<a href="">官网</a>下载镜像，<a target="_blank" rel="noopener" href="https://rufus.ie/">Rufus</a>制作U盘启动，最新版rufus无法选择GPT，github发布页下载<a target="_blank" rel="noopener" href="https://github.com/pbatard/rufus/tags?after=v3.4">旧版3.0</a>。</p>
+</li>
+<li><p>rufus制作manjaro启动器，只能以dd模式写入；openSUSE可选ISO模式。</p>
+</li>
+<li><p>关机esc+f10进bios，禁用安全启动（Secure Boot）。opensuse可免去这步<a target="_blank" rel="noopener" href="https://forum.suse.org.cn/t/topic/9833">-&gt;</a>。</p>
+</li>
+<li><p>开机优先项选择 u盘 &gt; 系统管理员配置…，从U盘启动。</p>
+</li>
+<li><p>安装manjaro。安装过程见下一节。</p>
+</li>
+<li><p>安装结束后将以上两步bios设置（安全启动，U盘启动）还原。</p>
+</li>
+</ol>
+<p>补充说明一下，直接移动vscode插件会无法使用，应该是环境和路径问题，手动安装吧。</p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/Snipaste_2021-02-27_16-12-32.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/Snipaste_2021-02-25_17-34-09.png"></div></div></div>
+
+<h2 id="系统安装与删除"><a href="#系统安装与删除" class="headerlink" title="系统安装与删除"></a>系统安装与删除</h2><div class="note danger"><p>若想以后和平删除linux，不建议将lin的efi和win的efi装到一个分区，否则格式化lin的磁盘后win将缺失引导</p>
+</div>
+
+<h3 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/90dca469e8f8">UEFI/GPT 模式下使用 rEFInd 引导 Win10 &amp; Linux 双系统的方案 - 简书 (jianshu.com)</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yU4y1x7d5">不讲武德的年轻人，竟想通过Windows引导多系统？？？_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ed9e2facba5d">坑爹的Secure Boot设置 - 简书 (jianshu.com)</a><br><a target="_blank" rel="noopener" href="https://diy.zol.com.cn/608/6088274.html">硬件大讲堂：MBR和GPT分区表的那些事儿_DIY攒机-中关村在线 (zol.com.cn)</a></p>
+</blockquote>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221653.jpg"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221711.jpg"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221726.jpg"></div></div></div>
+
+<p>如图，新建fat32挂载lin的efi，以后可随时格盘，在数个系统安装间反复横跳。</p>
+<p>我先使用kde桌面，相比于openSUSE，manjaro的kde打磨得并不如意，因此回到了gnome3，gnome的设置项反人类，而且应用开启反应迟钝，又用回kde。因为是新系统，直接重装系统比更换桌面环境更加便捷。</p>
+<p>能反复横跳建立在lin的引导独立于win这一前提，否则对lin格盘后win会炸掉，需要非常麻烦地修复BCD引导。</p>
+<p>另外，新机若想先安装lin再安装win：不建议，因为win的BCD引导会覆盖lin的grub2，最后还是要修复lin的引导。修复grub2引导：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://cnzhx.net/blog/restore-grub2-boot-menu-with-uefi/">恢复 UEFI 模式的 GRUB2 启动项 | 水景一页 (cnzhx.net)</a></p>
+</blockquote>
+<p>将lin的引导写入win的引导分区有何好处呢？可以通过第三方设置（<a target="_blank" rel="noopener" href="https://neosmart.net/EasyBCD/">easyBCD</a>-<a target="_blank" rel="noopener" href="https://neosmart.net/wiki/easybcd/neogrub/">Neogrub</a>），直接从win的manage boot跳转到grub2引导lin。理论见：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yU4y1x7d5">不讲武德的年轻人，竟想通过Windows引导多系统？？？_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</a></p>
+<p>两种方式(UEFI)的区别：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grub2 -- linux</span><br><span class="line">      -- manage boot -- windows</span><br><span class="line">                     --	wePE</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- manage boot -- windwos</span><br><span class="line">               -- wePE</span><br><span class="line">               -- Neogrub -- grub2 -- linux             </span><br></pre></td></tr></table></figure>
+
+<p>分区分别挂载efi，采用第一种方式。</p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>插入U盘启动，根据系统硬件选择驱动，我Intel+NVIDIA选择闭源驱动，free选项是开源。进入live点击安装，manjaro将为你默认使用ubuntu的prime驱动方案，另可选大黄蜂方案和N卡独显，详情见安装后。<br>kde桌面可选择office套件，选择第一项不需要office，后续自行安装wps；gnome则默认装好。<br>我用kde。忘记拍照了。文字说明下分区：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/flyyufenfei/article/details/79187656">Windows + Ubuntu 16.04 双系统安装详细教程_flyyufenfei的博客-CSDN博客_ubuntu系统</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/143505691">手把手教你Windows Linux双系统的安装与卸载 - 知乎 (zhihu.com)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012052268/article/details/77145427">安装Ubuntu Linux系统时硬盘分区最合理的方法_博客堂-CSDN博客_ubuntu分区</a>的评论区<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoyaotan_77/article/details/84837981">Windows+Manjaro双系统安装_xiaoyaotan_77的博客-CSDN博客_manjaro双系统</a></p>
+</blockquote>
+<ol>
+<li><p>首先选择硬盘，机械盘sda，固态nvme，千万不要选择win所在的盘。</p>
+</li>
+<li><p>分区有三个选项：【1】并存安装【2】取代一个分区【3】抹除磁盘【4】手动分区，盗一张图：</p>
+<p> <img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221739.png"></p>
+<p> <strong>并存安装</strong>：lin的引导装到win的引导分区下<br> <strong>取代一个分区</strong>：格式化掉一个分区安装<br> <strong>抹除磁盘</strong>：格式化所有分区安装<br> <strong>手动分区</strong>：在手动分区安装</p>
+</li>
+<li><p>手动分区。<br> 新建分区-2048Mib-fat32-类型efi-标记/boot/efi-完成<br> 新建分区-剩余-ext4-类型/-标记/root</p>
+</li>
+<li><p>概览(见上图)-安装</p>
+</li>
+</ol>
+<p>关于分区我只分了/和引导。相当于在win下单走一个C。如果是服务器，为了数据安全必须细化分区，个人桌面系统则不需要。开启timeshift定时快照即可。<br>/swap不需要，如果内存太小可以分出一个，公认建议两倍大小于内存。内存8G、16G的机器就没有必要分了。吃鸡都爆不了你的内存还交换个锤子。<br>/home随意，我从win下吸取的教学，不分区。希望在linux下不会打脸。<br>/boot包含引导，启动项和内核，我留了2G，主流建议是1G，如想多存几个内核可以留大点。对了，抹除磁盘安装默认留了300Mib。</p>
+<p>虽然游戏软件和日用软件所需的性能完全不在一个维度，但总体来说，这是一个硬件性能过剩的时代。储存磁盘什么的，请大方点用吧，哪怕用坏了换新的也不贵。</p>
+<h2 id="Pacman-amp-yay"><a href="#Pacman-amp-yay" class="headerlink" title="Pacman &amp; yay"></a>Pacman &amp; yay</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/47cce454f200">pacman命令详解 - 简书 (jianshu.com)</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ea651cdc5530">Pacman常用命令 - 简书 (jianshu.com)</a><br><a target="_blank" rel="noopener" href="https://printempw.github.io/setting-up-manjaro-linux/">Manjaro Linux 踩坑调教记录 - PRIN BLOG (printempw.github.io)</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">pacman -U string.pkg.tar.gz <span class="comment"># 从本地文件安装</span></span><br><span class="line">pacman -U http://www.example.com/repo/example.pkg.tar.xz  <span class="comment"># 安装一个远程包(不在pacman的源里)</span></span><br><span class="line"></span><br><span class="line">pacman -Su                  <span class="comment"># 直接升级系统</span></span><br><span class="line">pacman -Syu                 <span class="comment"># 升级整个系统，y 是更新数据库，yy 是强制更新，u 是升级软件</span></span><br><span class="line">pacman -Syyu                <span class="comment"># 同步仓库，强制升级</span></span><br><span class="line">pacman -Sc                  <span class="comment"># 清理当前未被安装的软件包缓存，位于/var/cache/pacman/pkg</span></span><br><span class="line">pacman -Scc                 <span class="comment"># 完全清理包缓存</span></span><br><span class="line">pacman -Qdt                 <span class="comment"># 列出所有不再作为依赖的软件包(孤立orphans)</span></span><br><span class="line">pacman -S $(pacman -Qq | grep -v “$(pacman -Qmq)”)  <span class="comment"># 重新安装系统所有软件包</span></span><br><span class="line"></span><br><span class="line">pacman -S package           <span class="comment"># 安装软件</span></span><br><span class="line">pacman -S extra/package     <span class="comment"># 安装不同仓库中的版本</span></span><br><span class="line">pacman -Ss string           <span class="comment"># 查找软件</span></span><br><span class="line">pacman -Si package          <span class="comment"># 显示软件的详细信息</span></span><br><span class="line"></span><br><span class="line">pacman -Rsn package         <span class="comment"># 删除软件，及其伴随依赖，及其配置文件</span></span><br><span class="line">pacman -R package           <span class="comment"># 删除单个软件，保留其全部已经安装的依赖关系</span></span><br><span class="line">pacman -Rs package          <span class="comment"># 删除指定软件，及其没有被其他已安装软件使用的依赖关系</span></span><br><span class="line">pacman -Rd package          <span class="comment"># 删除包时不检查依赖</span></span><br><span class="line">pacman -Rsc package         <span class="comment"># 删除包的同时，删除所有依赖这个软件包的程序</span></span><br><span class="line">pacman -Rn package          <span class="comment"># 删除软件包时要同时删除相应的配置文件</span></span><br><span class="line">pacman -Sw package          <span class="comment"># 只下载包，不安装</span></span><br><span class="line"></span><br><span class="line">pacman -Ql package          <span class="comment"># 获取已安装软件所包含的文件列表 | grep string</span></span><br><span class="line">pacman -Qs string           <span class="comment"># 查询已安装的软件包</span></span><br><span class="line">pacman -Qi package          <span class="comment"># 查询本地安装包的详细信息</span></span><br><span class="line">pacman -Qo /path/file       <span class="comment"># 查询某个文件对应的软件包</span></span><br><span class="line">pactree package             <span class="comment"># 显示软件的依赖树</span></span><br><span class="line">LANG=C pacman -Qi | sed -n ‘/^Name[^:]*: (.*)/&#123;s//1 /;x&#125;;/^Installed[^:]*: (.*)/&#123;s//1/;H;x;s/n//;p&#125;’ | sort -nk2    <span class="comment"># 获取本地软件包和它们大小的一个已排序清单列表</span></span><br><span class="line"></span><br><span class="line">IgnorePkg = package         <span class="comment"># 跳过升级软件包</span></span><br><span class="line">IgnoreGroup = group         <span class="comment"># 跳过升级软件包组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># yay同上</span></span><br><span class="line">yay package                 <span class="comment"># 从 AUR 搜索选择安装软件包</span></span><br><span class="line">yay -S package              <span class="comment"># 从 AUR 安装软件包</span></span><br><span class="line">yay -Rns package            <span class="comment"># 删除包</span></span><br><span class="line">yay -Syu                    <span class="comment"># 升级所有已安装的包</span></span><br><span class="line">yay -c                      <span class="comment"># 卸载所有无用的依赖，类似apt autoremove</span></span><br><span class="line">yay -Ps                     <span class="comment"># 打印系统统计信息</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>加速AUR软件包构建（可选）</strong></p>
+<p>默认情况下 <code>makepkg</code> 构建 AUR 包时会启用压缩，构建完了安装又要再解压一次，如果只是自己机器上使用的话没必要（大软件包压缩很慢）。<br>设置构建包时不进行压缩：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i <span class="string">&quot;s/PKGEXT=&#x27;.pkg.tar.xz&#x27;/PKGEXT=&#x27;.pkg.tar&#x27;/g&quot;</span> /etc/makepkg.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><div class="note info"><p>如果pacman里安装失败就用yay安装，我有些包源记混了。</p>
+</div>
+
+<h3 id="开机"><a href="#开机" class="headerlink" title="开机"></a>开机</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Jaywhen-xiang/p/11561661.html">win10环境下安装manjaro kde（双系统） - Jaywhenxiang - 博客园 (cnblogs.com)</a><br><a target="_blank" rel="noopener" href="https://mrswolf.github.io/zh-cn/2019/05/24/manjaro%E8%B8%A9%E5%9D%91%E8%AE%B0/">manjaro踩坑记 - swolf的博客 (mrswolf.github.io)</a></p>
+</blockquote>
+<p>开机后有一个引导页面，提供了开箱软件安装选择。我只需要VLC和timeshift。（以后卸载火狐似乎系统滚动的时候会帮你装回来，否则需要额外进行配置；此时卸载则避免滚回预装软件的情况）</p>
+<p><strong>删除文件</strong></p>
+<p><code>alias rm=&quot;rm -iv&quot;</code></p>
+<ul>
+<li><p><strong>基础方案一</strong>：自己巧用alias自定命令给终端删除加保险</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/itodouble/article/details/53503570">Linux下命令行删除到回收站_搬砖-CSDN博客</a></p>
+</blockquote>
+<ol>
+<li><p>删除文件<br> <code>alias del=&#39;mv -t ~/.local/share/Trash/files --backup=t&#39;</code></p>
+</li>
+<li><p><strong>rl</strong>命令，查看回收站的内容；<strong>ur</strong>命令，恢复上一步的删除命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo vi ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> rl=<span class="string">&#x27;ls ~/.local/share/Trash/files&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> ur=undelfile</span><br><span class="line"><span class="function"><span class="title">undelfile</span></span>()&#123;</span><br><span class="line">  mv -i ~/.<span class="built_in">local</span>/share/Trash/files/<span class="variable">$@</span> ./</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">:wq</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>进阶方案二</strong>：直接白嫖 trash-cli 项目。等后续系统准备完毕后 <code>pip install trash-cli</code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/andreafrancia/trash-cli">andreafrancia/trash-cli: Command line interface to the freedesktop.org trashcan. (github.com)</a></p>
+</blockquote>
+</li>
+</ul>
+<p><strong>更改镜像源</strong></p>
+<p><code>sudo pacman-mirrors -c China -m rank</code></p>
+<p>弹窗，时间表示同步周期。</p>
+<p><strong>中文社区源</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/pacman.conf</span><br><span class="line"><span class="comment"># &gt;&gt;</span></span><br><span class="line">[archlinuxcn]</span><br><span class="line">SigLevel = Optional TrustedOnly</span><br><span class="line">Server = http://mirrors.163.com/archlinux-cn/<span class="variable">$arch</span></span><br><span class="line"><span class="comment"># Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch # 清华源</span></span><br><span class="line"><span class="comment"># ^x y</span></span><br></pre></td></tr></table></figure>
+
+<p>添加archlinuxcn后需要安装钥匙环<br><code> sudo pacman -Sy archlinuxcn-keyring</code><br>开启 pacman 和 yay 的彩色输出<br><code>sudo sed -i &quot;s/#Color/Color/g&quot; /etc/pacman.conf</code></p>
+<p><strong>系统更新</strong></p>
+<p><code>sudo pacman -Syu</code></p>
+<p><strong>pip换源</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.config/pip</span><br><span class="line">nano ~/.config/pip/pip.conf</span><br><span class="line"><span class="comment"># &gt;&gt; </span></span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="comment"># ^x y</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>开机自动挂载分区</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/fstab">https://wiki.archlinux.org/index.php/fstab</a></p>
+</blockquote>
+<p>对于其它磁盘，文件管理器点击进入磁盘后系统会将其挂载到/run/media/[your_user_name]/[disk_name]文件下；我需要开机自动挂载到固定挂载点，从而给图片、Code、音乐、等文件夹建立快捷方式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /mnt/Share  <span class="comment"># 建立挂载点文件夹</span></span><br><span class="line">sudo mount | grep sda   <span class="comment"># 查看分区号，我的是sda1</span></span><br><span class="line">sudo nano /etc/fstab</span><br><span class="line"><span class="comment"># 将分区/sda1挂载到新建的文件夹/mnt/Share </span></span><br><span class="line"><span class="comment"># &gt;&gt; </span></span><br><span class="line">/dev/sda1   /mnt/Share exfat   rw,users  0 0 </span><br><span class="line"><span class="comment"># ^S ^X</span></span><br></pre></td></tr></table></figure>
+
+<p>挂载成功后，分区根目录下有两个固定文件，<code>$RECYCLE.BIN</code>和<code>System Volume Information</code>，win默认为每个分区建立回收站文件夹并隐藏，win的隐藏方式和lin不一致，不建议在lin下修改这两个文件。如想彻底删掉这两个文件，win下回收站-高级，去除此卷的回收站功能，删除文件将不会将其移到回收站，而是直接删除。不建议。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221750.png"></p>
+<p><strong>AUR包管理</strong></p>
+<p><code>sudo pacman -S yay base-devel</code><br>yay是aur仓库包管理工具，base-devel是打包工具。<br>没有打包工具可能导致后续从aur仓库源码打包软件安装时出现以下错误：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221801.png"></p>
+<p><strong>科学上网</strong></p>
+<p><code>yay -S v2ray qv2ray</code></p>
+<blockquote>
+<p>qv2ray介绍：<a target="_blank" rel="noopener" href="https://qv2ray.net/getting-started/step1.html">下载 Qv2ray | Qv2ray</a></p>
+</blockquote>
+<p>qv2ray启动失败，双系统时间同步：<br><code>timedatectl set-local-rtc true</code>或者图形界面：打开本地时区的硬件时钟<br><code>timedatectl set-local-rtc false</code>还原</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221810.png"></p>
+<p><strong>改内核</strong></p>
+<p>我要长期支持版。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221824.png"></p>
+<p><strong>输入法</strong></p>
+<p>采用fcitx5 + rime</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114296129">Manjaro-KDE安装配置全攻略 - 知乎 (zhihu.com)</a><br>rime输入方案<a target="_blank" rel="noopener" href="https://github.com/fkxxyz/rime-cloverpinyin/wiki/linux">linux · fkxxyz/rime-cloverpinyin Wiki (github.com)</a><br>中文维基词库配置<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/287774005">fcitx(5)+rime的畅快体验 - 知乎 (zhihu.com)</a><br>主题美化<a target="_blank" rel="noopener" href="https://github.com/hosxy/Fcitx5-Material-Color">hosxy/Fcitx5-Material-Color: 一款使用Material Design 配色的 fcitx5 皮肤</a><br>nord主题<a target="_blank" rel="noopener" href="https://github.com/ayamir/fcitx5-nord">ayamir/fcitx5-nord: Fcitx5 theme based on Nord color. (github.com)</a><br>Gruvbox主题<a target="_blank" rel="noopener" href="https://github.com/ayamir/fcitx5-gruvbox">ayamir/fcitx5-gruvbox: Fcitx5 Gruvbox Skin (github.com)</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装fcitx5输入法框架，全选</span></span><br><span class="line">yay -S fcitx5-im  </span><br><span class="line"><span class="comment"># 配置fcitx5的环境变量</span></span><br><span class="line">sudo nano ~/.pam_environment </span><br><span class="line"><span class="comment"># &gt;&gt;</span></span><br><span class="line">GTK_IM_MODULE DEFAULT=fcitx</span><br><span class="line">QT_IM_MODULE  DEFAULT=fcitx</span><br><span class="line">XMODIFIERS    DEFAULT=\@im=fcitx</span><br><span class="line">SDL_IM_MODULE DEFAULT=fcitx</span><br><span class="line"><span class="comment"># ^x y</span></span><br><span class="line"><span class="comment"># 安装fcitx5-rime输入法引擎</span></span><br><span class="line">yay -S fcitx5-rime </span><br><span class="line"><span class="comment"># 安装rime-cloverpinyin输入方案</span></span><br><span class="line">yay -S rime-cloverpinyin </span><br><span class="line">sudo mkdir -p ~/.<span class="built_in">local</span>/share/fcitx5/rime</span><br><span class="line">nano ~/.<span class="built_in">local</span>/share/fcitx5/rime/default.custom.yaml</span><br><span class="line"><span class="comment"># &gt;&gt;</span></span><br><span class="line">patch:</span><br><span class="line">  <span class="string">&quot;menu/page_size&quot;</span>: 5</span><br><span class="line">  schema_list:</span><br><span class="line">    - schema: clover</span><br><span class="line"><span class="comment"># ^x y </span></span><br><span class="line"><span class="comment"># 安装中文维基百科词库</span></span><br><span class="line">yay -S fcitx5-pinyin-zhwiki-rime  </span><br><span class="line"><span class="comment"># 配置主题</span></span><br><span class="line">yay -S fcitx5-material-color </span><br></pre></td></tr></table></figure>
+
+<p>重启。改下配置，win下激活ctrl+shift，lin下激活ctrl+space。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221837.png"></p>
+<p><strong>浏览器</strong><br><code>yay -S google-chrome</code></p>
+<p><strong>显卡</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.v2ex.com/t/630119">manjaro 安装 Nvidia 显卡驱动， Intel + Nvidia 双显卡解决方案。（已解决） - V2EX</a></p>
+</blockquote>
+<p>intel+nvidia默认使用ubuntu的prime驱动方案，如想手动更改驱动，看上面。<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221845.png"></p>
+<p><strong>卸载不需要的软件</strong></p>
+<p>善用<code>sudo pacman -Qs string</code> , <code>sudo pacman -Rns package </code>自己看着办。</p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221854.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221906.png"></div></div></div>
+
+<h3 id="PPPOE拨号"><a href="#PPPOE拨号" class="headerlink" title="PPPOE拨号"></a>PPPOE拨号</h3><h4 id="rp-pppoe"><a href="#rp-pppoe" class="headerlink" title="rp-pppoe"></a><del>rp-pppoe</del></h4><blockquote>
+<p>楔子，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72025955">Manjaro安装与初始化 - 知乎 (zhihu.com)</a><br>ppp原理，<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Ppp">arch wiki - ppp</a><br>对各发行版的讲解，<a target="_blank" rel="noopener" href="https://vvl.me/2017/09/Linux-PPPoE/">在 Linux 上拨号上网 (PPPoE)</a><br>大致步骤，<a target="_blank" rel="noopener" href="https://blog.csdn.net/chenyiyue/article/details/81161004">arch linux 配置pppoe，实现ADSL拨号上网</a><br>硬核拨号，<a target="_blank" rel="noopener" href="https://blog.51cto.com/11396852/1894255">pppoe拨号上网安装Arch Linux</a></p>
+</blockquote>
+<p>如果是校园网，一般有专门的拨号软件，多数不会适配linux，需要手动拨号。比如我校的拨号软件为netkeeper，无linux版。win10可以无需软件直接网络连接拨号，建议先用win10尝试，成功后确认账号密码无误再去linux。</p>
+<ol>
+<li><p>电信宽带，短信发送460到中国电信10001，查看宽带帐号和密码。</p>
+</li>
+<li><p>kde查看网络连接，或者ipconfig。<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221919.png"></p>
+</li>
+<li><p>DNS：202.101.224.69；网卡设备eno1。</p>
+</li>
+<li><p>命令行快速拨号软件<br><code>yay -S rp-pppoe</code></p>
+</li>
+</ol>
+<p><strong>关于：manjaro下的rp-pppoe</strong></p>
+<p>进入配置选项：pppoe-setup<br>开始连接：pppoe-start<br>断开连接：pppoe-stop<br>查看状态：pppoe-status</p>
+<p>关闭网卡：ifconfig 网卡 down<br>开启网卡：ifconfig 网卡 up</p>
+<p><strong>一次完整的拨号过程：</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo pppoe-setup </span><br><span class="line">USER NAME：宽带帐号</span><br><span class="line">INTERFACE：网卡号</span><br><span class="line">demand：no（默认）</span><br><span class="line">DNS：上面查看的DNS地址</span><br><span class="line">PASSWORD：宽带密码</span><br><span class="line">FIREWALLING：<span class="number">0</span>（NONE）</span><br><span class="line">adjust configuration files ? y</span><br><span class="line">sudo pppoe-<span class="built_in">start</span> </span><br><span class="line">connected!</span><br></pre></td></tr></table></figure>
+
+<p>最后保存配置文件时，每次setup将重写配置文件，上一份配置文件拷贝到-bak，以下是文件位置：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Accept these settings and adjust configuration files (y/n)? y</span><br><span class="line">Adjusting /etc/ppp/pppoe.conf</span><br><span class="line">Adjusting /etc/resolv.conf</span><br><span class="line">(But first backing it up to /etc/resolv.conf-bak)</span><br><span class="line">Adjusting /etc/ppp/pap-secrets and /etc/ppp/chap-secrets</span><br><span class="line">(But first backing it up to /etc/ppp/pap-secrets-bak)</span><br><span class="line">(But first backing it up to /etc/ppp/chap-secrets-bak)</span><br></pre></td></tr></table></figure>
+
+<p>使用rp-pppoe拨号连接成功，但是上不了网，tmd，怪起来了。网上相关帖子少，自己又太菜，找找其它的办法。</p>
+<h4 id="openkeeper"><a href="#openkeeper" class="headerlink" title="openkeeper"></a>openkeeper</h4><p>查了一下netkeeper for linux，又看到一篇帖子，重庆那边电信也是用netkeeper作为校园客户端，有大佬写了一个拨号程序openkeeper作为netkeeper的替代品。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoxiangtianxia/article/details/20294381">重邮等高校在linux下使用openkeeper代替netkeeper连接网络</a><br>项目地址：<a target="_blank" rel="noopener" href="https://github.com/Eventide/openkeeper-cli">Eventide/openkeeper-cli</a></p>
+</blockquote>
+<p>项目不提供现成包，其它linux发行系的安装需要make install，aur查了一下，arch系已经有人打包好了。</p>
+<p><code>yay openkeeper</code> ，只有一个包，直接安装。感谢这位打包侠。</p>
+<p>该软件十分简洁，man了一下openkeeper-cli，没有手册页条目哈哈。软件命令详情看readme。</p>
+<blockquote>
+<p><strong>Install</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/Eventide/openkeeper-cli.git</span><br><span class="line">$ <span class="built_in">cd</span> openkeeper-cli</span><br><span class="line">$ ./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">$ make </span><br><span class="line">$ sudo make install </span><br></pre></td></tr></table></figure>
+
+<p><strong>Use</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ok-config <span class="comment"># 配置连接</span></span><br><span class="line">sudo ok        <span class="comment"># 连接</span></span><br><span class="line">sudo ok-stop   <span class="comment"># 断开连接</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305191353.png"></div><div class="group-picture-column"><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305191411.png"></div></div></div>
+
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Fonts_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#Microsoft_%E5%AD%97%E4%BD%93">Fonts (简体中文) - ArchWiki (archlinux.org)</a></p>
+</blockquote>
+<p><strong>默认字体方案</strong></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221932.png"></p>
+<h4 id="开源字体"><a href="#开源字体" class="headerlink" title="开源字体"></a><strong>开源字体</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文泉驿</span></span><br><span class="line">sudo pacman -S wqy-microhei wqy-bitmapfont wqy-zenhei wqy-microhei-lite</span><br><span class="line"><span class="comment"># 爱逗比</span></span><br><span class="line">sudo pacman -S adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts</span><br><span class="line"><span class="comment"># 西文</span></span><br><span class="line">sudo pacman -S ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji noto-fonts-cjk monaco</span><br></pre></td></tr></table></figure>
+
+<h4 id="开源Nerd字体"><a href="#开源Nerd字体" class="headerlink" title="开源Nerd字体"></a><strong>开源Nerd字体</strong></h4><p>这里选择jb家的字体：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/ryanoasis/nerd-fonts/releases">Releases · ryanoasis/nerd-fonts (github.com)</a> –下载-&gt; <a target="_blank" rel="noopener" href="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip">JetBrainsMono.zip</a></p>
+</blockquote>
+<p>解压下载完的字体压缩包，假设目录名是JetBrainsMono</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.<span class="built_in">local</span>/share/fonts</span><br><span class="line">cp -vr JetBrainsMono/ ~/.<span class="built_in">local</span>/share/fonts</span><br><span class="line">fc-cache -vf</span><br></pre></td></tr></table></figure>
+
+<p>konsole把字体改成JetBrainsMono Nerd Font</p>
+<h4 id="win10字体"><a href="#win10字体" class="headerlink" title="win10字体"></a><strong>win10字体</strong></h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_33528967/article/details/93380729">archlinux使用Windows字体及相关配置_ixum-CSDN博客</a></p>
+</blockquote>
+<p>windows字体（C:\Windows\Fonts）拷贝到linux（winfonts_path/）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 存放路径</span></span><br><span class="line">sudo mkdir -p /usr/share/fonts/winfonts/</span><br><span class="line">sudo cp winfonts_path/* /usr/share/fonts/winfonts/</span><br><span class="line"><span class="built_in">cd</span> /usr/share/fonts/winfonts/</span><br><span class="line">rm *.fon</span><br><span class="line"><span class="comment"># 更新缓存</span></span><br><span class="line">sudo mkfontscale</span><br><span class="line">sudo mkfontdir</span><br><span class="line">fc-cache -fv</span><br></pre></td></tr></table></figure>
+
+<p><strong>我的字体方案</strong></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301231416.png"></p>
+<h3 id="KDE"><a href="#KDE" class="headerlink" title="KDE"></a>KDE</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://store.kde.org/browse/cat/">KDE Store</a><br><a target="_blank" rel="noopener" href="https://www.pling.com/p/1398841/">pling.com</a></p>
+</blockquote>
+<h4 id="dock栏"><a href="#dock栏" class="headerlink" title="dock栏"></a><strong>dock栏</strong></h4><p><code>sudo pacman -S latte-dock</code></p>
+<h4 id="kde部件"><a href="#kde部件" class="headerlink" title="kde部件"></a><strong>kde部件</strong></h4><p><code>Translator</code></p>
+<p>翻译部件。小部件获取，商店在线 </p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301221941.png"></p>
+<p><code>Netspeed Widget</code></p>
+<p>网速部件。小部件获取，商店在线。</p>
+<p><code>Thermal Monitor</code></p>
+<p>温度部件。小部件获取，商店在线。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222001.png"></p>
+<p><code>Application title</code></p>
+<p>全局菜单的活动应用。小部件获取，商店在线。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222011.png"></p>
+<p><code>Materia Dark KDE</code></p>
+<p>下拉终端Yakuake主题美化。Yakuake主题获取，商店在线。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222020.png"></p>
+<p><code>bl1nk konsole color schemed</code></p>
+<p>终端颜色主题。终端配置，获取更多，商店在线。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222029.png"></p>
+<h4 id="平铺kde"><a href="#平铺kde" class="headerlink" title="平铺kde"></a><strong>平铺kde</strong></h4><blockquote>
+<p>演示：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=N1Bg-H9Lpzs&feature=youtu.be">Grid-Tiling KWin - YouTube</a><br>安装：<a target="_blank" rel="noopener" href="https://opensuse.bwsl.wang/opensuse/%E5%B9%B3%E9%93%BAKDE.html">平铺KDE - openSUSE使用记录 (bwsl.wang)</a></p>
+</blockquote>
+<p>半自动部署：</p>
+<ol>
+<li>从项目地址下载项目并解压。设解压的路径为<code>path</code>。</li>
+<li>安装<code>kpackagetool5 --type KWin/Script -i path</code></li>
+<li><code>mkdir -p ~/.local/share/kservices5</code></li>
+<li><code>cp path/metadata.desktop/ ~/.local/share/kservices5/kwin-script-grid-tiling.desktop</code></li>
+<li>安装完成，前往<code>KDE设置—窗口管理—KWin脚本</code>中激活<code>Grid-Tiling</code>即可。</li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222036.png"></p>
+<h4 id="kde主题"><a href="#kde主题" class="headerlink" title="kde主题"></a>kde主题</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023939494">KDE美化—Manjaro KDE - SegmentFault 思否</a><br><a target="_blank" rel="noopener" href="https://github.com/cathaysia/awesome_kde_theme/">cathaysia/awesome_kde_theme: 一系列美观的kde主题 (github.com)</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.pling.com/p/1398841/">WhiteSur</a>全局主题</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/vinceliuice/WhiteSur-kde">vinceliuice/WhiteSur-kde: MacOS big sur theme for kde plasma (github.com)</a></p>
+</blockquote>
+<p>kde设置里下载主题不走qv2ray设置的全局代理，像图标这类的大文件不要从设置里下载。建议从github下载按照说明步骤安装</p>
+<p><a target="_blank" rel="noopener" href="https://www.pling.com/p/1355701/">McMojave cursors</a>鼠标</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/vinceliuice/McMojave-cursors">vinceliuice/McMojave-cursors: McMojave cursors for linux desktops (github.com)</a></p>
+</blockquote>
+<p>图标：原生</p>
+<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><blockquote>
+<p>Manjaro Linux 踩坑调教记录 - PRIN BLOG (printempw.github.io)</p>
+</blockquote>
+<p><strong>home英文</strong></p>
+<p>将用户目录下的中文文件夹修改为英文</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S xdg-user-dirs-gtk</span><br><span class="line"><span class="built_in">export</span> LANG=en_US</span><br><span class="line">xdg-user-dirs-gtk-update</span><br><span class="line"><span class="built_in">export</span> LANG=zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
+
+<p>窗口提示语言更改，更新名称即可<br>重启电脑，如果提示语言更改，保留旧的名称即可</p>
+<p><strong>笔记本合盖行为</strong></p>
+<p>外接显示器时合盖也不挂起（睡眠）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/logind.conf</span><br><span class="line">HandleLidSwitch=<span class="built_in">suspend</span></span><br><span class="line">HandleLidSwitchExternalPower=<span class="built_in">suspend</span></span><br><span class="line">HandleLidSwitchDocked=ignore</span><br></pre></td></tr></table></figure>
+
+<p><strong>鼠标滚轮速度</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/IMWheel">IMWheel - ArchWiki (archlinux.org)</a><br><a target="_blank" rel="noopener" href="https://printempw.github.io/setting-up-manjaro-linux/">Manjaro Linux 踩坑调教记录 - PRIN BLOG (printempw.github.io)</a></p>
+</blockquote>
+<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><p><strong>timeshift</strong></p>
+<p>系统自带。设置后开机触发快照。保留设置存档数量，溢出存档数量删除旧快照。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210301222055.png"></p>
+<p><strong>wps</strong><br><code>yay -S wps-office wps-office-mui-zh-cn ttf-wps-fonts </code> 中文选择cn<br>若使用fcitx5的话，需要修改<code>/usr/bin/wps</code>和<code>/usr/bin/wpp</code>，将下面这行代码加到<strong>文件开头</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /usr/bin/wps</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=<span class="string">&quot;fcitx5&quot;</span></span><br><span class="line">^x y</span><br><span class="line">sudo nano /usr/bin/wpp</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=<span class="string">&quot;fcitx5&quot;</span></span><br><span class="line">^x y</span><br></pre></td></tr></table></figure>
+
+<p><strong>flameshot</strong><br><code>yay -S flameshot</code></p>
+<p><strong>typora</strong><br><code>yay -S typora</code></p>
+<p><strong>picgo</strong><br><code>yay picgo </code>       可选GUI的picgo和核心picgo-core</p>
+<p><strong>proxychains</strong><br>命令行程序代理（<a target="_blank" rel="noopener" href="https://github.com/rofl0r/proxychains-ng/issues/199#issuecomment-340183417">对 Go 编写的程序无效</a>）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/rofl0r/proxychains-ng">rofl0r/proxychains-ng: proxychains ng (new generation) - a preloader which hooks calls to sockets in dynamically linked programs and redirects it through one or more socks/http proxies. continuation of the unmaintained proxychains project. </a></p>
+</blockquote>
+<p><strong>motrix</strong><br><code>yay -S motrix</code>     下种子</p>
+<p><strong>lx-music</strong></p>
+<p><code>yay lx-music</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ yay lx-music   </span><br><span class="line">3 aur/lx-music 1.7.1-2 (+0 0.00) (已安装)</span><br><span class="line">    一个基于 electron 的音乐软件</span><br><span class="line">2 aur/lx-music-desktop-appimage 1.7.1-1 (+0 0.00) (孤立) </span><br><span class="line">    A music assistant based on Electron + Vue.</span><br><span class="line">1 aur/lx-music-desktop-bin 1.7.1-1 (+2 0.78) </span><br><span class="line">    A music software based on Electron + Vue. 一个基于 Electron + Vue 开发的音乐软件。</span><br><span class="line">==&gt; 要安装的包 (示例: 1 2 3, 1-3 或 ^4)</span><br><span class="line">==&gt; 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://yqsas.com/2019/03/03/manjaro-in-t480s/">折腾之 Manjaro 安装使用指北 - yqsas的博客 | Yqsas Blog</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114296129">Manjaro-KDE安装配置全攻略 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p><strong>命令行必备</strong></p>
+<p><code>sudo pacman -S vim tree</code></p>
+<p><strong>装逼</strong></p>
+<p><code>sudo pacman -S lolcat neofetch</code></p>
+<p><strong>命令速记</strong></p>
+<p>tldr(Too Long Don’t Read)<br><code>yay -S tldr</code> 或者 <code>pip install --user tldr</code></p>
+<p><strong>ranger</strong></p>
+<p><code>sudo pacman -S ranger</code></p>
+<blockquote>
+<p>快捷键：<a target="_blank" rel="noopener" href="http://www.mikewootc.com/wiki/linux/usage/ranger_file_manager.html">linux终端文件管理器ranger使用详解 (mikewootc.com)</a></p>
+</blockquote>
+<p><strong>zsh</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /usr/bin/zsh  </span><br><span class="line"><span class="comment"># 修改默认shell为zsh</span></span><br><span class="line"><span class="comment"># (可选)为github相关域名添加DNS解析</span></span><br><span class="line">sudo nano /etc/hosts</span><br><span class="line">&gt;&gt;</span><br><span class="line"><span class="comment"># GitHub Start</span></span><br><span class="line">151.101.64.133 raw.githubusercontent.com</span><br><span class="line"><span class="comment"># GitHub End</span></span><br><span class="line">^x y</span><br><span class="line"><span class="built_in">source</span> /etc/hosts</span><br><span class="line"><span class="comment"># (可选) curl 使用代理</span></span><br><span class="line">curl -x <span class="string">&quot;127.0.0.1:7890&quot;</span></span><br><span class="line"><span class="comment"># 安装ohmyzsh</span></span><br><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br><span class="line"><span class="comment"># zsh-completions插件</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-completions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-completions</span><br><span class="line"><span class="comment"># zsh-syntax-highlighting插件</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br><span class="line"><span class="comment"># autosuggestions插件</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions</span><br><span class="line"><span class="comment"># (可选，命令预览，拖慢zsh速度)incr插件</span></span><br><span class="line">git <span class="built_in">clone</span> git://github.com/makeitjoe/incr.zsh <span class="variable">$ZSH_CUSTOM</span>/plugins/incr</span><br><span class="line"><span class="comment"># 启用插件</span></span><br><span class="line">nano ~/.zshrc</span><br><span class="line"><span class="comment"># plugins=(git) -&gt;</span></span><br><span class="line">plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions docker docker-compose sudo extract)</span><br><span class="line"><span class="comment"># 主题 https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</span></span><br><span class="line">theme=ys</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line"><span class="built_in">autoload</span> -U compinit &amp;&amp; compinit</span><br></pre></td></tr></table></figure>
+
+<p>终端-常规-命令-<code>/bin/zsh</code></p>
+<p>插件说明：<br><strong>sudo</strong>是ohmyzsh自带的插件，功能是在你输入的命令的开头添加sudo ，双击Esc<br><strong>extract</strong>也是自带插件，不用记不同文件的解压命令，extract +你要解压的文件名</p>
+<p><strong>终端文件图标</strong></p>
+<blockquote>
+<p>演示：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vx411q731/">GNOME 3.26 | 终端显示文件类型图标_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</a><br>项目地址：<a target="_blank" rel="noopener" href="https://github.com/athityakumar/colorls/tree/v1.4.3">athityakumar/colorls at v1.4.3 (github.com)</a></p>
+</blockquote>
+<p><strong>终端高级编辑器</strong></p>
+<blockquote>
+<p>VimPlus：<a target="_blank" rel="noopener" href="https://github.com/chxuan/vimplus">chxuan/vimplus: An automatic configuration program for vim (github.com)</a><br>或者<br>Emacs：<a target="_blank" rel="noopener" href="https://github.com/hlissner/doom-emacs">hlissner/doom-emacs: An Emacs framework for the stubborn martian hacker (github.com)</a></p>
+</blockquote>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p><strong>java</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S jdk-openjdk</span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p><code>yay -S visual-studio-code-bin</code>    vscode<br><code>yay -S postman-bin</code>   postman<br><code>yay -S jetbrains-toolbox</code>  jb全家桶<br><code>yay -S wechat-devtools</code>   微信开发者工具</p>
+<p><strong>miniconda</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mrswolf.github.io/zh-cn/2019/05/24/manjaro%E8%B8%A9%E5%9D%91%E8%AE%B0/">manjaro踩坑记 - swolf的博客 (mrswolf.github.io)</a></p>
+</blockquote>
+<p>miniconda管理环境并安装python相关package。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line">sh Miniconda3-latest-Linux-x86_64.sh </span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 ~/.bash_profile,在最后添加如下环境变量（注意PATH要在前面）</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/miniconda3/bin&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑完成后</span></span><br><span class="line"><span class="built_in">source</span> .bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># miniconda的pypi换源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入base环境或新建的python环境</span></span><br><span class="line"><span class="built_in">source</span> activate</span><br><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<p><strong>docker</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5e7726d1cb16">Arch Linux 2020-07 安装kde桌面环境 - 简书 (jianshu.com)</a></p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S docker  <span class="comment">//并尽可能安装可选依赖</span></span><br><span class="line">sudo gpasswd -a $(whoami) docker   <span class="comment">//不用sudo即可运行docker</span></span><br><span class="line">sudo systemctl restart docker  <span class="comment">//重启docker</span></span><br><span class="line">sudo echo <span class="string">&quot;&#123;&quot;</span>registry-mirrors<span class="string">&quot;: [&quot;</span>http:<span class="comment">//hub-mirror.c.163.com&quot;]&#125;&quot; &gt;&gt; /etc/docker/daemon.json  //写入网易镜像源</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><strong>nodejs</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mrswolf.github.io/zh-cn/2019/05/24/manjaro%E8%B8%A9%E5%9D%91%E8%AE%B0/#%E5%AE%89%E8%A3%85nodejs">manjaro踩坑记 - swolf的博客 (mrswolf.github.io)</a></p>
+</blockquote>
+<p>nodejs - hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装nvm版本管理（直接安装nodejs会有权限错误）</span></span><br><span class="line">yay -S nvm</span><br><span class="line"><span class="built_in">source</span> /usr/share/nvm/init-nvm.sh</span><br><span class="line">nvm install node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装npm和hexo</span></span><br><span class="line">sudo pacman -S npm</span><br><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org  <span class="comment"># 淘宝源，下载大多数软件可加速</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/  <span class="comment"># 改回官方源，小部分软件还是得靠官方源</span></span><br></pre></td></tr></table></figure>
+
+<p>复制博客文件到linux下，配置git。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;user_name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;user_email&quot;</span></span><br><span class="line">git config user.name  <span class="comment"># 查看回显</span></span><br><span class="line">git config user.email</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;user_email&quot;</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub </span><br><span class="line"><span class="comment"># copy cat回显</span></span><br></pre></td></tr></table></figure>
+
+<p>github - Setting - SSH and GPG keys - new SSH key - name/cat回显 - 确定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">Are you sure you want to <span class="built_in">continue</span> connecting (yes/no/[fingerprint])? yes</span><br><span class="line">Hi mednight4! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br><span class="line"><span class="string">sudo hexo d -g</span></span><br></pre></td></tr></table></figure>
+
+<p>注意一下git的分支问题：<a target="_blank" rel="noopener" href="https://helloliwen.github.io/870ed150.html">使用hexo，如果换了电脑怎么保留配置和更新博客</a>。</p>
+<p>在此另补充一个git错误：<br>OpenSSL SSL_read: Connection was  reset, errno 10054：服务器的SSL证书没有经过第三方机构的签署。<br>关闭权限认证即可。<br><code>git config --global http.sslVerify &quot;false&quot;</code></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210302124857.png"></p>
+<h4 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">文档 | Hexo</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210305210422.png"></p>
+<h4 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h4><p>两个系统nodejs版本跨度太大可能会导致博客环境炸掉，而linux滚完的nodejs一般都是最新的…尽量在统一的环境下generate-deploy吧。</p>
+<h2 id="可选配置"><a href="#可选配置" class="headerlink" title="可选配置"></a>可选配置</h2><h3 id="软件-1"><a href="#软件-1" class="headerlink" title="软件"></a>软件</h3><p><strong>软件集整合推荐</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.biaodianfu.com/install-manjaro-linux.html#comment-161818">Manjaro Linux 安装与使用 – 标点符 (biaodianfu.com)</a><br><a target="_blank" rel="noopener" href="https://yqsas.com/2019/03/03/manjaro-in-t480s/">折腾之 Manjaro 安装使用指北 - yqsas的博客 | Yqsas Blog</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903910168068109">Manjaro 安装体验小结 (juejin.cn)</a><br><a target="_blank" rel="noopener" href="https://blog.kaaass.net/archives/1205">Arch Linux (Manjaro) 配置与常用软件安装指南 | KAAAsS’s blog</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30687587/article/details/97824447?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">archlinux/manjaro常用软件推荐_weixin_30687587的博客-CSDN博客</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/89847601">KDE美化之路 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p><strong>deepin全家桶</strong></p>
+<p>喜欢dde桌面可入。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.biaodianfu.com/install-manjaro-linux.html#comment-161818">Manjaro Linux 安装与使用 – 标点符 (biaodianfu.com)</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S deepin-movie </span><br><span class="line">sudo pacman -S deepin-music</span><br><span class="line">sudo pacman -S deepin-calculator</span><br><span class="line">sudo pacman -S deepin-file-manager</span><br><span class="line">sudo pacman -S deepin-calendar</span><br><span class="line">sudo pacman -S deepin-draw</span><br><span class="line">sudo pacman -S deepin-image-viewer</span><br><span class="line">sudo pacman -S deepin-picker</span><br><span class="line">sudo pacman -S deepin-screen-recorder</span><br><span class="line">sudo pacman -S deepin-screenshot</span><br><span class="line">sudo pacman -S deepin-system-monitor</span><br><span class="line">sudo pacman -S deepin-voice-recorder</span><br><span class="line">sudo pacman -S deepin-editor </span><br><span class="line">yay -S deepin-wine-tim</span><br><span class="line">yay -S deepin-wine-wechat</span><br><span class="line">yay -S deepin.com.thunderspeed</span><br><span class="line">yay -S deepin-wine-qq</span><br><span class="line">yay -S electron-wechat</span><br></pre></td></tr></table></figure>
+
+<p><strong>QQ（建议）</strong></p>
+<p>哪个有用试哪个</p>
+<ul>
+<li><p><del><code>yay -S deepin.com.qq.office</code> （2021.3.5测试：版本过低，无法使用)</del></p>
+<p>  或者</p>
+</li>
+<li><p><code>yay -S deepin-wine-qq</code> <a target="_blank" rel="noopener" href="https://github.com/countstarlight/deepin-wine-qq-arch">安装介绍</a></p>
+<p>  或者</p>
+</li>
+<li><p><code>yaourt -S  aur/com.qq.tim.spark   </code><br>  <a target="_blank" rel="noopener" href="https://printempw.github.io/setting-up-manjaro-linux/">Manjaro Linux 踩坑调教记录 - PRIN BLOG (printempw.github.io)</a></p>
+</li>
+</ul>
+<p><strong>以下是第三个：</strong><br>修复 TIM 字体发虚<br><code>yay -S lib32-freetype2-infinality-ultimate</code><br>Wine HiDPI 屏缩放<br><code>env WINEPREFIX=&quot;$HOME/.deepinwine/Deepin-TIM&quot; deepin-wine winecfg</code></p>
+<p><strong>deepin-wine-tim安装（兼容性问题，不建议）</strong></p>
+<p>我试装了yay默认提供的tim，出现了兼容性问题，某些字体显示口口口。按需安装吧。</p>
+<blockquote>
+<p>安装过程看：<a target="_blank" rel="noopener" href="https://github.com/countstarlight/deepin-wine-tim-arch">deepin-wine-tim-arch: 在Archlinux及衍生发行版上运行TIM</a></p>
+</blockquote>
+<p>Tim字体发虚</p>
+<blockquote>
+<p>摘录自：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114296129">Manjaro-KDE安装配置全攻略 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>切换deepin-wine环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh /opt/deepinwine/apps/Deepin-Tim/run.sh -d</span><br><span class="line">env WINEPREFIX=<span class="string">&quot;<span class="variable">$HOME</span>/.deepinwine/Deepin-TIM&quot;</span> /usr/bin/deepin-wine winecfg</span><br></pre></td></tr></table></figure>
+
+<p>在弹出的窗口中选择windows xp，将DPI调大（默认是96），调成120</p>
+<p><strong>deepin-wine-wechat微信字体发虚</strong></p>
+<p>同上，把tim改为wechat</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/apps/com.qq.weixin.deepin/files/run.sh -d</span><br><span class="line">env WINEPREFIX=<span class="string">&quot;<span class="variable">$HOME</span>/.deepinwine/Deepin-WeChat&quot;</span> /usr/bin/deepin-wine winecfg</span><br></pre></td></tr></table></figure>
+
+<p> <strong>VMware</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/u/4172591/blog/3190284">Linux笔记:Manjaro 基本操作及命令(更新中) - pollora的个人空间 - OSCHINA - 中文开源技术交流社区</a></p>
+</blockquote>
+<p><strong>OneDrive</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive/">abraunegg/onedrive: OneDrive Client for Linux (github.com)</a></p>
+</blockquote>
+<p><strong>其他软件</strong></p>
+<p><code>yay -S netease-cloud-music</code>     网易云音乐<br><code>yay -S yesplaymusic  </code>     网易云第三方</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/qier222/YesPlayMusic">qier222/YesPlayMusic: 高颜值的第三方网易云播放器</a></p>
+</blockquote>
+<p><code>yay -S iease-music</code>   网易云第三方</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/trazyn/ieaseMusic">ieaseMusic: 网易云第三方播放器</a></p>
+</blockquote>
+<p><code>yay -S qqmusic-bin</code>      qq音乐<br><code>yay -S baidunetdisk</code>    度盘客户端<br><code>yay -S baidupcs-go</code>       度盘CLI<br><code>yay -S nutstore </code>       坚果云<br><code>yay -S notion-app</code>     notion<br><code>yay -S xdman</code>     xdm</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://subhra74.github.io/xdm/#downloads">XDM Home (subhra74.github.io)</a></p>
+</blockquote>
+<p><code>yay -S calibre</code>       calibre电子书<br><code>yay -S gimp </code>       gimp，photoshop的替代品<br><code>yay -S krita</code>        krita，绘画软件，photoshop的替代品<br><code>yay -S xmind-zen</code>       思维导图<br><code>yay -S foxit</code>  福昕阅读器</p>
+<h3 id="命令增强"><a href="#命令增强" class="headerlink" title="命令增强"></a>命令增强</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347596983">Rust Everything On GNU/Linux - 知乎 (zhihu.com)</a><br>视频演示：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=dQa9mveTSV4">Rust Programs Every Linux User Should Know About - YouTube</a><br><a target="_blank" rel="noopener" href="https://printempw.github.io/setting-up-manjaro-linux/">Manjaro Linux 踩坑调教记录 - PRIN BLOG (printempw.github.io)</a></p>
+</blockquote>
+<p><strong>ls -&gt; exa</strong></p>
+<p>更丰富的输出信息和用法</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/ogham/exa">ogham/exa: A modern replacement for ‘ls’. (github.com)</a></p>
+</blockquote>
+<p><strong>grep -&gt; ripgrep</strong></p>
+<p>更快的文本搜索工具</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">BurntSushi/ripgrep: ripgrep recursively searches directories for a regex pattern while respecting your gitignore (github.com)</a></p>
+</blockquote>
+<p><strong>fzf</strong> </p>
+<p>模糊搜索</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf">junegunn/fzf: A command-line fuzzy finder (github.com)</a></p>
+</blockquote>
+<p><strong>find/mlocate -&gt; fd</strong></p>
+<p>更快的文件搜索工具</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/sharkdp/fd">sharkdp/fd: A simple, fast and user-friendly alternative to ‘find’ (github.com)</a></p>
+</blockquote>
+<p><strong>cat -&gt; bat</strong></p>
+<p>带语法高亮的cat</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/sharkdp/bat">sharkdp/bat: A cat(1) clone with wings. (github.com)</a></p>
+</blockquote>
+<p><strong>autojump</strong></p>
+<p>cd增强补全</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/wting/autojump">wting/autojump: A cd command that learns - easily navigate directories from the command line (github.com)</a></p>
+</blockquote>
+<p><strong>thefuck</strong></p>
+<p>错误命令输入提示</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/nvbn/thefuck">nvbn/thefuck: Magnificent app which corrects your previous console command. (github.com)</a></p>
+</blockquote>
+<p><strong>ps -&gt; procs</strong></p>
+<p>输出信息、用法更丰富的ps</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/dalance/procs">dalance/procs: A modern replacement for ps written in Rust (github.com)</a></p>
+</blockquote>
+<p><strong>tokei</strong></p>
+<p>统计不同类型文件信息</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/XAMPPRocky/tokei">XAMPPRocky/tokei: Count your code, quickly. (github.com)</a></p>
+</blockquote>
+<p><strong>alacritty</strong></p>
+<p>拥有GPU加速的跨平台vim风格用法的终端模拟器</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/alacritty/alacritty">alacritty/alacritty: A cross-platform, OpenGL terminal emulator. (github.com)</a></p>
+</blockquote>
+<p><strong>kitty</strong></p>
+<p>加速终端模拟器</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/kovidgoyal/kitty">kovidgoyal/kitty: Cross-platform, fast, feature-rich, GPU based terminal (github.com)</a></p>
+</blockquote>
+<p> <strong>starship</strong></p>
+<p>精简、快速、可定制的Shell(bash/zsh/fish)命令提示符</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/starship/starship/blob/master/docs/zh-CN/guide/README.md">starship/README.md at master · starship/starship (github.com)</a></p>
+</blockquote>
+<p><strong>pdfgrep -&gt; ripgrep-all</strong></p>
+<p>扩展的ripgrep，支持pdf等的搜索</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/phiresky/ripgrep-all">phiresky/ripgrep-all: rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (github.com)</a></p>
+</blockquote>
+<h3 id="grub美化"><a href="#grub美化" class="headerlink" title="grub美化"></a>grub美化</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.gnome-look.org/browse/cat/109/order/latest/">GRUB Themes - Gnome-look.org (gnome-look.org)</a></p>
+</blockquote>
+<p>挑选按照github官方说明安装。</p>
+<h1 id="后续问题"><a href="#后续问题" class="headerlink" title="后续问题"></a>后续问题</h1><h2 id="grub添加win10引导"><a href="#grub添加win10引导" class="headerlink" title="grub添加win10引导"></a>grub添加win10引导</h2><p>2021-03-8：滚动更新了grub（似乎警告了一句配置文件迁移），生成了新的grub默认配置文件，没有自动添加win10引导，导致grub选择页面缺失windows manage boot，无法直接点击进win10了。好在两个系统的引导还在，只是互相没有关联了，麻烦点可以从bios更改引导顺序进入不同的系统。</p>
+<p>为了方便还是手动把manage boot添加到grub。</p>
+<p><strong>grub语法</strong></p>
+<p>在开机后grub页有个C按键可进入Command，grub有自己的一套命令。目前要用到的基本是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insmod part_gpt      <span class="comment"># 磁盘格式是gpt</span></span><br><span class="line">insmod fat           <span class="comment"># 分区格式fat</span></span><br><span class="line">ls                   <span class="comment"># 列出(hd0,gpt0)、(hd0)等等</span></span><br><span class="line"><span class="built_in">set</span> root=(hd1,gpt1)  <span class="comment"># 选择此磁盘为启动根目录</span></span><br><span class="line">ls /     <span class="comment"># 此时可以查看此磁盘下的文件，efi分区下都有efi文件夹，可以ls (hdX,X)/一圈，选到微软的efi分区为止</span></span><br><span class="line">chainloader /EFI/Microsoft/Boot/bootmgfw.efi    <span class="comment"># 加载此引导文件，路径固定</span></span><br><span class="line">boot                 <span class="comment"># go</span></span><br></pre></td></tr></table></figure>
+
+<p>在grub如此一番操作可以手动选择引导进入win10，然后我们把这波操作写到开机配置文件。<br>进入系统后，<strong>grub配置文件地址</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动配置</span></span><br><span class="line">/boot/grub/grub.cfg <span class="comment"># 30_os-prober</span></span><br><span class="line"><span class="comment"># 功能配置</span></span><br><span class="line">/etc/grub.d/30_os-prober <span class="comment">## 这个可以不管它</span></span><br></pre></td></tr></table></figure>
+
+<p>进入配置文件，并添加配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l <span class="comment"># 查看磁盘 我win10的efi是/dev/nvme0n1p1</span></span><br><span class="line">sudo grub-probe -t fs_uuid -d /dev/nvme0n1p1 <span class="comment"># 查看该磁盘的uuid</span></span><br><span class="line">sudo vim /boot/grub/grub.cfg</span><br><span class="line"><span class="comment"># BEGIN /etc/grub.d/30_os-prober</span></span><br><span class="line">menuentry <span class="string">&#x27;Microsoft Windows 10&#x27;</span> &#123;</span><br><span class="line">	insmod part_gpt</span><br><span class="line">	insmod fat</span><br><span class="line">	insmod chain</span><br><span class="line">	<span class="built_in">set</span> root=<span class="string">&#x27;(hd1,gpt1)&#x27;</span> <span class="comment">## 这里一定要选对，选不对就看参考文章用变量代替</span></span><br><span class="line">	chainloader /EFI/Microsoft/Boot/bootmgfw.efi</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># END /etc/grub.d/30_os-prober</span></span><br><span class="line">shutdown now</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/win10%2Bmanjaro%E5%8F%8C%E7%B3%BB%E7%BB%9F/20210310173846.png"></p>
+<p>配置文件被配烂了可以重新生成。不过在此之前，其实grub可以自动检测到win10然后把它添加到引导菜单：</p>
+<blockquote>
+<p>注：<a target="_blank" rel="noopener" href="http://lanlingzi.cn/post/notes/2016/0313_grub_win10/">后经验证，grub-mkconfig无法扫描到win10，是由于少安装了os-prober：</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S os-prober</span><br><span class="line"><span class="comment"># 生成文件</span></span><br><span class="line">sudo grub-mkconfig -o /boot/grub/grub.cfg</span><br><span class="line"><span class="comment"># 或者 更新文件</span></span><br><span class="line">sudo update-grub</span><br><span class="line"><span class="comment"># 或者 linux重装引导</span></span><br><span class="line">sudo grub-install /dev/XXX <span class="comment"># XXX=你的引导设备</span></span><br><span class="line"><span class="comment">## 重装引导时不要没装完就退出了，引导文件丢了很麻烦</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>参考</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BC%95%E5%AF%BC%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">GRUB (简体中文) - ArchWiki (archlinux.org)</a>|</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 链式加载 UEFI 模式下安装的 Windows/Linux</span></span><br><span class="line">insmod fat  <span class="comment"># 文件系统</span></span><br><span class="line"><span class="built_in">set</span> root=(hd1,gpt1) <span class="comment"># 选择磁盘</span></span><br><span class="line">chainloader (<span class="variable">$&#123;root&#125;</span>)/EFI/Microsoft/Boot/bootmgfw.efi <span class="comment"># win10的引导地址，路径是固定的</span></span><br><span class="line">boot <span class="comment"># go</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43669969/article/details/110820419">为双系统grub添加Windows10引导启动项_Scar~let的博客-CSDN博客_grub2引导win10</a><br><a target="_blank" rel="noopener" href="https://www.jb51.net/article/47645.htm">grub命令行启动系统简明教程_Linux_脚本之家 (jb51.net)</a></p>
+</blockquote>
+<hr>
+<p><strong>3.10补充</strong></p>
+<p>manjaro已经卸了。<br>之后一段时间不会都动新系统了，太折腾。滚动发行版注定是要当主力机用的，但是目前环境下还是win适合办事。manjaro滚更了一个引导就折腾了小半天。<br>当下老老实实学好C#，整懂汇编，做完高数才是正道。<br>等我考完研再慢慢折腾吧。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/04/c-cheng-xu-she-ji-jiao-cheng-yu-fa-su-lan/" rel="prev" title="C#程序设计教程-语法速览">
+                  <i class="fa fa-chevron-left"></i> C#程序设计教程-语法速览
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/16/jiao-yu-you-xiang-bai-piao-ji/" rel="next" title="教育邮箱白嫖记">
+                  教育邮箱白嫖记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

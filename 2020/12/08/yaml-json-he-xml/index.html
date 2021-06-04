@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="只是简单的使用方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yaml,json和xml">
+<meta property="og:url" content="https://mednight4.github.io/2020/12/08/yaml-json-he-xml/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="只是简单的使用方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-08T08:35:27.000Z">
+<meta property="article:modified_time" content="2021-05-31T11:40:03.962Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2020/12/08/yaml-json-he-xml/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>yaml,json和xml | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://netdisk.mednight4.com/" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#yaml-json%E5%92%8Cxml"><span class="nav-text">yaml,json和xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#json"><span class="nav-text">json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yaml"><span class="nav-text">yaml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML"><span class="nav-text">XML</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title">
+      reading...
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kancloud/python3-cookbook/47413" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kancloud&#x2F;python3-cookbook&#x2F;47413" rel="noopener" target="_blank">Python3 Cookbook</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/" title="https:&#x2F;&#x2F;wizardforcel.gitbooks.io&#x2F;vbird-linux-basic-4e&#x2F;content&#x2F;" rel="noopener" target="_blank">私房菜Command</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/kun95/bird_linux/807455" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;kun95&#x2F;bird_linux&#x2F;807455" rel="noopener" target="_blank">私房菜Server</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/sjsdfg/effective-java-3rd-chinese/tree/master/docs/notes" title="https:&#x2F;&#x2F;github.com&#x2F;sjsdfg&#x2F;effective-java-3rd-chinese&#x2F;tree&#x2F;master&#x2F;docs&#x2F;notes" rel="noopener" target="_blank">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.kancloud.cn/wizardforcel/effective-csharp/114211" title="https:&#x2F;&#x2F;www.kancloud.cn&#x2F;wizardforcel&#x2F;effective-csharp&#x2F;114211" rel="noopener" target="_blank">Effective C#</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/quanke/think-in-java" title="https:&#x2F;&#x2F;github.com&#x2F;quanke&#x2F;think-in-java" rel="noopener" target="_blank">Think In Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dute.org/" title="https:&#x2F;&#x2F;www.dute.org&#x2F;" rel="noopener" target="_blank">独特工具箱</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="https:&#x2F;&#x2F;tool.lu&#x2F;" rel="noopener" target="_blank">在线工具</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.tooleyes.com/list/tupian/" title="https:&#x2F;&#x2F;www.tooleyes.com&#x2F;list&#x2F;tupian&#x2F;" rel="noopener" target="_blank">tooleyes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://leetcode-cn.com/explore/" title="https:&#x2F;&#x2F;leetcode-cn.com&#x2F;explore&#x2F;" rel="noopener" target="_blank">LeetCode</a>
+        </li>
+    </ul>
+  </div>
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2020/12/08/yaml-json-he-xml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          yaml,json和xml
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-08 16:35:27" itemprop="dateCreated datePublished" datetime="2020-12-08T16:35:27+08:00">2020-12-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-31 19:40:03" itemprop="dateModified" datetime="2021-05-31T19:40:03+08:00">2021-05-31</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">只是简单的使用方法。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="yaml-json和xml"><a href="#yaml-json和xml" class="headerlink" title="yaml,json和xml"></a>yaml,json和xml</h1><p>最近做一个爬虫作业（知乎爬取top50），使用yaml保存数据，数据是一个字典列表，如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;top&quot;</span>: <span class="number">34</span>, </span><br><span class="line">        <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://www.zhihu.com/question/265595875&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;question&quot;</span>: <span class="string">&quot;考研如何确定学校？&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;recommend&quot;</span>: <span class="number">216</span>, </span><br><span class="line">        <span class="attr">&quot;comment&quot;</span>: <span class="number">1</span>, </span><br><span class="line">        <span class="attr">&quot;star&quot;</span>: <span class="number">4695</span>, </span><br><span class="line">        <span class="attr">&quot;watcher&quot;</span>: <span class="number">1573098</span>, </span><br><span class="line">        <span class="attr">&quot;date&quot;</span>: <span class="string">&quot;2020-05-22 07:25:17&quot;</span></span><br><span class="line">    &#125;, </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;top&quot;</span>: <span class="number">35</span>, </span><br><span class="line">        <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://www.zhihu.com/question/432129590&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;question&quot;</span>: <span class="string">&quot;如果女生主动一点，男生会不会心动？&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;recommend&quot;</span>: <span class="literal">null</span>, </span><br><span class="line">        <span class="attr">&quot;comment&quot;</span>: <span class="string">&quot;添加评论&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;star&quot;</span>: <span class="number">154</span>, </span><br><span class="line">        <span class="attr">&quot;watcher&quot;</span>: <span class="number">175721</span>, </span><br><span class="line">        <span class="attr">&quot;date&quot;</span>: <span class="string">&quot;2020-12-08 15:05:46&quot;</span></span><br><span class="line">    &#125;, </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>用yaml.dump保存时出错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;hot_list.yaml&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(yaml.dump(hot_list, encoding=<span class="string">&#x27;utf-8&#x27;</span>, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Traceback (most recent call last):</span></span><br><span class="line"><span class="string">  File &quot;G:/Code/IntelliJ Pycharm/Crawler/zhihu/zhihu_crawler.py&quot;, line 98, in &lt;module&gt;</span></span><br><span class="line"><span class="string">    get_section(get_url())</span></span><br><span class="line"><span class="string">  File &quot;G:/Code/IntelliJ Pycharm/Crawler/zhihu/zhihu_crawler.py&quot;, line 96, in get_section</span></span><br><span class="line"><span class="string">    f.write(yaml.dump(data_list, encoding=&#x27;utf-8&#x27;, allow_unicode=True, indent=4))</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\__init__.py&quot;, line 290, in dump</span></span><br><span class="line"><span class="string">    return dump_all([data], stream, Dumper=Dumper, **kwds)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\__init__.py&quot;, line 278, in dump_all</span></span><br><span class="line"><span class="string">    dumper.represent(data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 27, in represent</span></span><br><span class="line"><span class="string">    node = self.represent_data(data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 48, in represent_data</span></span><br><span class="line"><span class="string">    node = self.yaml_representers[data_types[0]](self, data)</span></span><br><span class="line"><span class="string">  ...</span></span><br><span class="line"><span class="string">  省略多行yaml库内部错误</span></span><br><span class="line"><span class="string">  ...</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 34, in represent_data</span></span><br><span class="line"><span class="string">    if self.ignore_aliases(data):</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 139, in ignore_aliases</span></span><br><span class="line"><span class="string">    if isinstance(data, tuple) and data == ():</span></span><br><span class="line"><span class="string">RecursionError: maximum recursion depth exceeded while calling a Python object</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Process finished with exit code 1</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>此处提示递归深度超出，如果是常规的深度超出，我们可以手动设置得更深一点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys </span><br><span class="line">sys.setrecursionlimit(<span class="number">1500</span>)<span class="comment">#设置最大递归层数为1500</span></span><br></pre></td></tr></table></figure>
+
+<p>但是此处明显不是python递归的问题，将yaml.dump改为yaml.safe_dump()方法，错误如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;hot_list.yaml&quot;</span>, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(yaml.safe_dump(data_list, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Traceback (most recent call last):</span></span><br><span class="line"><span class="string">  File &quot;G:/Code/IntelliJ Pycharm/Crawler/zhihu/zhihu_crawler.py&quot;, line 95, in &lt;module&gt;</span></span><br><span class="line"><span class="string">    get_section(get_url())</span></span><br><span class="line"><span class="string">  File &quot;G:/Code/IntelliJ Pycharm/Crawler/zhihu/zhihu_crawler.py&quot;, line 93, in get_section</span></span><br><span class="line"><span class="string">    f.write(yaml.safe_dump(data_list, allow_unicode=True, indent=4))</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\__init__.py&quot;, line 306, in safe_dump</span></span><br><span class="line"><span class="string">    return dump_all([data], stream, Dumper=SafeDumper, **kwds)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\__init__.py&quot;, line 278, in dump_all</span></span><br><span class="line"><span class="string">    dumper.represent(data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 27, in represent</span></span><br><span class="line"><span class="string">    node = self.represent_data(data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 48, in represent_data</span></span><br><span class="line"><span class="string">    node = self.yaml_representers[data_types[0]](self, data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 199, in represent_list</span></span><br><span class="line"><span class="string">    return self.represent_sequence(&#x27;tag:yaml.org,2002:seq&#x27;, data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 92, in represent_sequence</span></span><br><span class="line"><span class="string">    node_item = self.represent_data(item)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 48, in represent_data</span></span><br><span class="line"><span class="string">    node = self.yaml_representers[data_types[0]](self, data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 207, in represent_dict</span></span><br><span class="line"><span class="string">    return self.represent_mapping(&#x27;tag:yaml.org,2002:map&#x27;, data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 118, in represent_mapping</span></span><br><span class="line"><span class="string">    node_value = self.represent_data(item_value)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 58, in represent_data</span></span><br><span class="line"><span class="string">    node = self.yaml_representers[None](self, data)</span></span><br><span class="line"><span class="string">  File &quot;G:\python environment\lib\site-packages\yaml\representer.py&quot;, line 231, in represent_undefined</span></span><br><span class="line"><span class="string">    raise RepresenterError(&quot;cannot represent an object&quot;, data)</span></span><br><span class="line"><span class="string">yaml.representer.RepresenterError: (&#x27;cannot represent an object&#x27;, &#x27;2020-12-08 11:03:36&#x27;)</span></span><br><span class="line"><span class="string">2020-12-08 07:47:44</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>报的是日期对象错误，大概yaml将日期认成是data对象了，两个错误不相干，但大抵能猜到时数据格式的错误。</p>
+<p>然后我使用json格式作为保存方式，保存完成，就是上面展示的json文件，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;hot_list.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(json.dumps(data_list,indent=<span class="number">4</span>,ensure_ascii=<span class="literal">False</span>, separators=(<span class="string">&#x27;, &#x27;</span>, <span class="string">&#x27;: &#x27;</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>我们将json文件里的数据读出，并用data_list接收，随后再将data_list写入yaml文件，成功。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;hot_list.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    hot_list=json.loads(f.read())</span><br><span class="line">print(hot_list)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;hot_list.yaml&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(yaml.dump(hot_list, encoding=<span class="string">&#x27;utf-8&#x27;</span>, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-   comment: 添加评论</span><br><span class="line">    date: <span class="string">&#x27;2020-12-08 15:05:46&#x27;</span></span><br><span class="line">    question: 如果女生主动一点，男生会不会心动？</span><br><span class="line">    recommend: null</span><br><span class="line">    star: <span class="number">154</span></span><br><span class="line">    top: <span class="number">35</span></span><br><span class="line">    url: https://www.zhihu.com/question/<span class="number">432129590</span></span><br><span class="line">    watcher: <span class="number">175721</span></span><br><span class="line">-   comment: <span class="number">1</span></span><br><span class="line">    date: <span class="string">&#x27;2020-12-08 13:35:09&#x27;</span></span><br><span class="line">    question: 哈登昨日没有去球队报道，他和火箭队的后续会怎样？</span><br><span class="line">    recommend: <span class="number">8</span></span><br><span class="line">    star: <span class="number">40</span></span><br><span class="line">    top: <span class="number">36</span></span><br><span class="line">    url: https://www.zhihu.com/question/<span class="number">433854967</span></span><br><span class="line">    watcher: <span class="number">29397</span></span><br></pre></td></tr></table></figure>
+
+<p>总结，bug原因是数据的格式不满足yaml的要求，具体是哪里的格式错误呢，仔细找了一圈下来，特殊的格式只有None。</p>
+<p>毕竟爬虫能不能爬到数据还是另说，方便后面pandas对数据进行清洗，我对字典的初始化方式为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;</span><br><span class="line">            <span class="string">&#x27;top&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;url&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;question&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;recommend&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;comment&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;star&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;watcher&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&#x27;date&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这就是问题所在了，当爬虫未能爬取到数据时，字典部分值为None，显然yaml不能接受None，导致bug。</p>
+<p>但是json能接受这个格式，并在文件里将其保存为<strong>null</strong>，在存入json文件后数据None转为了null（字符串？），所以也能被yaml操作了。</p>
+<h2 id="json"><a href="#json" class="headerlink" title="json"></a>json</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>如果data是str类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data=data.replace(<span class="string">&quot;\&#x27;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果data包含unicode,想要移除unicode编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = re.sub(<span class="string">r&#x27;\\(?![/u&quot;])&#x27;</span>, <span class="string">r&quot;\\\\&quot;</span>, <span class="built_in">str</span>(data))</span><br></pre></td></tr></table></figure>
+
+<p>如果data包含中文</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;numbers.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(json.dumps(data_list,indent=<span class="number">4</span>,ensure_ascii=<span class="literal">False</span>, separators=(<span class="string">&#x27;, &#x27;</span>, <span class="string">&#x27;: &#x27;</span>)))</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;numbers.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    read=json.loads(f.read())</span><br><span class="line">print(read)</span><br></pre></td></tr></table></figure>
+
+<p>dumps返回的是一个字符串，使用<code>f.write(json.dumps(data))</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>&#125;]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;numbers.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># dumps直接给的是str，也就是将字典转成json</span></span><br><span class="line">    f.write(json.dumps(data, sort_keys=<span class="literal">True</span>,indent=<span class="number">4</span>, separators=(<span class="string">&#x27;, &#x27;</span>, <span class="string">&#x27;: &#x27;</span>)))</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;numbers.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    read=json.loads(f.read())</span><br><span class="line">print(read)</span><br></pre></td></tr></table></figure>
+
+<p>dump需要一个文件对象作为写入参数，使用<code>json.dump(data, fp=f)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>&#125;]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;numbers2.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># dump需要一个类似于文件参数,需要与文件结合</span></span><br><span class="line">    json.dump(data, fp=f, sort_keys=<span class="literal">True</span>, indent=<span class="number">4</span>, separators=(<span class="string">&#x27;, &#x27;</span>, <span class="string">&#x27;: &#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>文件读</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;numbers.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    read=json.load(f)</span><br><span class="line">print(read)</span><br></pre></td></tr></table></figure>
+
+<h2 id="yaml"><a href="#yaml" class="headerlink" title="yaml"></a>yaml</h2><p><strong>yaml没有dumps和loads写法</strong>，使用<code>f.write(yaml.dump(data))</code></p>
+<p>二进制写来写入非str类型数据，encode选择中文编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;numberb.yaml&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># 二进制读写</span></span><br><span class="line">    <span class="comment"># data数据中有汉字时，加上：encoding=&#x27;utf-8&#x27;,allow_unicode=True</span></span><br><span class="line">    f.write(yaml.dump(data, encoding=<span class="string">&#x27;utf-8&#x27;</span>, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;numberb.yaml&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    read = yaml.load(f.read(), Loader=yaml.FullLoader)</span><br><span class="line">print(read)</span><br></pre></td></tr></table></figure>
+
+<p>一般用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">5</span>&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;numbers.yaml&quot;</span>,<span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(yaml.dump(data, allow_unicode=<span class="literal">True</span>, indent=<span class="number">4</span>))</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;numbers.yaml&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    read=yaml.load(f.read(), Loader=yaml.FullLoader)</span><br><span class="line">print(read)</span><br></pre></td></tr></table></figure>
+
+<p><code>Object of type datetime is not JSON serializable</code>，json不支持保存datetime对象，但是可以先保存字符串，文件读取之后再对字符串进行转日期对象操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">datetime.datetime.strptime(<span class="string">&#x27;2020-12-08 07:47:44&#x27;</span>,<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><p>这个格式太丑了，以后有机会再用，到网络编程的时候再学吧。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/09/md5-suan-fa-ji-chu-shi-xian/" rel="prev" title="MD5算法基础实现">
+                  <i class="fa fa-chevron-left"></i> MD5算法基础实现
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/02/ansi-x-9-17-de-wei-sui-ji-shu-chan-sheng-qi/" rel="next" title="ANSI_X_9.17的伪随机数产生器">
+                  ANSI_X_9.17的伪随机数产生器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
