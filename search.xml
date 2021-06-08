@@ -2316,7 +2316,7 @@ document.getElementById("spkj").style.height=document.getElementById("spkj").scr
     <title>关于博客迁移的通知</title>
     <url>/2021/06/04/bo-ke-qian-yi/</url>
     <content><![CDATA[<iframe id="m4_iframe" 
-        src="http://mednight4.com" 
+        src="https://mednight4.com" 
         scrolling="yes" 
         frameborder="no" 
         width=100%> 
