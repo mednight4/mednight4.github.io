@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="曾经发布在halo上的文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="halo配置项">
+<meta property="og:url" content="https://mednight4.github.io/2021/06/03/halo-pei-zhi-xiang/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="曾经发布在halo上的文章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622778861727.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622782421342.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622781496014.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622782716356.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1623033210395.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1623033290715.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1623033315798.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622784152147.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622784431839.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622785049891.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622784757127.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622785671937.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622785716234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2021-06-03_18-56-08_1622785819900.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622786408193.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622787220791.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2021-06-03_09-52-02_1622787457166.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622787946142.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2021-06-03_13-38-29_1622788065290.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2022-04-04_23-36-58.png">
+<meta property="article:published_time" content="2021-06-02T23:29:00.000Z">
+<meta property="article:modified_time" content="2025-06-08T04:32:17.436Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="others">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622778861727.png">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2021/06/03/halo-pei-zhi-xiang/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>halo配置项 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://emailncueducn-my.sharepoint.com/:f:/g/personal/mednight4_email_ncu_edu_cn/EsCoO8En5EpLnjKiEopGJYUBedvtHTR30lkQvg0tkrlLQQ?e=dVRjNZ" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8mysql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">使用mysql数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8bt%E9%9D%A2%E6%9D%BF"><span class="nav-text">使用bt面板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6"><span class="nav-text">项目框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE"><span class="nav-text">设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E4%BB%B6%E8%AE%BE%E7%BD%AE"><span class="nav-text">附件设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP%E8%AE%BE%E7%BD%AE"><span class="nav-text">SMTP设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN%E5%8A%A0%E9%80%9F"><span class="nav-text">CDN加速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E7%BE%8E%E5%8C%96"><span class="nav-text">代码高亮美化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%88%E5%8F%B7"><span class="nav-text">版号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98"><span class="nav-text">主题</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/06/03/halo-pei-zhi-xiang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          halo配置项
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-03 07:29:00" itemprop="dateCreated datePublished" datetime="2021-06-03T07:29:00+08:00">2021-06-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-06-08 12:32:17" itemprop="dateModified" datetime="2025-06-08T12:32:17+08:00">2025-06-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">曾经发布在halo上的文章</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>补档。前文提到halo的选择。此文简要说明一下halo的部署和设置项。</p>
+<p>注意：此文非docker部署，而是直接部署在linux真实环境。docker部署可查看<a target="_blank" rel="noopener" href="https://docs.halo.run/install/docker">官方手册</a>。</p>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>详细部署方法查看halo官方手册：</p>
+<blockquote>
+<p>halo：<a target="_blank" rel="noopener" href="https://docs.halo.run/install/linux">https://docs.halo.run/install/linux</a></p>
+</blockquote>
+<p>这里是官方提供的<strong>默认</strong>部署方式（使用mysql和bt面板则先看完全文），步骤大致为：</p>
+<ol>
+<li><p>安装java-11-openJDK。</p>
+</li>
+<li><p>新建linux用户并切换。</p>
+</li>
+<li><p>在用户所属目录下创建halo工作区并存放halo的运行jar包。</p>
+</li>
+<li><p>用户根目录下载halo的配置文件。<br> <a target="_blank" rel="noopener" href="https://docs.halo.run/install/config">配置文件参考</a></p>
+</li>
+<li><p>修改配置文件。默认使用halo内置的h2数据库。<br> 自定义配置项：程序服务端口、<strong>数据库用户名和密码</strong>、后台路径…等。<br> 其中，务必修改的是数据库用户名和密码。</p>
+</li>
+<li><p>运行halo本体程序。</p>
+</li>
+<li><p>使用<strong>地址+Port</strong>的方式看到程序安装界面，此时不必着急完成初始化。</p>
+</li>
+<li><p>登陆root用户</p>
+</li>
+<li><p>下载halo服务程序halo.service。因为halo程序在断开ssh时就结束了，需要服务程序保持后台运行。</p>
+</li>
+<li><p>修改服务程序配置。确保halo程序的绝对路径（halo工作区+halo.jar）和运行用户（刚才建立的用户）。</p>
+</li>
+<li><p>重启服务并设置开机自启。</p>
+</li>
+<li><p>可在此日志文件查看服务运行状态：</p>
+<p><code>journalctl -n 20 -u halo</code></p>
+</li>
+<li><p>使用Nginx设置反向代理，实现端口转发。</p>
+</li>
+<li><p>在 <strong>地址</strong> 打开halo程序并安装，完成初始化。使用 <strong>/后台路径</strong> 进入后台，完成设置。</p>
+</li>
+</ol>
+<h2 id="使用mysql数据库"><a href="#使用mysql数据库" class="headerlink" title="使用mysql数据库"></a>使用mysql数据库</h2><p>官方认为，个人博客使用h2数据库存储数据绰绰有余，经测试1000条博文左右不会影响速度，而且h2比mysql少开了一个服务，节省服务器资源。</p>
+<p>不过，h2数据库数据的导出与直接修改明显没有mysql方便，请自行选择方案。</p>
+<blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.halo.run/install/config">https://docs.halo.run/install/config</a></p>
+</blockquote>
+<p>首先注意版本要求：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622778861727.png" alt="image.png"></p>
+<p>安装步骤略有修改：</p>
+<ol>
+<li>安装java-11-openJDK。</li>
+<li>新建linux用户并切换。</li>
+<li>在用户所属目录下创建halo工作区并存放halo的运行jar包。</li>
+<li>用户根目录下载halo的配置文件。<br> <a target="_blank" rel="noopener" href="https://docs.halo.run/install/config">配置文件参考</a></li>
+</ol>
+<p><del><strong>5. 修改配置文件。默认使用halo内置的h2数据库。<br>    自定义配置项：程序服务端口、数据库用户名和密码、后台路径…等。<br>    其中，务必修改的是数据库用户名和密码。</strong></del></p>
+<ol start="6">
+<li><p>运行halo本体程序。</p>
+</li>
+<li><p>使用<strong>地址+Port</strong>的方式看到程序安装界面，此时不必着急完成初始化。</p>
+</li>
+<li><p>登陆root用户</p>
+</li>
+<li><p>下载halo服务程序halo.service。因为halo程序在断开ssh时就结束了，需要服务程序保持后台运行。</p>
+</li>
+<li><p>修改服务程序配置。确保halo程序的绝对路径（halo工作区+halo.jar）和运行用户（刚才建立的用户）。</p>
+</li>
+<li><p>重启服务并设置开机自启。</p>
+</li>
+<li><p>可在此日志文件查看服务运行状态：</p>
+<p><code>journalctl -n 20 -u halo</code></p>
+</li>
+<li><p>使用Nginx设置反向代理，实现端口转发。</p>
+</li>
+<li><p>在<strong>地址</strong>打开halo程序并安装，完成初始化。使用 <strong>/后台路径</strong> 进入后台，完成设置。</p>
+</li>
+</ol>
+<hr>
+<p><strong>替换第五个步骤。</strong></p>
+<ol>
+<li><p>新建mysql用户，保留mysql的用户名和密码。</p>
+<p> <code>create database halodb character set utf8mb4 collate utf8mb4_bin;</code></p>
+</li>
+<li><p>修改配置文件。在配置文件中将h2相关的（# H2 database configuration、# H2 database console configuration）两个部分注释掉，然后开启MySQL的配置项（# MySQL database configuration）。</p>
+</li>
+</ol>
+<p>完成后的<a target="_blank" rel="noopener" href="https://docs.halo.run/install/config">示例配置文件</a>。</p>
+<h2 id="使用bt面板"><a href="#使用bt面板" class="headerlink" title="使用bt面板"></a>使用bt面板</h2><p>halo对使用bt面板的用户提供了便捷一点的办法。</p>
+<blockquote>
+<p>文档：<a target="_blank" rel="noopener" href="https://docs.halo.run/install/bt-panel">https://docs.halo.run/install/bt-panel</a></p>
+</blockquote>
+<ol>
+<li><p>可使用bt面板提供的Supervisor程序托管halo进程，保持halo在断开ssh时仍然可以运行。因此可以替代掉上文中的<strong>8-12步骤</strong>，无须再下载halo-service。</p>
+</li>
+<li><p><strong>步骤13</strong>略有改动。在bt面板提供的默认nginx配置文件里，修改：</p>
+</li>
+</ol>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622782421342.png" alt="image.png"></p>
+<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622781496014.png"></p>
+<hr>
+<p>至此部署环节结束，如果存在我没有说明清楚的地方，请看具体<a target="_blank" rel="noopener" href="https://docs.halo.run/zh/install/prepare">官方文档</a>。</p>
+<p>另外，这位博主的帖子也可以<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cccdd6d1f208">参考</a>。</p>
+<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>halo提供的设置项挺多的，说一下几个麻烦一点的。</p>
+<h2 id="附件设置"><a href="#附件设置" class="headerlink" title="附件设置"></a>附件设置</h2><p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622782716356.png"></p>
+<p>如图，halo提供了上传地址设置，默认采用的方式是本地。但我的小水管服务器加载图片的速度还是慢了点，所以文章内的图片我推往阿里云oss。<br>请注意：阿里云oss是付费oss，<del>虽然很便宜</del>。（由于我服务器也在阿里云，可以配合oss搞点事情)。免费的图床服务可以选择七牛云。</p>
+<p>关于<a target="_blank" rel="noopener" href="https://www.aliyun.com/price/product?spm=5176.8466032.help.80.71081450x3AVC0#/oss/detail">费用</a>：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1623033210395.png" alt="oss外网访问流量费用"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1623033290715.png" alt="图片处理费用：每月免费使用10T"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1623033315798.png" alt="oss储存空间费用"></p>
+<p>总得来说，阿里云的收费机制还是比较坑的，尽量少开没必要的服务吧，比如主机快照…</p>
+<p>文字说明一下oss的配置过程。图片版本看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/264970867">别人的博客</a>。</p>
+<ol>
+<li>开启阿里云的oss服务。查看流量包，如果你没有，则需要花一顿馆子钱购买，有按量和包年包月两种计费方式，自行选择。</li>
+<li>创建Bucket。存储类型-标准，<strong>访问权限-公共读</strong>。注意至少要开到公共读权限。</li>
+<li>采用用户Access访问。点击获取用户AccessKey管理-开始使用子用户。</li>
+<li>新建AccessKey。创建用户-关闭控制台访问，开启编程访问-确定，拿到AccessID和AccessKey。</li>
+<li>下载csv文件妥善保管。因为它只出现一次，忘了只有建立新的AccessKey。</li>
+<li>添加权限。选择系统策略，查找oss，选择 AliyunOSSFullAccess 管理对象存储服务（OSS），授权。</li>
+<li>可以在文件管理上传下载文件了。</li>
+</ol>
+<p><strong>说明一下oss的图片策略。</strong></p>
+<p>外部引用图片时，可附加图片策略码在图片链接后，通过此链接访问的图片会采取策略定制的效果。</p>
+<p>例如有链接<code>https://mednight4.com/avatar.png</code>，你定制了一套压缩水印策略<code>WaterMarked</code>，设置了分隔符为”/“。根据阿里提供的服务，你可以使用<code>https://mednight4.com/avatar.png</code>，访问原图；使用<code>https://mednight4.com/avatar.png/WaterMarked</code>访问到加水印后的图片。</p>
+<p><strong>注意：gif图片无法应用大部分策略，粘贴gif链接时，需要把后面的 <code>/图片策略</code>删除。</strong></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622784152147.png"></p>
+<p>假如我使用对图片进行压缩和加水印，那halo展出的图片便会有这两个效果。</p>
+<p>默认的分隔符为<code>?x-oss-process=</code>，访问设置里开启自定义风格符号后，可缩短链接长度。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622784431839.png"></p>
+<p>记一下外网访问节点（endpoint）。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622785049891.png"></p>
+<p>到此，oss阿里云那边的设置完成，回到halo，打开附件设置。设置项按此配置即可。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622784757127.png"></p>
+<p>测试图片上传，如果图片上传失败，记得上文说到的服务日志吗？<code>journalctl -u halo</code>查看日志获得错误原因。</p>
+<p>其实我是在PicGo配置成功后再进行halo设置的。PicGo在很久之前我发了一篇文章记录了PicGo + GitHub的方法，这里贴一张图片记录PicGo + AliOSS的方法：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622785671937.png"></p>
+<p>注：公网区域名称即endpoint地域节点，特此注明。</p>
+<p>PicGo的日志看这里：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622785716234.png"></p>
+<h2 id="SMTP设置"><a href="#SMTP设置" class="headerlink" title="SMTP设置"></a>SMTP设置</h2><p>配置SMTP以实现<strong>评论回复邮件通知</strong>和<strong>管理员密码找回</strong>。只要游客填写了正确的邮箱，评论回复会有通知提醒。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2021-06-03_18-56-08_1622785819900.png"></p>
+<p>请自行百度查找开启QQ邮箱SMTP服务，需要注意：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622786408193.png"></p>
+<p>更多的信息你可以在qq邮箱文档的SMTP部分看到，包括服务器地址、SSL端口等。也可以直接按照我的配置填写，修改使用密钥即可。</p>
+<h2 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h2><p>对于需要很多图片的主题（例如在用的xue主题），可以将图片上传到github项目，发布项目，<a target="_blank" rel="noopener" href="https://www.jsdelivr.com/">jsDelivr</a>为开源仓库提供免费的CDN加速。（你也可以直接用jsDelivr加速图片而非上文提到的OSS图床，但是需要不断更新发布版本）：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622787220791.png"></p>
+<p>但是jsDelivr对项目大小也有限制，假如项目文件大于50MB，将停止服务：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2021-06-03_09-52-02_1622787457166.png"></p>
+<p>因此你可能需要对图片大小进行压缩：</p>
+<blockquote>
+<p>docsmall在线压缩：<a target="_blank" rel="noopener" href="https://docsmall.com/image-compress">https://docsmall.com/image-compress</a></p>
+</blockquote>
+<p>对于图片批量重命名，不妨写一个小脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> a=0</span><br><span class="line">setlocal EnableDelayedExpansion</span><br><span class="line"><span class="keyword">for</span> %%n <span class="keyword">in</span> (*.jpg) <span class="keyword">do</span> (</span><br><span class="line"><span class="built_in">set</span> /A a+=1</span><br><span class="line">rename <span class="string">&quot;%%n&quot;</span> <span class="string">&quot;!a!.jpg&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>将文件保存为bat格式并放到图片目录，它将目录下所有的xxxx.jpg重命名为n.jpg。<br>你可以再写一个脚本，让前面提到的<code>https://cdn.jsdelivr.net/gh/github账号ID/仓库名@版本号/ + n + .jpg</code>批量输出。</p>
+<h2 id="代码高亮美化"><a href="#代码高亮美化" class="headerlink" title="代码高亮美化"></a>代码高亮美化</h2><p>xue这款主题默认的代码字体太小，在设置里引入全局css修改字体的family和size：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/image_1622787946142.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="keyword">@font-face</span> &#123;</span></span><br><span class="line">  font-family: &#x27;Fira Code&#x27;;</span><br><span class="line">  font-style: normal;</span><br><span class="line">  font-weight: 400;</span><br><span class="line">  font-display: swap;</span><br><span class="line">src:url(https://fonts.gstatic.com/s/firacode/v10/uU9NCBsR6Z2vfE9aq3bh3dSD.woff2) format(&#x27;woff2&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.hljs-ln</span> &#123;</span></span><br><span class="line"><span class="css"><span class="selector-tag">font-size</span><span class="selector-pseudo">:120</span>%;</span></span><br><span class="line"><span class="css"><span class="selector-tag">font-family</span><span class="selector-pseudo">:Fira</span> <span class="selector-tag">Code</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>字体我是引用的<a target="_blank" rel="noopener" href="https://fonts.google.com/">google font</a>，谷歌直接提供了外链。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2021-06-03_13-38-29_1622788065290.png"></p>
+<h1 id="版号"><a href="#版号" class="headerlink" title="版号"></a>版号</h1><p>由于是国内的服务器，我域名还没备案，需要等一段时间。此时虽然80和433端口被封了，但由于halo的直接端口不在80，仍然可以通过域名+halo端口访问到页面。</p>
+<hr>
+<blockquote>
+<p>2022.04.04更新</p>
+</blockquote>
+<hr>
+<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>halo1.5推出推出一段时间了。目前用的是halo主题商店的<a target="_blank" rel="noopener" href="https://github.com/qinhua/halo-theme-joe2.0">joe2.0主题</a>。上文提到的<a target="_blank" rel="noopener" href="https://halo.run/archives/theme-%E5%AF%92%E5%B1%B1.html">寒山主题</a>没有适配日志评论等小功能更新，作者也停止维护了，转而新发布了<a target="_blank" rel="noopener" href="https://github.com/xzhuz/halo-theme-xue">雪项目</a>。然而作者正在维护中的<a target="_blank" rel="noopener" href="https://github.com/xzhuz/halo-theme-xue">雪主题</a>为了适配新版本进行了大量重做，目前功能较少且存在不少bug，所以我叛逃了。</p>
+<p>joe是typecho的原生主题，自定义功能挺多的，最近被好哥哥们搬到halo来了，而且保留了大部分原生功能。<a target="_blank" rel="noopener" href="https://github.com/qinhua/halo-theme-joe2.0">joe2.0</a>不仅支持halo新版本的日志评论这些更新，包括评论区回复可见等原joe主题功能也移植过来了。具体用法可以看joe的<a target="_blank" rel="noopener" href="https://qinhua.github.io/halo-theme-joe2.0/#/?id=_17%e3%80%81%e5%a6%82%e4%bd%95%e8%ae%be%e7%bd%ae%e6%96%87%e7%ab%a0%e4%bb%85%e8%af%84%e8%ae%ba%e5%90%8e%e5%8f%af%e8%a7%81%ef%bc%9f">使用手册</a>。</p>
+<p>总之目前joe2.0大概是halo主题里功能最丰富的一款了，可自定义项很多，可以轻易调教成自己喜欢的样子，稍稍设置一下即可，不需要自己写代码。我对joe的自定义的修改只有字体，joe的代码文字（eg：<code>java</code>）不会随字体修改而改变，所以在主题自定义页引入一条CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&#x27;butterfly&#x27;</span>;</span><br><span class="line">  <span class="attribute">font-style</span>: normal;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">  <span class="attribute">font-display</span>: swap;</span><br><span class="line"><span class="attribute">src</span>:<span class="built_in">url</span>(https://mednight4.com/themes/butterfly/source/font/by_aqqxs.woff2) <span class="built_in">format</span>(<span class="string">&#x27;woff2&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">code</span>&#123;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">100%</span>;</span><br><span class="line"><span class="attribute">font-family</span>:butterfly;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>图片展示：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/halo%E9%85%8D%E7%BD%AE%E9%A1%B9/Snipaste_2022-04-04_23-36-58.png"></p>
+<p>字体按自己喜欢的来就行了。至于现在网站的字体嘛，隔壁butterfly主题里夹的，字体文件放在了主题文件夹里，不是从CDN引入的，每次加载字体得从网站服务器下载，速度稍稍有点慢，然而目前jsDelivr的免费CDN访问好像更慢，如果你有自己的CDN节点可以把字体位置换成CDN链接，我摆了就不弄了。</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/others/" rel="tag"># others</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/04/bo-ke-qian-yi/" rel="prev" title="关于博客迁移的通知">
+                  <i class="fa fa-chevron-left"></i> 关于博客迁移的通知
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/02/hexo-wordpress-halo-he-typecho-de-shi-yong-ti-yan/" rel="next" title="hexo、wordpress、halo和typecho的使用体验">
+                  hexo、wordpress、halo和typecho的使用体验 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

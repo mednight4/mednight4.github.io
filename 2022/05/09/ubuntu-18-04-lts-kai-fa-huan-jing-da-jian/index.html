@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="整理了之前看的ubuntu相关的一些帖子，腾一下书签。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu 18.04 LTS开发环境搭建">
+<meta property="og:url" content="https://mednight4.github.io/2022/05/09/ubuntu-18-04-lts-kai-fa-huan-jing-da-jian/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="整理了之前看的ubuntu相关的一些帖子，腾一下书签。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/ubuntu%2018.04%20LTS%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Snipaste_2022-05-09_19-44-24.png">
+<meta property="article:published_time" content="2022-05-09T09:19:00.000Z">
+<meta property="article:modified_time" content="2025-06-08T05:19:48.463Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/ubuntu%2018.04%20LTS%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Snipaste_2022-05-09_19-44-24.png">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2022/05/09/ubuntu-18-04-lts-kai-fa-huan-jing-da-jian/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ubuntu 18.04 LTS开发环境搭建 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://emailncueducn-my.sharepoint.com/:f:/g/personal/mednight4_email_ncu_edu_cn/EsCoO8En5EpLnjKiEopGJYUBedvtHTR30lkQvg0tkrlLQQ?e=dVRjNZ" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#apt%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-text">apt包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-amp-%E5%AE%89%E8%A3%85"><span class="nav-text">下载&amp;安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E7%BC%93%E5%AD%98"><span class="nav-text">清缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E6%9E%B6%E6%9E%84"><span class="nav-text">指定架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-text">更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E6%BA%90"><span class="nav-text">换源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%92%8C%E6%BA%90%E7%9B%B8%E5%85%B3%E7%9A%84%E6%8A%A5%E9%94%99"><span class="nav-text">和源相关的报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pip3"><span class="nav-text">pip3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#apt-update%E7%9B%B8%E5%85%B3%E5%BA%93%E7%AD%BE%E5%90%8D%E6%97%A0%E6%95%88"><span class="nav-text">apt update相关库签名无效</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python3%E7%8E%AF%E5%A2%83"><span class="nav-text">python3环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BF%AE%E6%94%B9"><span class="nav-text">用户修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%AE%E6%94%B9"><span class="nav-text">系统修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%BA%93prodigy-whl%E7%89%88%E6%9C%AC%E4%B8%8D%E6%94%AF%E6%8C%81"><span class="nav-text">依赖库prodigy*.whl版本不支持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95%EF%BC%88iBUS%EF%BC%89"><span class="nav-text">输入法（iBUS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql5-7"><span class="nav-text">Mysql5.7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86"><span class="nav-text">开启远程登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85mysqlclient%E6%8A%A5%E9%94%99"><span class="nav-text">包mysqlclient报错</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nodejs-npm"><span class="nav-text">安装nodejs,npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-text">nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RabbitMQ"><span class="nav-text">RabbitMQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker"><span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose%E5%AE%89%E8%A3%85"><span class="nav-text">docker-compose安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-text">杂项</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2022/05/09/ubuntu-18-04-lts-kai-fa-huan-jing-da-jian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu 18.04 LTS开发环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-09 17:19:00" itemprop="dateCreated datePublished" datetime="2022-05-09T17:19:00+08:00">2022-05-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-06-08 13:19:48" itemprop="dateModified" datetime="2025-06-08T13:19:48+08:00">2025-06-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">整理了之前看的ubuntu相关的一些帖子，腾一下书签。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li>整理了之前看的ubuntu相关的一些帖子，腾一下书签。<a id="more"></a>
+兜兜转转回到了ubuntu，用户多所以出问题解决方案比较好查，然后仓库里软件比CentOS多一些，做开发方便一点。除了apt有点难用，偶尔报一报系统错误，其它方面还好。</li>
+</ul>
+<h2 id="apt包管理"><a href="#apt包管理" class="headerlink" title="apt包管理"></a>apt包管理</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/weaming/p/5079032.html">https://www.cnblogs.com/weaming/p/5079032.html</a></p>
+</blockquote>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apt-cache search pattern <span class="comment">#查找软件包名称和描述包含 pattern 的软件包 (可以是安装了也可以是没有安装)，可以用参数来限制是否已经安装</span></span><br><span class="line"></span><br><span class="line">apt-cache depends package <span class="comment">#查找名称是 package 软件包的依赖关系</span></span><br><span class="line">apt-cache rdepends package <span class="comment">#查找哪些软件包依赖于名称是 package 软件包</span></span><br><span class="line"></span><br><span class="line">apt-cache show pattern <span class="comment">##查找软件包pattern的信息 (可以是安装了也可以是没有安装)</span></span><br><span class="line">apt-cache policy pattern <span class="comment">#显示 pattern 软件包的策略(可以是安装了也可以是没有安装)</span></span><br><span class="line">apt-cache showpkg pattern <span class="comment">#显示pattern 软件包的其它信息(可以是安装了也可以是没有安装)</span></span><br><span class="line"></span><br><span class="line">apt-file search pattern <span class="comment">#查找文件 pattern 属于哪个软件包(可以是安装了也可以是没有安装)</span></span><br><span class="line">apt-file show pattern <span class="comment">#查找 pattern 软件包(可以是安装了也可以是没有安装)包含哪些文件</span></span><br></pre></td></tr></table></figure>
+<h3 id="下载-amp-安装"><a href="#下载-amp-安装" class="headerlink" title="下载&amp;安装"></a>下载&amp;安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install package -d <span class="comment">#下载软件包</span></span><br><span class="line">apt-get install package <span class="comment">#在线安装软件包</span></span><br><span class="line">apt-get install package --reinstall <span class="comment">#重新安装软件包</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get remove package <span class="comment">#仅仅删除软件</span></span><br><span class="line">apt-get remove package --purge <span class="comment">#删除软件和配置文件</span></span><br><span class="line">apt-get autoremove <span class="comment">#删除不再需要的软件包</span></span><br></pre></td></tr></table></figure>
+<h3 id="清缓存"><a href="#清缓存" class="headerlink" title="清缓存"></a>清缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get clean <span class="comment">#清除 /var/cache/apt/archives 目录</span></span><br><span class="line">apt-get autoclean <span class="comment">#清除 /var/cache/apt/archives 目录，不过只清理过时的包</span></span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="built_in">source</span> package <span class="comment">#获取源码</span></span><br><span class="line">apt-get build-dep package <span class="comment">#解决编译源码 package 的依赖关系</span></span><br></pre></td></tr></table></figure>
+<h3 id="指定架构"><a href="#指定架构" class="headerlink" title="指定架构"></a>指定架构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 容易把系统搞崩</span></span><br><span class="line">apt-cross --arch ARCH --show package 显示属于 ARCH 构架的 package 软件包信息</span><br><span class="line">apt-cross --arch ARCH --get package <span class="comment">#下载属于 ARCH 构架的 package 软件包</span></span><br><span class="line">apt-cross --arch ARCH --install package <span class="comment">#安装属于 ARCH 构架的 package 软件包</span></span><br><span class="line">apt-cross --arch ARCH --remove package <span class="comment">#移除属于 ARCH 构架的 package 软件包</span></span><br><span class="line">apt-cross --arch ARCH --purge package <span class="comment">#移除属于 ARCH 构架的 package 软件包</span></span><br><span class="line">apt-cross --arch ARCH --update <span class="comment">#升级属于 ARCH 构架的 package 软件包</span></span><br></pre></td></tr></table></figure>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get update <span class="comment">#更新源</span></span><br><span class="line">apt-get upgrade <span class="comment">#更新已经安装的软件包</span></span><br><span class="line">apt-get dist-upgrade <span class="comment">#升级系统</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>备份源列表、修改为清华源并更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup</span><br><span class="line">sudo vi /etc/apt/sources.list</span><br><span class="line">~</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">~</span><br><span class="line">:wq</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line"><span class="comment"># 安装编译工具</span></span><br><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+<p>之后在software&amp;updates的图形界面把软件下载源换成刚加的源。</p>
+<h3 id="和源相关的报错"><a href="#和源相关的报错" class="headerlink" title="和源相关的报错"></a>和源相关的报错</h3><h4 id="pip3"><a href="#pip3" class="headerlink" title="pip3"></a>pip3</h4><p>可能pip3会出现pip3 ImportError: cannot import name ‘sysconfig’的错误，继续加上ubuntu-cn相关源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br><span class="line">~</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu bionic main multiverse restricted universe</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu bionic-updates main multiverse restricted universe</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu bionic-security main multiverse restricted universe</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu bionic-proposed main multiverse restricted universe</span><br></pre></td></tr></table></figure>
+<p>然后重新安装python-pip3</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install python3-pip</span><br></pre></td></tr></table></figure>
+<h4 id="apt-update相关库签名无效"><a href="#apt-update相关库签名无效" class="headerlink" title="apt update相关库签名无效"></a>apt update相关库签名无效</h4><p>重新安装证书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 缺失的PUBLIC_KEY</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="python3环境"><a href="#python3环境" class="headerlink" title="python3环境"></a>python3环境</h2><p>ubuntu内置python3.6.9,默认为python2。<br>查看Python版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">ls /usr/bin/python*</span><br></pre></td></tr></table></figure>
+<h3 id="用户修改"><a href="#用户修改" class="headerlink" title="用户修改"></a>用户修改</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="built_in">alias</span> python=<span class="string">&#x27;/usr/bin/python3.6&#x27;</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">python --version</span><br></pre></td></tr></table></figure>
+<h3 id="系统修改"><a href="#系统修改" class="headerlink" title="系统修改"></a>系统修改</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /usr/bin/python</span><br><span class="line">sudo ln -s /usr/bin/python3.6 /usr/bin/python</span><br></pre></td></tr></table></figure>
+<p>顺便记一下环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 系统全局</span></span><br><span class="line">/etc/config</span><br><span class="line"><span class="comment"># 用户</span></span><br><span class="line">~/.bashrc</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$VAR</span></span><br><span class="line">env | grep VAR</span><br></pre></td></tr></table></figure>
+<h3 id="依赖库prodigy-whl版本不支持"><a href="#依赖库prodigy-whl版本不支持" class="headerlink" title="依赖库prodigy*.whl版本不支持"></a>依赖库prodigy*.whl版本不支持</h3><p>prodigy*.whl模块在python3.6无法安装？</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://support.prodi.gy/t/prodigy-installation-breaking-on-python3-6/3881/2">https://support.prodi.gy/t/prodigy-installation-breaking-on-python3-6/3881/2</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install uvloop==0.14.0</span><br><span class="line">pip3 install prodigy*.whl</span><br></pre></td></tr></table></figure>
+<h2 id="输入法（iBUS）"><a href="#输入法（iBUS）" class="headerlink" title="输入法（iBUS）"></a>输入法（iBUS）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ibus-pinyin</span><br></pre></td></tr></table></figure>
+<p>语言支持-&gt;键盘输入法系统-&gt;iBUS<br>设置-&gt;区域与语言-&gt;输入源-&gt;+ 汉语（pinyin）<br>win + space 切换输入法</p>
+<h2 id="Mysql5-7"><a href="#Mysql5-7" class="headerlink" title="Mysql5.7"></a>Mysql5.7</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql --version</span><br><span class="line">sudo apt-get install mysql-client-core-5.7</span><br><span class="line">sudo apt-get install mysql-client-5.7</span><br><span class="line">sudo apt-get install mysql-server-5.7 </span><br><span class="line"><span class="comment"># 启用</span></span><br><span class="line">sudo systemctl start mysql</span><br></pre></td></tr></table></figure>
+<p>在安装服务的时候会提示设置密码，少了这个步骤需要手动设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/mysql/debian.cnf</span><br><span class="line">~</span><br><span class="line">[client]</span><br><span class="line">hostname  =  localhsot</span><br><span class="line">user      =  [？]</span><br><span class="line">passsword =  [？]</span><br><span class="line">~</span><br><span class="line">:q</span><br><span class="line"></span><br><span class="line"><span class="comment">#登陆mysql并修改</span></span><br><span class="line">mysql -h localhost -u [user] -p [password]</span><br><span class="line">use mysql</span><br><span class="line"><span class="comment">#修改密码</span></span><br><span class="line">update user <span class="built_in">set</span> authentication_string=password(<span class="string">&#x27;[password]&#x27;</span>) <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span> and host=<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line">update user <span class="built_in">set</span> plugin=<span class="string">&quot;mysql_native_password&quot;</span>;</span><br><span class="line"><span class="comment">#刷新起效</span></span><br><span class="line">flush privileges;</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+<h3 id="开启远程登陆"><a href="#开启远程登陆" class="headerlink" title="开启远程登陆"></a>开启远程登陆</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u [user] -p [password]</span><br><span class="line">use mysql</span><br><span class="line">show columns FROM mysql;</span><br><span class="line">update user SET host=<span class="string">&quot;%&quot;</span> WHERE user=<span class="string">&quot;root&quot;</span></span><br><span class="line">flush privileges;</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+<p>调整配置，确保mysql服务监听地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">/bind-address</span><br><span class="line">bind-address=0.0.0.0</span><br></pre></td></tr></table></figure>
+<h3 id="包mysqlclient报错"><a href="#包mysqlclient报错" class="headerlink" title="包mysqlclient报错"></a>包mysqlclient报错</h3><p>apt安装mysqlclient报错时，如果为依赖问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装一些Mysql的依赖库</span></span><br><span class="line">sudo apt-get install libmysql-dev</span><br><span class="line">sudo apt-get install libmysqlclient-dev</span><br><span class="line">sudo apt-get install python3-dev</span><br><span class="line">sudo pip3 install mysqlclient</span><br><span class="line"><span class="comment"># 此时如果遇到如下错误</span></span><br><span class="line">Collecting mysqlclient</span><br><span class="line">...</span><br><span class="line">   ModuleNotFoundError: No module named <span class="string">&#x27;setuptools&#x27;</span></span><br><span class="line">...</span><br><span class="line">安装一下setuptools包，直接</span><br><span class="line">pip3 install setuptools==33.1.1</span><br></pre></td></tr></table></figure>
+<h2 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h2><p>官网下载长期支持版安装包<br><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/ubuntu%2018.04%20LTS%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Snipaste_2022-05-09_19-44-24.png" alt="Snipaste_2022-05-09_19-44-24.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解压提取文件，移动到/usr/local/目录</span></span><br><span class="line">tar -xvf node-v12.16.1-linux-x64.tar.xz</span><br><span class="line">sudo mv node-v12.16.1-linux-x64 /usr/<span class="built_in">local</span>/node</span><br><span class="line"><span class="comment">#建立软连接</span></span><br><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/node/bin/node /usr/bin/node</span><br><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/node/bin/npm /usr/bin/npm</span><br><span class="line"><span class="comment">#查看安装</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt-get install nginx</span><br><span class="line"><span class="comment">#配置文件可放在</span></span><br><span class="line">/etc/nginx/sites-available/</span><br><span class="line">/etc/nginx/sites-enabled/</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.myfreax.com/how-to-install-nginx-on-ubuntu-18-04/">https://www.myfreax.com/how-to-install-nginx-on-ubuntu-18-04/</a></p>
+</blockquote>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>Nginx配置文件的结构和常规做法：</p>
+<ol>
+<li>所有Nginx配置文件都位于/etc/nginx目录中。</li>
+<li>主要的Nginx配置文件为/etc/nginx/nginx.conf。</li>
+<li>为使Nginx配置更易于维护，建议为每个域创建一个单独的配置文件。您可以根据需要拥有任意数量的服务器块文件。</li>
+<li>Nginx服务器块文件存储在/etc/nginx/sites-available目录中。除非它们链接到/etc/nginx/sites-enabled目录，否则Nginx不会使用此目录中找到的配置文件。</li>
+<li>要激活服务器块，您需要从以下目录中的配置文件站点创建符号链接（指针）将sites-available目录移到sites-enabled目录。</li>
+<li>建议遵循标准命名约定，例如，如果您的域名是mydomain.com，则您的配置文件应命名为/etc/nginx/sites-available/mydomain.com.conf</li>
+<li>/etc/nginx/snippets目录包含可包含在服务器块文件中的配置片段。如果使用可重复的配置段，则可以将这些段重构为片段，并将片段文件包括到服务器块中。</li>
+<li>Nginx日志文件（access.log和error.log）位于/var/log/nginx目录中。建议每个服务器块使用不同的access和error日志文件。</li>
+<li>您可以将域文档根目录设置为所需的任何位置。 Webroot的最常见位置包括：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;home&#x2F;&lt;user_name&gt;&#x2F;&lt;site_name&gt;</span><br><span class="line">&#x2F;var&#x2F;www&#x2F;&lt;site_name&gt;</span><br><span class="line">&#x2F;var&#x2F;www&#x2F;html&#x2F;&lt;site_name&gt;</span><br><span class="line">&#x2F;opt&#x2F;&lt;site_name&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#RabbitMQ需要erlang语言支持</span></span><br><span class="line">sudo apt-get install erlang-nox</span><br><span class="line">sudo apt-get install rabbitmq-server</span><br><span class="line"><span class="comment">#添加admin | admin用户</span></span><br><span class="line">sudo rabbitmqctl add_user admin admin</span><br><span class="line"><span class="comment">#查看用户列表</span></span><br><span class="line">rabbitmqctl list_users</span><br><span class="line"><span class="comment">#删除用户</span></span><br><span class="line">rabbitmqctl delete_user [Username]</span><br><span class="line"><span class="comment">#修改密码</span></span><br><span class="line">rabbitmqctl change_password Username Newpassword</span><br><span class="line"><span class="comment">#授予用户以administrator身份</span></span><br><span class="line">sudo rabbitmqctl set_user_tags admin administrator</span><br><span class="line"><span class="comment">#赋予virtual host中所有资源的配置、写、读权限</span></span><br><span class="line">sudo rabbitmqctl set_permissions -p / admin <span class="string">&#x27;.*&#x27;</span> <span class="string">&#x27;.*&#x27;</span> <span class="string">&#x27;.*&#x27;</span></span><br><span class="line"><span class="comment">#已经伴随安装了RabbitMQ监控管理插件，启用</span></span><br><span class="line">sudo rabbitmq-plugins start rabbitmq_management</span><br><span class="line"><span class="comment">#在该地址登陆用户并管理</span></span><br><span class="line">http://127.0.0.1:15672</span><br></pre></td></tr></table></figure>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt-get install redis-server</span><br><span class="line"><span class="comment">#查看版本</span></span><br><span class="line">redis-server -v</span><br><span class="line"><span class="comment">#启用客户端</span></span><br><span class="line">redis-cli</span><br><span class="line">127.0.0.1:6375 &gt; ping</span><br><span class="line">PONG</span><br><span class="line"><span class="comment">#修改监听</span></span><br><span class="line">sudo vim /etc/redis/redis.conf</span><br><span class="line">/<span class="built_in">bind</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1 ::1</span><br><span class="line">d</span><br><span class="line"><span class="built_in">bind</span> 0.0.0.0</span><br><span class="line"><span class="comment">#修改密码</span></span><br><span class="line">/requirepass</span><br><span class="line">requirepass [password]</span><br><span class="line">:wq</span><br><span class="line">sudo systemctl restart redis-server</span><br><span class="line"><span class="comment"># 登陆</span></span><br><span class="line">redis-cli -h 127.0.0.1 -p 6379</span><br><span class="line">127.0.0.1:6379 &gt; auth [password] </span><br><span class="line">&gt; OK</span><br><span class="line">127.0.0.1:6375 &gt; ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2>###docker安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#卸载旧版</span></span><br><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt-get install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"><span class="comment">#添加密钥</span></span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"><span class="comment">#添加Docker源,选择stable长期稳定版</span></span><br><span class="line">sudo add-apt-repository <span class="string">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable&quot;</span></span><br><span class="line"><span class="comment">#更新源列表</span></span><br><span class="line">sudo apt update</span><br><span class="line"><span class="comment">#安装Docker社区版</span></span><br><span class="line">sudo apt install docker-ce</span><br><span class="line"><span class="comment">#查看安装的Docker版本</span></span><br><span class="line">sudo docker version</span><br></pre></td></tr></table></figure>
+<h3 id="docker-compose安装"><a href="#docker-compose安装" class="headerlink" title="docker-compose安装"></a>docker-compose安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载docker-compose</span></span><br><span class="line">sudo curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-uname -s-uname -m-o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"><span class="comment">#授权</span></span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"><span class="comment">#查看版本</span></span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+###其它<blockquote>
+<p><a target="_blank" rel="noopener" href="https://websetnet.net/zh-TW/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8docker-cp%E5%9C%A8%E4%B8%BB%E6%A9%9F%E5%92%8C%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%96%93%E8%A4%87%E8%A3%BD%E6%96%87%E4%BB%B6/">文件复制介绍</a></p>
+</blockquote>
+</li>
+</ol>
+<p>docker从容器中复制文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp /home/demo/website apache-container:/var/www/html/</span><br></pre></td></tr></table></figure>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><p>一些乱七八糟的软件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tree，nano，curl，wget，ranger</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/24/guang-dian-ban-dian-shi-jia-hou-de-ti-dai-fang-an/" rel="prev" title="广电ban电视家后的替代方案">
+                  <i class="fa fa-chevron-left"></i> 广电ban电视家后的替代方案
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/03/shi-xu-tu-de-xue-xi/" rel="next" title="论文格式随录">
+                  论文格式随录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

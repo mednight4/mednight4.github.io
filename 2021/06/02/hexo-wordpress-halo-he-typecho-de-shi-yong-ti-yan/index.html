@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mednight4.github.io","root":"/","scheme":"Mist","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":10,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk | valine","storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="曾经发布在halo上的文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo、wordpress、halo和typecho的使用体验">
+<meta property="og:url" content="https://mednight4.github.io/2021/06/02/hexo-wordpress-halo-he-typecho-de-shi-yong-ti-yan/index.html">
+<meta property="og:site_name" content="mednight4">
+<meta property="og:description" content="曾经发布在halo上的文章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622709570496.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622709627266.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_17-28-25_1622705916072.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707078163.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707100476.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622706329271.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622706506555.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707834230.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707888255.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707960475.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622708041663.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/%25E6%258F%2592%25E4%25BB%25B6%25E7%25AE%25A1%25E7%2590%2586_1622708275662.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622710732821.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622710691410.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622713276523.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_13-42-59_1622712657081.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-05-31_23-04-18_1622712657090.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_19-55-34_1622711998773.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_19-52-35_1622711990420.png">
+<meta property="article:published_time" content="2021-06-02T15:41:00.000Z">
+<meta property="article:modified_time" content="2025-06-08T04:39:20.077Z">
+<meta property="article:author" content="mednight4">
+<meta property="article:tag" content="others">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622709570496.png">
+
+
+<link rel="canonical" href="https://mednight4.github.io/2021/06/02/hexo-wordpress-halo-he-typecho-de-shi-yong-ti-yan/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>hexo、wordpress、halo和typecho的使用体验 | mednight4</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mednight4</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">花火</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-下载">
+
+    <a href="https://emailncueducn-my.sharepoint.com/:f:/g/personal/mednight4_email_ncu_edu_cn/EsCoO8En5EpLnjKiEopGJYUBedvtHTR30lkQvg0tkrlLQQ?e=dVRjNZ" rel="noopener" target="_blank"><i class="fa fa-sitemap fa-fw"></i>下载</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Wordpress"><span class="nav-text">Wordpress</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Typecho"><span class="nav-text">Typecho</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Halo"><span class="nav-text">Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-3"><span class="nav-text">缺点</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mednight4"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">mednight4</p>
+  <div class="site-description" itemprop="description">因为山就在那里</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mednight4.github.io/2021/06/02/hexo-wordpress-halo-he-typecho-de-shi-yong-ti-yan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="mednight4">
+      <meta itemprop="description" content="因为山就在那里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mednight4">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo、wordpress、halo和typecho的使用体验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-02 23:41:00" itemprop="dateCreated datePublished" datetime="2021-06-02T23:41:00+08:00">2021-06-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-06-08 12:39:20" itemprop="dateModified" datetime="2025-06-08T12:39:20+08:00">2025-06-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">曾经发布在halo上的文章</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>补档，原帖发于2021/06/02。各博客框架使用体验。</p>
+<blockquote>
+<p>文章发布时间较为久远，内容可能与当下不符，请仔细甄别。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前两天薅到了一台阿里国内的ecs主机，1核2G，带宽1-5M。这是我的第一台云主机，到手改了改端口，加了点账户限制就拿来用了。思来想去怎么利用它，思想贫瘠的我只能想到搭博客，干脆把部署在GitHub的博客迁移到服务器上。</p>
+<p>之前只用过hexo。hexo修改和发布文章多有不便，而且托管到github上速度比较慢。自然想换个其它框架的动态博客试试。没用过，因此干脆每种博客应用都试一试。包括wordpress，typecho以及最后的halo。</p>
+<p>为了不出岔子，先在虚拟机里把过程实现了一遍，留了一些截图，接下来我会浅聊下每个应用的特色。</p>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/">https://hexo.io/</a></p>
+</blockquote>
+<p>首先是hexo，很流行的静态博客框架了。纯静态，基于node.js，有非常丰富的插件和主题，生态丰富。使用生成器将目录下的md生成为html，可很方便地部署在github,coding等托管平台，零成本。</p>
+<p>hexo从博客根目录下的yaml文件中读取用户的配置文件，假如你设置了第三方主题，主题文件包下还有一份主题的yaml配置文件。设置项手动填写，可扩展性极佳。github上有大量的主题可供下载，主题质量普遍精美。</p>
+<p>hexo的文章原生支持代码高亮，文章目录也可很方便地通过插件生成嵌入在文章页面里。因为是纯静态，对服务器资源占用低且安全。</p>
+<p>这里推荐几个主题，主题预览在项目附属的链接里就能打开。当然你想找其它精美主题也能很容易找到，毕竟hexo好主题太多了：</p>
+<blockquote>
+<p>icarus:    <a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus">https://github.com/ppoffice/hexo-theme-icarus</a></p>
+<p>next:        <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></p>
+<p>matery:    <a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery">https://github.com/blinkfox/hexo-theme-matery</a></p>
+<p>stun:        <a target="_blank" rel="noopener" href="https://github.com/liuyib/hexo-theme-stun">https://github.com/liuyib/hexo-theme-stun</a></p>
+</blockquote>
+<p>插件自己寻找安装即可。大多数时候主题自身集成的插件就已经够用了。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>缺点是麻烦，因为纯静态，文章发表麻烦，后期修改也麻烦，每次修改都要重新生成所有文件；上传附件麻烦，放到文件夹里无疑导致部署文件过大，需要另找对象储存服务托管。虽然typora+picgo可一键推送图片到云，但也是小问题不断（说到picgo，我下一篇文章会提一下picgo配置阿里云oss的注意事项）。将hexo的博文推到服务器上托管时，可以在服务器配置钩子检测推送并即时更新，但归根结底，还是挺麻烦的。</p>
+<p>麻烦可能是hexo唯一的缺点了，因此很多时候一些即时小记录我就懒得发表了，要写文章也是恨不得写满10000字再发表，压根不想new出来一篇文章后，核对标签，核对分类，hexo s然后在md编辑器和网页来来回回修修改改。</p>
+<h1 id="Wordpress"><a href="#Wordpress" class="headerlink" title="Wordpress"></a>Wordpress</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wordpress.org/">https://wordpress.org/</a></p>
+</blockquote>
+<p>鼎鼎大名的老牌博客框架，后端是php+mysql，需要lamp或lnmp四件套。</p>
+<p>安装环境时注意一下mysql的安装，centos7之后已经用开源分支MariaDB把mysql顶掉了（其实使用方法都一样），自己选择安装合适的数据库。建议mysql 5.7+。</p>
+<p>主题、插件非常丰富，功能完善，seo，评论过滤等该有的都有。由于扩展太多，主题可能良莠不齐，插件也许会互相冲突，因此需要挑选。需要注意Wordpress原生不支持代码高亮，但可以插件实现。</p>
+<p>说到代码高亮，目前最有名的代码高亮实现无外乎引入highlight.js或prime.js。个人偏好highlight的风格。你可以在这里选择生成你想要的代码高亮js文件并引入到自己的网站中：</p>
+<blockquote>
+<p>highlightjs：<a target="_blank" rel="noopener" href="https://highlightjs.org/download/">https://highlightjs.org/download/</a></p>
+<p>prismjs：<a target="_blank" rel="noopener" href="https://prismjs.com/download.html">https://prismjs.com/download.html</a></p>
+</blockquote>
+<p>觉得过于麻烦则可以自行寻找插件实现。</p>
+<blockquote>
+<p>wordpress官方插件下载地址：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/">https://wordpress.org/plugins/</a></p>
+</blockquote>
+<p>我初步使用采用的一些插件：</p>
+<blockquote>
+<p>md编辑器(自行选择)：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/wp-editormd/">https://wordpress.org/plugins/wp-editormd/</a></p>
+<p>又一个md编辑器：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/wp-githuber-md/">https://wordpress.org/plugins/wp-githuber-md/</a></p>
+<p>图片放大：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/simple-lightbox/">https://wordpress.org/plugins/simple-lightbox/</a></p>
+<p>移除谷歌字体：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/disable-remove-google-fonts/">https://wordpress.org/plugins/disable-remove-google-fonts/</a></p>
+<p>管理集成：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/all-in-one-wp-migration/">https://wordpress.org/plugins/all-in-one-wp-migration/</a></p>
+<p>安全集成：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/all-in-one-wp-security-and-firewall/">https://wordpress.org/plugins/all-in-one-wp-security-and-firewall/</a></p>
+<p>站内类似文章关联：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/contextual-related-posts/">https://wordpress.org/plugins/contextual-related-posts/</a></p>
+<p>清理加速：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/wp-fastest-cache/">https://wordpress.org/plugins/wp-fastest-cache/</a></p>
+<p>谷歌站点地图生成：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/www-xml-sitemap-generator-org/">https://wordpress.org/plugins/www-xml-sitemap-generator-org/</a></p>
+<p>懒加载：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/wp-smushit/">https://wordpress.org/plugins/wp-smushit/</a></p>
+</blockquote>
+<p>然后是主题。个人尝试的主题不多，但至少检测下来这两款还可以：</p>
+<blockquote>
+<p>Adams:<a target="_blank" rel="noopener" href="https://github.com/Tokinx/Adams">https://github.com/Tokinx/Adams</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622709570496.png" alt="image.png"></p>
+<blockquote>
+<p>Kratos:<a target="_blank" rel="noopener" href="https://github.com/vtrois/kratos">https://github.com/vtrois/kratos</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622709627266.png" alt="image.png"></p>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><p>于我而言，wp的缺点一是后台不符合使用习惯，感觉设置项乱得和gnome3一样(doge)，二是WordPress自身定位似乎不仅仅是博客，于bloger而言，WordPress后台乱七八糟的功能已经近乎臃肿了，再装一装插件，后台管理卡得不行，虚拟机里都觉得卡，（我把虚拟机性能设置比云服务器略好）。总之就是卡卡卡，卡到让人暴躁，结果wordpress的功能没测完就被我怒删了。</p>
+<h1 id="Typecho"><a href="#Typecho" class="headerlink" title="Typecho"></a>Typecho</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://typecho.org/">https://typecho.org/</a></p>
+</blockquote>
+<p>常见的国产博客框架，后端php，对标wordpress，也是需要lamp或lnmp。于wp不同，typecho走的轻量路线。</p>
+<p>虽然typecho不支持代码高亮，但主题、插件开放丰富，已经形成了不错的生态，通过扩展完全可以满足需求。另外，部分插件非常好用，例如md编辑器文本高亮，给网页以近乎本地md编辑器的体验：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_17-28-25_1622705916072.png" alt="typecho插件下的md编辑器具有高亮效果"></p>
+<p>同时，你也可以发现typecho的插件不仅仅能修改前台主题样式，还可以修改后台功能，例如修改md编辑器（当然这一点wordpress也能做到）。</p>
+<p>因此，当然也就诞生了后台主题，例如fresh：</p>
+<blockquote>
+<p>fresh项目地址：<a target="_blank" rel="noopener" href="https://github.com/Daboias/Fresh">https://github.com/Daboias/Fresh</a></p>
+</blockquote>
+<p>fresh项目没有一个明确的安装教程，这里引用另一位博主<strong>小灯泡</strong>的文章：</p>
+<blockquote>
+<p>fresh如何安装：<a target="_blank" rel="noopener" href="https://www.dpaoz.com/680">https://www.dpaoz.com/680</a></p>
+</blockquote>
+<p>灯泡哥对主题略有修改，提供了自己版本的下载方式，原版和修改版随你选择。我实装了一下修改版的，不过忘了截图了，盗两张图：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707078163.png" alt="image.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707100476.png" alt="image.png"></p>
+<p>后台确实是更漂亮了，但是操作逻辑改了很多，一些设置项改得不习惯了，这一点见仁见智吧。</p>
+<p><strong>typecho的评论区。</strong></p>
+<p>评论区常见的人机验证、词汇过滤功能，typecho可以很轻易地实现。</p>
+<blockquote>
+<p>修改主题源码实现附件登陆可见：<a target="_blank" rel="noopener" href="https://pangsuan.com/p/typecho-forlogin.html">https://pangsuan.com/p/typecho-forlogin.html</a></p>
+<p>修改主题源码实现附件回复可见：<a target="_blank" rel="noopener" href="https://ipenguin.top/Study/12.html">https://ipenguin.top/Study/12.html</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622706329271.png" alt="image.png"></p>
+<p>此外，typecho提倡多人合作，对游客提供注册功能（可选），注册的用户有权编写发布自己的文章。有大佬基于此写了论坛向的主题OneCircle：</p>
+<blockquote>
+<p>OneCircle项目地址：<a target="_blank" rel="noopener" href="https://github.com/gogobody/onecircle">https://github.com/gogobody/onecircle</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622706506555.png" alt="image.png"></p>
+<p>如图，游客可以注册并登陆，随意发帖并加入社交圈子，回复聊天关注其它用户，基本的查看个人动态等等，功能已经和社区差不多了。</p>
+<p>说了这么多，我很多都是只试试，没有打算正式启用。下面我说说自己实际采用的插件或者主题。</p>
+<p>typecho虽然主题多多，但是大多数主题没有目录树，或者目录树和文章标题没有互相锚点绑定，以至于文章看完了，目录进度还是指向标题（多次提到目录树，因为我多写长文，快捷跳转是刚需）。此外，typecho的代码高亮插件中，效果让人满意的不多。</p>
+<p>为此，我从github star数较高的20多款主题里精心挑选了4款主题，美观的同时功能丰富，较好地解决了上面所述问题。推荐使用，避免踩雷：</p>
+<blockquote>
+<p>Single: <a target="_blank" rel="noopener" href="https://github.com/Dreamer-Paul/Single">https://github.com/Dreamer-Paul/Single</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707834230.png" alt="single"></p>
+<blockquote>
+<p>icarus for tyecho: <a target="_blank" rel="noopener" href="https://github.com/keroliang/typecho-theme-icarus">https://github.com/keroliang/typecho-theme-icarus</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707888255.png" alt="image.png"></p>
+<blockquote>
+<p>raw: <a target="_blank" rel="noopener" href="https://github.com/AlanDecode/Typecho-Theme-RAW">https://github.com/AlanDecode/Typecho-Theme-RAW</a></p>
+</blockquote>
+<p>注意看项目的安装说明：<a target="_blank" rel="noopener" href="https://github.com/AlanDecode/Typecho-Theme-RAW/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98#%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7">安装说明</a></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622707960475.png" alt="image.png"></p>
+<blockquote>
+<p>cactus for tyecho: <a target="_blank" rel="noopener" href="https://github.com/Seevil/cactus">https://github.com/Seevil/cactus</a></p>
+</blockquote>
+<p>（这款主题只支持暗色，而且目录树所有节点都在h1层，但主题风格很有特色）</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622708041663.png" alt="image.png"></p>
+<p>然后是插件，我确定下来使用的插件有：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/%25E6%258F%2592%25E4%25BB%25B6%25E7%25AE%25A1%25E7%2590%2586_1622708275662.png" alt="插件管理.png"></p>
+<p>typecho的插件来源比较零散，这是这些插件的下载链接。部分链接是直链，这些插件放在typecho-fans/plugins的releases里，和其它插件混在一起不太好找，故而直接把直链贴出来：</p>
+<blockquote>
+<p>CodeMirror 直链：<a target="_blank" rel="noopener" href="https://github.com/typecho-fans/plugins/releases/download/plugins-A_to_C/CodeMirror.zip">主题代码在线高亮编辑器</a></p>
+<p>CodeStyle 直链：<a target="_blank" rel="noopener" href="https://github.com/typecho-fans/plugins/releases/download/plugins-A_to_C/CodeStyle.zip">可堪一用的highlightJS高亮插件，请关闭行号</a></p>
+<p>EditorMD：<a target="_blank" rel="noopener" href="https://github.com/DT27/EditorMD">MD编辑器高亮</a></p>
+<p>GeeTest 直链：<a target="_blank" rel="noopener" href="https://github.com/typecho-fans/plugins/releases/download/plugins-D_to_G/GeeTest.zip">评论回复，滑块人机验证</a></p>
+<p>HelloWorld：<a href="#">tyecho自带没啥用后台显示字符串</a></p>
+<p>Menu Tree:<a target="_blank" rel="noopener" href="https://github.com/hongweipeng/MenuTree">显示一个目录按钮，点击查看目录树</a></p>
+<p>Qplayer:<a target="_blank" rel="noopener" href="https://plugins.typecho.me/plugins/qplayer.html">悬浮音乐播放器，样式可能被一些主题的样式覆盖</a></p>
+<p>Sitemap 直链:<a target="_blank" rel="noopener" href="https://github.com/typecho-fans/plugins/releases/download/plugins-S_to_Z/Sitemap.zip">谷歌站点地图生成器</a></p>
+<p>SmartSpam：<a target="_blank" rel="noopener" href="https://plugins.typecho.me/plugins/smart-spam.html">评论过滤规则设置</a></p>
+</blockquote>
+<p>后续补充几个截图里没有的：</p>
+<blockquote>
+<p>HideTool：<a target="_blank" rel="noopener" href="https://github.com/jclser/HideTool">插件实现，文章内容回复可见</a></p>
+<p>Baidu TextCensor:<a target="_blank" rel="noopener" href="https://github.com/sy-records/ty-baidu-textcensor">评论词汇通过百度审核标准</a></p>
+<p>Tp2MD：<a target="_blank" rel="noopener" href="https://github.com/AlanDecode/Typecho-Plugin-Tp2MD">导出typecho文章内容为MD</a></p>
+</blockquote>
+<p>其它插件可见：</p>
+<blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://plugins.typecho.me/">https://plugins.typecho.me/</a></p>
+<p>社区维护列表：<a target="_blank" rel="noopener" href="http://typecho-fans.github.io/plugins/">http://typecho-fans.github.io/plugins/</a></p>
+</blockquote>
+<p>最后，写了这么多，如果觉得以上这些东西安装麻烦且不差钱，可-￥88购买以下两款质感极佳、功能丰富的主题，俩集成了很多插件的功能，省事且好用：</p>
+<blockquote>
+<p>mirages：<a target="_blank" rel="noopener" href="https://get233.com/archives/mirages-intro.html">https://get233.com/archives/mirages-intro.html</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622710732821.png" alt="image.png"></p>
+<blockquote>
+<p>handsome：<a target="_blank" rel="noopener" href="https://www.ihewro.com/archives/489/">https://www.ihewro.com/archives/489/</a></p>
+</blockquote>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622710691410.png" alt="image.png"></p>
+<p>这两款主题原创于typecho，质量能打十个。</p>
+<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><p>由于typecho走的轻质路线，整个博客后台莫名给人质感很糙的感觉，(页面切换没有动画过渡，且对第三方功能启用缺乏足够的检查，配置项主题和插件易冲突，造成50X错误)。这大概也是插件多的坏处了吧，兼容性是个很难解决的问题。</p>
+<p>还有一点是我目前没学过PHP，看着typecho代码两眼发懵。无法整活，甚是遗憾。</p>
+<p>接着我遇到了基于java后端的halo。</p>
+<h1 id="Halo"><a href="#Halo" class="headerlink" title="Halo"></a>Halo</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://halo.run/">https://halo.run/</a></p>
+</blockquote>
+<p>找主题时发现的一个国产博客框架，基于JAVA。开发使用vue+spring boot框架，前后台体验丝滑得让人感动。功能上就是比较纯粹的博客程序，原生实现目录树，支持seo，自定义图床设置，smtp邮件回复评论等等。主题安装非常简单，后台拖进去即可，类似chrome装扩展。主题较少但质量极高，放到typecho里又是一个$88。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/image_1622713276523.png" alt="halo的主题集，去官网主题仓库下载即可"></p>
+<p>halo本身提供的可定制性功能已经满足绝大多数要求了，作为一款纯粹的博客程序而言完全足够。另若要深度定制，JAVA玩家可改主题源码。</p>
+<p>在线修改主题源码（可能导致主题更新失败）：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_13-42-59_1622712657081.png" alt="Snipaste_20210601_134259.png"></p>
+<p>写文章时可惜md没有语法高亮：</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-05-31_23-04-18_1622712657090.png" alt="Snipaste_20210531_230418.png"></p>
+<p>值得说道的是halo的部署。halo环境要求java JRE 11+，程序本身是一个jar包，内置了h2小型数据库，也可外连mysql（要求mysql 5.7+），与常见的JAVA项目部署上线别无二致。halo本身只要一个jvm环境就能跑，数据（数据库）和程序（halo.jar）互相独立，便于管理。网站具体上线还需一个支持端口转发功能的服务，如nginx反代port 80请求到port 8090应答。</p>
+<p>为了方便部署，官方提供docker镜像。另外也提供了博客数据迁移的功能。</p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_19-55-34_1622711998773.png" alt="Snipaste_20210601_195534.png"></p>
+<p><img data-src="\images\lazy_load.png" data-original="https://raw.githubusercontent.com/mednight4/picbed/master/hexo%E3%80%81wordpress%E3%80%81halo%E5%92%8Ctypecho%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/Snipaste_2021-06-01_19-52-35_1622711990420.png" alt="Snipaste_20210601_195235.png"></p>
+<p>我试着将hexo的博文转到halo，大部分categories和tags都能还原，很不错。</p>
+<p>在短暂的体验过程中，halo自始至终都很稳定没出现过50X。随意的安装卸载主题，修改设置，并不会影响博客应用的稳定。halo还内置了很多不错的功能，我会在下一篇文章中仔细说明。</p>
+<h2 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h2><p>halo不支持额外安装第三方插件功能，也就是说，扩展功能完全由主题提供，对于不懂JAVA的玩家无疑定制性不高。假如有傻子在你的博客下刷广告，你可能需要自己写个类，给博客加入人机认证或IP黑名单功能。</p>
+<p>另外，halo的用户群体并不算庞大，生态是不如以上三者的。诚然官方已经考虑很周全了，但显然没有社区的鬼点子多，例如md主题编辑器高亮这种功能恐怕只有广大热心网友才能想得到了。halo的主题设置仅仅涉及前台。定制的方便性也不如前三者，像更改md编辑器这种需求，wordPress或typecho装一个插件就搞定了（当然你可以自己摸清主题开发自用）。</p>
+<p>所以有评价道：halo是一款更纯粹的博客程序，少了很多折腾事儿。</p>
+<hr>
+<p>问：我typora写了这么多篇幅，为什么最后选择使用halo？</p>
+<p>答：玩了两天主题和插件，最终typecho数据库被玩坏了，懒得修了，删库跑路，笑。</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/others/" rel="tag"># others</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/03/halo-pei-zhi-xiang/" rel="prev" title="halo配置项">
+                  <i class="fa fa-chevron-left"></i> halo配置项
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/04/c-cheng-xu-she-ji-jiao-cheng-yu-fa-su-lan/" rel="next" title="C#程序设计教程-语法速览">
+                  C#程序设计教程-语法速览 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mednight4</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  const url = element.dataset.target;
+  const pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  const pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  const fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
